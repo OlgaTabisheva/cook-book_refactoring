@@ -24,4 +24,12 @@
 	url("lato-regular.woff") format("woff");
 }
 
+@font-face {
+	font-family: 'Montserrat';
+	font-style:  normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("Montserrat-Regular.woff") format("woff"),
+	url("Montserrat-Regular.woff2") format("woff2");
+}
 

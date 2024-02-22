@@ -1,0 +1,11 @@
+@import "../../variables";
+
+.recipeChips{
+  padding: 4px 12px;
+  color: $sand-colorful-100;
+  background-color: $sand-colorful-30;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: right;
+  border-radius: 100px;
+}

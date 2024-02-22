@@ -1,0 +1,47 @@
+@import "../../../variables";
+
+.buttonLike {
+  border: none;
+  display: flex;
+  width: 62px;
+  height: 32px;
+  @import "../../../variables";
+
+  background-color: inherit;
+
+  &__heart {
+    width: 24px;
+    height: 24px;
+    padding: 4px 12px;
+    //margin: 0 0 16px 5px;
+    background-image: url(../../assets/heartEmpty.svg);
+    border: hidden;
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+}
+  .buttonLike_active{
+    background-color: $accent-30-fill;
+    padding:  4px 12px;
+  &__heart_active {
+    width: 24px;
+    height: 24px;
+
+
+    //margin: 0 0 16px 5px;
+    border: hidden;
+    cursor: pointer;
+    background-image: url(../../assets/heartRed.svg);
+    font-size: 14px;
+   background-position: center;
+
+  }
+
+}
+.buttonLike__count{
+
+}

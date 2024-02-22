@@ -1,0 +1,32 @@
+@import "../../variables";
+
+.header{
+  font-family: $hint-font;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 8px 160px;
+  margin: 0;
+
+  &__links{
+    display: flex;
+    align-items: center;
+    margin: 0 206.5px;
+    max-width: 398px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  &__box{
+    display: flex;
+    align-items: center;
+
+  }
+  &__logo{
+    background-color: $sand-colorful-20;
+    border-radius: 100px;
+    padding: 6px;
+
+  }
+}
