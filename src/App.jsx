@@ -101,7 +101,7 @@ function App() {
       <Routes>
 
 
-     <Route exact path="/" element={
+        <Route exact path="/" element={
           <MainLayout/>
         }>
           <Route path="/" element={
@@ -115,8 +115,8 @@ function App() {
             />
           }/>
 
-      </Route>
-        </Routes>
+        </Route>
+      </Routes>
       <Toaster
         position="top-center"
         reverseOrder={false}

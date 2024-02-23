@@ -1,47 +1,74 @@
 @import "../../../variables";
 
-.buttonLike {
+.buttonLikeFull {
+  cursor: pointer;
+
+  font-family: $hint-font;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
   border: none;
   display: flex;
   width: 62px;
   height: 32px;
-  @import "../../../variables";
-
-  background-color: inherit;
+  padding: 4px 12px;
+  background-color: $accent-30-fill-opacity;
+  border-radius: 100px;
+  color: $accent-30-fill;
+  align-items: center;
+  justify-content: space-evenly;
 
   &__heart {
     width: 24px;
     height: 24px;
-    padding: 4px 12px;
-    //margin: 0 0 16px 5px;
-    background-image: url(../../assets/heartEmpty.svg);
+    background-image: url(../../../assets/heartRed.svg);
     border: hidden;
     cursor: pointer;
-    background-color: inherit;
     font-size: 14px;
     background-repeat: no-repeat;
     background-position: center;
+  }
 
+  &__count {
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 4px;
   }
 }
-  .buttonLike_active{
-    background-color: $accent-30-fill;
-    padding:  4px 12px;
-  &__heart_active {
+
+.buttonLikeEmpty {
+  font-family: $hint-font;
+  cursor: pointer;
+
+  border: none;
+  display: flex;
+  width: 62px;
+  height: 32px;
+  padding: 4px 12px;
+  background-color: $sand-20;
+  border-radius: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+
+  &__heart {
     width: 24px;
     height: 24px;
-
-
-    //margin: 0 0 16px 5px;
+    background-image: url(../../../assets/heartEmpty.svg);
     border: hidden;
     cursor: pointer;
-    background-image: url(../../assets/heartRed.svg);
     font-size: 14px;
-   background-position: center;
-
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
+  &__count {
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 4px;
+    color: $sand-colorful-80;
+  }
 }
-.buttonLike__count{
 
-}
+
+
+

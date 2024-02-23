@@ -2,14 +2,50 @@
 
 .recipeCard {
   display: flex;
-  max-width: 200px;
+  max-width: 352px;
   width: 100%;
+  max-height: 340px;
+  height: 1000%;
   flex-direction: column;
-  &__name{
+  position: relative;
+  &__img{
+    border-radius: 28px;
+  }
+  &__imgClock{
+    margin-top: 8px;
+    margin-right: 4px;
+    width: 16px;
+    height: 16px;
+  }
+  &__textBox{
+    margin-top: 12px;
+  }
+  &__name {
+    color: $sand-80;
+    font-family: $stock-font;
     overflow: hidden;
-    max-width: 180px;
-    height: 28px;
+    font-size: 24px;
+    line-height: 28px;
     text-overflow: ellipsis;
+    white-space: nowrap;
+
+  }
+  &__text {
+    color: $sand-80;
+font-family: $hint-font;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 8px;
+  }
+  &__clock{
+    display: flex;
+  }
+  &__box{
+    max-width: 141px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+
 
   }
 }

@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.header{
+.header {
   font-family: $hint-font;
 
   display: flex;
@@ -10,7 +10,7 @@
   padding: 8px 160px;
   margin: 0;
 
-  &__links{
+  &__links {
     display: flex;
     align-items: center;
     margin: 0 206.5px;
@@ -18,12 +18,14 @@
     width: 100%;
     justify-content: space-between;
   }
-  &__box{
+
+  &__box {
     display: flex;
     align-items: center;
 
   }
-  &__logo{
+
+  &__logo {
     background-color: $sand-colorful-20;
     border-radius: 100px;
     padding: 6px;

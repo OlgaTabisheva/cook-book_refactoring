@@ -1,0 +1,36 @@
+@import "../../variables";
+
+.carouselsBox{
+  max-width: 1120px;
+  width: 100%;
+  margin: 120px auto 120px auto;
+  &__carousel{
+    margin: 60px 0;
+  }
+&__title{
+font-size: 28px;
+  line-height: 32px;
+  margin: 0 0 12px 0;
+}
+  &__card{
+
+  }
+  &__buttonLeft {
+    background-color: inherit;
+    background-image: url(../../assets/LeftM.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    border: hidden;
+    cursor: pointer;
+    justify-content: space-around;
+    z-index: 100;
+    position: absolute;
+    top: 1px;
+    right: 30px;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

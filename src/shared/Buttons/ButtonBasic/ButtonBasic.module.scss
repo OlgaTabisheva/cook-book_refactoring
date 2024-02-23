@@ -1,6 +1,6 @@
 @import "../../../variables";
 
-.buttonBasic{
+.buttonBasic {
   font-family: $hint-font;
   font-size: 16px;
   line-height: 24px;
@@ -10,14 +10,16 @@
   border: none;
   color: white;
   background-color: $primary-100;
-  &:hover{
+
+  &:hover {
     background-color: $primary-120;
   }
-  &:visited{
+
+  &:visited {
     background-color: $primary-140;
   }
 
-  &:disabled{
+  &:disabled {
     background-color: $sand-40;
   }
 }

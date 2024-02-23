@@ -6,42 +6,49 @@ import PictureSection from "../../widgets/PictureSection/PictureSection.jsx";
 import CarouselsBox from "../../widgets/CarouselsBox/CarouselsBox.jsx";
 
 
-export const HomePage = ({instantAddRecipe, instantLikes, setInstantLikes, isAuthenticated, setInstantAddRecipe, data}) => {
+export const HomePage = ({
+                           instantAddRecipe,
+                           instantLikes,
+                           setInstantLikes,
+                           isAuthenticated,
+                           setInstantAddRecipe,
+                           data
+                         }) => {
   console.log(instantAddRecipe)
 
 
-  const [numberCarouselImage,setNumberCarouselImage] = useState()
-  const [numberCarouselImage2,setNumberCarouselImage2] = useState()
+  const [numberCarouselImage, setNumberCarouselImage] = useState()
+  const [numberCarouselImage2, setNumberCarouselImage2] = useState()
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: {max: 3000, min: 1024},
       items: 2,
-      slidesToSlide: 1 ,
+      slidesToSlide: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 768 },
+      breakpoint: {max: 1024, min: 768},
       items: 3,
       slidesToSlide: 3 // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 767, min: 464 },
+      breakpoint: {max: 767, min: 464},
       items: 2,
       slidesToSlide: 1 // optional, default to 1.
     }
   };
   const responsive2 = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: {max: 3000, min: 1024},
       items: 3,
       slidesToSlide: 1 // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 768 },
+      breakpoint: {max: 1024, min: 768},
       items: 2,
       slidesToSlide: 3 // optional, default to 1.
     },
     mobile: {
-      breakpoint: { max: 767, min: 464 },
+      breakpoint: {max: 767, min: 464},
       items: 1,
       slidesToSlide: 1 // optional, default to 1.
     }
@@ -104,20 +111,20 @@ export const HomePage = ({instantAddRecipe, instantLikes, setInstantLikes, isAut
       </button>
       )
     };*/
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
-    const { carouselState: { currentSlide } } = rest;
+  const ButtonGroup = ({next, previous, goToSlide, ...rest}) => {
+    const {carouselState: {currentSlide}} = rest;
     setNumberCarouselImage(currentSlide)
     return (
       <div className="carousel-button-group mb-4  gap-4 flex justify-end
           items-center w-full">
         <button className={style.home__buttonRight} onClick={next} style={arrowStyle}>
-          <button className={style.home__buttonLeft}  ></button>
+          <button className={style.home__buttonLeft}></button>
           <p></p>
         </button>
         <button className={style.home__buttonRight} onClick={previous} style={arrowStyle}>
 
           <button className={style.home__buttonRight}></button>
-          <p className={style.home__text}> {numberCarouselImage+1 }/{(sliderImageUrl?.length+1)/2}</p>
+          <p className={style.home__text}> {numberCarouselImage + 1}/{(sliderImageUrl?.length + 1) / 2}</p>
         </button>
 
 
@@ -125,22 +132,21 @@ export const HomePage = ({instantAddRecipe, instantLikes, setInstantLikes, isAut
 
     );
   };
-  const ButtonGroup2 = ({ next, previous, goToSlide, ...rest }) => {
-    const { carouselState: { currentSlide } } = rest;
+  const ButtonGroup2 = ({next, previous, goToSlide, ...rest}) => {
+    const {carouselState: {currentSlide}} = rest;
     setNumberCarouselImage2(currentSlide)
     return (
       <div className="carousel-button-group mb-4  gap-4 flex justify-end
           items-center w-full">
         <button className={style.home__buttonRight} onClick={next} style={arrowStyle}>
-          <button className={style.home__buttonLeft}  ></button>
+          <button className={style.home__buttonLeft}></button>
           <p></p>
         </button>
         <button className={style.home__buttonRight} onClick={previous} style={arrowStyle}>
 
           <button className={style.home__buttonRight}></button>
-          <p className={style.home__text}> {numberCarouselImage2+1 }/{(sliderImageUrl?.length+1)-2}</p>
+          <p className={style.home__text}> {numberCarouselImage2 + 1}/{(sliderImageUrl?.length + 1) - 2}</p>
         </button>
-
 
 
       </div>
@@ -165,7 +171,7 @@ export const HomePage = ({instantAddRecipe, instantLikes, setInstantLikes, isAut
       <p className={style.about__text}>Вторая причина создания проекта - совершетсвования навыков во фронтенд
         разработке</p>*/}
 
-     {/* <div className={style.home__parent}>
+      {/* <div className={style.home__parent}>
         <h2>Новые:</h2>
 
         <div className={style.home__box}>

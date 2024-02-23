@@ -1,5 +1,6 @@
 @import "../../variables";
-.pictureSection{
+
+.pictureSection {
   font-family: $hint-font;
   background-repeat: no-repeat, repeat;
   background: linear-gradient(89.94deg, rgba(0, 0, 0, 0.4) 29.03%, rgba(0, 0, 0, 0) 99.96%),
@@ -9,7 +10,7 @@
   border-radius: 0 0 80px 80px;
   width: 100%;
 
-  &__box{
+  &__box {
     padding: 160px 0 120px 160px;
     display: flex;
     flex-direction: column;
@@ -17,20 +18,22 @@
     max-width: 546px;
     width: 100%;
   }
-  &__title{
+
+  &__title {
     font-family: $stock-font;
     color: $white;
     font-weight: 500;
     font-size: 32px;
-    line-height: 36px ;
+    line-height: 36px;
   }
-&__text{
-  font-family: $hint-font;
-  margin-top: 12px;
-  color: $white;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 40px;
-}
+
+  &__text {
+    font-family: $hint-font;
+    margin-top: 12px;
+    color: $white;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 40px;
+  }
 }

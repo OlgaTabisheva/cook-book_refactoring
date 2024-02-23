@@ -1,11 +1,21 @@
 @import "../../variables";
 
-.recipeChips{
+.recipeChips {
+  font-family: $hint-font;
+  width: 93px ;
+  height: 28px;
   padding: 4px 12px;
   color: $sand-colorful-100;
   background-color: $sand-colorful-30;
   font-size: 13px;
   line-height: 20px;
-  text-align: right;
   border-radius: 100px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
+
