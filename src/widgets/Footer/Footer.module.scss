@@ -1,5 +1,51 @@
 @import "../../variables";
 
 .footer{
+  font-family: $stock-font;
+  max-width: 544px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 60px auto;
+  align-items: center;
+  &__title{
+    font-family: $stock-font;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 40px;
+    text-align: center;
+ }
+  &__boxTitle{
+    font-family: $hint-font;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 8px;
+    text-align: center;
 
+  }
+  &__box{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__link{
+    color: $sand-80;
+    text-decoration: none;
+    text-align: center;
+    &:not(:last-child) {
+      border-right: 1px solid $sand-80-opacity;
+      padding: 0 40px;
+    }
+    &:last-child {
+      padding:  0 40px;
+    }
+  }
+  &__linkLast{
+    color: $sand-80;
+    text-decoration: none;
+    text-align: center;
+  }
 }
