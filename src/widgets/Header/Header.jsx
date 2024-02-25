@@ -18,7 +18,7 @@ function Header() {
 
       </nav>
       <nav className={style.header__box}>
-        {!isAuthenticated ? <LinkItem linkTo={'/'} text={'Вход/Регистрация'}/> : null}
+        {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'}/> : null}
         {/*<LinkItem linkTo={'/'} text={'Личный кабинет'}/>}*/}
         <img className={style.header__logo} width="24px" height="24px"
              src={user} alt="user"/>

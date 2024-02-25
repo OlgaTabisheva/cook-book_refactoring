@@ -1,0 +1,39 @@
+@import "../../variables";
+
+.auth{
+
+
+  &__content{
+    display: flex;
+    flex-direction: column;
+    max-width: 440px;
+    width: 100%;
+    margin: 163px auto auto auto;
+    align-items: stretch
+  }
+  &__contentText{
+ margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__title{
+   font-family: $stock-font;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    color:$primary-dark-100;
+  }
+  &__description{
+    font-family: $hint-font;
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $sand-80;
+
+  }
+  &__box{
+    margin-top: 40px;
+  }
+
+}

@@ -1,0 +1,25 @@
+@import "../../variables";
+
+.inputAuth{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+
+&__input{
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid $sand-40;
+  background-color: inherit;
+  &:focus{
+    border: 1px solid $primary-dark-100;
+  }
+
+}
+&__text{
+  font-family: $hint-font;
+  font-size: 13px;
+  line-height: 16px;
+  color: $primary-dark-100;
+}
+}

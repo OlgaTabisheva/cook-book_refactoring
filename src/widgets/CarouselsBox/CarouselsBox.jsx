@@ -23,6 +23,8 @@ function CarouselsBox({linkTo, text}) {
     }
   };
   const [numberCarouselImage, setNumberCarouselImage] = useState()
+  const [numberCarouselImage2, setNumberCarouselImage2] = useState()
+  const [numberCarouselImage3, setNumberCarouselImage3] = useState()
   const arrowStyle = {
     background: "transparent",
     border: 0,
@@ -34,22 +36,91 @@ function CarouselsBox({linkTo, text}) {
 
 
 ]
+  const sliderImageUrl2 = [1,2,3,4,5,6,7,
+
+
+
+    ]
   ;
+  const sliderImageUrl3 = [1,2,3,4,5,6,7,
+
+
+
+  ]
   console.log(sliderImageUrl)
   const ButtonGroup = ({next, previous, goToSlide, ...rest}) => {
     const {carouselState: {currentSlide}} = rest;
+    const firstNumberCarousel= numberCarouselImage === 0
+    const NumberCarousel = sliderImageUrl?.length - 3
+    const LastNumberCarousel= numberCarouselImage === NumberCarousel
+
     setNumberCarouselImage(currentSlide)
     return (
       <div className="carousel-button-group mb-4  gap-4 flex justify-end
           items-center w-full">
-        <button className={style.carouselsBox__buttonRight} onClick={next} style={arrowStyle}>
-          <button className={style.carouselsBox__buttonLeft}></button>
-          <p></p>
-        </button>
-        <button className={style.carouselsBox__buttonRight} onClick={previous} style={arrowStyle}>
+        <button className={style.carouselsBox__box} onClick={next} style={arrowStyle}>
+          <button className={style.carouselsBox__buttonRight} disabled={ LastNumberCarousel}></button>
 
-          <button className={style.carouselsBox__buttonRight}></button>
-          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{(sliderImageUrl?.length + 1) / 2}</p>
+        </button>
+        <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
+
+          <button className={style.carouselsBox__buttonLeft} disabled={ firstNumberCarousel}></button>
+          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{sliderImageUrl?.length -2}</p>
+        </button>
+
+
+      </div>
+
+    );
+  };
+  const ButtonGroup2 = ({next, previous, goToSlide, ...rest}) => {
+    const {carouselState: {currentSlide}} = rest;
+    const firstNumberCarousel= numberCarouselImage2 === 0
+    const NumberCarousel = sliderImageUrl2?.length - 3
+    const LastNumberCarousel= numberCarouselImage2 === NumberCarousel
+
+    setNumberCarouselImage2(currentSlide)
+    return (
+      <div className="carousel-button-group mb-4  gap-4 flex justify-end
+          items-center w-full">
+        <button className={style.carouselsBox__box} onClick={next} style={arrowStyle}>
+          <button className={style.carouselsBox__buttonRight} disabled={ LastNumberCarousel}></button>
+
+        </button>
+        <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
+
+          <button className={style.carouselsBox__buttonLeft} disabled={ firstNumberCarousel}></button>
+
+          <p className={style.carouselsBox__text}> {numberCarouselImage2 + 1}/{sliderImageUrl2?.length -2}</p>
+        </button>
+
+
+      </div>
+
+    );
+  };
+
+  const ButtonGroup3 = ({next, previous, goToSlide, ...rest}) => {
+    const {carouselState: {currentSlide}} = rest;
+    console.log(numberCarouselImage3)
+    setNumberCarouselImage3(currentSlide)
+    const firstNumberCarousel= numberCarouselImage3 === 0
+    const NumberCarousel = sliderImageUrl3?.length - 3
+    const LastNumberCarousel= numberCarouselImage3 === NumberCarousel
+
+    console.log(NumberCarousel, 'NumberCarousel')
+    return (
+      <div className="carousel-button-group mb-4  gap-4 flex justify-end
+          items-center w-full">
+
+        <button className={style.carouselsBox__box}   onClick={next} style={arrowStyle}>
+          <button className={style.carouselsBox__buttonRight} disabled={ LastNumberCarousel}></button>
+
+        </button>
+        <button className={style.carouselsBox__box}    onClick={previous} style={arrowStyle}>
+
+          <button className={style.carouselsBox__buttonLeft} disabled={ firstNumberCarousel}></button>
+          <p className={style.carouselsBox__text}> {numberCarouselImage3 + 1}/{sliderImageUrl3?.length -2}</p>
         </button>
 
 
@@ -100,7 +171,7 @@ function CarouselsBox({linkTo, text}) {
         <h2 className={style.carouselsBox__title}>Самые популярные:</h2>
         <Carousel
           renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup/>}
+          customButtonGroup={<ButtonGroup2/>}
           responsive={responsive2}
           customRightArrow={null}
           customLeftArrow={null}
@@ -136,7 +207,7 @@ function CarouselsBox({linkTo, text}) {
         <h2 className={style.carouselsBox__title}>Обсуждаемые:</h2>
         <Carousel
           renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup/>}
+          customButtonGroup={<ButtonGroup3/>}
           responsive={responsive2}
           customRightArrow={null}
           customLeftArrow={null}

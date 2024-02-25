@@ -8,20 +8,36 @@
     margin: 60px 0;
   }
 &__title{
+  font-family: $stock-font;
+  font-weight: 500;
 font-size: 28px;
   line-height: 32px;
   margin: 0 0 12px 0;
 }
   &__card{
+    margin:0 20px;
+    overflow: hidden;
+    padding:2rem 0;
+  }
+  &__box{
 
   }
-  &__buttonRight {
+  &__text{
+    font-family: $stock-font;
+    position: absolute;
+    top: 0;
+    right: 66px;
+    color: $sand-80;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  &__buttonLeft {
     background-color: inherit;
-    background-image: url(../../assets/RightM.svg);
+    background-image: url(../../assets/LeftM.svg);
     background-repeat: no-repeat;
     background-position: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 24px;
     border: hidden;
     cursor: pointer;
     display: flex;
@@ -30,25 +46,40 @@ font-size: 28px;
     justify-content: space-around;
     z-index: 100;
     position: absolute;
-    top: 1px;
-    right: 50px;
+    top: 0;
+    right: 97px;
+    &:hover {
+      background-image: url(../../assets/LeftMHover.svg);
+    }
+    &:disabled{
+      background-image: url(../../assets/LeftMDisabled.svg);
+      cursor: default;
+    }
+    &:active{    background-image: url(../../assets/LeftPressed.svg);
+     }
   }
-  &__buttonLeft {
+  &__buttonRight {
     background-color: inherit;
-    background-image: url(../../assets/LeftM.svg);
+    background-image: url(../../assets/RightM.svg);
     background-repeat: no-repeat;
     background-position: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 24px;
     border: hidden;
     cursor: pointer;
     justify-content: space-around;
     z-index: 100;
     position: absolute;
-    top: 1px;
-    right: 30px;
+    top: 0;
+    right: 21px;
     &:hover {
-      opacity: 0.5;
+      background-image: url(../../assets/RightMHover.svg);
+    }
+    &:active{    background-image: url(../../assets/RightPressed.svg);
+    }
+    &:disabled{
+      background-image: url(../../assets/RightMDisabled.svg);
+      cursor: default;
     }
   }
 }

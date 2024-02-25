@@ -7,6 +7,7 @@ import {gql, useQuery} from '@apollo/client'
 import {useAuthenticated, useUserData} from "@nhost/react";
 import {Toaster} from "react-hot-toast";
 import {HomePage} from "./pages/HomePage/HomePage.jsx";
+import Auth from "./pages/Auth/Auth.jsx";
 
 
 const GET_RECIPES = gql`
@@ -116,6 +117,11 @@ function App() {
           }/>
 
         </Route>
+        <Route path="/auth" element={
+
+            <Auth/>
+
+        }/>
       </Routes>
       <Toaster
         position="top-center"

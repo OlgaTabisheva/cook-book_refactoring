@@ -13,7 +13,7 @@ function RecipeCard() {
   return (
     <section className={style.recipeCard}>
       <RecipeChips/>
-      <img className={style.recipeCard__img} height="200px" width="352px"
+      <img className={style.recipeCard__img}
            src={recipeImage} alt="recipeImg"/>
       <div className={style.recipeCard__textBox}>
       <h3 className={style.recipeCard__name}>Булочки синнабон с корицей с глазурью из сахара и белым шоколадом и
