@@ -1,28 +1,33 @@
 @import "../../variables";
 
-.carouselsBox{
+.carouselsBox {
   max-width: 1120px;
   width: 100%;
   margin: 120px auto 120px auto;
-  &__carousel{
+
+  &__carousel {
     margin: 60px 0;
   }
-&__title{
-  font-family: $stock-font;
-  font-weight: 500;
-font-size: 28px;
-  line-height: 32px;
-  margin: 0 0 12px 0;
-}
-  &__card{
-    margin:0 20px;
-    overflow: hidden;
-    padding:2rem 0;
+
+  &__title {
+    font-family: $stock-font;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 32px;
+    margin: 0 0 12px 0;
   }
-  &__box{
+
+  &__card {
+   margin: 0 20px;
+    overflow: hidden;
+    padding: 2rem 0;
+  }
+
+  &__box {
 
   }
-  &__text{
+
+  &__text {
     font-family: $stock-font;
     position: absolute;
     top: 0;
@@ -31,6 +36,7 @@ font-size: 28px;
     font-size: 20px;
     line-height: 24px;
   }
+
   &__buttonLeft {
     background-color: inherit;
     background-image: url(../../assets/LeftM.svg);
@@ -48,16 +54,21 @@ font-size: 28px;
     position: absolute;
     top: 0;
     right: 97px;
+
     &:hover {
       background-image: url(../../assets/LeftMHover.svg);
     }
-    &:disabled{
+
+    &:disabled {
       background-image: url(../../assets/LeftMDisabled.svg);
       cursor: default;
     }
-    &:active{    background-image: url(../../assets/LeftPressed.svg);
-     }
+
+    &:active {
+      background-image: url(../../assets/LeftPressed.svg);
+    }
   }
+
   &__buttonRight {
     background-color: inherit;
     background-image: url(../../assets/RightM.svg);
@@ -72,12 +83,16 @@ font-size: 28px;
     position: absolute;
     top: 0;
     right: 21px;
+
     &:hover {
       background-image: url(../../assets/RightMHover.svg);
     }
-    &:active{    background-image: url(../../assets/RightPressed.svg);
+
+    &:active {
+      background-image: url(../../assets/RightPressed.svg);
     }
-    &:disabled{
+
+    &:disabled {
       background-image: url(../../assets/RightMDisabled.svg);
       cursor: default;
     }

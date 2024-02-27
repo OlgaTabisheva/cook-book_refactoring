@@ -1,15 +1,15 @@
 @import "../../../variables";
 
-.buttonRadioAuth{
+.buttonRadioAuth {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid $sand-40;
   border-radius: 100px;
- width: 440px;
+  width: 440px;
   height: 56px;
 
-  &__button{
+  &__button {
     color: $sand-60;
     font-family: $hint-font;
     font-weight: 400;
@@ -17,12 +17,13 @@
     line-height: 24px;
     width: 208px;
     height: 40px;
-   padding:  8px 12px;
+    padding: 8px 12px;
     border: none;
     border-radius: 100px;
     background-color: inherit;
     cursor: pointer;
-    &:disabled{
+
+    &:disabled {
       background-color: $sand-20;
       color: $primary-dark-100;
     }

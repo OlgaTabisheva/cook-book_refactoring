@@ -3,8 +3,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("src/vendor/fonts/Vollkorn-regular.woff"),
-  url("./Vollkorn-regular.woff2") format("woff2");
+  src:
+  url("./Vollkorn-Regular.ttf") format("ttf");
 }
 
 @font-face {
@@ -12,9 +12,29 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("Vollkorn-medium.woff2") format("woff2");
+  src: url("Vollkorn-Medium.ttf") format("ttf");
 }
-
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("Vollkorn-SemiBold.ttf") format("ttf");
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("Vollkorn-Bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("Vollkorn-ExtraBold.ttf") format("ttf");
+}
 @font-face {
   font-family: 'Lato';
   font-style: normal;
@@ -30,8 +50,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("lato-bold.woff"),
-  url("lato-bold.woff2") format("woff2")
+  src:  url("Lato-Regular.ttf")format("ttf")
 ;
 }
 
@@ -40,8 +59,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("Montserrat-Regular.woff"),
-  url("Montserrat-Regular.woff2") format("woff2");
+  src: url("Montserrat-Thin.ttf")
+
 }
 
 @font-face {
@@ -49,6 +68,5 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("Montserrat-Bold.woff"),
-  url("Montserrat-Bold.woff2") format("woff2");
+  src: url("Montserrat-Bold.ttf")format("ttf")
 }

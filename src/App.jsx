@@ -8,6 +8,7 @@ import {useAuthenticated, useUserData} from "@nhost/react";
 import {Toaster} from "react-hot-toast";
 import {HomePage} from "./pages/HomePage/HomePage.jsx";
 import Auth from "./pages/Auth/Auth.jsx";
+import Ttest from "./test/test.jsx";
 
 
 const GET_RECIPES = gql`
@@ -119,7 +120,12 @@ function App() {
         </Route>
         <Route path="/auth" element={
 
-            <Auth/>
+          <Auth/>
+
+        }/>
+        <Route path="/test" element={
+
+          <Ttest/>
 
         }/>
       </Routes>

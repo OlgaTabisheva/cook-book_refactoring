@@ -1,25 +1,62 @@
 @import "../../variables";
 
-.inputAuth{
+.inputAuth {
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
 
-&__input{
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid $sand-40;
-  background-color: inherit;
-  &:focus{
-    border: 1px solid $primary-dark-100;
+  &:not(:first-child) {
+    margin-top: 20px;
   }
 
-}
-&__text{
-  font-family: $hint-font;
-  font-size: 13px;
-  line-height: 16px;
-  color: $primary-dark-100;
-}
+  &__input {
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid $sand-40;
+    background-color: inherit;
+
+    &:focus {
+      border: 1px solid $primary-dark-100;
+    }
+
+  }
+
+  &__text {
+    font-family: $hint-font;
+    font-size: 13px;
+    line-height: 16px;
+    color: $primary-dark-100;
+    position: relative;
+  }
+
+  &__buttonImg {
+    top: 12px;
+    left: 12px;
+    text-align: center;
+    background-color: inherit;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__img {
+    background-image: url(../../assets/eye.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+
+  }
+
+  &__img_active {
+    background-image: url(../../assets/eye-off.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+
+  }
 }

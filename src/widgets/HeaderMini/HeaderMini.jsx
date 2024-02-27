@@ -10,7 +10,7 @@ function HeaderMini() {
   return (
     <section className={style.headerMini}>
       <Logo/>
- <ButtonClose/>
+      <ButtonClose/>
     </section>
   )
 }

@@ -12,18 +12,20 @@ function RecipeCard() {
   const [changeLike, setChangeLike] = useState(false)
   return (
     <section className={style.recipeCard}>
-      <RecipeChips/>
-      <img className={style.recipeCard__img}
-           src={recipeImage} alt="recipeImg"/>
-      <div className={style.recipeCard__textBox}>
-      <h3 className={style.recipeCard__name}>Булочки синнабон с корицей с глазурью из сахара и белым шоколадом и
-        восхитител</h3>
-      <p className={style.recipeCard__text}>Марина Иванова</p>
-      <div className={style.recipeCard__clock}>
-        <img className={style.recipeCard__imgClock}
-             src={recipeClock} alt="clock"/>
-        <p className={style.recipeCard__text}>более 2 часов</p>
+      <div className={style.recipeCard__imgBox}>
+        <RecipeChips/>
+        <img className={style.recipeCard__img}
+             src={recipeImage} alt="recipeImg"/>
       </div>
+      <div className={style.recipeCard__textBox}>
+        <h3 className={style.recipeCard__name}>Булочки синнабон с корицей с глазурью из сахара и белым шоколадом и
+          восхитител</h3>
+        <p className={style.recipeCard__text}>Марина Иванова</p>
+        <div className={style.recipeCard__clock}>
+          <img className={style.recipeCard__imgClock}
+               src={recipeClock} alt="clock"/>
+          <p className={style.recipeCard__text}>более 2 часов</p>
+        </div>
       </div>
       <div className={style.recipeCard__box}>
         {changeLike === true ?

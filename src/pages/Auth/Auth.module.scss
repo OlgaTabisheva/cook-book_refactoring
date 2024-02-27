@@ -1,9 +1,9 @@
 @import "../../variables";
 
-.auth{
+.auth {
 
 
-  &__content{
+  &__content {
     display: flex;
     flex-direction: column;
     max-width: 440px;
@@ -11,20 +11,23 @@
     margin: 163px auto auto auto;
     align-items: stretch
   }
-  &__contentText{
- margin-bottom: 40px;
+
+  &__contentText {
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  &__title{
-   font-family: $stock-font;
+
+  &__title {
+    font-family: $stock-font;
     font-weight: 500;
     font-size: 32px;
     line-height: 36px;
-    color:$primary-dark-100;
+    color: $primary-dark-100;
   }
-  &__description{
+
+  &__description {
     font-family: $hint-font;
     margin-top: 8px;
     font-size: 16px;
@@ -32,8 +35,25 @@
     color: $sand-80;
 
   }
-  &__box{
+
+  &__box {
     margin-top: 40px;
+    margin-bottom: 40px;
+
   }
 
+  &__buttonBox {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__link {
+    margin-top: 20px;
+    text-align: center;
+    font-family: $hint-font;
+    color: $sand-80;
+    font-size: 13px;
+    line-height: 20px;
+  }
 }

@@ -1,11 +1,11 @@
 @import "../../../variables";
 
 
-.buttonClose{
- width: 40px;
+.buttonClose {
+  width: 40px;
   height: 40px;
   background-color: $buttonColor;
-border: none;
+  border: none;
   border-radius: 8px;
   background-position: center;
   align-items: center;
@@ -17,7 +17,8 @@ border: none;
   &:hover {
 
   }
-  &__img{
+
+  &__img {
     background-image: url(../../../assets/close.svg);
     background-repeat: no-repeat;
     background-position: center;

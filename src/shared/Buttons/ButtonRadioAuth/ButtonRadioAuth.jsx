@@ -7,8 +7,12 @@ function ButtonRadioAuth() {
   return (
     <section className={style.buttonRadioAuth}>
 
-      <button className={style.buttonRadioAuth__button} onClick={()=>setDisabledButton(!disabledButton) } disabled={!disabledButton} >Войти</button>
-      <button className={style.buttonRadioAuth__button} onClick={()=>setDisabledButton(!disabledButton)} disabled={disabledButton}>Зарегистрироваться</button>
+      <button className={style.buttonRadioAuth__button} onClick={() => setDisabledButton(!disabledButton)}
+              disabled={!disabledButton}>Войти
+      </button>
+      <button className={style.buttonRadioAuth__button} onClick={() => setDisabledButton(!disabledButton)}
+              disabled={disabledButton}>Зарегистрироваться
+      </button>
     </section>
   )
 }

@@ -1,8 +1,11 @@
 @import "../../variables";
 
-.headerMini{
-display: flex;
+.headerMini {
+  display: flex;
   margin: 20px 160px 8px 160px;
   justify-content: space-between;
   align-items: center;
+  max-width: 1120px;
+  width: 100%;
+
 }

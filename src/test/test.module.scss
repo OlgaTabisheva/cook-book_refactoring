@@ -1,0 +1,34 @@
+@import "../variables";
+.test{
+margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-image: url("./../assets/Frame.svg");
+  background-size: cover;
+  background-position: top;
+  &__box{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: inherit;
+    background-color: $sand-colorful-10;
+  }
+}
+
+.testBox{
+
+  margin: 60px auto 60px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 736px;
+  width: 100%;
+  position: relative;
+  background-color: $sand-colorful-30;
+
+}

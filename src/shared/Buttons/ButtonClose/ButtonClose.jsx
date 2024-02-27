@@ -4,7 +4,7 @@ function ButtonClose() {
   return (
     <button className={style.buttonClose}>
 
-<div className={style.buttonClose__img}></div>
+      <div className={style.buttonClose__img}></div>
     </button>
   )
 }

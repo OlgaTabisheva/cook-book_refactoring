@@ -2,7 +2,7 @@
 
 .recipeChips {
   font-family: $hint-font;
-  width: 93px ;
+  width: 93px;
   height: 28px;
   padding: 4px 12px;
   color: $sand-colorful-100;
@@ -17,5 +17,6 @@
   text-align: center;
   align-items: center;
   justify-content: space-evenly;
+  z-index: 2
 }
 
