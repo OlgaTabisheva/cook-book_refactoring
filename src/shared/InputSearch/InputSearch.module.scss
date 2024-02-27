@@ -1,0 +1,16 @@
+@import "../../variables";
+
+.search{
+  max-width: 1120px;
+  width: 100%;
+  &__input{
+    border: 1px solid #A49B82;
+    font-family: $hint-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: left;
+
+  }
+}

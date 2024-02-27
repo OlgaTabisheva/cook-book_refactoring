@@ -9,7 +9,6 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-
   &__imgBox {
     position: relative;
     overflow: hidden;
@@ -26,8 +25,8 @@
     display: block;
 
     &:hover {
-      transform: scale(1.05); /* Увеличиваем масштаб */
-      border-radius: 50px;
+      transform: scale(1.1); /* Увеличиваем масштаб */
+      border-radius: 40px;
 
     }
 
@@ -74,10 +73,9 @@
   }
 
   &__box {
-    max-width: 141px;
-    width: 100%;
+    justify-content: flex-start;
     display: flex;
-    justify-content: space-between
+
 
 
   }

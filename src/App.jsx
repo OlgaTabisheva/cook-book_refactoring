@@ -9,6 +9,7 @@ import {Toaster} from "react-hot-toast";
 import {HomePage} from "./pages/HomePage/HomePage.jsx";
 import Auth from "./pages/Auth/Auth.jsx";
 import Ttest from "./test/test.jsx";
+import RecipesCatalog from "./pages/RecipesCatalog/RecipesCatalog.jsx";
 
 
 const GET_RECIPES = gql`
@@ -115,6 +116,14 @@ function App() {
               data={data}
               setInstantAddRecipe={setInstantAddRecipe}
             />
+          }/>
+
+        </Route>
+        <Route exact path="/recipes" element={
+          <MainLayout/>
+        }>
+          <Route path="/recipes" element={
+            <RecipesCatalog/>
           }/>
 
         </Route>

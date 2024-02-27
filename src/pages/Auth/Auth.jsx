@@ -1,29 +1,23 @@
 import style from './Auth.module.scss'
-import Header from "../../widgets/Header/Header.jsx";
 import HeaderMini from "../../widgets/HeaderMini/HeaderMini.jsx";
 import ButtonRadioAuth from "../../shared/Buttons/ButtonRadioAuth/ButtonRadioAuth.jsx";
-import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
-import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
+import SignIn from "../../widgets/SignIn/SignIn.jsx";
+import SignUp from "../../widgets/SignUp/SignUp.jsx";
+import {useState} from "react";
 
 function Auth() {
-
+  const [disabledButton, setDisabledButton] = useState(true)
+  const [password, setPassword] = useState(false)
   return (
     <section className={style.auth}>
       <HeaderMini/>
       <div className={style.auth__content}>
         <div className={style.auth__contentText}>
-          <h2 className={style.auth__title}>Войдите на сайт</h2>
-          <p className={style.auth__description}>и ставьте лайки, комментируйте, и пишите рецепты </p>
+           <h2 className={style.auth__title}>{!disabledButton ? "Войдите на сайт" : "Зарегистрируйтесь на сайте"}</h2>
+          <p className={style.auth__description}>ставьте лайки, комментируйте и пишите рецепты </p>
         </div>
-        <ButtonRadioAuth/>
-        <div className={style.auth__box}>
-          <InputAuth text={"Введите почту"} title={"Email:"}/>
-          <InputAuth text={"Введите почту"} title={"Пароль:"}/>
-        </div>
-        <div className={style.auth__buttonBox}>
-          <ButtonBasic text={'Войти'}/>
-          <a className={style.auth__link}> Забыли пароль?</a>
-        </div>
+        <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton} />
+        {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> : <SignUp password={password} setPassword={setPassword}/>}
       </div>
 
     </section>

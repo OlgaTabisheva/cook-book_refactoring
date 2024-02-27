@@ -12,8 +12,8 @@ function Header() {
       <Logo/>
       <nav className={style.header__links}>
 
-        <LinkItem linkTo={'/test'} text={'Рецепты'}/>
-        <LinkItem linkTo={'/'} text={'Авторы'}/>
+        <LinkItem linkTo={'/recipes'} text={'Рецепты'}/>
+        <LinkItem linkTo={'/test'} text={'Авторы'}/>
         <LinkItem linkTo={'/'} text={'Добавить новый рецепт'}/>
 
       </nav>

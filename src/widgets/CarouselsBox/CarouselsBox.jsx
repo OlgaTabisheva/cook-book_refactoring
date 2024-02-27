@@ -99,13 +99,10 @@ function CarouselsBox({linkTo, text}) {
 
   const ButtonGroup3 = ({next, previous, goToSlide, ...rest}) => {
     const {carouselState: {currentSlide}} = rest;
-    console.log(numberCarouselImage3)
     setNumberCarouselImage3(currentSlide)
     const firstNumberCarousel = numberCarouselImage3 === 0
     const NumberCarousel = sliderImageUrl3?.length - 3
     const LastNumberCarousel = numberCarouselImage3 === NumberCarousel
-
-    console.log(NumberCarousel, 'NumberCarousel')
     return (
       <div className="carousel-button-group mb-4  gap-4 flex justify-end
           items-center w-full">
@@ -138,19 +135,21 @@ function CarouselsBox({linkTo, text}) {
           customLeftArrow={null}
           additionalTransfrom={0}
           arrows={false}
+          rewindWithAnimation={true}
           autoPlaySpeed={3000}
           centerMode={false}
-          className=""
+          className="react-multi-carousel"
           dotListClass=""
           draggable
           focusOnSelect={false}
-          itemClass=""
+          itemClass="react-multi"
           keyBoardControl
           minimumTouchDrag={80}
           renderDotsOutside={false}
           sliderClass=""
-          slidesToSlide={1}
+          slidesToSlide={3}
           swipeable
+          rewind={false}
           // dotListClass="custom-dot-list-style"
 
         >

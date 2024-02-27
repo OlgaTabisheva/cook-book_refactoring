@@ -2,7 +2,7 @@
 
 .buttonLikeFull {
   cursor: pointer;
-
+  margin-right: 8px;
   font-family: $hint-font;
   font-size: 16px;
   line-height: 24px;
@@ -39,7 +39,7 @@
 .buttonLikeEmpty {
   font-family: $hint-font;
   cursor: pointer;
-
+  margin-right: 8px;
   border: none;
   display: flex;
   width: 62px;

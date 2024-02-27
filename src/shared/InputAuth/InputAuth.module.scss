@@ -5,7 +5,7 @@
   flex-direction: column;
   align-content: center;
   justify-content: center;
-
+position: relative;
   &:not(:first-child) {
     margin-top: 20px;
   }
@@ -28,18 +28,24 @@
     line-height: 16px;
     color: $primary-dark-100;
     position: relative;
+    margin-bottom: 6px;
   }
 
   &__buttonImg {
-    top: 12px;
-    left: 12px;
+    top: 34px;
+    left: 395px;
+    border: none;
     text-align: center;
     background-color: inherit;
-    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    position: absolute;
+    cursor: pointer;
+    :hover{
+      opacity: 0.5;
+    }
   }
 
   &__img {
@@ -50,13 +56,13 @@
     height: 24px;
 
   }
-
-  &__img_active {
-    background-image: url(../../assets/eye-off.svg);
+  &__img_active{
     background-repeat: no-repeat;
     background-position: center;
     width: 24px;
     height: 24px;
-
+    background-image: url(../../assets/eye-off.svg)
   }
+
+
 }

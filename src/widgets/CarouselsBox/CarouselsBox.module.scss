@@ -1,12 +1,18 @@
 @import "../../variables";
+li{
+  text-align: left;
+  padding-right: 11px;
+}
+
 
 .carouselsBox {
   max-width: 1120px;
   width: 100%;
   margin: 120px auto 120px auto;
 
-  &__carousel {
+&__carousel {
     margin: 60px 0;
+
   }
 
   &__title {
@@ -18,11 +24,12 @@
   }
 
   &__card {
-   margin: 0 20px;
+
     overflow: hidden;
     padding: 2rem 0;
+    max-width: 372px;
+    width: 100%;
   }
-
   &__box {
 
   }
@@ -31,7 +38,7 @@
     font-family: $stock-font;
     position: absolute;
     top: 0;
-    right: 66px;
+    right: 45px;
     color: $sand-80;
     font-size: 20px;
     line-height: 24px;
@@ -53,7 +60,7 @@
     z-index: 100;
     position: absolute;
     top: 0;
-    right: 97px;
+    right: 76px;
 
     &:hover {
       background-image: url(../../assets/LeftMHover.svg);
@@ -82,7 +89,7 @@
     z-index: 100;
     position: absolute;
     top: 0;
-    right: 21px;
+    right: 0px;
 
     &:hover {
       background-image: url(../../assets/RightMHover.svg);
