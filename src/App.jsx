@@ -123,7 +123,16 @@ function App() {
           <MainLayout/>
         }>
           <Route path="/recipes" element={
-            <RecipesCatalog/>
+            <RecipesCatalog
+              isAuthenticated={isAuthenticated}
+              allCategories={allCategories}
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+              chosenCategory={chosenCategory}
+              instantLikes={instantLikes}
+              setInstantLikes={setInstantLikes}
+              instantAddRecipe={instantAddRecipe}
+            />
           }/>
 
         </Route>

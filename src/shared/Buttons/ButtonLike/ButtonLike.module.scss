@@ -33,6 +33,7 @@
     font-size: 16px;
     line-height: 24px;
     margin-left: 4px;
+    font-weight: 600;
   }
 }
 
@@ -62,10 +63,12 @@
   }
 
   &__count {
+    font-family: $hint-font;
     font-size: 16px;
     line-height: 24px;
     margin-left: 4px;
     color: $sand-colorful-80;
+    font-weight: 600;
   }
 }
 

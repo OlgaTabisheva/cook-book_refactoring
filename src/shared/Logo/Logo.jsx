@@ -1,12 +1,13 @@
 import headerLogo from "../../assets/Logo_olive.svg";
+import {Link} from "react-router-dom";
 
 
 function Logo() {
   return (
-    <div>
+    <Link to={'/'}>
       <img width="109px"
            src={headerLogo} alt="logo"/>
-    </div>
+    </Link>
   )
 }
 

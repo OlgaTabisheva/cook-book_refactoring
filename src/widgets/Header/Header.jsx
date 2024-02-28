@@ -5,20 +5,20 @@ import Logo from "../../shared/Logo/Logo.jsx";
 import LinkItem from "../../shared/LinkItem/LinkItem.jsx";
 import user from "../../assets/userYelow.svg";
 
-function Header() {
+function Header({active}) {
   const isAuthenticated = useAuthenticated()
   return (
     <section className={style.header}>
       <Logo/>
       <nav className={style.header__links}>
 
-        <LinkItem linkTo={'/recipes'} text={'Рецепты'}/>
-        <LinkItem linkTo={'/test'} text={'Авторы'}/>
-        <LinkItem linkTo={'/'} text={'Добавить новый рецепт'}/>
+        <LinkItem linkTo={'/recipes'} text={'Рецепты'} active={active}/>
+        <LinkItem linkTo={'/test'} text={'Авторы'} active={active}/>
+        <LinkItem linkTo={'/'} text={'Добавить новый рецепт'} active={active}/>
 
       </nav>
       <nav className={style.header__box}>
-        {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'}/> : null}
+        {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'} active={active}/> : null}
         {/*<LinkItem linkTo={'/'} text={'Личный кабинет'}/>}*/}
         <img className={style.header__logo} width="24px" height="24px"
              src={user} alt="user"/>

@@ -1,9 +1,9 @@
 import style from './RecipeChips.module.scss'
 
-function RecipeChips() {
+function RecipeChips({text}) {
   return (
     <section className={style.recipeChips}>
-      Десерты
+      {text}
     </section>
   )
 }

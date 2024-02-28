@@ -1,0 +1,29 @@
+@import "../../../variables";
+
+.buttonChips {
+  font-family: $hint-font;
+  padding: 8px 12px;
+  border-radius: 100px;
+  border: 1px solid $Primary-40-past-though;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  background-color: inherit;
+  text-align: right;
+  color: $primary-100;
+
+  &:hover {
+    background-color: $Primary-10-past-though;
+    border: 1px solid $primary-100;
+  }
+
+  &:active {
+    background-color: $primary-100;
+    color: $white;
+  }
+
+  &:disabled {
+    background-color: $sand-40;
+    color: $primary-dark-100;
+  }
+}

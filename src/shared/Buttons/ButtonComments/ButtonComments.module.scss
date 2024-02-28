@@ -9,6 +9,7 @@
   background-color: $sand-20;
   font-size: 14px;
   border-radius: 100px;
+  font-family: $hint-font;
 
   &__comments {
     width: 24px;
@@ -22,9 +23,11 @@
   }
 
   &__count {
+    font-family: $hint-font;
     font-size: 16px;
     line-height: 24px;
     padding-left: 4px;
     color: $sand-colorful-80;
+    font-weight: 600;
   }
 }
