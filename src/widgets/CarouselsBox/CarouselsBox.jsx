@@ -4,8 +4,46 @@ import RecipeCard from "../RecipeCard/RecipeCard.jsx";
 import Carousel from "react-multi-carousel";
 import {useState} from "react";
 
-function CarouselsBox({linkTo, text}) {
-  const responsive2 = {
+function CarouselsBox({
+                        instantAddRecipe,
+                        instantLikes,
+                        setInstantLikes,
+                        isAuthenticated,
+                        setInstantAddRecipe, newRecipes
+                      }) {
+
+  const chosenCategory1 = [
+    //First image url
+    {
+
+      url:
+        "https://i2.wp.com/www.geeksaresexy.net/wp-content/uploads/2020/04/movie1.jpg?resize=600%2C892&ssl=1"
+    },
+    {
+      url:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-kids-movies-2020-call-of-the-wild-1579042974.jpg?crop=0.9760858955588091xw:1xh;center,top&resize=480:*"
+    },
+    //Second image url
+    {
+      url:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-movies-for-kids-2020-sonic-the-hedgehog-1571173983.jpg?crop=0.9871668311944719xw:1xh;center,top&resize=480:*"
+    },
+    //Third image url
+    {
+      url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQS82ET2bq9oTNwPOL8gqyoLoLfeqJJJWJmKQ&usqp=CAU"
+    },
+
+    //Fourth image url
+
+    {
+      url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdvuww0JDC7nFRxiFL6yFiAxRJgM-1tvJTxA&usqp=CAU"
+    }
+  ];
+
+
+  const responsive = {
     desktop: {
       breakpoint: {max: 3000, min: 1024},
       items: 3,
@@ -23,32 +61,18 @@ function CarouselsBox({linkTo, text}) {
     }
   };
   const [numberCarouselImage, setNumberCarouselImage] = useState()
-  const [numberCarouselImage2, setNumberCarouselImage2] = useState()
-  const [numberCarouselImage3, setNumberCarouselImage3] = useState()
   const arrowStyle = {
     background: "transparent",
     border: 0,
     color: "#fff",
     fontSize: "80px"
   };
-  const sliderImageUrl = [1, 2, 3, 4, 5, 6, 7,
 
 
-  ]
-  const sliderImageUrl2 = [1, 2, 3, 4, 5, 6, 7,
-
-
-    ]
-  ;
-  const sliderImageUrl3 = [1, 2, 3, 4, 5, 6, 7,
-
-
-  ]
-  console.log(sliderImageUrl)
   const ButtonGroup = ({next, previous, goToSlide, ...rest}) => {
     const {carouselState: {currentSlide}} = rest;
     const firstNumberCarousel = numberCarouselImage === 0
-    const NumberCarousel = sliderImageUrl?.length - 3
+    const NumberCarousel = newRecipes?.length - 3
     const LastNumberCarousel = numberCarouselImage === NumberCarousel
 
     setNumberCarouselImage(currentSlide)
@@ -62,7 +86,7 @@ function CarouselsBox({linkTo, text}) {
         <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
 
           <button className={style.carouselsBox__buttonLeft} disabled={firstNumberCarousel}></button>
-          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{sliderImageUrl?.length - 2}</p>
+          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{newRecipes?.length - 2}</p>
         </button>
 
 
@@ -70,67 +94,15 @@ function CarouselsBox({linkTo, text}) {
 
     );
   };
-  const ButtonGroup2 = ({next, previous, goToSlide, ...rest}) => {
-    const {carouselState: {currentSlide}} = rest;
-    const firstNumberCarousel = numberCarouselImage2 === 0
-    const NumberCarousel = sliderImageUrl2?.length - 3
-    const LastNumberCarousel = numberCarouselImage2 === NumberCarousel
-
-    setNumberCarouselImage2(currentSlide)
-    return (
-      <div className="carousel-button-group mb-4  gap-4 flex justify-end
-          items-center w-full">
-        <button className={style.carouselsBox__box} onClick={next} style={arrowStyle}>
-          <button className={style.carouselsBox__buttonRight} disabled={LastNumberCarousel}></button>
-
-        </button>
-        <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
-
-          <button className={style.carouselsBox__buttonLeft} disabled={firstNumberCarousel}></button>
-
-          <p className={style.carouselsBox__text}> {numberCarouselImage2 + 1}/{sliderImageUrl2?.length - 2}</p>
-        </button>
-
-
-      </div>
-
-    );
-  };
-
-  const ButtonGroup3 = ({next, previous, goToSlide, ...rest}) => {
-    const {carouselState: {currentSlide}} = rest;
-    setNumberCarouselImage3(currentSlide)
-    const firstNumberCarousel = numberCarouselImage3 === 0
-    const NumberCarousel = sliderImageUrl3?.length - 3
-    const LastNumberCarousel = numberCarouselImage3 === NumberCarousel
-    return (
-      <div className="carousel-button-group mb-4  gap-4 flex justify-end
-          items-center w-full">
-
-        <button className={style.carouselsBox__box} onClick={next} style={arrowStyle}>
-          <button className={style.carouselsBox__buttonRight} disabled={LastNumberCarousel}></button>
-
-        </button>
-        <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
-
-          <button className={style.carouselsBox__buttonLeft} disabled={firstNumberCarousel}></button>
-          <p className={style.carouselsBox__text}> {numberCarouselImage3 + 1}/{sliderImageUrl3?.length - 2}</p>
-        </button>
-
-
-      </div>
-
-    );
-  };
+  console.log(newRecipes, chosenCategory1, 'chosenCategory')
   return (
     <div className={style.carouselsBox}>
-
       <div className={style.carouselsBox__carousel}>
         <h2 className={style.carouselsBox__title}>Новые:</h2>
         <Carousel
           renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup/>}
-          responsive={responsive2}
+          //customButtonGroup={<ButtonGroup/>}
+          responsive={responsive}
           customRightArrow={null}
           customLeftArrow={null}
           additionalTransfrom={0}
@@ -138,11 +110,11 @@ function CarouselsBox({linkTo, text}) {
           rewindWithAnimation={true}
           autoPlaySpeed={3000}
           centerMode={false}
-          className="react-multi-carousel"
+          //className="react-multi-carousel"
           dotListClass=""
           draggable
           focusOnSelect={false}
-          itemClass="react-multi"
+          //  itemClass="react-multi"
           keyBoardControl
           minimumTouchDrag={80}
           renderDotsOutside={false}
@@ -153,88 +125,26 @@ function CarouselsBox({linkTo, text}) {
           // dotListClass="custom-dot-list-style"
 
         >
-          {sliderImageUrl?.map((imageUrl, index) => {
-            return (
-              <div className={style.carouselsBox__card} key={index}>
-                <RecipeCard/>
+          {chosenCategory1?.map((authorId, food
+            , photo, date, id, long, name, recipes_category, __typename
+          ) => {
 
+            return (<div>7
+               {/*  <RecipeCard
+                            isBtnEdit={false}
+                            key={obj.id} {...obj}
+                            instantLikes={instantLikes}
+                            setInstantLikes={setInstantLikes}
+                            isAuthenticated={isAuthenticated}
+
+                />*/}
               </div>
-            );
+            )
+
           })}
         </Carousel>
       </div>
-      <div className={style.carouselsBox__carousel}>
-        <h2 className={style.carouselsBox__title}>Самые популярные:</h2>
-        <Carousel
-          renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup2/>}
-          responsive={responsive2}
-          customRightArrow={null}
-          customLeftArrow={null}
-          additionalTransfrom={0}
-          arrows={false}
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className=""
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          renderDotsOutside={false}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
-          // dotListClass="custom-dot-list-style"
 
-        >
-          {sliderImageUrl?.map((imageUrl, index) => {
-            return (
-              <div className={style.carouselsBox__card} key={index}>
-                <RecipeCard/>
-
-              </div>
-            );
-          })}
-        </Carousel>
-      </div>
-      <div className={style.carouselsBox__carousel}>
-        <h2 className={style.carouselsBox__title}>Обсуждаемые:</h2>
-        <Carousel
-          renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup3/>}
-          responsive={responsive2}
-          customRightArrow={null}
-          customLeftArrow={null}
-          additionalTransfrom={0}
-          arrows={false}
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className=""
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          renderDotsOutside={false}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
-          // dotListClass="custom-dot-list-style"
-
-        >
-          {sliderImageUrl?.map((imageUrl, index) => {
-            return (
-              <div className={style.carouselsBox__card} key={index}>
-                <RecipeCard/>
-
-              </div>
-            );
-          })}
-        </Carousel>
-      </div>
     </div>
   )
 }

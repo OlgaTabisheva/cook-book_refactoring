@@ -1,0 +1,16 @@
+@import "../../variables";
+
+
+.authorsPage{
+
+  &__box{
+    margin-top: 40px;
+    margin-bottom: 120px;
+    display: grid;
+    grid-template-columns: repeat(4, 256px);
+    justify-content: center;
+    gap: 60px 32px;
+    justify-items: center;
+
+  }
+}

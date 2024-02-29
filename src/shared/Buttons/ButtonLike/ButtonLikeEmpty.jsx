@@ -1,12 +1,12 @@
 import style from './ButtonLike.module.scss'
 
 
-function ButtonLikeEmpty({setChangeLike, changeLike}) {
+function ButtonLikeEmpty({handleClickLike, countLikes}) {
   return (
-    <button className={style.buttonLikeEmpty} onClick={() => setChangeLike(!changeLike)}>
+    <button className={style.buttonLikeEmpty} onClick={()=>handleClickLike}>
       <div
         className={style.buttonLikeEmpty__heart}></div>
-      <div className={style.buttonLikeEmpty__count}>6</div>
+      <div className={style.buttonLikeEmpty__count}>{countLikes}</div>
 
     </button>
   )

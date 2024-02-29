@@ -108,6 +108,7 @@ function RecipeCard({
     }
 
   }
+
   return (
     <section className={style.recipeCard}>
       <div className={style.recipeCard__imgBox}>
@@ -126,9 +127,9 @@ function RecipeCard({
       </div>
       <div className={style.recipeCard__box}>
         {changeLike === true ?
-          <ButtonLikeFull setChangeLike={setChangeLike} changeLike={changeLike}/> :
-          <ButtonLikeEmpty setChangeLike={setChangeLike} changeLike={changeLike}/>}
-        <ButtonComments/>
+          <ButtonLikeFull handleClickLike={handleClickLike} countLikes={countLikes }setChangeLike={setChangeLike} changeLike={changeLike}/> :
+          <ButtonLikeEmpty handleClickLike={handleClickLike} countLikes ={countLikes} setChangeLike={setChangeLike} changeLike={changeLike}/>}
+        <ButtonComments countComments={countComments}/>
       </div>
 
     </section>

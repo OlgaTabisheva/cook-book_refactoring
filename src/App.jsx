@@ -10,6 +10,7 @@ import {HomePage} from "./pages/HomePage/HomePage.jsx";
 import Auth from "./pages/Auth/Auth.jsx";
 import Ttest from "./test/test.jsx";
 import RecipesCatalog from "./pages/RecipesCatalog/RecipesCatalog.jsx";
+import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 
 
 const GET_RECIPES = gql`
@@ -113,9 +114,17 @@ function App() {
               instantLikes={instantLikes}
               setInstantLikes={setInstantLikes}
               isAuthenticated={isAuthenticated}
-              data={data}
               setInstantAddRecipe={setInstantAddRecipe}
+              chosenCategory={chosenCategory}
             />
+          }/>
+
+        </Route>
+        <Route exact path="/authors" element={
+          <MainLayout/>
+        }>
+          <Route path="/authors" element={
+            <AuthorsPage/>
           }/>
 
         </Route>

@@ -13,8 +13,8 @@ function Header({active}) {
       <nav className={style.header__links}>
 
         <LinkItem linkTo={'/recipes'} text={'Рецепты'} active={active}/>
-        <LinkItem linkTo={'/test'} text={'Авторы'} active={active}/>
-        <LinkItem linkTo={'/'} text={'Добавить новый рецепт'} active={active}/>
+        <LinkItem linkTo={'/authors'} text={'Авторы'} active={active}/>
+        <LinkItem linkTo={'/test'} text={'Добавить новый рецепт'} active={active}/>
 
       </nav>
       <nav className={style.header__box}>

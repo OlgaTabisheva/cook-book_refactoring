@@ -1,11 +1,11 @@
 import style from "./ButtonLike.module.scss";
 
-function ButtonLikeFull({setChangeLike, changeLike}) {
+function ButtonLikeFull({handleClickLike, countLikes}) {
   return (
-    <button className={style.buttonLikeFull} onClick={() => setChangeLike(!changeLike)}>
+    <button className={style.buttonLikeFull} onClick={handleClickLike}>
       <div
         className={style.buttonLikeFull__heart}></div>
-      <div className={style.buttonLikeFull__count}>6</div>
+      <div className={style.buttonLikeFull__count}>{countLikes}</div>
     </button>
   )
 }
