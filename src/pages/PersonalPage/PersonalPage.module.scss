@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.personalPage {
+  font-family: $stock-font;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto 0 auto;
+
+  &__chips {
+    display: flex;
+    flex-direction: row;
+
+    :not(:first-child) {
+      margin-left: 12px;
+    }
+  }
+    &__box{
+
+    }
+
+}

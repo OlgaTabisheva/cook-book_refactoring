@@ -8,6 +8,8 @@ $primary-dark-120: #000000;
 $accent-100: #FC4C0E;
 $accent-120: #E14610;
 $accent-140: #BB3A0C;
+$accent-15-opacity: rgb(252, 76, 0, 0.15); //#FC4C0E
+$accent-8-opacity: rgb(252, 76, 0, 0.08); //#FC4C0E
 $white: #FFFFFF;
 $sand-80: #655D45;
 $sand-80-opacity: rgb(101, 93, 69, 0.2); //#655D45;
@@ -21,8 +23,7 @@ $sand-colorful-80: #AF9F74;
 $sand-colorful-30: #EFD9A0;
 $sand-colorful-20: #FFEEC1;
 $sand-colorful-10: #FFF6DE;
-$accent-30-fill: #FC4C0E;
-$accent-30-fill-opacity: rgb(252, 76, 0, 0.15); //#FC4C0E
+
 $accent-15-fill: #FFE4DB;
 $error: #EA3E27;
 $warning: #F6990C;
@@ -34,3 +35,15 @@ $Primary-20-past-though: rgb(106, 131, 35, 0.2); //#6A8323
 $Primary-10-past-though: rgb(106, 131, 35, 0.1); //#6A8323
 $Primary-8-past-though: rgb(106, 131, 35, 0.08); //#6A8323
 $buttonColor: #FFDCBF;
+
+
+%buttonBasicM {
+  font-family: $hint-font;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 16px 24px;
+  text-align: center;
+  border-radius: 100px;
+  border: none;
+
+}

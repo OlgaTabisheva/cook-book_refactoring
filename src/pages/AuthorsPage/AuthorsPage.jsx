@@ -4,6 +4,7 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import RecipeCard from "../../widgets/RecipeCard/RecipeCard.jsx";
 import {useState} from "react";
 import AuthorsCard from "../../widgets/AuthorsCard/AuthorsCard.jsx";
+import RecipeCardTest from "../../test/RecipeCardTest/RecipeCardTest.jsx";
 
 
 function AuthorsPage({
@@ -32,6 +33,7 @@ function AuthorsPage({
         <AuthorsCard/>
         <AuthorsCard/>
         <AuthorsCard/>
+
       </div>
     </section>
   )

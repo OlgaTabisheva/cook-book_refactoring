@@ -40,13 +40,26 @@ const [instantNewRecipes, setInstantNewRecipes] = useState([])
   return (
     <section className={style.home}>
       <PictureSection/>
-      <CarouselsBox instantNewRecipes={instantNewRecipes} title={"Новые:"} instantAddRecipe={instantAddRecipe}
+      <div className={style.home__box}>
+      <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Новые:"} instantAddRecipe={instantAddRecipe}
                     instantLikes={instantLikes}
                     setInstantLikes={setInstantLikes}
                     isAuthenticated={isAuthenticated}
                     setInstantAddRecipe={setInstantAddRecipe}
                     newRecipes={newRecipes}/>
-
+      <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Самые популярные:"} instantAddRecipe={instantAddRecipe}
+                    instantLikes={instantLikes}
+                    setInstantLikes={setInstantLikes}
+                    isAuthenticated={isAuthenticated}
+                    setInstantAddRecipe={setInstantAddRecipe}
+                    newRecipes={newRecipes}/>
+      <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Обсуждаемые:"} instantAddRecipe={instantAddRecipe}
+                    instantLikes={instantLikes}
+                    setInstantLikes={setInstantLikes}
+                    isAuthenticated={isAuthenticated}
+                    setInstantAddRecipe={setInstantAddRecipe}
+                    newRecipes={newRecipes}/>
+      </div>
     </section>
   );
 }

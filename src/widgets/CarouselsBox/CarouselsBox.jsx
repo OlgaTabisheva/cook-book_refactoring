@@ -3,13 +3,15 @@ import style from './CarouselsBox.module.scss'
 import RecipeCard from "../RecipeCard/RecipeCard.jsx";
 import Carousel from "react-multi-carousel";
 import {useState} from "react";
+import RecipeCardTest from "../../test/RecipeCardTest/RecipeCardTest.jsx";
 
 function CarouselsBox({
                         instantAddRecipe,
                         instantLikes,
                         setInstantLikes,
                         isAuthenticated,
-                        setInstantAddRecipe, newRecipes
+                        setInstantAddRecipe, newRecipes,
+                        carouselTitle
                       }) {
 
   const chosenCategory1 = [
@@ -98,10 +100,10 @@ function CarouselsBox({
   return (
     <div className={style.carouselsBox}>
       <div className={style.carouselsBox__carousel}>
-        <h2 className={style.carouselsBox__title}>Новые:</h2>
+        <h2 className={style.carouselsBox__title}>{carouselTitle}</h2>
         <Carousel
           renderButtonGroupOutside={false}
-          //customButtonGroup={<ButtonGroup/>}
+          customButtonGroup={<ButtonGroup/>}
           responsive={responsive}
           customRightArrow={null}
           customLeftArrow={null}
@@ -125,19 +127,10 @@ function CarouselsBox({
           // dotListClass="custom-dot-list-style"
 
         >
-          {chosenCategory1?.map((authorId, food
-            , photo, date, id, long, name, recipes_category, __typename
+          {chosenCategory1?.map((imageUrl, index
           ) => {
 
-            return (<div>7
-               {/*  <RecipeCard
-                            isBtnEdit={false}
-                            key={obj.id} {...obj}
-                            instantLikes={instantLikes}
-                            setInstantLikes={setInstantLikes}
-                            isAuthenticated={isAuthenticated}
-
-                />*/}
+            return (<div className={style.carouselsBox__card} key={index}><RecipeCardTest/>
               </div>
             )
 

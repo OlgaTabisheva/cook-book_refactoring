@@ -11,6 +11,9 @@ import Auth from "./pages/Auth/Auth.jsx";
 import Ttest from "./test/test.jsx";
 import RecipesCatalog from "./pages/RecipesCatalog/RecipesCatalog.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
+import {ProtectedRoute} from "./utils/ProtectedRoute";
+import Header from "./widgets/Header/Header.jsx";
+import {PersonalPage} from "./pages/PersonalPage/PersonalPage.jsx";
 
 
 const GET_RECIPES = gql`
@@ -154,6 +157,15 @@ function App() {
 
           <Ttest/>
 
+        }/>
+        <Route exact path="/user" element={
+        //  <ProtectedRoute>
+          <>
+            <Header/>
+            <PersonalPage
+            />
+          </>
+         // </ProtectedRoute>
         }/>
       </Routes>
       <Toaster

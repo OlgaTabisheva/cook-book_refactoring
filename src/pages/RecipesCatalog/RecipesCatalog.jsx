@@ -3,6 +3,7 @@ import InputSearch from "../../shared/InputSearch/InputSearch.jsx";
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import RecipeCard from "../../widgets/RecipeCard/RecipeCard.jsx";
 import {useState} from "react";
+import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
 
 
 function RecipesCatalog({
@@ -23,6 +24,8 @@ function RecipesCatalog({
   const currentPosts = instantAddRecipe?.recipes.slice(indexOfFirstPost, indexOfLastPost);
   const [searchValue, setSearchValue] = useState()
   const currentPostsChosenCategory = chosenCategory?.recipes.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   return (
     <section className={style.recipesCatalog}>
       <InputSearch/>
@@ -31,6 +34,7 @@ function RecipesCatalog({
           <ButtonChips text={obj ? obj.category : ''}></ButtonChips>
         ))}
       </div>
+      <div className={style.recipesCatalog__boxCatalog}>
       <div className={style.recipesCatalog__catalog}>
 
         {selectedCategory > 0 ?
@@ -54,7 +58,13 @@ function RecipesCatalog({
 
             />
           ))}
+
       </div>
+      <PaginationBasic currentPage={currentPage} postPage={postPage}
+                       totalPosts={(selectedCategory > 0) ? chosenCategory?.recipes.length : instantAddRecipe?.recipes.length}
+                       paginate={paginate}
+                       setCurrentPage/>
+    </div>
     </section>
   )
 }

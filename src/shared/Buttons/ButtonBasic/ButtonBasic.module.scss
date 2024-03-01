@@ -1,25 +1,73 @@
 @import "../../../variables";
 
-.buttonBasic {
-  font-family: $hint-font;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 16px 24px;
-  text-align: center;
-  border-radius: 100px;
-  border: none;
-  color: white;
-  background-color: $primary-100;
 
+.buttonBasicM_primaryGreen{
+  @extend %buttonBasicM;
+  background-color: $primary-100;
+  color: white;
   &:hover {
     background-color: $primary-120;
   }
 
-  &:visited {
+  &:active {
     background-color: $primary-140;
   }
 
   &:disabled {
+    opacity: 0.4;
     background-color: $sand-40;
+    color: $primary-dark-100;
+  }
+}
+.buttonBasicM_primaryRed {
+  @extend %buttonBasicM;
+  background-color: $accent-100;
+  color: white;
+  &:hover {
+    background-color: $accent-120;
+  }
+
+  &:active {
+    background-color: $accent-140;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    background-color: $accent-100;
+  }
+}
+.buttonBasicM_secondaryGreen {
+  @extend %buttonBasicM;
+  color: $primary-100;
+  border: 1px solid $Primary-40-past-though;
+  background-color: inherit;
+  &:hover {
+    background-color: $Primary-8-past-though;
+    border: 1px solid $primary-100;
+  }
+
+  &:active {
+    background-color: $Primary-20-past-though;
+    border: 1px solid $primary-140;  }
+
+  &:disabled {
+    background-color: $Primary-8-past-though;
+    border: 1px solid $primary-100;
+    opacity: 0.4;
+  }
+}
+.buttonBasicM_secondaryRed {
+  @extend %buttonBasicM;
+  color: $accent-100;
+  border: 1px solid $accent-100;
+  &:hover {
+    background-color: $accent-8-opacity;
+  }
+  &:active {
+    background-color: $accent-15-opacity;
+  }
+  &:disabled {
+    opacity: 0.4;
+    background-color: $accent-15-opacity;
   }
 }
