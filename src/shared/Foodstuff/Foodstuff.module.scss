@@ -1,0 +1,9 @@
+@import "../../variables";
+
+
+.foodstuff{
+  display: flex;
+  max-width: 368px;
+  width: 100%;
+  border: 1px dashed $sand-60;
+}

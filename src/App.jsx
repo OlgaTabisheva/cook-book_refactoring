@@ -14,6 +14,8 @@ import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import {ProtectedRoute} from "./utils/ProtectedRoute";
 import Header from "./widgets/Header/Header.jsx";
 import {PersonalPage} from "./pages/PersonalPage/PersonalPage.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
+import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
 
 
 const GET_RECIPES = gql`
@@ -159,14 +161,35 @@ function App() {
 
         }/>
         <Route exact path="/user" element={
-        //  <ProtectedRoute>
-          <>
-            <Header/>
+          <MainLayout/>
+        }>
+          <Route path="/user" element={
             <PersonalPage
             />
-          </>
-         // </ProtectedRoute>
+          }/>
+
+        </Route>
+
+      <Route exact path="/recipe" element={
+        <MainLayout/>
+      }>
+        <Route path="/recipe" element={
+          <FullRecipe
+
+          />
         }/>
+
+      </Route>
+        <Route exact path="*" element={
+          <MainLayout/>
+        }>
+          <Route path="*" element={
+            <NotFound
+
+            />
+          }/>
+
+        </Route>
       </Routes>
       <Toaster
         position="top-center"

@@ -1,8 +1,8 @@
 import style from './ButtonChips.module.scss'
 
-function ButtonBasic({text}) {
+function ButtonBasic({text, onClick}) {
   return (
-    <button className={style.buttonChips}>
+    <button className={style.buttonChips} onClick={onClick}>
       {text}
     </button>
   )

@@ -59,6 +59,7 @@
 .buttonBasicM_secondaryRed {
   @extend %buttonBasicM;
   color: $accent-100;
+  background: inherit;
   border: 1px solid $accent-100;
   &:hover {
     background-color: $accent-8-opacity;
@@ -70,4 +71,37 @@
     opacity: 0.4;
     background-color: $accent-15-opacity;
   }
+}
+.buttonBasicM_tertiaryGreen {
+  @extend %buttonBasicM;
+  color: $primary-100;
+  border: none;
+  background-color: inherit;
+  &:hover {
+    color: $primary-120;
+  }
+  &:active {
+    color: $primary-140;
+ }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+.buttonBasicM_tertiaryRed {
+  @extend %buttonBasicM;
+  color: $accent-100;
+  border: none;
+  background-color: inherit;
+  &:hover {
+    color: $accent-120;
+  }
+  &:active {
+    color: $accent-140;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+
 }

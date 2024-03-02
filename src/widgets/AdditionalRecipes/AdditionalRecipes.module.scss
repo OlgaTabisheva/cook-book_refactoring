@@ -1,0 +1,61 @@
+@import "../../variables";
+
+.additionalRecipes{
+  margin-top: 80px;
+background-color: $sand-20;
+
+width: 100%;
+  &:before {
+    background: linear-gradient(-45deg, $sand-20 16px, red 16px, blue 16px, transparent 0),
+    linear-gradient(45deg, $sand-20 16px, transparent 0);
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-size: 22px 32px;
+    content: " ";
+    display: block;
+
+    height: 32px;
+    width: 100%;
+
+    position: relative;
+    bottom: 32px;
+    left: 0;
+  }
+    &:after{
+      background:
+              linear-gradient(-45deg, transparent 16px, $sand-20 0),
+              linear-gradient(45deg, transparent 16px, $sand-20  0);
+      background-repeat: repeat-x;
+      background-position: left bottom;
+      background-size: 22px 32px;
+      content: "";
+      display: block;
+
+      width: 100%;
+      height: 32px;
+
+      position: relative;
+      top:12px;
+      left:0px;
+    }
+  &__title{
+    margin: 40px 0 0 0;
+    font-family: $stock-font;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+  }
+  &__box{
+    max-width: 1120px;
+    width: 100%;
+    margin: 40px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+
+

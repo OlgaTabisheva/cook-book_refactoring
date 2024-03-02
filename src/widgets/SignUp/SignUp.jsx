@@ -12,7 +12,7 @@ function SignUp({password, setPassword}) {
         <InputAuth text={"Введите пароль"} title={"Повторите пароль:"} eye={true} password={password} setPassword={setPassword}/>
       </div>
       <div className={style.signUp__buttonBox}>
-        <ButtonBasic text={'Зарегистрироваться'}/>
+        <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'}/>
       </div>
     </section>
   )

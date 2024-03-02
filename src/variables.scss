@@ -45,5 +45,13 @@ $buttonColor: #FFDCBF;
   text-align: center;
   border-radius: 100px;
   border: none;
+  cursor: pointer;
 
+}
+
+%catalog {
+  display: grid;
+  grid-template-columns: repeat(3, 352px);
+  gap: 60px 32px;
+  justify-content: center;
 }
