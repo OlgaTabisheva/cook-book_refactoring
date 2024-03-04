@@ -1,0 +1,19 @@
+@import "../../../variables";
+
+
+.buttonPicture{
+  border: none;
+  cursor: pointer;
+  background-color: $accent-15-opacity;
+  padding: 8px;
+  border-radius: 12px;
+  &:hover{
+    background-color: $accent-30-opacity;
+  }
+  &:disabled{
+    opacity: 0.4;
+  }
+  &__plus,&__minus{
+   stroke: $accent-100;
+  }
+}

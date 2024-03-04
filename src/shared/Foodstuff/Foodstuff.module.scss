@@ -2,8 +2,40 @@
 
 
 .foodstuff{
-  display: flex;
   max-width: 368px;
   width: 100%;
-  border: 1px dashed $sand-60;
+
+  justify-content: space-between;
+  margin-top: 20px;
+  &__bottom2{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__bottom{
+    flex-grow: 1;
+    border-bottom: 1px dotted rgb(217, 217, 217);
+    height: 16px;
+    margin: 0px 10px ;
+  }
+  &__text{
+    border: none;
+    font-family: $hint-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: $primary-dark-100;
+
+  }
+  &__text2{
+    font-family: $hint-font;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: right;
+    color: $primary-dark-100;
+
+  }
 }

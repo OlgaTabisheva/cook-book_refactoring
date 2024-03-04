@@ -1,5 +1,15 @@
 @import "../../variables";
 
 .fullRecipe{
+
 display: flex;
+  flex-direction: column;
+
+  &__box{
+    display: flex;
+  }
+  &__recipe{
+max-width: 544px;
+    width: 100%;
+  }
 }

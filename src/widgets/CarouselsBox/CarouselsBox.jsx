@@ -96,7 +96,6 @@ function CarouselsBox({
 
     );
   };
-  console.log(newRecipes, chosenCategory1, 'chosenCategory')
   return (
     <div className={style.carouselsBox}>
       <div className={style.carouselsBox__carousel}>

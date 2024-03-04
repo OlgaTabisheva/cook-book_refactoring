@@ -8,6 +8,7 @@ $primary-dark-120: #000000;
 $accent-100: #FC4C0E;
 $accent-120: #E14610;
 $accent-140: #BB3A0C;
+$accent-30-opacity: rgb(252, 76, 0, 0.30); //#FC4C0E
 $accent-15-opacity: rgb(252, 76, 0, 0.15); //#FC4C0E
 $accent-8-opacity: rgb(252, 76, 0, 0.08); //#FC4C0E
 $white: #FFFFFF;
@@ -54,4 +55,22 @@ $buttonColor: #FFDCBF;
   grid-template-columns: repeat(3, 352px);
   gap: 60px 32px;
   justify-content: center;
+}
+
+%image{
+  background-repeat: no-repeat;
+  background-position: center;
+  border: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+%title28Vol{
+  text-align: center;
+  font-family: $stock-font;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 32px;
 }

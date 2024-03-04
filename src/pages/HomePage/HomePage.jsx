@@ -34,9 +34,9 @@ const [instantNewRecipes, setInstantNewRecipes] = useState([])
 
   useEffect(()=>{
     setInstantNewRecipes(newRecipes)
-  },[newRecipes])
+  },[])
 
- console.log(instantNewRecipes, 'newRecipes')
+
   return (
     <section className={style.home}>
       <PictureSection/>

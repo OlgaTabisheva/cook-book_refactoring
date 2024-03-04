@@ -1,0 +1,51 @@
+@import "../../../variables";
+
+
+.buttonCounter{
+ width: 40px;
+  height: 40px;
+  display: flex;
+  background-color: $accent-15-opacity;
+  &__img {
+    stroke: #FC4C0E;
+
+  }
+  &__img_plus{
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background-image: url(../../../assets/plus.svg);
+    @extend %image;
+
+  }
+  &__img_minus{
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background-image: url(../../../assets/close.svg);
+    @extend %image;
+
+  }
+  &__img_close{
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background-image: url(../../../assets/close.svg);
+   img path {
+      fill: yellow;}
+
+      @extend %image;
+
+:hover{
+  path {fill: blue;}
+}
+  }
+:hover{
+  background-color: $accent-30-opacity;
+  :disabled{
+    opacity: 0.4;
+  background-color: $accent-15-opacity;
+  }
+
+}
+}
