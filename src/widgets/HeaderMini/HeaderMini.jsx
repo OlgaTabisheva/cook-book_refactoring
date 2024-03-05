@@ -2,7 +2,7 @@ import style from './HeaderMini.module.scss'
 
 import {useAuthenticated} from "@nhost/react";
 import Logo from "../../shared/Logo/Logo.jsx";
-import ButtonClose from "../../shared/Buttons/ButtonClose/ButtonClose.jsx";
+import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
 
 function HeaderMini() {
@@ -10,7 +10,7 @@ function HeaderMini() {
   return (
     <section className={style.headerMini}>
       <Logo/>
-      <ButtonClose/>
+      <ButtonPicture value={'close'}/>
     </section>
   )
 }

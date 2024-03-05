@@ -1,0 +1,100 @@
+@import "../../variables";
+
+.recipePhotoBlock {
+  margin-top: 40px;
+margin-bottom: 120px;
+  &__img {
+    width: 544px;
+    height: 300px;
+    border-radius: 28px;
+  }
+
+  &__imgMini {
+    width: 130px;
+    height: 72px;
+    border-radius: 8px;
+
+  }
+
+  &__boxMaxi {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__boxMini {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__recipe {
+    max-width: 544px;
+    width: 100%;
+  }
+  &__box{
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+  }
+  &__module{
+    display: flex;
+    align-items: center;
+  }
+  &__userBox{
+    display: flex;
+    flex-direction: column;
+  }
+  &__buttons{
+    display: flex;
+    align-items: center;
+    align-content: flex-start;
+    flex-direction: row;
+  }
+  &__text{
+    font-family: $hint-font;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: $sand-80;
+
+  }
+  &__user {
+    stroke: $sand-colorful-80;
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    left: 8px;
+    padding: 3px 4px;
+  }
+  &__steps{
+    max-width: 544px;
+    width: 100%;
+
+  }
+  &__title{
+   @extend %title28Vol;
+    text-align: left;
+    margin-top: 120px;
+
+  }
+    &__boxPhoto {
+      background-color: $sand-colorful-20;
+      display: flex;
+      width: 40px;
+      height: 40px;
+      border-radius: 100px;
+      padding: 8px;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+    }
+
+  }

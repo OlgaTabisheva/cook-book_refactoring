@@ -1,0 +1,11 @@
+@import "../../variables";
+
+.commentsBox{
+  max-width: 544px;
+  width: 100%;
+  margin-bottom: 120px;
+ &__title{
+@extend %title28Vol;
+  text-align: left;
+ }
+}

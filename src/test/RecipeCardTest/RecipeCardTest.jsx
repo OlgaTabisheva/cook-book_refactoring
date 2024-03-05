@@ -13,7 +13,7 @@ function RecipeCardTest() {
       <div className={style.recipeCard__imgBox}>
         <RecipeChips text={'Напитки'}/>
         <img className={style.recipeCard__img}
-             src={ img} alt="recipeImg"/>
+             src={img} alt="recipeImg"/>
       </div>
       <div className={style.recipeCard__textBox}>
         <h3 className={style.recipeCard__name}>{"Булочки"}</h3>
@@ -26,7 +26,7 @@ function RecipeCardTest() {
       </div>
       <div className={style.recipeCard__box}>
 
-          <ButtonLikeFull countLikes={5 }/>
+        <ButtonLikeFull countLikes={5}/>
 
         <ButtonComments countComments={5}/>
       </div>

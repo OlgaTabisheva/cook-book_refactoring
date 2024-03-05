@@ -1,0 +1,53 @@
+@import "../../variables";
+
+.addRecipe {
+  display: flex;
+  flex-direction: column;
+
+&__box{
+  max-width: 736px;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+}
+  &__title {
+    @extend %title32Vol
+  }
+
+  &__subtitle {
+    @extend %title28Vol
+  }
+/*  &__imgBox{
+    background-image: url("./../../assets/test.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 736px;
+    height: 240px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    filter: blur(4px);
+    background-size: cover;
+
+  }*/
+  &__img{
+    margin-top: 50px;
+    width: 424px;
+    z-index: 1;
+    border: solid 1.5em rgba(#000, .2);
+    height: 50vmin;
+    max-width: 13em;
+    max-height: 7em;
+    box-shadow: inset 0px 0px 40px 40px #DBA632;
+    background: url(./../../assets/test.jpg) 50%/ cover
+    border-box /* background-origin */
+    padding-box /* background-clip */;
+
+  }
+}
+

@@ -1,8 +1,8 @@
 import style from './ButtonChips.module.scss'
 
-function ButtonBasic({text, onClick}) {
+function ButtonBasic({text, onClick, active}) {
   return (
-    <button className={style.buttonChips} onClick={onClick}>
+    <button className={active === 'active' ? style.buttonChips_active : style.buttonChips} onClick={onClick}>
       {text}
     </button>
   )

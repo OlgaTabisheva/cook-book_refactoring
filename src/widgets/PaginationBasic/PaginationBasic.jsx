@@ -29,7 +29,7 @@ function PaginationBasic({totalPosts, paginate, currentPage}) {
           </li>
         ))}
         <ButtonChips text={'Дальше'}
-                onClick={(selectedPageNumber <= (pageNumbers.length - 1) & selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>
+                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) & selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>
 
       </ul>
     </nav>

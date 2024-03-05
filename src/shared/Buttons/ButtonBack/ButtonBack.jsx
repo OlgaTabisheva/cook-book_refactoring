@@ -1,6 +1,7 @@
 import style from './ButtonBack.module.scss'
 import {ReactComponent as Back} from '../../../assets/Back.svg';
-function ButtonBack({ onClick, disabled}) {
+
+function ButtonBack({onClick, disabled}) {
   return (
     <button
       className={style.buttonBack}

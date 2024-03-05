@@ -9,6 +9,7 @@ import ButtonLikeEmpty from "../../shared/Buttons/ButtonLike/ButtonLikeEmpty.jsx
 import {useEffect, useState} from "react";
 import {useUserData} from "@nhost/react";
 import {gql, useMutation, useQuery} from "@apollo/client";
+import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
 
 function RecipeCard({
                       name,
@@ -119,16 +120,14 @@ function RecipeCard({
       <div className={style.recipeCard__textBox}>
         <h3 className={style.recipeCard__name}>{name}</h3>
         <p className={style.recipeCard__text}>Марина Иванова</p>
-        <div className={style.recipeCard__clock}>
-          <img className={style.recipeCard__imgClock}
-               src={recipeClock} alt="clock"/>
-          <p className={style.recipeCard__text}>{long}</p>
-        </div>
+     <BoxClockTime howLong={long}/>
       </div>
       <div className={style.recipeCard__box}>
         {changeLike === true ?
-          <ButtonLikeFull handleClickLike={handleClickLike} countLikes={countLikes }setChangeLike={setChangeLike} changeLike={changeLike}/> :
-          <ButtonLikeEmpty handleClickLike={handleClickLike} countLikes ={countLikes} setChangeLike={setChangeLike} changeLike={changeLike}/>}
+          <ButtonLikeFull handleClickLike={handleClickLike} countLikes={countLikes} setChangeLike={setChangeLike}
+                          changeLike={changeLike}/> :
+          <ButtonLikeEmpty handleClickLike={handleClickLike} countLikes={countLikes} setChangeLike={setChangeLike}
+                           changeLike={changeLike}/>}
         <ButtonComments countComments={countComments}/>
       </div>
 

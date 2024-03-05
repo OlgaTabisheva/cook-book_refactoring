@@ -8,7 +8,7 @@ function Ingredients() {
   return (
     <section
       className={style.ingredients}>
-<>Состав</>
+      <>Состав</>
     </section>
   )
 }

@@ -1,15 +1,31 @@
 @import "../../variables";
 
-.fullRecipe{
+.fullRecipe {
 
-display: flex;
+margin: 20px auto 0 auto;
+  display: flex;
   flex-direction: column;
+  max-width: 1120px;
 
-  &__box{
-    display: flex;
+  &__titleContent {
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
   }
-  &__recipe{
-max-width: 544px;
+&__title{
+  margin-right: 32px;
+  max-width: 435px;
+  width: 100%;
+  margin-top: 20px;
+ @extend %title32Vol;
+}
+  &__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
     width: 100%;
   }
+
 }

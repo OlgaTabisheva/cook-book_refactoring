@@ -16,6 +16,7 @@ import Header from "./widgets/Header/Header.jsx";
 import {PersonalPage} from "./pages/PersonalPage/PersonalPage.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
+import AddRecipe from "./pages/AddRecipe/AddRecipe.jsx";
 
 
 const GET_RECIPES = gql`
@@ -106,10 +107,7 @@ function App() {
 
   return (
     <div className='app'>
-
       <Routes>
-
-
         <Route exact path="/" element={
           <MainLayout/>
         }>
@@ -123,7 +121,6 @@ function App() {
               chosenCategory={chosenCategory}
             />
           }/>
-
         </Route>
         <Route exact path="/authors" element={
           <MainLayout/>
@@ -131,7 +128,6 @@ function App() {
           <Route path="/authors" element={
             <AuthorsPage/>
           }/>
-
         </Route>
         <Route exact path="/recipes" element={
           <MainLayout/>
@@ -148,16 +144,16 @@ function App() {
               instantAddRecipe={instantAddRecipe}
             />
           }/>
-
         </Route>
         <Route path="/auth" element={
-
           <Auth/>
-
         }/>
         <Route path="/test" element={
-
           <Ttest/>
+
+        }/>
+        <Route path="/add-recipe" element={
+          <AddRecipe/>
 
         }/>
         <Route exact path="/user" element={
@@ -167,25 +163,20 @@ function App() {
             <PersonalPage
             />
           }/>
-
         </Route>
-
-      <Route exact path="/recipe" element={
-        <MainLayout/>
-      }>
-        <Route path="/recipe" element={
-          <FullRecipe
-
-          />
-        }/>
-
-      </Route>
+        <Route exact path="/recipe" element={
+          <MainLayout/>
+        }>
+          <Route path="/recipe" element={
+            <FullRecipe
+            />
+          }/>
+        </Route>
         <Route exact path="*" element={
           <MainLayout/>
         }>
           <Route path="*" element={
             <NotFound
-
             />
           }/>
 

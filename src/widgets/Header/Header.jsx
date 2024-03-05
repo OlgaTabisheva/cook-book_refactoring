@@ -14,7 +14,7 @@ function Header({active}) {
 
         <LinkItem linkTo={'/recipes'} text={'Рецепты'} active={active}/>
         <LinkItem linkTo={'/authors'} text={'Авторы'} active={active}/>
-        <LinkItem linkTo={'/test'} text={'Добавить новый рецепт'} active={active}/>
+        <LinkItem linkTo={'/add-recipe'} text={'Добавить новый рецепт'} active={active}/>
 
       </nav>
       <nav className={style.header__box}>

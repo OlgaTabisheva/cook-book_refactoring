@@ -5,7 +5,8 @@
   flex-direction: column;
   align-content: center;
   justify-content: center;
-position: relative;
+  position: relative;
+
   &:not(:first-child) {
     margin-top: 20px;
   }
@@ -14,11 +15,33 @@ position: relative;
     border-radius: 12px;
     padding: 16px;
     border: 1px solid $sand-40;
+    color: $sand-40;
     background-color: inherit;
+    font-family: $hint-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
 
     &:focus {
       border: 1px solid $primary-dark-100;
+      color: $primary-dark-100;
+      outline: none;
     }
+
+    &:active {
+      color: $primary-dark-100;
+      border: 1px solid $sand-40;
+    }
+    &:disabled{
+opacity: 0.4;
+      color: $primary-dark-100;
+      border: 1px solid $sand-40;
+      background-color: $sand-40;
+    }
+
+
 
   }
 
@@ -32,7 +55,7 @@ position: relative;
   }
 
   &__buttonImg {
-    top: 34px;
+    top: 40px;
     left: 395px;
     border: none;
     text-align: center;
@@ -43,7 +66,8 @@ position: relative;
     justify-content: space-around;
     position: absolute;
     cursor: pointer;
-    :hover{
+
+    :hover {
       opacity: 0.5;
     }
   }
@@ -56,7 +80,8 @@ position: relative;
     height: 24px;
 
   }
-  &__img_active{
+
+  &__img_active {
     background-repeat: no-repeat;
     background-position: center;
     width: 24px;

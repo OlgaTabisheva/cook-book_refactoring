@@ -1,8 +1,7 @@
 import style from './ButtonRadioAuth.module.scss'
-import {useState} from "react";
 
 
-function ButtonRadioAuth({disabledButton,setDisabledButton}) {
+function ButtonRadioAuth({disabledButton, setDisabledButton}) {
   return (
     <section className={style.buttonRadioAuth}>
 

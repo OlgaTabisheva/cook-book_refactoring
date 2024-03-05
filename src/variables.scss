@@ -1,5 +1,5 @@
 $stock-font: 'Vollkorn';
-$hint-font:  'Montserrat' ;
+$hint-font: 'Montserrat';
 $primary-100: #6A8323;
 $primary-120: #5E741F;
 $primary-140: #55691C;
@@ -24,7 +24,6 @@ $sand-colorful-80: #AF9F74;
 $sand-colorful-30: #EFD9A0;
 $sand-colorful-20: #FFEEC1;
 $sand-colorful-10: #FFF6DE;
-
 $accent-15-fill: #FFE4DB;
 $error: #EA3E27;
 $warning: #F6990C;
@@ -47,7 +46,6 @@ $buttonColor: #FFDCBF;
   border-radius: 100px;
   border: none;
   cursor: pointer;
-
 }
 
 %catalog {
@@ -57,7 +55,7 @@ $buttonColor: #FFDCBF;
   justify-content: center;
 }
 
-%image{
+%image {
   background-repeat: no-repeat;
   background-position: center;
   border: hidden;
@@ -67,10 +65,50 @@ $buttonColor: #FFDCBF;
   justify-content: space-around;
 }
 
-%title28Vol{
-  text-align: center;
+%textSmall13Mon {
+  //styleName: Desktop/Body small;
+  font-family: $hint-font;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  //text-align: left;
+}
+
+%textLarge16Mon{
+  //styleName: Desktop/Body large;
+  font-family: $hint-font;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  //text-align: left;
+
+}
+
+%title24Vol {
+  //styleName: Desktop/H3;
+  //text-align: center;
+  font-family: $stock-font;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+%title28Vol {
+  //text-align: center;
   font-family: $stock-font;
   font-size: 28px;
   font-weight: 500;
   line-height: 32px;
+}
+
+%title32Vol {
+  //styleName: Desktop/H1;
+  font-family: $stock-font;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0px;
+  //text-align: left;
 }

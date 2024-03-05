@@ -1,6 +1,7 @@
 @import "../../../variables";
 
-.buttonChips {
+
+%buttonChips {
   font-family: $hint-font;
   padding: 8px 12px;
   border-radius: 100px;
@@ -8,9 +9,19 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  background-color: inherit;
   text-align: right;
+}
+
+.buttonChips {
+  @extend %buttonChips;
+  background-color: inherit;
   color: $primary-100;
+
+  &_active {
+    @extend %buttonChips;
+    background-color: $primary-100;
+    color: $white;
+  }
 
   &:hover {
     background-color: $Primary-10-past-though;

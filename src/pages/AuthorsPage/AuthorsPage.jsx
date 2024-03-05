@@ -7,10 +7,7 @@ import AuthorsCard from "../../widgets/AuthorsCard/AuthorsCard.jsx";
 import RecipeCardTest from "../../test/RecipeCardTest/RecipeCardTest.jsx";
 
 
-function AuthorsPage({
-
-                        }) {
-
+function AuthorsPage({}) {
 
 
   return (

@@ -35,36 +35,36 @@ function RecipesCatalog({
         ))}
       </div>
       <div className={style.recipesCatalog__boxCatalog}>
-      <div className={style.recipesCatalog__catalog}>
+        <div className={style.recipesCatalog__catalog}>
 
-        {selectedCategory > 0 ?
-          currentPostsChosenCategory?.map((obj) => (
-            <RecipeCard isBtnEdit={false}
-                        key={obj.id} {...obj}
-                        instantLikes={instantLikes}
-                        setInstantLikes={setInstantLikes}
-                        isAuthenticated={isAuthenticated}
+          {selectedCategory > 0 ?
+            currentPostsChosenCategory?.map((obj) => (
+              <RecipeCard isBtnEdit={false}
+                          key={obj.id} {...obj}
+                          instantLikes={instantLikes}
+                          setInstantLikes={setInstantLikes}
+                          isAuthenticated={isAuthenticated}
 
-            />
-          ))
+              />
+            ))
 
-          :
-          currentPosts?.map((obj) => (
-            <RecipeCard isBtnEdit={false}
-                        key={obj.id} {...obj}
-                        instantLikes={instantLikes}
-                        setInstantLikes={setInstantLikes}
-                        isAuthenticated={isAuthenticated}
+            :
+            currentPosts?.map((obj) => (
+              <RecipeCard isBtnEdit={false}
+                          key={obj.id} {...obj}
+                          instantLikes={instantLikes}
+                          setInstantLikes={setInstantLikes}
+                          isAuthenticated={isAuthenticated}
 
-            />
-          ))}
+              />
+            ))}
 
+        </div>
+        <PaginationBasic currentPage={currentPage} postPage={postPage}
+                         totalPosts={(selectedCategory > 0) ? chosenCategory?.recipes.length : instantAddRecipe?.recipes.length}
+                         paginate={paginate}
+                         setCurrentPage/>
       </div>
-      <PaginationBasic currentPage={currentPage} postPage={postPage}
-                       totalPosts={(selectedCategory > 0) ? chosenCategory?.recipes.length : instantAddRecipe?.recipes.length}
-                       paginate={paginate}
-                       setCurrentPage/>
-    </div>
     </section>
   )
 }

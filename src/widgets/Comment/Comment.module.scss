@@ -1,0 +1,68 @@
+@import "../../variables";
+
+.comment {
+
+  margin-top: 80px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+
+  &__title {
+    @extend %title24Vol;
+    text-align: left;
+  }
+
+  &__box {
+    max-width: 452px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 32px;
+  }
+
+  &__time {
+    margin-top: 4px;
+    @extend %textSmall13Mon;
+    text-align: left;
+  }
+
+  &__text {
+    margin-top: 12px;
+    @extend %textLarge16Mon;
+    text-align: left;
+  }
+
+  &__user {
+    stroke: $sand-colorful-80;
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    left: 8px;
+    padding: 3px 4px;
+  }
+
+  &__boxPhoto {
+    background-color: $sand-colorful-20;
+    display: flex;
+    max-width: 60px;
+    width: 100%;
+    height: 60px;
+    border-radius: 100px;
+    padding: 8px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+  &__bottomBox{
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  &__info {
+    //styleName: Desktop/Body small;
+    @extend %textSmall13Mon;
+    text-align: center;
+  }
+}

@@ -9,21 +9,22 @@ function RecipeComposition() {
       className={style.recipeComposition}>
       <h3 className={style.recipeComposition__title}>Состав</h3>
       <div className={style.recipeComposition__counter}>
-        <ButtonPicture value={'plus'} />
+        <ButtonPicture value={'minus'} disabled/>
         <p className={style.recipeComposition__counterText}>1</p>
-        <ButtonPicture value={'minus'}/>
+
+        <ButtonPicture value={'plus'}/>
       </div>
 
-<div className={style.recipeComposition__box}>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-  <Foodstuff/>
-</div>
+      <div className={style.recipeComposition__box}>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+        <Foodstuff/>
+      </div>
 
     </div>
   )

@@ -1,13 +1,17 @@
 @import "../../variables";
 
-.search{
-display: flex;
+
+
+.search {
+  display: flex;
   background-color: $primary-100;
   border-radius: 100px;
   padding: 2px;
   position: relative;
+  max-width: 1120px;
+  width: 100%;
 
-  &__input{
+  &__input {
     border: 1px solid #A49B82;
     font-family: $hint-font;
     font-size: 16px;
@@ -19,8 +23,11 @@ display: flex;
     padding: 16px 12px 16px 50px;
     border-radius: 100px;
     width: 100%;
+
+
   }
-  &__button{
+
+  &__button {
     background-color: inherit;
     border: none;
     color: $white;
@@ -34,7 +41,33 @@ display: flex;
     text-align: center;
 
   }
-  &__img{
+&__search{
+  stroke: $sand-40;
+  position: absolute;
+  top: 18px;
+  left: 25px;
+}
+ &__close{
+    stroke: $sand-40;
+    position: absolute;
+    right: 130px;
+   top: 18px;
+  }
+  &:hover {
+    background-color: $primary-120;
+  }
+
+  &:active {
+    background-color: $primary-140;
+  }
+  input:focus{
+    background-color: $sand-10;
+    outline: none;
+  }
+
+
+
+/*  &__img {
     background-image: url(../../assets/search.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -50,5 +83,5 @@ display: flex;
     left: 25px;
 
 
-  }
+  }*/
 }

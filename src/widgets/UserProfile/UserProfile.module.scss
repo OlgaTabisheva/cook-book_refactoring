@@ -1,22 +1,25 @@
 @import "../../variables";
 
-.userProfile{
-display: flex;
-margin: 40px auto 0 auto;
+.userProfile {
+  display: flex;
+  margin: 40px auto 0 auto;
 
   flex-direction: column;
   align-items: center;
-  &__title{
+
+  &__title {
     text-align: center;
   }
-  &__box{
+
+  &__box {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     max-width: 352px;
     width: 100%;
   }
-  &__form{
+
+  &__form {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -24,11 +27,13 @@ margin: 40px auto 0 auto;
     max-width: 352px;
     width: 100%;
   }
-  &__buttons{
+
+  &__buttons {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    :not(:first-child){
+
+    :not(:first-child) {
       margin-top: 20px;
     }
   }

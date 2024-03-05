@@ -13,11 +13,12 @@ function Auth() {
       <HeaderMini/>
       <div className={style.auth__content}>
         <div className={style.auth__contentText}>
-           <h2 className={style.auth__title}>{!disabledButton ? "Войдите на сайт" : "Зарегистрируйтесь на сайте"}</h2>
+          <h2 className={style.auth__title}>{!disabledButton ? "Войдите на сайт" : "Зарегистрируйтесь на сайте"}</h2>
           <p className={style.auth__description}>ставьте лайки, комментируйте и пишите рецепты </p>
         </div>
-        <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton} />
-        {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> : <SignUp password={password} setPassword={setPassword}/>}
+        <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton}/>
+        {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> :
+          <SignUp password={password} setPassword={setPassword}/>}
       </div>
 
     </section>

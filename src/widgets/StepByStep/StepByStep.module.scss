@@ -1,0 +1,28 @@
+@import "../../variables";
+
+.stepByStep {
+  margin-top: 40px;
+  &__title {
+    font-family: $stock-font;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+  &__img {
+    margin-top: 12px;
+    width: 544px;
+    height: 300px;
+    border-radius: 28px;
+  }
+  &__box {
+    margin-top: 12px;
+    font-family: $hint-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+}

@@ -1,14 +1,16 @@
 @import "../variables";
-.test{
-margin: auto;
+
+.test {
+  margin: auto;
   display: flex;
   flex-direction: column;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-image: url("./../assets/Frame.svg");
   background-size: cover;
   background-position: top;
-  &__box{
+
+  &__box {
     position: fixed;
     left: 0;
     top: 0;
@@ -19,7 +21,7 @@ margin: auto;
   }
 }
 
-.testBox{
+.testBox {
 
   margin: 60px auto 60px auto;
 

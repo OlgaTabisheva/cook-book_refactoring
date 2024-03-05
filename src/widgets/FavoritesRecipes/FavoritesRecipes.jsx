@@ -8,8 +8,12 @@ function FavoritesRecipes() {
   return (
     <section
       className={style.favoritesRecipes}>
-        <NoticeProfile src={not} title={'Вы еще не сохраняли рецепты'} text={'Нажмите на сердечко и рецепт добавится в избранное. Если рецепт не добавился —перезагрузите страницу'} colorButton={'primaryGreen'} textButton={'Смотреть рецепты'}/>
-  {/*    <div className={style.favoritesRecipes__box}>
+      <NoticeProfile src={not} title={'Вы еще не сохраняли рецепты'}
+                     text={'Нажмите на сердечко и рецепт добавится в избранное. Если рецепт не добавился —перезагрузите страницу'}
+                     colorButton={'primaryGreen'} textButton={'Смотреть рецепты'}/>
+
+
+      {/*    <div className={style.favoritesRecipes__box}>
       <RecipeCardTest/>
       <RecipeCardTest/>
       <RecipeCardTest/>
