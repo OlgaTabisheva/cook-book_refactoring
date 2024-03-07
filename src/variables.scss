@@ -65,7 +65,19 @@ $buttonColor: #FFDCBF;
   justify-content: space-around;
 }
 
-%textSmall13Mon {
+%textSmall13-16Mon {
+  //styleName: Desktop/Body small;
+  font-family: $hint-font;
+  //styleName: Desktop/System;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  //text-align: left;
+
+  //text-align: left;
+}
+%textSmall13-20Mon {
   //styleName: Desktop/Body small;
   font-family: $hint-font;
   font-size: 13px;

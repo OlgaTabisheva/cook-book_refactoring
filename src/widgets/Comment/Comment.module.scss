@@ -22,7 +22,7 @@
 
   &__time {
     margin-top: 4px;
-    @extend %textSmall13Mon;
+    @extend %textSmall13-20Mon;
     text-align: left;
   }
 
@@ -62,7 +62,7 @@
 
   &__info {
     //styleName: Desktop/Body small;
-    @extend %textSmall13Mon;
+    @extend %textSmall13-20Mon;
     text-align: center;
   }
 }

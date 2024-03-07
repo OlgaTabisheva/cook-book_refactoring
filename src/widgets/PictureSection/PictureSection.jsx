@@ -4,7 +4,7 @@ import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 function PictureSection() {
   return (
     <section className={style.pictureSection}>
-
+<div className={style.pictureSection__cover}>
       <div className={style.pictureSection__box}>
         <h2 className={style.pictureSection__title}> Делимся вкусными рецептами средиземноморской <br/> и сербской кухни
         </h2>
@@ -12,6 +12,7 @@ function PictureSection() {
           составляют кулинарную книгу наших авторов</p>
         <ButtonBasic text={'Добавить рецепт'} color={'primaryGreen'}/>
       </div>
+</div>
     </section>
   )
 }

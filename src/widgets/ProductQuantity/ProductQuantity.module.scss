@@ -1,0 +1,46 @@
+@import "../../variables";
+
+.productQuantity {
+  display: flex;
+  color: $sand-40;
+  align-items: center;
+  justify-content: center;
+  &__subtitle {
+    @extend %textSmall13-16Mon;
+    text-align: left;
+  }
+
+  &__input {
+    padding: 16px;
+    border-radius: 12px 0px 0px 12px;
+    gap: 8px;
+    border: 1px solid $sand-40;
+    background: inherit;
+    @extend %textLarge16Mon
+  }
+
+  &__select {
+    padding: 16px;
+    gap: 4px;
+    background-color: inherit;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: $sand-40;
+    @extend %textLarge16Mon;
+    color: $sand-40;
+    select{
+      background-color: green;
+    }
+    option{
+      background-color: $sand-10;
+
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-width: 0px 0px 1px 0px;
+      gap: 8px
+
+    }
+  }
+}
+
+

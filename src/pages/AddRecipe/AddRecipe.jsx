@@ -2,6 +2,7 @@ import style from './AddRecipe.module.scss'
 import HeaderMini from "../../widgets/HeaderMini/HeaderMini.jsx";
 import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import cow from  './../../assets/test.jpg'
+import ProductQuantity from "../../widgets/ProductQuantity/ProductQuantity.jsx";
 
 
 function Comments() {
@@ -20,6 +21,7 @@ function Comments() {
       <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
       <h3 className={style.addRecipe__subtitle}>Состав:</h3>
       </div>
+      <ProductQuantity/>
     </section>
   )
 }

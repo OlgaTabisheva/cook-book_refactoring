@@ -2,7 +2,7 @@
 
 .header {
   font-family: $hint-font;
-
+z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +10,7 @@
   padding: 8px 160px;
   margin: 0;
   border-bottom: 1px solid $sand-30;
+  background-color: $sand-colorful-10;
 
   &__links {
     display: flex;
