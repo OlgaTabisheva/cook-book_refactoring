@@ -9,8 +9,11 @@ function HeaderMini() {
   const isAuthenticated = useAuthenticated()
   return (
     <section className={style.headerMini}>
-      <Logo/>
-      <ButtonPicture value={'close'}/>
+      <div className={style.headerMini__box}>
+        <Logo/>
+        <ButtonPicture value={'close'} size={'normal'}/>
+      </div>
+
     </section>
   )
 }

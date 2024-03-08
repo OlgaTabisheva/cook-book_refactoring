@@ -3,13 +3,16 @@
 .productQuantity {
   display: flex;
   color: $sand-40;
-  align-items: center;
   justify-content: center;
+  margin-top: 20px;
+  align-items: flex-end;
   &__subtitle {
     @extend %textSmall13-16Mon;
     text-align: left;
   }
-
+  &__boxCount{
+    margin-right: 12px;
+  }
   &__input {
     padding: 16px;
     border-radius: 12px 0px 0px 12px;
@@ -18,9 +21,18 @@
     background: inherit;
     @extend %textLarge16Mon
   }
-
-  &__select {
+  &__inputCount{
     padding: 16px;
+    border-radius: 0px 12px 12px 0px;
+    gap: 4px;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: $sand-40;
+    background: inherit;
+    @extend %textLarge16Mon
+  }
+  &__select {
+    padding: 17.5px;
     gap: 4px;
     background-color: inherit;
     border-width: 1px 1px 1px 0px;
@@ -28,6 +40,8 @@
     border-color: $sand-40;
     @extend %textLarge16Mon;
     color: $sand-40;
+    text-align: left;
+
     select{
       background-color: green;
     }

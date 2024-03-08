@@ -1,6 +1,14 @@
 @import "../../variables";
 
 .auth {
+  align-items: stretch;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("./../../assets/Frame2.svg");
+  background-size: cover;
+  background-position: center;
+  background-color: $sand-10;
+  padding-bottom: 100px;
 
 
   &__content {
@@ -8,8 +16,13 @@
     flex-direction: column;
     max-width: 440px;
     width: 100%;
-    margin: 163px auto auto auto;
-    align-items: stretch
+    margin: 60px auto 0px auto;
+    border-radius:40px;
+    padding: 60px;
+    background-color: $sand-colorful-10;
+    position: sticky;
+    z-index: 10;
+    bottom: 0;
   }
 
   &__contentText {
@@ -17,6 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
   }
 
   &__title {
@@ -35,6 +49,18 @@
     color: $sand-80;
 
   }
+  &__image {
+    background-position: center;
+    width: 307.59px;
+    height: 387.81px;
+    top: -150px;
+    left: -180px;
+    position: absolute;
+    z-index: 20;
+    background-image: url("./../../assets/Frame.svg");
+&:hover{
+  rotate: 90deg;
+}
 
-
+  }
 }

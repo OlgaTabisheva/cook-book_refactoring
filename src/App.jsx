@@ -153,7 +153,9 @@ function App() {
 
         }/>
         <Route path="/add-recipe" element={
-          <AddRecipe/>
+          <AddRecipe
+            allCategories={allCategories}
+          />
 
         }/>
         <Route exact path="/user" element={
@@ -169,6 +171,7 @@ function App() {
         }>
           <Route path="/recipe" element={
             <FullRecipe
+              allCategories={allCategories}
             />
           }/>
         </Route>

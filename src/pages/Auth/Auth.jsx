@@ -4,6 +4,7 @@ import ButtonRadioAuth from "../../shared/Buttons/ButtonRadioAuth/ButtonRadioAut
 import SignIn from "../../widgets/SignIn/SignIn.jsx";
 import SignUp from "../../widgets/SignUp/SignUp.jsx";
 import {useState} from "react";
+import carrot from '../../assets/Group 7.svg'
 
 function Auth() {
   const [disabledButton, setDisabledButton] = useState(true)
@@ -19,6 +20,7 @@ function Auth() {
         <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton}/>
         {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> :
           <SignUp password={password} setPassword={setPassword}/>}
+        <div  className={style.auth__image}/>
       </div>
 
     </section>

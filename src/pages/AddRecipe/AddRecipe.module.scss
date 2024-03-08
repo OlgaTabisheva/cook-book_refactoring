@@ -3,22 +3,42 @@
 .addRecipe {
   display: flex;
   flex-direction: column;
-
+  margin: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: url("./../../assets/Frame.svg");
+  background-size: cover;
+  background-position: top;
+  background-color: $sand-10;
 &__box{
+  border-radius: 40px;
   max-width: 736px;
   width: 100%;
   display: flex;
-  margin: 0 auto;
+  margin: 40px auto 60px auto;
   flex-direction: column;
   align-items: center;
   position: relative;
+  background-color: $sand-colorful-10;
 
 }
+  &__boxName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input{
+      width: 662px;
+
+    }
+  }
   &__title {
+    margin: 40px auto;
     @extend %title32Vol
   }
 
   &__subtitle {
+    margin: 60px auto 40px auto;
     @extend %title28Vol
   }
 /*  &__imgBox{
@@ -35,6 +55,12 @@
     background-size: cover;
 
   }*/
+  &__boxCategory{
+    display: flex;
+    :not(:first-child) {
+      margin-left: 12px;
+    }
+  }
   &__img{
     margin-top: 50px;
     width: 424px;

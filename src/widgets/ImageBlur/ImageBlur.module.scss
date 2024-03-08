@@ -1,0 +1,39 @@
+@import "../../variables";
+
+
+
+.imageBlur {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ border-radius: 28px;
+ position: relative;
+ &__top{
+  width: 696px;
+  height: 258px;
+  border-radius: 36px;
+  filter: blur(4px);
+
+ }
+ &__solid {
+  width: 687px;
+  height: 240px;
+  position: absolute;
+  top: -9px;
+  left: -13px;
+  z-index: 1;
+  border-radius: 36px;
+  background-color: transparent;
+  border: 18px solid $sand-colorful-10;
+ }
+&__blur{
+ width: 424px;
+ height: 240px;
+ position: absolute;
+ top: 9px;
+ left: 156px;
+ z-index: 10;
+}
+
+
+}
