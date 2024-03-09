@@ -3,14 +3,16 @@
 .addRecipe {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  //margin: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url("./../../assets/Frame.svg");
   background-size: cover;
   background-position: top;
   background-color: $sand-10;
+
 &__box{
+  padding-top: 40px;
   border-radius: 40px;
   max-width: 736px;
   width: 100%;
@@ -20,8 +22,26 @@
   align-items: center;
   position: relative;
   background-color: $sand-colorful-10;
-
+padding-bottom: 40px ;
 }
+  &__cover{
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: $sand-colorful-10;
+    max-width: 736px;
+    width: 100%;
+  }
+  &__quantity{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   &__boxName{
     display: flex;
     flex-direction: column;
@@ -33,13 +53,28 @@
     }
   }
   &__title {
-    margin: 40px auto;
+    margin-bottom: 40px;
     @extend %title32Vol
   }
-
+  &__steps{
+    display: flex;
+    margin: 60px auto 20px auto;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+  &__boxSteps{
+margin-top: -20px;
+  }
   &__subtitle {
-    margin: 60px auto 40px auto;
     @extend %title28Vol
+  }
+  &__subtitleLeft{
+    @extend %title28Vol;
+    max-width: 696px;
+    width: 100%;
+    text-align: left;
   }
 /*  &__imgBox{
     background-image: url("./../../assets/test.jpg");
@@ -56,6 +91,7 @@
 
   }*/
   &__boxCategory{
+    margin-top: 20px;
     display: flex;
     :not(:first-child) {
       margin-left: 12px;
@@ -74,6 +110,15 @@
     border-box /* background-origin */
     padding-box /* background-clip */;
 
+  }
+  &__button{
+    margin-top: 60px;
+    max-width: 696px;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-direction: column;
   }
 }
 

@@ -18,7 +18,7 @@ function RecipeCard({
                       id,
                       instantLikes,
                       setInstantLikes,
-                      long,
+                      duration,
                       isAuthenticated,
                       isBtnLike = true,
                       isBtnEdit = true,
@@ -120,7 +120,7 @@ function RecipeCard({
       <div className={style.recipeCard__textBox}>
         <h3 className={style.recipeCard__name}>{name}</h3>
         <p className={style.recipeCard__text}>Марина Иванова</p>
-     <BoxClockTime howLong={long}/>
+     <BoxClockTime howLong={duration.duration}/>
       </div>
       <div className={style.recipeCard__box}>
         {changeLike === true ?

@@ -1,8 +1,21 @@
 import style from './ProductQuantity.module.scss'
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
+import ButtonUnits from "../../shared/Buttons/ButtonUnits/ButtonUnits.jsx";
+import PopupUnits from "../Popup/PopupUnits/PopupUnits.jsx";
+import {useState} from "react";
 
 
 function ProductQuantity() {
+
+  const [isOpen, setIsOpen] = useState(true);
+
+
+  const togglePopup = () => {
+
+    setIsOpen(!isOpen);
+
+  }
+
   return (
     <section className={style.productQuantity}>
       <div>
@@ -11,12 +24,10 @@ function ProductQuantity() {
       </div>
       <div>
         <h3 className={style.productQuantity__subtitle}>Ед. изм.</h3>
-        <select className={style.productQuantity__select} id="fruits" name="fruits">
-          <option value="" disabled selected hidden>Please Choose...</option>
-          <option value="apple">Яблоко</option>
-          <option value="banana">Банан</option>
-          <option value="orange">Апельсин</option>
-        </select>
+     {/*   <button className={style.productQuantity__select} id="fruits" name="fruits">
+          <option data-color="black" value="" disabled selected hidden>Please Choose...</option>>
+        </button>*/}
+        <ButtonUnits text={'Шт.'} onClick={()=>togglePopup()} />
       </div>
       <div className={style.productQuantity__boxCount}>
         <h3 className={style.productQuantity__subtitle}>Количество</h3>
@@ -24,6 +35,7 @@ function ProductQuantity() {
 
       </div>
       <ButtonPicture value={'close'} size={'big'}/>
+      <PopupUnits isOpen={isOpen}/>
     </section>
   )
 }

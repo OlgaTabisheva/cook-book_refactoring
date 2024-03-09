@@ -9,10 +9,10 @@ function RecipeComposition() {
       className={style.recipeComposition}>
       <h3 className={style.recipeComposition__title}>Состав</h3>
       <div className={style.recipeComposition__counter}>
-        <ButtonPicture value={'minus'} disabled/>
+        <ButtonPicture value={'minus'} disabled size={'normal'}/>
         <p className={style.recipeComposition__counterText}>1</p>
 
-        <ButtonPicture value={'plus'}/>
+        <ButtonPicture value={'plus'} size={'normal'}/>
       </div>
 
       <div className={style.recipeComposition__box}>

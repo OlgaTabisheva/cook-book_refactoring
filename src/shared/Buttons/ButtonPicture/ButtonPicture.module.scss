@@ -22,8 +22,21 @@
   &__plus, &__minus, &__close {
     stroke: $accent-100;
   }
+  &__image{
+    stroke: $primary-dark-100;
+  }
 }
-
+.buttonPicture__white{
+  border: none;
+  cursor: pointer;
+  background-color: $white;
+  padding: 8px;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  gap: 8px;
+  z-index: 30;
+}
 .buttonPicture__big {
   border: none;
   cursor: pointer;

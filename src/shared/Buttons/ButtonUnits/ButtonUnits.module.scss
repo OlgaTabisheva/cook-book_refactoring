@@ -1,0 +1,30 @@
+@import "../../../variables";
+
+.buttonUnits {
+  width: 140px;
+  height: 56px;
+  padding: 16px;
+  border-width: 1px 1px 1px 0px;
+  gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: inherit;
+  cursor: pointer;
+  :hover{
+    opacity: 0.5;
+  }
+  &__text {
+    @extend %textLarge16Mon;
+
+  }
+  &__arrow{
+    width: 24px;
+    height: 24px;
+    stroke: $sand-40;
+   padding-top: 7px;
+    padding-left: 2px;
+
+  }
+
+}

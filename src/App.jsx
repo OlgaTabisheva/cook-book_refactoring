@@ -24,14 +24,17 @@ const GET_RECIPES = gql`
     category {
       category
     }
+   duration {
+      duration
+    }
       id
       date
       name
       food
-      long
       description
       photo
       category
+      
       
       }}`
 const GET_CATEGORY = gql`
@@ -39,6 +42,14 @@ const GET_CATEGORY = gql`
  number
  category
       }}`
+
+const GET_DURATION = gql`
+query MyQuery {
+  duration {
+    number
+    duration
+  
+}}`
 
 function App() {
 
@@ -48,11 +59,13 @@ function App() {
     email: '',
   })
   const [allCategories, setAllCategories] = React.useState({})
+  const [allDuration, setAllDuration] = React.useState({})
   const [selectedCategory, setSelectedCategory] = React.useState(0)
   const user = useUserData()
   const isAuthenticated = useAuthenticated()
   const {data} = useQuery(GET_RECIPES)
   const categories = useQuery(GET_CATEGORY).data
+  const duration = useQuery(GET_DURATION).data
   const [instantLikes, setInstantLikes] = useState([])
   const [instantAddRecipe, setInstantAddRecipe] = React.useState()
   const [formValuesRecipe, setFormValuesRecipe] = React.useState({
@@ -60,7 +73,7 @@ function App() {
     name: '',
     photo: '',
     category: '',
-    long: '',
+    duration: '',
     food: '',
   });
   const [description, setDescription] = React.useState("Введите текст");
@@ -82,11 +95,11 @@ function App() {
 
   const SET_CATEGORY = gql`query {
    recipes(where: {category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
+    duration
     id
     date
     name
     food
-    long
     description
     photo
     recipes_category
@@ -104,7 +117,10 @@ function App() {
     setAllCategories(categories)
   }, [categories, allCategories, chosenCategory])
 
-
+  React.useEffect(() => {
+    setAllDuration(duration)
+  }, [duration, allDuration])
+console.log({data})
   return (
     <div className='app'>
       <Routes>
@@ -155,6 +171,7 @@ function App() {
         <Route path="/add-recipe" element={
           <AddRecipe
             allCategories={allCategories}
+            allDuration={allDuration}
           />
 
         }/>
