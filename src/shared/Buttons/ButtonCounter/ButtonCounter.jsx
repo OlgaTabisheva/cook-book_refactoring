@@ -1,7 +1,7 @@
 import style from './ButtonCounter.module.scss'
 import {ReactComponent as Piece} from '../../../assets/minus.svg';
 
-function ButtonCounter({value, onClick, disabled}) {
+function ButtonCounter({onClick, disabled}) {
   return (
     <button
       className={style.buttonCounter}

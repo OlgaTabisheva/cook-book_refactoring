@@ -1,7 +1,6 @@
 @import "../../variables";
 
 .personalPage {
-  font-family: $stock-font;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,7 +10,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-
     :not(:first-child) {
       margin-left: 12px;
     }

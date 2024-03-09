@@ -83,3 +83,23 @@
     stroke: $accent-100;
   }
 }
+.buttonPicture__small{
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+  padding: 8px;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  gap: 8px;
+  z-index: 30;
+  margin-bottom: 12px;
+
+
+
+}
+.buttonPicture__brownClose{
+  stroke: $sand-60;
+  Width: 24px;
+  Height: 24px;
+}

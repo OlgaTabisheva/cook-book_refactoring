@@ -17,21 +17,17 @@
 
   &__name {
     color: $sand-80;
-    font-family: $stock-font;
     overflow: hidden;
-    font-size: 24px;
-    line-height: 28px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    @extend %title24Vol;
 
   }
 
   &__text {
     color: $sand-80;
-    font-family: $hint-font;
-    font-size: 13px;
-    line-height: 20px;
     margin-top: 8px;
+    @extend %textSmall13-20Mon;
   }
 
 

@@ -32,20 +32,14 @@
   }
 
   &__title {
-    font-family: $stock-font;
+    @extend %title32Vol;
     color: $white;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 36px;
   }
 
   &__text {
-    font-family: $hint-font;
+    @extend %textLarge16Mon;
     margin-top: 12px;
     color: $white;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
     margin-bottom: 40px;
   }
 }

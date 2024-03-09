@@ -7,9 +7,8 @@
   height: 32px;
   padding: 4px 12px;
   background-color: $sand-20;
-  font-size: 14px;
   border-radius: 100px;
-  font-family: $hint-font;
+
 
   &__comments {
     width: 24px;
@@ -23,11 +22,10 @@
   }
 
   &__count {
-    font-family: $hint-font;
-    font-size: 16px;
-    line-height: 24px;
+
     padding-left: 4px;
-    color: $sand-colorful-80;
+    @extend %textLarge16Mon;
     font-weight: 600;
+    color: $sand-colorful-80;
   }
 }

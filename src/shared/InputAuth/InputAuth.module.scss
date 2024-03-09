@@ -6,24 +6,18 @@
   align-content: center;
   justify-content: center;
   position: relative;
-
   &:not(:first-child) {
     margin-top: 20px;
   }
 
   &__input {
+    @extend %textLarge16Mon;
     border-radius: 12px;
     padding: 16px;
     border: 1px solid $sand-40;
     color: $sand-40;
     background-color: inherit;
-    font-family: $hint-font;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0px;
     text-align: left;
-
     &:focus {
       border: 1px solid $primary-dark-100;
       color: $primary-dark-100;
@@ -34,15 +28,13 @@
       color: $primary-dark-100;
       border: 1px solid $sand-40;
     }
-    &:disabled{
-opacity: 0.4;
+
+    &:disabled {
+      opacity: 0.4;
       color: $primary-dark-100;
       border: 1px solid $sand-40;
       background-color: $sand-40;
     }
-
-
-
   }
 
   &__text {

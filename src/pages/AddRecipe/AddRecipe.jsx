@@ -8,6 +8,7 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";
 import {useState} from "react";
+import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 
 
 function AddRecipe({allCategories, allDuration}) {
@@ -84,7 +85,7 @@ function AddRecipe({allCategories, allDuration}) {
         <div className={style.addRecipe__button}>
           <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
         </div>
-
+        <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>
       </div>
 
 

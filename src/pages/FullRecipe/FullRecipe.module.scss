@@ -2,24 +2,25 @@
 
 .fullRecipe {
 
-margin: 20px auto 0 auto;
+  margin: 20px auto 0 auto;
   display: flex;
   flex-direction: column;
   max-width: 1120px;
 
   &__titleContent {
-
-      display: flex;
-      justify-content: flex-start;
-      align-items: baseline;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
   }
-&__title{
-  margin-right: 32px;
-  max-width: 435px;
-  width: 100%;
-  margin-top: 20px;
- @extend %title32Vol;
-}
+
+  &__title {
+    margin-right: 32px;
+    max-width: 435px;
+    width: 100%;
+    margin-top: 20px;
+    @extend %title32Vol;
+  }
+
   &__box {
     display: flex;
     flex-direction: row;

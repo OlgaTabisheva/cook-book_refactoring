@@ -10,10 +10,7 @@
   align-items: center;
 
   &__title {
-    font-family: $stock-font;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    @extend %subtitle20-24Vol;
     margin-bottom: 40px;
     text-align: center;
   }
@@ -23,10 +20,7 @@
   }
 
   &__boxTitle {
-    font-family: $hint-font;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 20px;
+    @extend %textSmall13-20Mon;
     margin-bottom: 8px;
     text-align: center;
 

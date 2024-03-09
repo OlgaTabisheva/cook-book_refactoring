@@ -1,11 +1,9 @@
 @import "../../../variables";
 
 .buttonLikeFull {
+  @extend %textLarge16Mon;
   cursor: pointer;
   margin-right: 8px;
-  font-family: $hint-font;
-  font-size: 16px;
-  line-height: 24px;
   font-weight: 700;
   border: none;
   display: flex;
@@ -30,15 +28,14 @@
   }
 
   &__count {
-    font-size: 16px;
-    line-height: 24px;
+    @extend %textLarge16Mon;
     margin-left: 4px;
     font-weight: 600;
   }
 }
 
 .buttonLikeEmpty {
-  font-family: $hint-font;
+
   cursor: pointer;
   margin-right: 8px;
   border: none;
@@ -63,9 +60,7 @@
   }
 
   &__count {
-    font-family: $hint-font;
-    font-size: 16px;
-    line-height: 24px;
+    @extend %textLarge16Mon;
     margin-left: 4px;
     color: $sand-colorful-80;
     font-weight: 600;

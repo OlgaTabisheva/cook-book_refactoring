@@ -2,14 +2,11 @@
 
 
 %linkItem {
-  font-family: $hint-font;
   padding: 8px 12px;
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  @extend %textLarge16Mon;
 }
 
 .linkItem {

@@ -2,14 +2,11 @@
 
 
 %buttonChips {
-  font-family: $hint-font;
   padding: 8px 12px;
   border-radius: 100px;
   border: 1px solid $Primary-40-past-though;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
   text-align: right;
+  @extend %textLarge16Mon
 }
 
 .buttonChips {

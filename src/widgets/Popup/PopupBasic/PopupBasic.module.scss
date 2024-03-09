@@ -1,5 +1,58 @@
 @import "../../../variables";
 
-.popupBasic{
+.popupBasic {
+  max-width: 544px;
+  width: 100%;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid $sand-30;
+  background-color: $sand-colorful-10;
+
+  &__header {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-width: 0px 0px 1px 0px;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $sand-30
+  }
+
+  &__title {
+    @extend %title28Vol;
+  }
+
+  &__text {
+    @extend %textLarge16Mon;
+    margin: 0 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    margin-top: 40px;
+    max-height: 56px;
+    height: 100%;
+    margin-bottom: 20px;
+
+    :not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+
+  &__button {
+    max-width: 246px;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+
+  }
 
 }

@@ -4,7 +4,6 @@
 .notFound {
   margin: 60px auto 120px auto;
   display: flex;
-
   flex-direction: column;
   align-items: center;
 
@@ -16,9 +15,7 @@
   &__title {
     margin: 40px 0 40px 0;
     text-align: center;
-    font-family: $stock-font;
     color: $primary-dark-100;
-    font-size: 28px;
-    line-height: 32px;
+    @extend %title28Vol;
   }
 }

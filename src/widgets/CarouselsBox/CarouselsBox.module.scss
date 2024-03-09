@@ -5,28 +5,20 @@ li {
   padding-right: 11px;
 }
 
-
 .carouselsBox {
   max-width: 1120px;
   width: 100%;
 
   &__carousel {
-
-
   }
 
   &__title {
-    font-family: $stock-font;
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 32px;
+    @extend %title28Vol;
     margin: 60px 0 12px 0;
-
 
   }
 
   &__card {
-
     overflow: hidden;
     padding: 2rem 0;
     max-width: 372px;
@@ -34,17 +26,14 @@ li {
   }
 
   &__box {
-
   }
 
   &__text {
-    font-family: $stock-font;
+    @extend %subtitle20-24Vol;
     position: absolute;
     top: 0;
     right: 45px;
     color: $sand-80;
-    font-size: 20px;
-    line-height: 24px;
   }
 
   &__buttonLeft {

@@ -14,13 +14,10 @@
   }
 
   &__title {
+    @extend %subtitle20-24Vol;
     margin-top: 12px;
-    font-family: $stock-font;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
     text-align: center;
     overflow: hidden;
     color: $primary-dark-100;

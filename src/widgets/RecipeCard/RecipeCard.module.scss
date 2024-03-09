@@ -30,28 +30,22 @@
     &:hover {
       transform: scale(1.1); /* Увеличиваем масштаб */
       border-radius: 28px;
-
     }
 
     &:after {
       display: block;
       position: absolute;
     }
-
-
   }
-
 
   &__textBox {
     margin-top: 12px;
   }
 
   &__name {
+    @extend %title24Vol;
     color: $sand-80;
-    font-family: $stock-font;
     overflow: hidden;
-    font-size: 24px;
-    line-height: 28px;
     text-overflow: ellipsis;
     white-space: nowrap;
 
@@ -59,10 +53,8 @@
 
   &__text {
     color: $sand-80;
-    font-family: $hint-font;
-    font-size: 13px;
-    line-height: 20px;
     margin-top: 8px;
+    @extend %textSmall13-20Mon;
   }
 
 

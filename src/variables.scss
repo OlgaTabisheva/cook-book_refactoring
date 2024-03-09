@@ -97,6 +97,15 @@ $buttonColor: #FFDCBF;
   //text-align: left;
 
 }
+%subtitle20-24Vol{
+  //styleName: Desktop/H4;
+  font-family: $stock-font;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+
+}
 
 %title24Vol {
   //styleName: Desktop/H3;
@@ -106,6 +115,8 @@ $buttonColor: #FFDCBF;
   font-weight: 500;
   line-height: 28px;
 }
+
+
 
 %title28Vol {
   //text-align: center;
@@ -122,5 +133,29 @@ $buttonColor: #FFDCBF;
   font-weight: 500;
   line-height: 36px;
   letter-spacing: 0px;
+
   //text-align: left;
+}
+
+%auth{
+  &__box {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+  }
+
+  &__buttonBox {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__link {
+    margin-top: 20px;
+    text-align: center;
+    font-family: $hint-font;
+    color: $sand-80;
+    font-size: 13px;
+    line-height: 20px;
+  }
 }
