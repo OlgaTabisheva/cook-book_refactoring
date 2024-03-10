@@ -68,15 +68,12 @@ $buttonColor: #FFDCBF;
 %textSmall13-16Mon {
   //styleName: Desktop/Body small;
   font-family: $hint-font;
-  //styleName: Desktop/System;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0px;
-  //text-align: left;
-
-  //text-align: left;
 }
+
 %textSmall13-20Mon {
   //styleName: Desktop/Body small;
   font-family: $hint-font;
@@ -84,39 +81,33 @@ $buttonColor: #FFDCBF;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0px;
-  //text-align: left;
 }
 
-%textLarge16Mon{
+%textLarge16Mon {
   //styleName: Desktop/Body large;
   font-family: $hint-font;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0px;
-  //text-align: left;
-
 }
-%subtitle20-24Vol{
+
+%subtitle20-24Vol {
   //styleName: Desktop/H4;
   font-family: $stock-font;
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0px;
-
 }
 
 %title24Vol {
   //styleName: Desktop/H3;
-  //text-align: center;
   font-family: $stock-font;
   font-size: 24px;
   font-weight: 500;
   line-height: 28px;
 }
-
-
 
 %title28Vol {
   //text-align: center;
@@ -133,23 +124,19 @@ $buttonColor: #FFDCBF;
   font-weight: 500;
   line-height: 36px;
   letter-spacing: 0px;
-
-  //text-align: left;
 }
 
-%auth{
+// mixins
+@mixin auth {
   &__box {
     margin-top: 40px;
     margin-bottom: 40px;
-
   }
-
   &__buttonBox {
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
-
   &__link {
     margin-top: 20px;
     text-align: center;
@@ -158,4 +145,18 @@ $buttonColor: #FFDCBF;
     font-size: 13px;
     line-height: 20px;
   }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }

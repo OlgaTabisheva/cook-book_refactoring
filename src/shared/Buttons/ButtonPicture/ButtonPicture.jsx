@@ -11,7 +11,8 @@ function ButtonPicture({value, onClick, disabled, size}) {
       size === 'big' && style.buttonPicture__big ||
       size === 'circle' && style.buttonPicture__circle ||
         size === 'normalWhite' && style.buttonPicture__white ||
-        size === 'smallInherit' && style.buttonPicture__small
+        size === 'smallInherit' && style.buttonPicture__small ||
+        size === 'smallBlack' && style.buttonPicture__smallBlack
     }
       onClick={onClick ? onClick : null} disabled={disabled}>
       {value === 'plus' && <Plus className={style.buttonPicture__plus}/>}
@@ -19,6 +20,7 @@ function ButtonPicture({value, onClick, disabled, size}) {
       {value === 'close' && <Close className={style.buttonPicture__close}/>}
       {value === 'image' && <Image className={style.buttonPicture__image}/>}
       {value === 'brownClose' && <SmallClose className={style.buttonPicture__brownClose}/>}
+      {value === 'WhiteClose' && <SmallClose className={style.buttonPicture__brownClose}/>}
     </button>
   )
 }

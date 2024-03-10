@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.categoryList{
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: $sand-colorful-10;
+  max-width: 736px;
+  width: 100%;
+  &__subtitle {
+    @extend %title28Vol
+  }
+  &__boxCategory {
+    margin-top: 20px;
+    display: flex;
+
+    :not(:first-child) {
+      margin-left: 12px;
+    }
+  }
+}

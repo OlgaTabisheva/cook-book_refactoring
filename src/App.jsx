@@ -17,6 +17,7 @@ import {PersonalPage} from "./pages/PersonalPage/PersonalPage.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
 import AddRecipe from "./pages/AddRecipe/AddRecipe.jsx";
+import AddRecipeStep1 from "./pages/AddRecipeStep1/AddRecipeStep1.jsx";
 
 
 const GET_RECIPES = gql`
@@ -173,6 +174,11 @@ console.log({data})
             allCategories={allCategories}
             allDuration={allDuration}
           />
+
+        }/>
+        <Route path="/add-recipe-step" element={
+          <AddRecipeStep1
+            allCategories={allCategories}/>
 
         }/>
         <Route exact path="/user" element={

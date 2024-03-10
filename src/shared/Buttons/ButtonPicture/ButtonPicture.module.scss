@@ -95,8 +95,23 @@
   z-index: 30;
   margin-bottom: 12px;
 
-
-
+}
+.buttonPicture__smallBlack{
+  border: none;
+  cursor: pointer;
+  background-color: $primary-dark-120;
+  padding: 8px;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  gap: 8px;
+  z-index: 30;
+  margin-bottom: 12px;
+}
+.buttonPicture__brownClose{
+  stroke: $white;
+  Width: 24px;
+  Height: 24px;
 }
 .buttonPicture__brownClose{
   stroke: $sand-60;

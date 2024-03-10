@@ -1,14 +1,20 @@
 @import "../../variables";
 
+
 .auth {
-  align-items: stretch;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url("./../../assets/Frame2.svg");
-  background-size: cover;
-  background-position: center;
+ // align-items: stretch;
+  //background-repeat: no-repeat;
+//  background-attachment: fixed;
+  //background-image: url("./../../assets/Frame2.svg");
+
+
+  // background-position: center;
   background-color: $sand-10;
-  padding-bottom: 100px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
 
   &__content {
@@ -20,9 +26,9 @@
     border-radius:40px;
     padding: 60px;
     background-color: $sand-colorful-10;
-    position: sticky;
-    z-index: 10;
-    bottom: 0;
+    z-index: 30000;
+  position: relative;
+
   }
 
   &__contentText {
@@ -44,18 +50,62 @@
     @extend %textLarge16Mon;
 
   }
+  &__images{
+    display: flex;
+    flex-direction: column;
+    max-width: 560px;
+    width: 100%;
+    margin: 0px auto;
+    z-index: 30000;
+    position: relative;
+  }
+
   &__image {
+    position: absolute;
     background-position: center;
     width: 307.59px;
     height: 387.81px;
-    top: -150px;
-    left: -180px;
+    z-index: 0;
+    background-image: url("./../../assets/Group 7.svg");
+    top: -40px;
+    left: -220px;
+    background-size: cover;
+    &:hover{
+      animation: shake 0.8s;
+      animation-iteration-count: infinite;
+    }
+  }
+  &__image2 {
+    background-position: center;
+    position: absolute;
+    z-index: 0;
+    background-image: url("./../../assets/Group 14.svg");
+    width: 412.94px;
+    height: 438.9px;
+    top: 420px;
+    left: -280px;
+    background-size: cover;
+    &:hover{
+      animation: shake 0.8s;
+      animation-iteration-count: infinite;
+    }
+  }
+  &__image3 {
     position: absolute;
     z-index: 20;
-    background-image: url("./../../assets/Frame.svg");
-&:hover{
-  rotate: 90deg;
-}
+    background-image: url("./../../assets/Group 18.svg");
+    width: 562.77px;
+    height: 597.29px;
+    top: 150px;
+    left: 400px;
+    background-position: center;
+    background-size: cover;
+    &:hover{
+      animation: shake 0.8s;
+      animation-iteration-count: infinite;
+    }
+
 
   }
+
 }

@@ -9,30 +9,21 @@ import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";
 import {useState} from "react";
 import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
+import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 
 
 function AddRecipe({allCategories, allDuration}) {
 
 
-
-
-
   return (
     <section className={style.addRecipe}>
-      <HeaderMini/>
+      <HeaderMini color={'SandColorful10'}/>
       <div className={style.addRecipe__box}>
         <div className={style.addRecipe__boxName}>
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
           <InputAuth title={'Название рецепта'} text={'Булочки синабонн с корицей и сахарной пудрой'}/>
         </div>
-        <div className={style.addRecipe__cover}>
-          <h3 className={style.addRecipe__subtitle}>Категория блюда:</h3>
-          <div className={style.addRecipe__boxCategory}>
-            {allCategories?.categories?.map((obj) => (
-              <ButtonChips text={obj ? obj.category : ''}></ButtonChips>
-            ))}
-          </div>
-        </div>
+       <CategoryList allCategories={allCategories}/>
         <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
         <ImageBlur image={test}/>
         <div className={style.addRecipe__cover}>
