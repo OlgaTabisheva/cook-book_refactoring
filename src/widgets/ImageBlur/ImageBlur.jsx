@@ -13,7 +13,6 @@ function ImageBlur({image}) {
         <ButtonPicture size={'normalWhite'} value={'image'}/>
       </div>
 
-<div className={style.imageBlur__solid}></div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import style from './InputAuth.module.scss'
 
 
-function InputAuth({title, text, eye, password, setPassword}) {
+function InputAuth({title, text, eye, password, setPassword, error,errorText}) {
   return (
     <div className={style.inputAuth}>
 
@@ -10,6 +10,7 @@ function InputAuth({title, text, eye, password, setPassword}) {
       {eye && <button className={style.inputAuth__buttonImg} onClick={() => setPassword(!password)}>
         {<div className={password ? style.inputAuth__img_active : style.inputAuth__img}/>}
       </button>}
+      <span className={!error ? style.inputAuth__inputError : style.inputAuth__inputError_hidden}  id="input-error">{errorText} </span>
 
     </div>
   )

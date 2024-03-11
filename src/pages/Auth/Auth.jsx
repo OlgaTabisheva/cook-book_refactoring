@@ -26,9 +26,9 @@ function Auth() {
 
       </div>
 
-        <div  className={style.auth__image}/>
-        <div  className={style.auth__image2}/>
-        <div  className={style.auth__image3}/>
+        <div  className={style.auth__imagePepper}/>
+        <div  className={style.auth__imageGarlic}/>
+        <div  className={style.auth__imageTomato}/>
       </div>
     </div>
   )

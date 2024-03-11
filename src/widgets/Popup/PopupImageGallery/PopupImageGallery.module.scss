@@ -1,0 +1,15 @@
+@import "../../../variables";
+
+.popupImageGallery {
+  &__img {
+    width: 1120px;
+    height: 660px;
+
+  }
+&__text{
+  @extend %textSmall13-20Mon;
+  text-align: left;
+
+}
+}
+

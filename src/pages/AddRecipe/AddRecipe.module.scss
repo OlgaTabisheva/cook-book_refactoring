@@ -5,11 +5,10 @@
   flex-direction: column;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-image: url("./../../assets/Frame.svg");
+  background-image: url("./../../assets/Frame2.svg");
   background-size: cover;
   background-position: top;
   background-color: $sand-10;
-
   &__box {
     padding-top: 40px;
     border-radius: 40px;
@@ -22,6 +21,8 @@
     position: relative;
     background-color: $sand-colorful-10;
     padding-bottom: 40px;
+    z-index: 30000;
+
   }
 
   &__cover {
@@ -114,5 +115,30 @@
     justify-content: space-evenly;
     flex-direction: column;
   }
+
+  &__imagePepper {
+    @extend %imageBackgroundPepper;
+    background-image: url("./../../assets/Group 7.svg");
+    top: 35px;
+    left: 125px;
+
+  }
+
+  &__imageGarlic {
+    @extend %imageBackgroundGarlic;
+    background-image: url("./../../assets/Group 14.svg");
+    top: 454px;
+    left: 30px;
+  }
+
+  &__imageTomato {
+    @extend %imageBackgroundTomato;
+    background-image: url("./../../assets/Group 18.svg");
+    top: 150px;
+    left: 900px;
+  }
+
+
+
 }
 

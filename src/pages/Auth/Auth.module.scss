@@ -60,52 +60,25 @@
     position: relative;
   }
 
-  &__image {
-    position: absolute;
-    background-position: center;
-    width: 307.59px;
-    height: 387.81px;
-    z-index: 0;
+  &__imagePepper {
+    @extend %imageBackgroundPepper;
     background-image: url("./../../assets/Group 7.svg");
     top: -40px;
     left: -220px;
-    background-size: cover;
-    &:hover{
-      animation: shake 0.8s;
-      animation-iteration-count: infinite;
-    }
   }
-  &__image2 {
-    background-position: center;
-    position: absolute;
-    z-index: 0;
+
+  &__imageGarlic {
+    @extend %imageBackgroundGarlic;
     background-image: url("./../../assets/Group 14.svg");
-    width: 412.94px;
-    height: 438.9px;
     top: 420px;
     left: -280px;
-    background-size: cover;
-    &:hover{
-      animation: shake 0.8s;
-      animation-iteration-count: infinite;
-    }
   }
-  &__image3 {
-    position: absolute;
-    z-index: 20;
+
+  &__imageTomato {
+    @extend %imageBackgroundTomato;
     background-image: url("./../../assets/Group 18.svg");
-    width: 562.77px;
-    height: 597.29px;
     top: 150px;
     left: 400px;
-    background-position: center;
-    background-size: cover;
-    &:hover{
-      animation: shake 0.8s;
-      animation-iteration-count: infinite;
-    }
-
-
   }
 
 }

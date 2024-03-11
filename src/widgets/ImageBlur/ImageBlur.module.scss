@@ -8,39 +8,35 @@
  align-items: center;
  border-radius: 28px;
  position: relative;
+ overflow: hidden;
+ max-height: 240px;
+ max-width: 696px;
+ width: 100%;
+ height: 100%;
  &__top{
   width: 696px;
   height: 258px;
   border-radius: 36px;
-  filter: blur(4px);
-
- }
- &__solid {
-  width: 687px;
-  height: 240px;
-  position: absolute;
-  top: -9px;
-  left: -13px;
-  z-index: 1;
-  border-radius: 36px;
-  background-color: transparent;
-  border: 18px solid $sand-colorful-10;
+  filter: blur(40px);
+  overflow: hidden;
+  border-style: solid;
  }
 &__blur{
  max-width: 424px;
  width: 100%;
  height: 240px;
  position: absolute;
- top: 9px;
- left: 131.5px;
+ top: 0;
+ left: 136px;
  z-index: 10;
+ border: none;
 }
  &__button {
 
 
   position: absolute;
-  top: 22px;
-  right: 158px;
+  top: 12px;
+  right: 148px;
   z-index: 11;
  }
 }

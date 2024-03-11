@@ -43,7 +43,6 @@ function AddRecipe({allCategories, allDuration}) {
 
           <ProductQuantity/>
 
-
         </div>
         <ButtonBasic color={'secondaryGreen'} text={'Добавить продукт'}/>
         <div className={style.addRecipe__steps}>
@@ -75,11 +74,15 @@ function AddRecipe({allCategories, allDuration}) {
         <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'}/>
         <div className={style.addRecipe__button}>
           <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
+
         </div>
         <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>
+
       </div>
-
-
+{/*
+      <div  className={style.addRecipe__imagePepper}/>
+      <div  className={style.addRecipe__imageGarlic}/>
+      <div  className={style.addRecipe__imageTomato}/>*/}
     </section>
   )
 }

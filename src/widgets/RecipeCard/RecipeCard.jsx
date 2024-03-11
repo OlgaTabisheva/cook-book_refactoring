@@ -114,13 +114,13 @@ function RecipeCard({
     <section className={style.recipeCard}>
       <div className={style.recipeCard__imgBox}>
         <RecipeChips text={category.category}/>
-        <img className={style.recipeCard__img}
-             src={photo ? photo : img} alt="recipeImg"/>
-      </div>
+          <img className={style.recipeCard__img}
+               src={photo ? photo : img} alt="recipeImg"/></div>
+
       <div className={style.recipeCard__textBox}>
         <h3 className={style.recipeCard__name}>{name}</h3>
         <p className={style.recipeCard__text}>Марина Иванова</p>
-     <BoxClockTime howLong={duration.duration}/>
+        <BoxClockTime howLong={duration.duration}/>
       </div>
       <div className={style.recipeCard__box}>
         {changeLike === true ?
@@ -130,7 +130,6 @@ function RecipeCard({
                            changeLike={changeLike}/>}
         <ButtonComments countComments={countComments}/>
       </div>
-
     </section>
   )
 }
