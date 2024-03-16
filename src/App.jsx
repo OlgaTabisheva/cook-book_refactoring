@@ -121,7 +121,7 @@ function App() {
   React.useEffect(() => {
     setAllDuration(duration)
   }, [duration, allDuration])
-console.log({data})
+
   return (
     <div className='app'>
       <Routes>
@@ -185,8 +185,10 @@ console.log({data})
           <MainLayout/>
         }>
           <Route path="/user" element={
+            <ProtectedRoute>
             <PersonalPage
             />
+            </ProtectedRoute>
           }/>
         </Route>
         <Route exact path="/recipe" element={

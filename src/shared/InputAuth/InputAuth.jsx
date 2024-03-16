@@ -1,17 +1,19 @@
 import style from './InputAuth.module.scss'
+import {useForm} from "react-hook-form";
 
 
-function InputAuth({title, text, eye, password, setPassword, error,errorText}) {
+function InputAuth({title, text, eye, password, setPassword,errorText, placeholder,error, disabled,onChange,value, ...props}) {
+
+
   return (
-    <div className={style.inputAuth}>
+    <div className={style.inputAuth } {...props}>
 
       <p className={style.inputAuth__text}>{title}</p>
-      <input className={style.inputAuth__input} placeholder={text} type={password && "password"} />
-      {eye && <button className={style.inputAuth__buttonImg} onClick={() => setPassword(!password)}>
-        {<div className={password ? style.inputAuth__img_active : style.inputAuth__img}/>}
+      <input className={style.inputAuth__input} type={password && "password"}  placeholder={placeholder} value={value} onChange={onChange}/>
+   {eye && <button className={style.inputAuth__buttonImg} onClick={() => setPassword(!password)}>
+        {<div className={password ?  style.inputAuth__img_active : style.inputAuth__img }/>}
       </button>}
-      <span className={!error ? style.inputAuth__inputError : style.inputAuth__inputError_hidden}  id="input-error">{errorText} </span>
-
+      <span className={error ? style.inputAuth__inputError : style.inputAuth__inputError_hidden}  id="input-error">{errorText} </span>
     </div>
   )
 }

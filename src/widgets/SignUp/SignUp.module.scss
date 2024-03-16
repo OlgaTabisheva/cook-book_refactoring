@@ -2,5 +2,17 @@
 
 .signUp {
   position: relative;
-  @include auth
+  @include auth;
+  &__text{
+    color: #EA3E27;
+    visibility: hidden;
+    font-family: $hint-font;
+    font-size: 12px;
+  }
+  &__text_active{
+    color: #EA3E27;
+    visibility: visible;
+    font-family: $hint-font;
+    font-size: 12px;
+  }
 }

@@ -42,6 +42,14 @@
   }
 
   &__inputError{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    &:not(:first-child) {
+      margin-top: 4px;
+    }
     font-family: $hint-font;
     visibility: visible;
     opacity: 1;

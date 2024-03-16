@@ -1,12 +1,13 @@
 import style from './Header.module.scss'
 import {Link} from "react-router-dom";
-import {useAuthenticated} from "@nhost/react";
+import {useAuthenticated, useUserData} from "@nhost/react";
 import Logo from "../../shared/Logo/Logo.jsx";
 import LinkItem from "../../shared/LinkItem/LinkItem.jsx";
-import user from "../../assets/userYelow.svg";
+import userPhoto from "../../assets/userYelow.svg";
 
 function Header({active}) {
   const isAuthenticated = useAuthenticated()
+  const user = useUserData()
   return (
     <section className={style.header}>
       <Logo/>
@@ -18,10 +19,10 @@ function Header({active}) {
 
       </nav>
       <nav className={style.header__box}>
-        {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'} active={active}/> : null}
+        {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'} active={active}/> :<LinkItem linkTo={'/user'} text={user.displayName}/>}
         {/*<LinkItem linkTo={'/'} text={'Личный кабинет'}/>}*/}
         <img className={style.header__logo} width="24px" height="24px"
-             src={user} alt="user"/>
+             src={userPhoto} alt="user"/>
       </nav>
 
     </section>

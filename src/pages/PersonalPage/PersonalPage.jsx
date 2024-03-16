@@ -8,6 +8,9 @@ import UserRecipes from "../../widgets/UserRecipes/UserRecipes.jsx";
 
 
 export const PersonalPage = () => {
+
+  const user = useUserData()
+  console.log(user,'user')
   const [changeButton, setChangeButton] = useState('Профиль')
   return (
     <section className={styles.personalPage}>

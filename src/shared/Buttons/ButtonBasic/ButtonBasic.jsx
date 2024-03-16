@@ -1,8 +1,8 @@
 import style from './ButtonBasic.module.scss'
 
-function ButtonBasic({text, onClick, disabled, color}) {
+function ButtonBasic({text, onClick, disabled, color,type}) {
   return (
-    <button
+    <button type={type}
       className={
         color === 'primaryGreen' && style.buttonBasicM_primaryGreen ||
         color === 'primaryRed' && style.buttonBasicM_primaryRed ||
