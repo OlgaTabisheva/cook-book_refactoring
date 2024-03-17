@@ -11,7 +11,7 @@ function DefaultUserPhoto() {
   return (
     <section className={style.defaultUserPhoto}>
       <div className={style.defaultUserPhoto__img}>
-        <img src={ user.avatarUrl === defaultAvatar ? photo : user.avatarUrl} alt={'user photo'}/>
+        <img src={ user?.avatarUrl === defaultAvatar ? photo : user.avatarUrl} alt={'user photo'}/>
       </div>
     </section>
   )

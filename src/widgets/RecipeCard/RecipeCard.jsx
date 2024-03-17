@@ -28,6 +28,7 @@ function RecipeCard({
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
   const user = useUserData()
+
   const GET_COUNTS_LIKES = gql`
   query {
   likes_aggregate(where: {recipesId: {_eq: "${id}"}}) {
@@ -122,12 +123,10 @@ function RecipeCard({
         <p className={style.recipeCard__text}>Марина Иванова</p>
         <BoxClockTime howLong={duration.duration}/>
       </div>
-      <div className={style.recipeCard__box}>
-        {changeLike === true ?
-          <ButtonLikeFull handleClickLike={handleClickLike} countLikes={countLikes} setChangeLike={setChangeLike}
-                          changeLike={changeLike}/> :
-          <ButtonLikeEmpty handleClickLike={handleClickLike} countLikes={countLikes} setChangeLike={setChangeLike}
-                           changeLike={changeLike}/>}
+      <div className={style.recipeCard__box} >
+        {instantLikes?.some(t => t.recipesId === id) ?
+          <ButtonLikeFull  onClick={()=>handleClickLike(id)} countLikes={countLikes}/> :
+          <ButtonLikeEmpty onClick={()=>handleClickLike(id)} countLikes={countLikes}/>}
         <ButtonComments countComments={countComments}/>
       </div>
     </section>

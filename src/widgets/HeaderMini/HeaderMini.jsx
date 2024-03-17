@@ -1,6 +1,7 @@
 import style from './HeaderMini.module.scss'
 import Logo from "../../shared/Logo/Logo.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
+import {Link} from "react-router-dom";
 
 
 function HeaderMini({color}) {
@@ -11,7 +12,8 @@ function HeaderMini({color}) {
       color === 'Sand10' && style.headerMiniSand10}>
       <div className={style.headerMiniSand10__box}>
         <Logo/>
-        <ButtonPicture value={'close'} size={'normal'}/>
+        <Link to={'/'}><ButtonPicture value={'close'} size={'normal'}/></Link>
+
       </div>
 
     </section>

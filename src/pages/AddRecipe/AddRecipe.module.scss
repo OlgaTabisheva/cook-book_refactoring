@@ -6,9 +6,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: url("./../../assets/Frame2.svg");
-  background-size: cover;
-  background-position: top;
+  //background-size: cover;
+ // background-position: top;
   background-color: $sand-10;
+  background-size: 1440px 1024px;
+  background-position:40% 10%;
   &__box {
     padding-top: 40px;
     border-radius: 40px;
