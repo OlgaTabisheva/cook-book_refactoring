@@ -7,14 +7,30 @@ import test from './../../assets/test.jpg'
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
+import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
+import { FileUploader } from "react-drag-drop-files";
 
 
 function AddRecipe({allCategories, allDuration}) {
+  const [file, setFile] = useState(null);
+  const [chosenTextCategory, setChosenTextCategory] = useState('')
+  const [chosenTextDuration, setChosenTextDuration] = useState('')
 
+ const [productQuantityMap, setProductQuantityMap] = useState([{product: 'Введите продукт',unit: 'ед.изм',  count: 'вес'}])
+  function handleDuration(obj) {
+    setChosenTextDuration(obj)
+  }
 
+  function handleAddProduct() {
+    setProductQuantityMap(() => [...productQuantityMap, {product: `yyy`,  count: '100'}])
+console.log(productQuantityMap,'productQuantityMap')
+
+  }
+
+console.log(productQuantityMap,'setProductQuantityMap')
   return (
     <section className={style.addRecipe}>
       <HeaderMini color={'SandColorful10'}/>
@@ -23,28 +39,30 @@ function AddRecipe({allCategories, allDuration}) {
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
           <InputAuth title={'Название рецепта'} text={'Булочки синабонн с корицей и сахарной пудрой'}/>
         </div>
-       <CategoryList allCategories={allCategories}/>
+       <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory} setChosenTextCategory={setChosenTextCategory}/>
+        <div className={style.addRecipe__photoBox}>
         <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
-        <ImageBlur image={test}/>
+        <AddPhotoRecipe file={file} setFile={setFile}/>
+
+        {/*<ImageBlur image={test}/>*/}</div>
+
         <div className={style.addRecipe__cover}>
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
           <div className={style.addRecipe__boxCategory}>
             {allDuration?.duration?.map((obj) => (
-              <ButtonChips text={obj ? obj.duration : ''}></ButtonChips>
+              <ButtonChips text={obj ? obj.duration : ''} onClick={()=>handleDuration(obj.duration)} chosenText={chosenTextDuration}></ButtonChips>
             ))}
           </div>
         </div>
         <div className={style.addRecipe__quantity}>
           <h3 className={style.addRecipe__subtitle}>Состав:</h3>
-          <ProductQuantity/>
-          <ProductQuantity/>
 
-          <ProductQuantity/>
+          {productQuantityMap?.map((obj) => (<ProductQuantity  obj={obj} setProductQuantityMap={setProductQuantityMap} productQuantityMap={productQuantityMap}/>)
+          )}
 
-          <ProductQuantity/>
 
         </div>
-        <ButtonBasic color={'secondaryGreen'} text={'Добавить продукт'}/>
+        <ButtonBasic color={'secondaryGreen'} text={'Добавить продукт'} onClick={()=>handleAddProduct()}/>
         <div className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           <div className={style.addRecipe__boxSteps}>
@@ -76,7 +94,7 @@ function AddRecipe({allCategories, allDuration}) {
           <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
 
         </div>
-        <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>
+      {/*  <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>*/}
 
       </div>
 {/*

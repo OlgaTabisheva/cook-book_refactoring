@@ -1,18 +1,33 @@
 import style from './PopupUnits.module.scss'
 import {ReactComponent as Check} from '../../../assets/check.svg';
 
-const units = ['Килограмм', 'Грамм', 'Милилитры', 'Штука', 'Столовая ложка', 'Чайная ложка', 'По вкусу', 'active']
+const units = [
+  {full: 'Килограмм', cut: 'Кг.'},
+  {full: 'Грамм', cut: 'Гр.'},
+  {full: 'Милилитры', cut: 'Мл.'},
+  {full: 'Штука', cut: 'Шт.'},
+  {full: 'Столовая ложка', cut: 'Ст. л.'},
+  {full: 'Чайная ложка', cut: 'Ч. л.'},
+  {full: 'По вкусу', cut: 'По вкусу'},]
 
 
-function PopupUnits({isOpen}) {
+function PopupUnits({isOpen, setProductUnit, productUnit, setIsOpen}) {
+
+
+  function handleSetProductUnit(obj) {
+    setProductUnit(obj)
+    setIsOpen(!isOpen)
+
+  }
+
   return (
     <button className={isOpen === true ? style.popupUnits_hidden : style.popupUnits}>
       {units?.map((obj) => (
-        <div className={style.popupUnits__box}>
-          <p className={style.popupUnits__text}> {obj}</p>
-          {obj === 'active' && <Check className={style.popupUnits__check}/>}
+        <button className={style.popupUnits__box} onClick={() => handleSetProductUnit(obj.cut)}>
+          <p className={style.popupUnits__text}> {obj.full}</p>
+          {'obj' === productUnit && <Check className={style.popupUnits__check}/>}
 
-        </div>
+        </button>
       ))}
     </button>
   )

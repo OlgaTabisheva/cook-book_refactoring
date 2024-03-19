@@ -1,0 +1,23 @@
+@import "../../variables";
+.addPhotoRecipe{
+  margin-top: 20px;
+  padding: 62px 172px;
+  background-color: $sand-20;
+  max-width: 352px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  flex-direction: column;
+  border-radius: 28px;
+  cursor: pointer;
+  &__image{
+    stroke: $sand-60;
+  }
+  &__text{
+    color: $sand-60;
+    @extend %textLarge16Mon;
+    text-align: center;
+  }
+}

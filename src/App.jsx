@@ -170,16 +170,34 @@ function App() {
 
         }/>
         <Route path="/add-recipe" element={
+          <ProtectedRoute>
+
           <AddRecipe
             allCategories={allCategories}
             allDuration={allDuration}
           />
-
+          </ProtectedRoute>
         }/>
-        <Route path="/add-recipe-step" element={
-          <AddRecipeStep1
-            allCategories={allCategories}/>
+        <Route exact path="/add-recipe/:id" element={
+          <ProtectedRoute>
+            <AddRecipe
+              allCategories={allCategories}
+              allDuration={allDuration}
+            />
+          </ProtectedRoute>}
+        />
 
+
+        <Route path="/add-recipe-step" element={
+          <ProtectedRoute>
+          <AddRecipeStep1
+            allCategories={allCategories}
+            setInstantAddRecipe={setInstantAddRecipe}
+            instantAddRecipe={instantAddRecipe}
+            setFormValuesRecipe={setFormValuesRecipe}
+            formValuesRecipe={formValuesRecipe}
+          />
+          </ProtectedRoute>
         }/>
         <Route exact path="/user" element={
           <MainLayout/>

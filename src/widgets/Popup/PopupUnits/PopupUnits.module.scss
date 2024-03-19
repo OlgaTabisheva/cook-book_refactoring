@@ -15,7 +15,7 @@
   max-width: 232px;
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 80px;
   left: 185px;
   z-index: 30;
   visibility: visible;
@@ -33,7 +33,12 @@
       width: 100%;
       justify-content: space-between;
       align-items: center;
-
+background-color: inherit;
+      border: none;
+      &:hover{
+        background-color: $sand-20;
+        border-radius: 8px;
+      }
     }
 
 
