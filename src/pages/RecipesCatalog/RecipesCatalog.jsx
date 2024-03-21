@@ -14,7 +14,7 @@ function RecipesCatalog({
                           instantLikes,
                           setInstantLikes,
                           instantAddRecipe,
-                          isAuthenticated
+                          isAuthenticated, setChosenTextCategory, chosenTextCategory
 
                         }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,12 +26,19 @@ function RecipesCatalog({
   const currentPostsChosenCategory = chosenCategory?.recipes.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  function handleOnClick(obj) {
+    setSelectedCategory(obj ? obj.number : 0)
+    setChosenTextCategory(obj)
+    console.log(obj)
+  }
+
   return (
     <section className={style.recipesCatalog}>
       <InputSearch/>
       <div className={style.recipesCatalog__box}>
         {allCategories?.categories?.map((obj) => (
-          <ButtonChips text={obj ? obj.category : ''}></ButtonChips>
+          <ButtonChips text={obj ? obj.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategory} ></ButtonChips>
         ))}
       </div>
       <div className={style.recipesCatalog__boxCatalog}>
@@ -61,7 +68,7 @@ function RecipesCatalog({
 
         </div>
         <PaginationBasic currentPage={currentPage} postPage={postPage}
-                         totalPosts={(selectedCategory > 0) ? chosenCategory?.recipes.length : instantAddRecipe?.recipes.length}
+                         totalPosts={(selectedCategory > 0) ? chosenCategory?.recipes?.length : instantAddRecipe?.recipes?.length}
                          paginate={paginate}
                          setCurrentPage/>
       </div>

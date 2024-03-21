@@ -18,18 +18,20 @@ function PaginationBasic({totalPosts, paginate, currentPage}) {
     setSelectedPageNumber(1)
     paginate(1)
   }, [totalPosts])
+
+  console.log(selectedPageNumber,pageNumbers.length, 'selectedPageNumber')
   return (
     <nav className={style.pagination}>
       <ul className={style.pagination__box}>
 
         {pageNumbers.map(number => (
           <li key={number} className={style.pagination__item}>
-            <button className={style.pagination__button} onClick={() => paginate(number)}>{number}</button>
+            <button className={selectedPageNumber === number ? style.pagination__button_active :style.pagination__button } onClick={() => paginate(number)}>{number}</button>
 
           </li>
         ))}
-        <ButtonChips text={'Дальше'}
-                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) & selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>
+        { selectedPageNumber !== pageNumbers.length && <ButtonChips text={'Дальше'}
+                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) & selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>}
 
       </ul>
     </nav>

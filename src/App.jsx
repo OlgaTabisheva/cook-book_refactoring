@@ -79,6 +79,8 @@ function App() {
   });
   const [description, setDescription] = React.useState("Введите текст");
   const [myImage, setMyImage] = useState();
+  const [chosenTextCategory, setChosenTextCategory] = useState('')
+
 
   const GET_LIKES = gql`
  query {
@@ -96,19 +98,26 @@ function App() {
 
   const SET_CATEGORY = gql`query {
    recipes(where: {category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
-    duration
-    id
-    date
-    name
-    food
-    description
-    photo
-    recipes_category
+    category {
+      category
+    }
+   duration {
+      duration
+    }
+      id
+      date
+      name
+      food
+      description
+      photo
+      category
   }
 }
 
   `
+
   const chosenCategory = useQuery(SET_CATEGORY).data
+ // console.log(chosenCategory, 'chosenCategory')
 
   React.useEffect(() => {
     setInstantAddRecipe(data)
@@ -143,7 +152,9 @@ function App() {
           <MainLayout/>
         }>
           <Route path="/authors" element={
+            <ProtectedRoute>
             <AuthorsPage/>
+              </ProtectedRoute>
           }/>
         </Route>
         <Route exact path="/recipes" element={
@@ -159,6 +170,8 @@ function App() {
               instantLikes={instantLikes}
               setInstantLikes={setInstantLikes}
               instantAddRecipe={instantAddRecipe}
+              chosenTextCategory={chosenTextCategory}
+              setChosenTextCategory={setChosenTextCategory}
             />
           }/>
         </Route>
@@ -175,6 +188,8 @@ function App() {
           <AddRecipe
             allCategories={allCategories}
             allDuration={allDuration}
+            chosenTextCategory={chosenTextCategory}
+            setChosenTextCategory={setChosenTextCategory}
           />
           </ProtectedRoute>
         }/>
@@ -183,6 +198,8 @@ function App() {
             <AddRecipe
               allCategories={allCategories}
               allDuration={allDuration}
+              chosenTextCategory={setChosenTextCategory}
+              setChosenTextCategory={setChosenTextCategory}
             />
           </ProtectedRoute>}
         />
@@ -196,6 +213,8 @@ function App() {
             instantAddRecipe={instantAddRecipe}
             setFormValuesRecipe={setFormValuesRecipe}
             formValuesRecipe={formValuesRecipe}
+            chosenTextCategory={setChosenTextCategory}
+            setChosenTextCategory={setChosenTextCategory}
           />
           </ProtectedRoute>
         }/>

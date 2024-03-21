@@ -4,10 +4,11 @@ import {FileUploader} from "react-drag-drop-files";
 import {useState} from "react";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
-function AddPhotoRecipe({file, setFile}) {
-  console.log(file, 'file')
+function AddPhotoRecipe({ setStepPhotoFile}) {
+
   const handleChange = (file) => {
-    setFile(file);
+
+    setStepPhotoFile(file)
   };
 
   return (

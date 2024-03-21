@@ -12,25 +12,49 @@ import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
 import { FileUploader } from "react-drag-drop-files";
+import { useCounter } from "@uidotdev/usehooks";
 
 
-function AddRecipe({allCategories, allDuration}) {
+function AddRecipe({allCategories, allDuration, setChosenTextCategory, chosenTextCategory}) {
+
+
+
+  const [productUnitQuantity, setProductUnitQuantity] = useState(
+    [{
+      product: '',
+      unit: '',
+      quantity: '',
+    }]
+  )
+
   const [file, setFile] = useState(null);
-  const [chosenTextCategory, setChosenTextCategory] = useState('')
   const [chosenTextDuration, setChosenTextDuration] = useState('')
 
- const [productQuantityMap, setProductQuantityMap] = useState([{product: 'Введите продукт',unit: 'ед.изм',  count: 'вес'}])
+  const [lineNumber, setLineNumber] = useState(1)
+ const [productQuantityMap, setProductQuantityMap] = useState([{ number:lineNumber, product: 'первый',unit: 'первый',  count: 'первый'}])
+  const [stepsRecipes, setStepsRecipes] = useState([  { text:'Все продукты, кроме молока, подготовить и оставить при комнатной температуре не меньше, чем на 30 минут. Растопить сливочное масло.\n' +
+        ' \n' +
+      'Молоко подогреваем до температуры 35–40°C. Заливаем дрожжи. В молоко добавляем пару ложек сахара. Перемешиваем. Накрываем полотенцем и убираем в сторону минут на 10.\n' +
+      'В большую миску просеиваем муку, добавляем сахар, соль. Перемешиваем. В центре делаем углубление. Добавляем яйца комнатной температуры, готовые активные дрожжи (над молоком с дрожжами должна образоваться «шапка») и растопленное масло.\n' +
+      'С помощью лопатки все перемешиваем. Затем замешиваем руками до момента, пока тесто не станет немного отставать от рук и стенок миски, но по-прежнему будет достаточно липким. Старайтесь муки не добавлять, так как чем ее больше, тем плотнее будут булочки',
+    image:test, numberStep:1}])
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
 
   function handleAddProduct() {
-    setProductQuantityMap(() => [...productQuantityMap, {product: `yyy`,  count: '100'}])
-console.log(productQuantityMap,'productQuantityMap')
+    const newLineNumber = lineNumber+1
+    setProductQuantityMap(() => [...productQuantityMap, {number:newLineNumber,product: `Введите продукт`,unit: 'ед.изм' ,  count: 'вес'}])
+    setLineNumber(newLineNumber)
+
+    console.log()
+  }
+  function handleAddStep() {
+
+    setStepsRecipes(() => [...stepsRecipes, {text: `Введите продукт`,image: 'ед.изм' ,  numberStep: 1 }])
 
   }
 
-console.log(productQuantityMap,'setProductQuantityMap')
   return (
     <section className={style.addRecipe}>
       <HeaderMini color={'SandColorful10'}/>
@@ -50,14 +74,19 @@ console.log(productQuantityMap,'setProductQuantityMap')
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
           <div className={style.addRecipe__boxCategory}>
             {allDuration?.duration?.map((obj) => (
-              <ButtonChips text={obj ? obj.duration : ''} onClick={()=>handleDuration(obj.duration)} chosenText={chosenTextDuration}></ButtonChips>
+              <ButtonChips text={obj ? obj.duration : ''} onClick={()=>handleDuration(obj)} chosenText={chosenTextDuration.duration}></ButtonChips>
             ))}
           </div>
         </div>
         <div className={style.addRecipe__quantity}>
           <h3 className={style.addRecipe__subtitle}>Состав:</h3>
 
-          {productQuantityMap?.map((obj) => (<ProductQuantity  obj={obj} setProductQuantityMap={setProductQuantityMap} productQuantityMap={productQuantityMap}/>)
+          {productQuantityMap?.map((obj) => (<ProductQuantity
+            setProductUnitQuantity={setProductUnitQuantity}
+            productUnitQuantity={productUnitQuantity}
+            obj={obj}
+            setProductQuantityMap={setProductQuantityMap}
+            productQuantityMap={productQuantityMap}/>)
           )}
 
 
@@ -66,30 +95,13 @@ console.log(productQuantityMap,'setProductQuantityMap')
         <div className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           <div className={style.addRecipe__boxSteps}>
-          <RecipeStep
-            text={'Все продукты, кроме молока, подготовить и оставить при комнатной температуре не меньше, чем на 30 минут. Растопить сливочное масло.\n' +
-              ' \n' +
-              'Молоко подогреваем до температуры 35–40°C. Заливаем дрожжи. В молоко добавляем пару ложек сахара. Перемешиваем. Накрываем полотенцем и убираем в сторону минут на 10.\n' +
-              'В большую миску просеиваем муку, добавляем сахар, соль. Перемешиваем. В центре делаем углубление. Добавляем яйца комнатной температуры, готовые активные дрожжи (над молоком с дрожжами должна образоваться «шапка») и растопленное масло.\n' +
-              'С помощью лопатки все перемешиваем. Затем замешиваем руками до момента, пока тесто не станет немного отставать от рук и стенок миски, но по-прежнему будет достаточно липким. Старайтесь муки не добавлять, так как чем ее больше, тем плотнее будут булочки'}
-            image={test} numberStep={1}/>
-          <RecipeStep
-            text={'Все продукты, кроме молока, подготовить и оставить при комнатной температуре не меньше, чем на 30 минут. Растопить сливочное масло.\n' +
-              ' \n' +
-              'Молоко подогреваем до температуры 35–40°C. Заливаем дрожжи. В молоко добавляем пару ложек сахара. Перемешиваем. Накрываем полотенцем и убираем в сторону минут на 10.\n' +
-              'В большую миску просеиваем муку, добавляем сахар, соль. Перемешиваем. В центре делаем углубление. Добавляем яйца комнатной температуры, готовые активные дрожжи (над молоком с дрожжами должна образоваться «шапка») и растопленное масло.\n' +
-              'С помощью лопатки все перемешиваем. Затем замешиваем руками до момента, пока тесто не станет немного отставать от рук и стенок миски, но по-прежнему будет достаточно липким. Старайтесь муки не добавлять, так как чем ее больше, тем плотнее будут булочки'}
-            image={test} numberStep={2}/>
-          <RecipeStep
-            text={'Все продукты, кроме молока, подготовить и оставить при комнатной температуре не меньше, чем на 30 минут. Растопить сливочное масло.\n' +
-              ' \n' +
-              'Молоко подогреваем до температуры 35–40°C. Заливаем дрожжи. В молоко добавляем пару ложек сахара. Перемешиваем. Накрываем полотенцем и убираем в сторону минут на 10.\n' +
-              'В большую миску просеиваем муку, добавляем сахар, соль. Перемешиваем. В центре делаем углубление. Добавляем яйца комнатной температуры, готовые активные дрожжи (над молоком с дрожжами должна образоваться «шапка») и растопленное масло.\n' +
-              'С помощью лопатки все перемешиваем. Затем замешиваем руками до момента, пока тесто не станет немного отставать от рук и стенок миски, но по-прежнему будет достаточно липким. Старайтесь муки не добавлять, так как чем ее больше, тем плотнее будут булочки'}
-            image={test} numberStep={3}/>
+            {stepsRecipes?.map((obj) => (<RecipeStep  obj={obj} setStepsRecipes={setStepsRecipes} stepsRecipes={stepsRecipes}/>)
+            )}
+
+
           </div>
         </div>
-        <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'}/>
+        <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'} onClick={()=>handleAddStep()}/>
         <div className={style.addRecipe__button}>
           <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
 

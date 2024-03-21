@@ -3,6 +3,7 @@
 .pagination {
   font-family: $stock-font;
 
+
   .pagination__box {
     display: flex;
     align-items: center;
@@ -28,15 +29,25 @@
 
   &__button {
     font-size: 18px;
-    background-color: $primary-100;
+    background-color: inherit;
     border-radius: 3px;
-    padding: 5px;
+    padding: 6px 12px;
     border: none;
     outline: none;
     cursor: pointer;
-
+    color: $sand-80;
     &:hover {
       opacity: 0.5;
+    }
+    &_active{
+      font-size: 18px;
+      background-color: $primary-100;
+      border-radius: 3px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: $white;
+      padding: 6px 12px;
     }
   }
 

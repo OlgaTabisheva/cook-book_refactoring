@@ -21,6 +21,8 @@ margin-top: 40px;
    width: 100%;
    padding: 16px;
    border-radius: 12px;
+   background-color: inherit;
+height: 100%;
 
  }
 
@@ -32,4 +34,10 @@ margin-top: 40px;
     width: 100%;
 
   }
+}
+textarea {
+  padding: 10px;
+  min-height: 80px;
+  border: 1px solid red;
+  box-sizing: border-box;
 }

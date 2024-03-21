@@ -5,15 +5,13 @@ import {useState} from "react";
 
 
 
-function CategoryList({allCategories, setChosenTextCategory, chosenTextCategory}) {
+function CategoryList({allCategories}) {
+  const [chosenTextCategory, setChosenTextCategory] = useState('')
 
 
   function handleCategory(obj) {
-    setChosenTextCategory(obj)
-
-
+    setChosenTextCategory(obj.category)
   }
-
   return (
     <section className={style.categoryList}>
 

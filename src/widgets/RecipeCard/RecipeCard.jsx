@@ -89,7 +89,9 @@ function RecipeCard({
 
     if (instantLikes?.some(t => t.recipesId === id)) {
       //del likes
+      console.log(instantLikes)
       let tmp = instantLikes.filter(o => o.recipesId !== id);
+      console.log(tmp,'tmp')
       setCountLikes(countLikes - 1)
       deleteLikes().then(
         setInstantLikes(tmp)
