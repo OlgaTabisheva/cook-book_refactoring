@@ -5,20 +5,20 @@ import {useState} from "react";
 
 
 
-function CategoryList({allCategories}) {
-  const [chosenTextCategory, setChosenTextCategory] = useState('')
+function CategoryList({allCategories , chosenTextCategory, setChosenTextCategory }) {
+
 
 
   function handleCategory(obj) {
-    setChosenTextCategory(obj.category)
+  setChosenTextCategory(obj)
   }
   return (
     <section className={style.categoryList}>
 
         <h3 className={style.categoryList__subtitle}>Категория блюда:</h3>
-        <div className={style.categoryList__boxCategory}>
+        <div className={style.categoryList__boxCategory} key={"boxCategory"}>
           {allCategories?.categories?.map((obj) => (
-            <ButtonChips text={obj ? obj.category : ''} onClick={()=>handleCategory(obj)} chosenText={chosenTextCategory}></ButtonChips>
+            <ButtonChips key={obj.number} text={obj ? obj.category : ''} onClick={()=>handleCategory(obj)} chosenText={chosenTextCategory}></ButtonChips>
           ))}
         </div>
 

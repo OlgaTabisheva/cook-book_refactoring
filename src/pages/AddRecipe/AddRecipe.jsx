@@ -2,34 +2,21 @@ import style from './AddRecipe.module.scss'
 import HeaderMini from "../../widgets/HeaderMini/HeaderMini.jsx";
 import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import ProductQuantity from "../../widgets/ProductQuantity/ProductQuantity.jsx";
-import ImageBlur from "../../widgets/ImageBlur/ImageBlur.jsx";
 import test from './../../assets/test.jpg'
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";
 import {useEffect, useState} from "react";
-import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
-import { FileUploader } from "react-drag-drop-files";
-import { useCounter } from "@uidotdev/usehooks";
-
-
-function AddRecipe({allCategories, allDuration, setChosenTextCategory, chosenTextCategory}) {
 
 
 
-  const [productUnitQuantity, setProductUnitQuantity] = useState(
-    [{
-      product: '',
-      unit: '',
-      quantity: '',
-    }]
-  )
+function AddRecipe({allCategories, allDuration}) {
 
   const [file, setFile] = useState(null);
   const [chosenTextDuration, setChosenTextDuration] = useState('')
-
+  const [chosenTextCategory, setChosenTextCategory] = useState('')
   const [lineNumber, setLineNumber] = useState(1)
  const [productQuantityMap, setProductQuantityMap] = useState([{ number:lineNumber, product: 'первый',unit: 'первый',  count: 'первый'}])
   const [stepsRecipes, setStepsRecipes] = useState([  { text:'Все продукты, кроме молока, подготовить и оставить при комнатной температуре не меньше, чем на 30 минут. Растопить сливочное масло.\n' +
@@ -47,12 +34,12 @@ function AddRecipe({allCategories, allDuration, setChosenTextCategory, chosenTex
     setProductQuantityMap(() => [...productQuantityMap, {number:newLineNumber,product: `Введите продукт`,unit: 'ед.изм' ,  count: 'вес'}])
     setLineNumber(newLineNumber)
 
-    console.log()
   }
+  useEffect(()=>{
+    console.log(productQuantityMap, 'productQuantityMap')
+  },[productQuantityMap])
   function handleAddStep() {
-
-    setStepsRecipes(() => [...stepsRecipes, {text: `Введите продукт`,image: 'ед.изм' ,  numberStep: 1 }])
-
+    setStepsRecipes(() => [...stepsRecipes, {text: `Введите `,image: 'ед.изм' ,  numberStep: 1 }])
   }
 
   return (
@@ -63,7 +50,7 @@ function AddRecipe({allCategories, allDuration, setChosenTextCategory, chosenTex
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
           <InputAuth title={'Название рецепта'} text={'Булочки синабонн с корицей и сахарной пудрой'}/>
         </div>
-       <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory} setChosenTextCategory={setChosenTextCategory}/>
+       <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category} setChosenTextCategory={setChosenTextCategory}/>
         <div className={style.addRecipe__photoBox}>
         <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
         <AddPhotoRecipe file={file} setFile={setFile}/>
@@ -74,37 +61,35 @@ function AddRecipe({allCategories, allDuration, setChosenTextCategory, chosenTex
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
           <div className={style.addRecipe__boxCategory}>
             {allDuration?.duration?.map((obj) => (
-              <ButtonChips text={obj ? obj.duration : ''} onClick={()=>handleDuration(obj)} chosenText={chosenTextDuration.duration}></ButtonChips>
+
+              <ButtonChips  key = {obj.duration} text={obj ? obj.duration : ''} onClick={()=>handleDuration(obj)} chosenText={chosenTextDuration.duration}></ButtonChips>
+
             ))}
           </div>
         </div>
-        <div className={style.addRecipe__quantity}>
-          <h3 className={style.addRecipe__subtitle}>Состав:</h3>
-
-          {productQuantityMap?.map((obj) => (<ProductQuantity
-            setProductUnitQuantity={setProductUnitQuantity}
-            productUnitQuantity={productUnitQuantity}
+        <h3 className={style.addRecipe__subtitle}>Состав:</h3>
+        <li className={style.addRecipe__quantity} key="tbody">
+          {productQuantityMap?.map((obj) => (
+            <ul  key = {obj.number} >
+            <ProductQuantity
             obj={obj}
             setProductQuantityMap={setProductQuantityMap}
-            productQuantityMap={productQuantityMap}/>)
-          )}
-
-
-        </div>
+            productQuantityMap={productQuantityMap}/>
+            </ul>))}
+        </li>
         <ButtonBasic color={'secondaryGreen'} text={'Добавить продукт'} onClick={()=>handleAddProduct()}/>
         <div className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
-          <div className={style.addRecipe__boxSteps}>
-            {stepsRecipes?.map((obj) => (<RecipeStep  obj={obj} setStepsRecipes={setStepsRecipes} stepsRecipes={stepsRecipes}/>)
+            {stepsRecipes?.map((obj) => (
+              <div className={style.addRecipe__boxSteps} key={obj.numberStep}>
+              <RecipeStep  key = {obj.id} obj={obj} setStepsRecipes={setStepsRecipes} stepsRecipes={stepsRecipes}/>
+              </div>
+                )
             )}
-
-
-          </div>
         </div>
         <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'} onClick={()=>handleAddStep()}/>
         <div className={style.addRecipe__button}>
           <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
-
         </div>
       {/*  <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>*/}
 

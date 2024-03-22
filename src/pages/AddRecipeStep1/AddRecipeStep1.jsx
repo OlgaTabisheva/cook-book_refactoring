@@ -15,7 +15,7 @@ function AddRecipeStep1({  setInstantAddRecipe,
                           setFormValuesRecipe,
                           formValuesRecipe}) {
 
-  const [chosenTextCategory, setChosenTextCategory] = useState('')
+  const [chosenTextCategoryStep1, setChosenTextCategoryStep1] = useState('')
   const navigate = useNavigate();
   const user = useUserData()
   const handleInputChange = React.useCallback((e) => {
@@ -42,23 +42,23 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
 }`
   const [addNewRecipe, {error: ErrorAddRecipe}] = useMutation(ADD_RECIPE)
 
-
   React.useEffect(function validateInputs() {
 
-    const isRecipeName = formValuesRecipe.name.length >= 3
-    const isRecipeCategory = chosenTextCategory.number  > 0
+    const isRecipeName = formValuesRecipe?.name?.length > 3
+    const isRecipeCategory = chosenTextCategoryStep1?.category?.length  > 0
+
     setFormValidityAddRecipe(prevValidity => ({
       nameValid: isRecipeName,
       categoryValid: isRecipeCategory,
 
     }))
-  }, [formValuesRecipe])
+  }, [formValuesRecipe,chosenTextCategoryStep1])
   const addRecipe = async (e) => {
     e.preventDefault()
     try {
       await addNewRecipe({
         variables: {
-          recipes_category: chosenTextCategory.number,
+          recipes_category: chosenTextCategoryStep1.number,
           name: formValuesRecipe.name,
           id: formValuesRecipe.id,
           authorId: user.id,
@@ -87,7 +87,7 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
 <div className={style.addRecipeStep1__box}>
   <h3 className={style.addRecipeStep1__title}>Создать рецепт</h3>
   <InputAuth errorText={'ghbdtn'} title={'Название рецепта'} text={'Введите текст'} id="name" name={'emailInput'} onChange={ handleInputChange}  value={formValuesRecipe?.name}/>
-  <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory} setChosenTextCategory={setChosenTextCategory}/>
+  <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategoryStep1.category} setChosenTextCategory={setChosenTextCategoryStep1}/>
   <ButtonBasic color={'primaryGreen'} text={'Далее'} type={'submit'} disabled={isSubmitDisabled}/>
 </div>
     </form>

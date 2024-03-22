@@ -79,7 +79,6 @@ function App() {
   });
   const [description, setDescription] = React.useState("Введите текст");
   const [myImage, setMyImage] = useState();
-  const [chosenTextCategory, setChosenTextCategory] = useState('')
 
 
   const GET_LIKES = gql`
@@ -170,8 +169,7 @@ function App() {
               instantLikes={instantLikes}
               setInstantLikes={setInstantLikes}
               instantAddRecipe={instantAddRecipe}
-              chosenTextCategory={chosenTextCategory}
-              setChosenTextCategory={setChosenTextCategory}
+
             />
           }/>
         </Route>
@@ -188,8 +186,7 @@ function App() {
           <AddRecipe
             allCategories={allCategories}
             allDuration={allDuration}
-            chosenTextCategory={chosenTextCategory}
-            setChosenTextCategory={setChosenTextCategory}
+
           />
           </ProtectedRoute>
         }/>
@@ -198,8 +195,7 @@ function App() {
             <AddRecipe
               allCategories={allCategories}
               allDuration={allDuration}
-              chosenTextCategory={setChosenTextCategory}
-              setChosenTextCategory={setChosenTextCategory}
+
             />
           </ProtectedRoute>}
         />
@@ -213,8 +209,7 @@ function App() {
             instantAddRecipe={instantAddRecipe}
             setFormValuesRecipe={setFormValuesRecipe}
             formValuesRecipe={formValuesRecipe}
-            chosenTextCategory={setChosenTextCategory}
-            setChosenTextCategory={setChosenTextCategory}
+
           />
           </ProtectedRoute>
         }/>
