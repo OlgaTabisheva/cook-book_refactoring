@@ -1,5 +1,4 @@
 import style from './ImageBlur.module.scss'
-import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
 
