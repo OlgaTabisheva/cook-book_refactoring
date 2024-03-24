@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import {useUserData} from "@nhost/react";
 import {gql, useMutation, useQuery} from "@apollo/client";
 import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
+import {Link} from "react-router-dom";
 
 function RecipeCard({
                       name,
@@ -115,22 +116,25 @@ function RecipeCard({
 
   return (
     <section className={style.recipeCard}>
+      <Link to={`/recipe/${id}`} key={id} className={style.recipeCard__link}>
       <div className={style.recipeCard__imgBox}>
-        <RecipeChips text={category.category}/>
+        <RecipeChips text={category?.category}/>
           <img className={style.recipeCard__img}
                src={photo ? photo : img} alt="recipeImg"/></div>
 
       <div className={style.recipeCard__textBox}>
         <h3 className={style.recipeCard__name}>{name}</h3>
         <p className={style.recipeCard__text}>Марина Иванова</p>
-        <BoxClockTime howLong={duration.duration}/>
+        <BoxClockTime howLong={duration?.duration}/>
       </div>
+      </Link>
       <div className={style.recipeCard__box} >
         {instantLikes?.some(t => t.recipesId === id) ?
           <ButtonLikeFull  onClick={()=>handleClickLike(id)} countLikes={countLikes}/> :
           <ButtonLikeEmpty onClick={()=>handleClickLike(id)} countLikes={countLikes}/>}
         <ButtonComments countComments={countComments}/>
       </div>
+
     </section>
   )
 }

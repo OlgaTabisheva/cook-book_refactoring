@@ -64,17 +64,18 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
           authorId: user.id,
         }
       }).then((rez) => {
+
           const recipesArray = [
             ...instantAddRecipe.recipes, {
               id: rez.data.insert_recipes_one.id,
-              recipes_category: rez.data.insert_recipes_one.category,
+              recipes_category: rez.data.insert_recipes_one.recipes_category,
               name: rez.data.insert_recipes_one.name,
               authorId: rez.data.insert_recipes_one.authorId,
             }]
           setInstantAddRecipe({recipes: recipesArray})
-          navigate(`/add-recipe/${rez.data.insert_recipes_one.id}`)
-        }
-      )
+        navigate(`/add-recipe/${rez?.data.insert_recipes_one.id}`)
+
+        })
     } catch (error) {
       toast.error('Произошла ошибка')
     }

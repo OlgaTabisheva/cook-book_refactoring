@@ -16,7 +16,7 @@ import {gql, useMutation} from "@apollo/client";
 import {toast} from "react-hot-toast";
 
 
-function AddRecipe({allCategories, allDuration}) {
+function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddRecipe}) {
   const {id} = useParams();
   const navigate = useNavigate();
   const user = useUserData()
@@ -32,7 +32,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
       long
       name
       photo
-      
+      steps
     }
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
@@ -57,7 +57,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
 const [nameRecipe,setNameRecipe]=useState()
   const [fullNewRecipe, setFullNewRecipe]=useState({})
-  const [instantAddRecipe, setInstantAddRecipe]= useState()
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
@@ -100,7 +99,8 @@ const [nameRecipe,setNameRecipe]=useState()
           long:JSON.stringify( chosenTextDuration?.number),
           name: nameRecipe,
           photo: mainRecipeImage,
-          description: JSON.stringify(instantStepRecipeWithGallery),
+          steps: JSON.stringify(instantStepRecipeWithGallery),
+          description: '123'
         }
 
       }).then((rez) => {
@@ -109,15 +109,17 @@ const [nameRecipe,setNameRecipe]=useState()
             recipes_category: rez.data.update_recipes_by_pk.category,
             name: rez.data.update_recipes_by_pk.name,
             photo: rez.data.update_recipes_by_pk.photo,
-            description: rez.data.update_recipes_by_pk.description,
+            steps: rez.data.update_recipes_by_pk.steps,
             food: rez.data.update_recipes_by_pk.food,
             long: rez.data.update_recipes_by_pk.long,
+            description: rez.data.update_recipes_by_pk.description,
           }]
 
         setInstantAddRecipe({recipes: recipesArray})
+        navigate(`/recipe/${rez?.data.update_recipes_by_pk.id}`)
       })
       toast.success('Обновленно успешно!');
-      navigate("/recipes")
+
     } catch (error) {
       toast.error('Произошла ошибка')
     }

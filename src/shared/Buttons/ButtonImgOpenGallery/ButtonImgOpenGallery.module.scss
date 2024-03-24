@@ -1,0 +1,30 @@
+@import "../../../variables";
+
+.buttonImgOpenGallery{
+  width: 130px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  &__img{
+    filter: blur(8px);
+    border-style: solid;
+    width: 130px;
+    height: 72px;
+    border-radius: 8px;
+  }
+  &__text{
+    position: absolute;
+    color: $white;
+    @extend %title24Vol;
+  }
+  :hover{
+    opacity: 0.5;
+
+  }
+}

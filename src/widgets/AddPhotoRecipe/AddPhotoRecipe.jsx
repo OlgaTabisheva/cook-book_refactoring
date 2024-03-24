@@ -22,9 +22,9 @@ function AddPhotoRecipe({ setStepRecipeInfo, stepRecipeInfo, obj, setMainRecipeI
         if (stepRecipeInfo?.id>0) {
           setStepRecipeInfo({
             id: obj.id,
-            step: obj.step,
+            step: stepRecipeInfo?.step,
             url: publicUrl,
-            text: obj.text
+            text: stepRecipeInfo?.text
           })
         }else  setMainRecipeImage(publicUrl)
     })

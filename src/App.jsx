@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from "react";
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import MainLayout from "/src/MainLayout/MainLayout";
 import "./index.css";
 import {gql, useQuery} from '@apollo/client'
@@ -12,7 +12,6 @@ import Ttest from "./test/test.jsx";
 import RecipesCatalog from "./pages/RecipesCatalog/RecipesCatalog.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import {ProtectedRoute} from "./utils/ProtectedRoute";
-import Header from "./widgets/Header/Header.jsx";
 import {PersonalPage} from "./pages/PersonalPage/PersonalPage.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
@@ -34,8 +33,7 @@ const GET_RECIPES = gql`
       food
       description
       photo
-      category
-      
+      steps
       
       }}`
 const GET_CATEGORY = gql`
@@ -109,14 +107,18 @@ function App() {
       food
       description
       photo
-      category
+      steps
   }
 }
 
   `
 
   const chosenCategory = useQuery(SET_CATEGORY).data
- // console.log(chosenCategory, 'chosenCategory')
+
+
+useEffect(()=>{
+  console.log(chosenCategory,'chosenTextCategory')
+},[chosenCategory])
 
   React.useEffect(() => {
     setInstantAddRecipe(data)
@@ -186,7 +188,8 @@ function App() {
           <AddRecipe
             allCategories={allCategories}
             allDuration={allDuration}
-
+            instantAddRecipe={instantAddRecipe}
+            setInstantAddRecipe={setInstantAddRecipe}
           />
           </ProtectedRoute>
         }/>
@@ -195,7 +198,8 @@ function App() {
             <AddRecipe
               allCategories={allCategories}
               allDuration={allDuration}
-
+              instantAddRecipe={instantAddRecipe}
+              setInstantAddRecipe={setInstantAddRecipe}
             />
           </ProtectedRoute>}
         />
@@ -206,10 +210,9 @@ function App() {
           <AddRecipeStep1
             allCategories={allCategories}
             setInstantAddRecipe={setInstantAddRecipe}
-            instantAddRecipe={instantAddRecipe}
             setFormValuesRecipe={setFormValuesRecipe}
             formValuesRecipe={formValuesRecipe}
-
+            instantAddRecipe={instantAddRecipe}
           />
           </ProtectedRoute>
         }/>
@@ -223,12 +226,14 @@ function App() {
             </ProtectedRoute>
           }/>
         </Route>
-        <Route exact path="/recipe" element={
+        <Route exact path="/recipe/:id" element={
           <MainLayout/>
         }>
-          <Route path="/recipe" element={
+          <Route path="/recipe/:id" element={
             <FullRecipe
               allCategories={allCategories}
+              instantAddRecipe={instantAddRecipe}
+              setInstantAddRecipe={setInstantAddRecipe}
             />
           }/>
         </Route>

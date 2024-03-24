@@ -4,20 +4,33 @@ import ButtonLikeFull from "../../shared/Buttons/ButtonLike/ButtonLikeFull.jsx";
 import ButtonComments from "../../shared/Buttons/ButtonComments/ButtonComments.jsx";
 import {ReactComponent as User} from '../../assets/user.svg';
 import StepByStep from "../StepByStep/StepByStep.jsx";
+import {useEffect} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import ButtonImgOpenGallery from "../../shared/Buttons/ButtonImgOpenGallery/ButtonImgOpenGallery.jsx";
 
 
-function RecipePhotoBlock() {
+function RecipePhotoBlock({instantAddRecipe}) {
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
+  const newData = JSON.parse(fullRecipe?.description)
+
+useEffect(()=>{
+  console.log(newData,'newData')
+  console.log(fullRecipe?.description,'fullRecipe.description')
+},[fullRecipe])
   return (
     <div className={style.recipePhotoBlock}>
 
       <div className={style.recipePhotoBlock__recipe}>
         <div className={style.recipePhotoBlock__boxMaxi}>
-          <img className={style.recipePhotoBlock__img} src={test} alt={'photo'}/>
+          <img className={style.recipePhotoBlock__img} src={fullRecipe?.photo} alt={'photo'}/>
           <div className={style.recipePhotoBlock__boxMini}>
             <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
             <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
             <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
-            <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
+            <ButtonImgOpenGallery Imagebutton={test}/>
+
           </div>
           <div className={style.recipePhotoBlock__box}>
             <div className={style.recipePhotoBlock__buttons}>

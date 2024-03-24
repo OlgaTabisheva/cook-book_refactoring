@@ -19,7 +19,6 @@ function PaginationBasic({totalPosts, paginate, currentPage}) {
     paginate(1)
   }, [totalPosts])
 
-  console.log(selectedPageNumber,pageNumbers.length, 'selectedPageNumber')
   return (
     <nav className={style.pagination}>
       <ul className={style.pagination__box}>

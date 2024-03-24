@@ -3,32 +3,36 @@ import Foodstuff from "../../shared/Foodstuff/Foodstuff.jsx";
 import ButtonCounter from "../../shared/Buttons/ButtonCounter/ButtonCounter.jsx";
 import RecipeComposition from "../../widgets/RecipeComposition/RecipeComposition.jsx";
 import {HomePage} from "../HomePage/HomePage.jsx";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import ButtonBack from "../../shared/Buttons/ButtonBack/ButtonBack.jsx";
 import test from '../../assets/test.jpg'
 import RecipePhotoBlock from "../../widgets/RecipePhotoBlock/RecipePhotoBlock.jsx";
 import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
 import CommentsBox from "../../widgets/CommentsBox/CommentsBox.jsx";
+import {useEffect} from "react";
 
-function FullRecipe() {
-
+function FullRecipe({instantAddRecipe, setInstantAddRecipe, allCategories}) {
+  const {id} = useParams();
   const navigate = useNavigate();
-
-
+  const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
+//  const newData = JSON.parse(data).map(Object.values);
   function handleNavigate() {
     navigate(-1);
   }
 
+  useEffect(()=>{
+    console.log(fullRecipe, 'fullRecipe')
+  }, [fullRecipe])
   return (
     <div
       className={style.fullRecipe}>
       <ButtonBack onClick={handleNavigate}/>
       <div className={style.fullRecipe__titleContent}>
-        <h3 className={style.fullRecipe__title}> Булочки синнабон с корицей и длинным длинным названием</h3>
-        <BoxClockTime howLong={'более 2 часов'}/>
+        <h3 className={style.fullRecipe__title}> {fullRecipe?.name}</h3>
+        <BoxClockTime howLong={fullRecipe?.duration?.duration}/>
       </div>
       <div className={style.fullRecipe__box}>
-        <RecipePhotoBlock/>
+        <RecipePhotoBlock instantAddRecipe={instantAddRecipe}/>
         <RecipeComposition/>
       </div>
 <CommentsBox/>

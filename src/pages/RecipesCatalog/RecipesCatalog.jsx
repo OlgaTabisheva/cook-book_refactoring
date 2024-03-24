@@ -2,7 +2,7 @@ import style from './RecipesCatalog.module.scss'
 import InputSearch from "../../shared/InputSearch/InputSearch.jsx";
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import RecipeCard from "../../widgets/RecipeCard/RecipeCard.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
 
 
@@ -14,7 +14,7 @@ function RecipesCatalog({
                           instantLikes,
                           setInstantLikes,
                           instantAddRecipe,
-                          isAuthenticated, setChosenTextCategory, chosenTextCategory
+                          isAuthenticated, chosenTextCategory
 
                         }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,15 +22,14 @@ function RecipesCatalog({
   const indexOfLastPost = currentPage * postPage;
   const indexOfFirstPost = indexOfLastPost - postPage;
   const currentPosts = instantAddRecipe?.recipes.slice(indexOfFirstPost, indexOfLastPost);
-  const [searchValue, setSearchValue] = useState()
+  const [chosenTextCategoryLocal, setChosenTextCategoryLocal] = useState()
   const currentPostsChosenCategory = chosenCategory?.recipes.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
-
   function handleOnClick(obj) {
-    setSelectedCategory(obj ? obj.number : 0)
-    setChosenTextCategory(obj)
-    console.log(obj)
+    setSelectedCategory(obj ? obj?.number : 0)
+    setChosenTextCategoryLocal(obj)
+
   }
 
   return (
@@ -38,7 +37,7 @@ function RecipesCatalog({
       <InputSearch/>
       <div className={style.recipesCatalog__box}>
         {allCategories?.categories?.map((obj) => (
-          <ButtonChips text={obj ? obj.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategory} ></ButtonChips>
+          <ButtonChips text={obj ? obj?.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategoryLocal?.category} ></ButtonChips>
         ))}
       </div>
       <div className={style.recipesCatalog__boxCatalog}>
