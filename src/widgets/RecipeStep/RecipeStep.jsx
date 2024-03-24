@@ -4,13 +4,13 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
 import {useEffect, useRef, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
-function RecipeStep({image,numberStep, text, obj, setInstantStepRecipeWithGallery, instantStepRecipeWithGallery}) {
+function RecipeStep({ obj, setInstantStepRecipeWithGallery, instantStepRecipeWithGallery}) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
 
   useEffect(()=>{
-
+console.log(stepRecipeInfo,'stepRecipeInfo')
   console.log(instantStepRecipeWithGallery,'instantStepRecipeWithGallery')
 
 },[instantStepRecipeWithGallery])
@@ -40,7 +40,7 @@ function RecipeStep({image,numberStep, text, obj, setInstantStepRecipeWithGaller
         <input className={style.recipeStep__input} placeholder={'введите название или номер шага'} value={stepRecipeInfo?.step} onChange={(e) => setStepRecipeInfo({
             id: obj.id,
             step:  e.target.value,
-            url: obj.url,
+            url: stepRecipeInfo?.url,
             text: stepRecipeInfo?.text
           })}/>
         </div>
@@ -53,8 +53,8 @@ function RecipeStep({image,numberStep, text, obj, setInstantStepRecipeWithGaller
       <input className={style.recipeStep__step} placeholder={'введите массу'} value={stepRecipeInfo?.text}
              onChange={(e) => setStepRecipeInfo({
                id: obj.id,
-               step: obj.step,
-               url: obj.url,
+               step: stepRecipeInfo?.step,
+               url: stepRecipeInfo?.url,
                text: e.target.value
              })}/>
     </section>

@@ -2,7 +2,7 @@ import style from './InputAuth.module.scss'
 import {useForm} from "react-hook-form";
 
 
-function InputAuth({title, text, eye, password, setPassword,name,id, errorText, placeholder,error, disabled,onChange,value, ...props}) {
+function InputAuth({title, eye, password, setPassword,name,id, errorText, placeholder,error, disabled,onChange,value, ...props}) {
 
 
   return (

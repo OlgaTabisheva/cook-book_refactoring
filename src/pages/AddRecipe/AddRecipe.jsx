@@ -10,9 +10,33 @@ import {useEffect, useState} from "react";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
 import ImageBlur from "../../widgets/ImageBlur/ImageBlur.jsx";
+import {useNavigate, useParams} from "react-router-dom";
+import {useUserData} from "@nhost/react";
+import {gql, useMutation} from "@apollo/client";
+import {toast} from "react-hot-toast";
 
 
 function AddRecipe({allCategories, allDuration}) {
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const user = useUserData()
+ // const fullRecipe = instantAddRecipe?.recipes.find(elem => elem.id === id);
+
+  const UPDATE_RECIPE = gql`
+mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $long: smallint!, $name: String!, $photo: String!) {
+  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, description: $description, food: $food, long: $long, name: $name, photo: $photo})
+ {
+      recipes_category
+      description
+      food
+      long
+      name
+      photo
+      
+    }
+}`
+  const [mutateRecipe] = useMutation(UPDATE_RECIPE)
+
 
   const [chosenTextDuration, setChosenTextDuration] = useState('')
   const [chosenTextCategory, setChosenTextCategory] = useState('')
@@ -31,8 +55,9 @@ function AddRecipe({allCategories, allDuration}) {
     text: 'текст'
   }]);
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
-
-
+const [nameRecipe,setNameRecipe]=useState()
+  const [fullNewRecipe, setFullNewRecipe]=useState({})
+  const [instantAddRecipe, setInstantAddRecipe]= useState()
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
@@ -50,8 +75,55 @@ function AddRecipe({allCategories, allDuration}) {
   }
 
   useEffect(() => {
-    console.log(productQuantityMap, 'productQuantityMap')
-  }, [productQuantityMap])
+    setFullNewRecipe({
+      name:nameRecipe,
+      category: chosenTextCategory.category,
+      url: mainRecipeImage,
+      duration: chosenTextDuration.duration,
+      products: productQuantityMap,
+      steps: instantStepRecipeWithGallery
+    })
+    localStorage.setItem('fullNewRecipe', JSON.stringify(fullNewRecipe))
+  }, [nameRecipe,chosenTextCategory,mainRecipeImage,chosenTextDuration,productQuantityMap,instantStepRecipeWithGallery])
+
+
+  const updateRecipe = async (e) => {
+    e.preventDefault()
+
+
+    try {
+      await mutateRecipe({
+        variables: {
+          id: id,
+          recipes_category: chosenTextCategory?.number,
+          food: JSON.stringify(productQuantityMap),
+          long:JSON.stringify( chosenTextDuration?.number),
+          name: nameRecipe,
+          photo: mainRecipeImage,
+          description: JSON.stringify(instantStepRecipeWithGallery),
+        }
+
+      }).then((rez) => {
+        const recipesArray = [
+          ...instantAddRecipe, {
+            recipes_category: rez.data.update_recipes_by_pk.category,
+            name: rez.data.update_recipes_by_pk.name,
+            photo: rez.data.update_recipes_by_pk.photo,
+            description: rez.data.update_recipes_by_pk.description,
+            food: rez.data.update_recipes_by_pk.food,
+            long: rez.data.update_recipes_by_pk.long,
+          }]
+
+        setInstantAddRecipe({recipes: recipesArray})
+      })
+      toast.success('Обновленно успешно!');
+      navigate("/recipes")
+    } catch (error) {
+      toast.error('Произошла ошибка')
+    }
+  }
+
+
 
   function handleAddStep() {
     const newStepNumber = stepNumber + 1
@@ -68,10 +140,10 @@ function AddRecipe({allCategories, allDuration}) {
   return (
     <section className={style.addRecipe}>
       <HeaderMini color={'SandColorful10'}/>
-      <div className={style.addRecipe__box}>
+      <form className={style.addRecipe__box} onSubmit={updateRecipe}>
         <div className={style.addRecipe__boxName}>
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
-          <InputAuth title={'Название рецепта'} text={'Булочки синабонн с корицей и сахарной пудрой'}/>
+          <InputAuth title={'Название рецепта'} placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={nameRecipe} onChange={(e)=>setNameRecipe(e.target.value)}/>
         </div>
         <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category}
                       setChosenTextCategory={setChosenTextCategory}/>
@@ -80,7 +152,7 @@ function AddRecipe({allCategories, allDuration}) {
           {!mainRecipeImage ?
             <AddPhotoRecipe mainRecipeImage={mainRecipeImage} setMainRecipeImage={setMainRecipeImage}/>
             :
-            <ImageBlur image={test}/>}</div>
+            <ImageBlur image={mainRecipeImage}/>}</div>
 
 
         <div className={style.addRecipe__cover}>
@@ -117,11 +189,11 @@ function AddRecipe({allCategories, allDuration}) {
         </li>
         <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'} onClick={() => handleAddStep()}/>
         <div className={style.addRecipe__button}>
-          <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}/>
+          <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}  type='submit'/>
         </div>
         {/*  <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>*/}
 
-      </div>
+      </form>
       {/*
       <div  className={style.addRecipe__imagePepper}/>
       <div  className={style.addRecipe__imageGarlic}/>
