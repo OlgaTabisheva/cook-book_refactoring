@@ -3,7 +3,7 @@ import Foodstuff from "../../shared/Foodstuff/Foodstuff.jsx";
 import ButtonCounter from "../../shared/Buttons/ButtonCounter/ButtonCounter.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
-function RecipeComposition() {
+function RecipeComposition({recipeCompositionMap}) {
   return (
     <div
       className={style.recipeComposition}>
@@ -16,14 +16,9 @@ function RecipeComposition() {
       </div>
 
       <div className={style.recipeComposition__box}>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
-        <Foodstuff/>
+        {recipeCompositionMap?.map((obj) => (
+        <Foodstuff key={obj.product} obj={obj}/>
+          ))}
       </div>
 
     </div>

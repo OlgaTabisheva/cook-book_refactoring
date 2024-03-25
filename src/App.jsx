@@ -117,7 +117,6 @@ function App() {
 
 
 useEffect(()=>{
-  console.log(chosenCategory,'chosenTextCategory')
 },[chosenCategory])
 
   React.useEffect(() => {

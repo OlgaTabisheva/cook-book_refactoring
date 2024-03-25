@@ -7,18 +7,16 @@ import StepByStep from "../StepByStep/StepByStep.jsx";
 import {useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import ButtonImgOpenGallery from "../../shared/Buttons/ButtonImgOpenGallery/ButtonImgOpenGallery.jsx";
+import Foodstuff from "../../shared/Foodstuff/Foodstuff.jsx";
 
 
-function RecipePhotoBlock({instantAddRecipe}) {
+function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
   const {id} = useParams();
   const navigate = useNavigate();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
-  const newData = JSON.parse(fullRecipe?.description)
 
-useEffect(()=>{
-  console.log(newData,'newData')
-  console.log(fullRecipe?.description,'fullRecipe.description')
-},[fullRecipe])
+
+  console.log(fullRecipe,'recipeCompositionMap')
   return (
     <div className={style.recipePhotoBlock}>
 
@@ -51,10 +49,10 @@ useEffect(()=>{
       </div>
       <div className={style.recipePhotoBlock__steps}>
         <h3 className={style.recipePhotoBlock__title}>Пошаговое приготовление</h3>
-        <StepByStep/>
-        <StepByStep/>
+        {recipeStepsMap?.map((obj) => (
+          <StepByStep obj={obj}/>
+        ))}
 
-        <StepByStep/>
 
       </div>
     </div>

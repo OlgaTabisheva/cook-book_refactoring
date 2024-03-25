@@ -20,6 +20,8 @@ function FullRecipe({instantAddRecipe, setInstantAddRecipe, allCategories}) {
     navigate(-1);
   }
 
+  const recipeCompositionMap=JSON.parse(fullRecipe?.food)
+  const recipeStepsMap = JSON.parse(fullRecipe?.steps)
   useEffect(()=>{
     console.log(fullRecipe, 'fullRecipe')
   }, [fullRecipe])
@@ -32,8 +34,8 @@ function FullRecipe({instantAddRecipe, setInstantAddRecipe, allCategories}) {
         <BoxClockTime howLong={fullRecipe?.duration?.duration}/>
       </div>
       <div className={style.fullRecipe__box}>
-        <RecipePhotoBlock instantAddRecipe={instantAddRecipe}/>
-        <RecipeComposition/>
+        <RecipePhotoBlock instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap}/>
+        <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
       </div>
 <CommentsBox/>
     </div>
