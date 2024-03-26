@@ -37,7 +37,7 @@ function RecipesCatalog({
       <InputSearch/>
       <div className={style.recipesCatalog__box}>
         {allCategories?.categories?.map((obj) => (
-          <ButtonChips text={obj ? obj?.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategoryLocal?.category} ></ButtonChips>
+          <ButtonChips key={obj.number} text={obj ? obj?.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategoryLocal?.category} ></ButtonChips>
         ))}
       </div>
       <div className={style.recipesCatalog__boxCatalog}>

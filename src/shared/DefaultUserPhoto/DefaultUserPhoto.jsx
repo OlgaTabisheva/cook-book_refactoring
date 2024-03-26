@@ -6,7 +6,6 @@ import photo from './../../assets/userYelow.svg'
 function DefaultUserPhoto() {
 
   const user = useUserData()
-  console.log(user.avatarUrl,'777')
   const defaultAvatar= 'https://s.gravatar.com/avatar/451339c818f3b4fa99947f6a4c2f8027?r=g&default=blank'
   return (
     <section className={style.defaultUserPhoto}>

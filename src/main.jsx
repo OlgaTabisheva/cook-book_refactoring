@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, HashRouter} from "react-router-dom";
 import {NhostApolloProvider} from '@nhost/react-apollo'
 import {NhostClient, NhostProvider} from '@nhost/react'
 

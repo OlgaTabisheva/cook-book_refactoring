@@ -17,7 +17,7 @@ function RecipeComposition({recipeCompositionMap}) {
 
       <div className={style.recipeComposition__box}>
         {recipeCompositionMap?.map((obj) => (
-        <Foodstuff key={obj.product} obj={obj}/>
+        <Foodstuff key={obj?.product} obj={obj}/>
           ))}
       </div>
 

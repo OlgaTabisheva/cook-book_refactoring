@@ -23,8 +23,8 @@ function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddR
  // const fullRecipe = instantAddRecipe?.recipes.find(elem => elem.id === id);
 
   const UPDATE_RECIPE = gql`
-mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $long: smallint!, $name: String!, $photo: String!) {
-  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, description: $description, food: $food, long: $long, name: $name, photo: $photo})
+mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!) {
+  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, steps: $steps, description: $description, food: $food, long: $long, name: $name, photo: $photo})
  {
       recipes_category
       description
@@ -82,8 +82,9 @@ const [nameRecipe,setNameRecipe]=useState()
       products: productQuantityMap,
       steps: instantStepRecipeWithGallery
     })
-    localStorage.setItem('fullNewRecipe', JSON.stringify(fullNewRecipe))
-  }, [nameRecipe,chosenTextCategory,mainRecipeImage,chosenTextDuration,productQuantityMap,instantStepRecipeWithGallery])
+   // localStorage.setItem('fullNewRecipe', JSON.stringify(fullNewRecipe))
+    console.log(fullNewRecipe,'fullNewRecipe')
+  }, [nameRecipe, chosenTextCategory,mainRecipeImage,chosenTextDuration,productQuantityMap,instantStepRecipeWithGallery])
 
 
   const updateRecipe = async (e) => {
@@ -105,7 +106,7 @@ const [nameRecipe,setNameRecipe]=useState()
 
       }).then((rez) => {
         const recipesArray = [
-          ...instantAddRecipe, {
+          ...instantAddRecipe.recipes, {
             recipes_category: rez.data.update_recipes_by_pk.category,
             name: rez.data.update_recipes_by_pk.name,
             photo: rez.data.update_recipes_by_pk.photo,
@@ -116,7 +117,7 @@ const [nameRecipe,setNameRecipe]=useState()
           }]
 
         setInstantAddRecipe({recipes: recipesArray})
-        navigate(`/recipe/${rez?.data.update_recipes_by_pk.id}`)
+          navigate(`/recipe/${id}`)
       })
       toast.success('Обновленно успешно!');
 
@@ -178,7 +179,7 @@ const [nameRecipe,setNameRecipe]=useState()
                 productQuantityMap={productQuantityMap}/>
             </ul>))}
         </li>
-        <ButtonBasic color={'secondaryGreen'} text={'Добавить продукт'} onClick={() => handleAddProduct()}/>
+        <ButtonBasic color={'secondaryGreen'} type={'text'} text={'Добавить продукт'} onClick={() => handleAddProduct()}/>
         <li className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj) => (

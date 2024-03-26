@@ -76,8 +76,6 @@ function App() {
     food: '',
   });
   const [description, setDescription] = React.useState("Введите текст");
-  const [myImage, setMyImage] = useState();
-
 
   const GET_LIKES = gql`
  query {
@@ -112,13 +110,7 @@ function App() {
 }
 
   `
-
   const chosenCategory = useQuery(SET_CATEGORY).data
-
-
-useEffect(()=>{
-},[chosenCategory])
-
   React.useEffect(() => {
     setInstantAddRecipe(data)
   }, [data])

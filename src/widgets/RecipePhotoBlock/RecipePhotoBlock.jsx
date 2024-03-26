@@ -4,30 +4,44 @@ import ButtonLikeFull from "../../shared/Buttons/ButtonLike/ButtonLikeFull.jsx";
 import ButtonComments from "../../shared/Buttons/ButtonComments/ButtonComments.jsx";
 import {ReactComponent as User} from '../../assets/user.svg';
 import StepByStep from "../StepByStep/StepByStep.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import ButtonImgOpenGallery from "../../shared/Buttons/ButtonImgOpenGallery/ButtonImgOpenGallery.jsx";
-import Foodstuff from "../../shared/Foodstuff/Foodstuff.jsx";
+import PopupImageGallery from "../Popup/PopupImageGallery/PopupImageGallery.jsx";
 
 
 function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
   const {id} = useParams();
   const navigate = useNavigate();
-  const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
+ const [openImagePopup,setOpenImagePopup] = useState(false)
+  const [recipeStepsMapSlice,setRecipeStepsMapSlice] = useState(false)
+  const [recipeStepsMapSliceForButton,setRecipeStepsMapSliceForButton] = useState(false)
+  const [fullRecipe,setFullRecipe] = useState()
+  useEffect(()=>{
+    setRecipeStepsMapSlice(recipeStepsMap?.slice(0, 4));
+    setRecipeStepsMapSliceForButton(recipeStepsMap?.slice(4, 5))
+  },[recipeStepsMap])
+  useEffect(()=>{
+    setFullRecipe(instantAddRecipe?.recipes?.find(elem => elem?.id === id))
+  },[instantAddRecipe])
 
-
-  console.log(fullRecipe,'recipeCompositionMap')
   return (
     <div className={style.recipePhotoBlock}>
+
+        <PopupImageGallery open={openImagePopup} setOpenImagePopup={setOpenImagePopup}/>
+
 
       <div className={style.recipePhotoBlock__recipe}>
         <div className={style.recipePhotoBlock__boxMaxi}>
           <img className={style.recipePhotoBlock__img} src={fullRecipe?.photo} alt={'photo'}/>
           <div className={style.recipePhotoBlock__boxMini}>
-            <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
-            <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
-            <img className={style.recipePhotoBlock__imgMini} src={test} alt={'photo'}/>
-            <ButtonImgOpenGallery Imagebutton={test}/>
+            {recipeStepsMapSlice && recipeStepsMapSlice?.map((obj) => (
+              <img className={style.recipePhotoBlock__imgMini} key={obj?.id} src={obj?.url ? obj?.url : test} alt={'photo'}/>
+            ))}
+
+            {recipeStepsMapSliceForButton && recipeStepsMapSliceForButton?.map((obj) => (
+            <ButtonImgOpenGallery key={obj?.id}  Imagebutton={obj?.url ? obj?.url : test} onClick={()=>setOpenImagePopup(!openImagePopup)}/>
+            ))}
 
           </div>
           <div className={style.recipePhotoBlock__box}>
@@ -49,12 +63,13 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
       </div>
       <div className={style.recipePhotoBlock__steps}>
         <h3 className={style.recipePhotoBlock__title}>Пошаговое приготовление</h3>
-        {recipeStepsMap?.map((obj) => (
-          <StepByStep obj={obj}/>
+        {recipeStepsMap && recipeStepsMap?.map((obj) => (
+          <StepByStep obj={obj} key={obj?.id} />
         ))}
 
 
       </div>
+
     </div>
   )
 }

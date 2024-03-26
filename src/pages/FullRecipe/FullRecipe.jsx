@@ -1,43 +1,48 @@
 import style from './FullRecipe.module.scss'
-import Foodstuff from "../../shared/Foodstuff/Foodstuff.jsx";
-import ButtonCounter from "../../shared/Buttons/ButtonCounter/ButtonCounter.jsx";
 import RecipeComposition from "../../widgets/RecipeComposition/RecipeComposition.jsx";
-import {HomePage} from "../HomePage/HomePage.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import ButtonBack from "../../shared/Buttons/ButtonBack/ButtonBack.jsx";
-import test from '../../assets/test.jpg'
 import RecipePhotoBlock from "../../widgets/RecipePhotoBlock/RecipePhotoBlock.jsx";
 import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
 import CommentsBox from "../../widgets/CommentsBox/CommentsBox.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
-function FullRecipe({instantAddRecipe, setInstantAddRecipe, allCategories}) {
+function FullRecipe({instantAddRecipe}) {
   const {id} = useParams();
   const navigate = useNavigate();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
-//  const newData = JSON.parse(data).map(Object.values);
+  const [recipeStepsMap, setRecipeStepsMap] = useState([])
+  const [recipeCompositionMap, setRecipeCompositionMap] = useState([])
+
   function handleNavigate() {
     navigate(-1);
   }
 
-  const recipeCompositionMap=JSON.parse(fullRecipe?.food)
-  const recipeStepsMap = JSON.parse(fullRecipe?.steps)
-  useEffect(()=>{
-    console.log(fullRecipe, 'fullRecipe')
+  useEffect(() => {
+    if (fullRecipe?.steps.length>0){
+      setRecipeStepsMap(JSON.parse(fullRecipe?.steps))
+    }
+    if (fullRecipe?.food.length>0){
+      setRecipeCompositionMap(JSON.parse(fullRecipe?.food))
+    }
   }, [fullRecipe])
+
+
   return (
     <div
       className={style.fullRecipe}>
       <ButtonBack onClick={handleNavigate}/>
       <div className={style.fullRecipe__titleContent}>
         <h3 className={style.fullRecipe__title}> {fullRecipe?.name}</h3>
-        <BoxClockTime howLong={fullRecipe?.duration?.duration}/>
+        <BoxClockTime
+          howLong={fullRecipe?.duration?.duration ? fullRecipe?.duration?.duration : 'длительность не задана'}/>
       </div>
       <div className={style.fullRecipe__box}>
         <RecipePhotoBlock instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap}/>
         <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
       </div>
-<CommentsBox/>
+
+      <CommentsBox/>
     </div>
   )
 }

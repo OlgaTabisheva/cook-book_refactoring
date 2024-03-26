@@ -1,20 +1,12 @@
 import style from './CarouselsBox.module.scss'
-
-import RecipeCard from "../RecipeCard/RecipeCard.jsx";
 import Carousel from "react-multi-carousel";
 import {useState} from "react";
 import RecipeCardTest from "../../test/RecipeCardTest/RecipeCardTest.jsx";
 
-function CarouselsBox({
-                        instantAddRecipe,
-                        instantLikes,
-                        setInstantLikes,
-                        isAuthenticated,
-                        setInstantAddRecipe, newRecipes,
-                        carouselTitle
+function CarouselsBox({newRecipes, carouselTitle
                       }) {
 
-  const chosenCategory1 = [
+  const chosenCategory = [
     //First image url
     {
 
@@ -62,7 +54,7 @@ function CarouselsBox({
       slidesToSlide: 1 // optional, default to 1.
     }
   };
-  const [numberCarouselImage, setNumberCarouselImage] = useState()
+  const [numberCarouselImage, setNumberCarouselImage] = useState(0)
   const arrowStyle = {
     background: "transparent",
     border: 0,
@@ -76,19 +68,18 @@ function CarouselsBox({
     const firstNumberCarousel = numberCarouselImage === 0
     const NumberCarousel = newRecipes?.length - 3
     const LastNumberCarousel = numberCarouselImage === NumberCarousel
-
     setNumberCarouselImage(currentSlide)
     return (
       <div className="carousel-button-group mb-4  gap-4 flex justify-end
           items-center w-full">
-        <button className={style.carouselsBox__box} onClick={next} style={arrowStyle}>
-          <button className={style.carouselsBox__buttonRight} disabled={LastNumberCarousel}></button>
+        <button className={style.carouselsBox__box} onClick={() => next()} style={arrowStyle} disabled={LastNumberCarousel}>
+          <div className={style.carouselsBox__buttonRight} ></div>
 
         </button>
-        <button className={style.carouselsBox__box} onClick={previous} style={arrowStyle}>
-
-          <button className={style.carouselsBox__buttonLeft} disabled={firstNumberCarousel}></button>
-          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{newRecipes?.length - 2}</p>
+        <button className={style.carouselsBox__box} onClick={() =>
+          previous()}  style={arrowStyle} disabled={firstNumberCarousel}>
+          <div className={style.carouselsBox__buttonLeft} ></div>
+          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{newRecipes?.length - 5}</p>
         </button>
 
 
@@ -108,25 +99,22 @@ function CarouselsBox({
           customLeftArrow={null}
           additionalTransfrom={0}
           arrows={false}
-          rewindWithAnimation={true}
-          autoPlaySpeed={3000}
           centerMode={false}
-          //className="react-multi-carousel"
+          className="react-multi-carousel"
           dotListClass=""
           draggable
           focusOnSelect={false}
-          //  itemClass="react-multi"
-          keyBoardControl
+           itemClass="react-multi"
+          //keyBoardControl
           minimumTouchDrag={80}
           renderDotsOutside={false}
           sliderClass=""
           slidesToSlide={3}
           swipeable
           rewind={false}
-          // dotListClass="custom-dot-list-style"
 
         >
-          {chosenCategory1?.map((imageUrl, index
+          {chosenCategory?.map((imageUrl, index
           ) => {
 
             return (<div className={style.carouselsBox__card} key={index}><RecipeCardTest/>
