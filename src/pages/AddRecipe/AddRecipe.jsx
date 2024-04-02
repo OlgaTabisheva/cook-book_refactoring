@@ -179,7 +179,7 @@ const [nameRecipe,setNameRecipe]=useState()
                 productQuantityMap={productQuantityMap}/>
             </ul>))}
         </li>
-        <ButtonBasic color={'secondaryGreen'} type={'text'} text={'Добавить продукт'} onClick={() => handleAddProduct()}/>
+        <ButtonBasic color={'secondaryGreen'} type={'button'} text={'Добавить продукт'} onClick={() => handleAddProduct()}/>
         <li className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj) => (

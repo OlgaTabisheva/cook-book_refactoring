@@ -100,21 +100,70 @@
   border: none;
   cursor: pointer;
   background-color: $primary-dark-120;
-  padding: 8px;
-  border-radius: 12px;
-  width: 24px;
-  height: 24px;
-  gap: 8px;
+  //padding: 16px;
+  border-radius: 32px;
+  width: 40px;
+  height: 40px;
   z-index: 30;
   margin-bottom: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
-.buttonPicture__brownClose{
+.buttonPicture__smallBlackSquare{
+  border: none;
+  cursor: pointer;
+  background-color: $primary-dark-120;
+  padding: 8px;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  z-index: 30;
+  margin-bottom: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.buttonPicture__whiteClose{
   stroke: $white;
   Width: 24px;
   Height: 24px;
+  z-index: 310;
+}
+.buttonPicture__arrowSmall{
+  stroke: $white;
+  Width: 24px;
+  Height: 24px;
+  z-index: 310;
 }
 .buttonPicture__brownClose{
   stroke: $sand-60;
   Width: 24px;
   Height: 24px;
+}
+.prev,
+.next {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  display: inline-flex;
+  padding: 8px;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 8px;
+  background: $primary-dark-120;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.prev:hover,
+.next:hover {
+ opacity: 0.5;
+}
+.prev {
+  left: 0;
+}
+.next {
+  right: 0;
 }

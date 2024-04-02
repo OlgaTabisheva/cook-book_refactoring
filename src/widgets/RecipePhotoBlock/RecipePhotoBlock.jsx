@@ -25,10 +25,12 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
     setFullRecipe(instantAddRecipe?.recipes?.find(elem => elem?.id === id))
   },[instantAddRecipe])
 
+
+  console.log(recipeStepsMap, 'recipeStepsMap')
   return (
     <div className={style.recipePhotoBlock}>
 
-        <PopupImageGallery open={openImagePopup} setOpenImagePopup={setOpenImagePopup}/>
+   <PopupImageGallery open={openImagePopup} setOpenImagePopup={setOpenImagePopup} recipeStepsMap={recipeStepsMap}/>
 
 
       <div className={style.recipePhotoBlock__recipe}>
