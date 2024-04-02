@@ -225,6 +225,8 @@ function App() {
               allCategories={allCategories}
               instantAddRecipe={instantAddRecipe}
               setInstantAddRecipe={setInstantAddRecipe}
+              isAuthenticated={isAuthenticated}
+
             />
           }/>
         </Route>

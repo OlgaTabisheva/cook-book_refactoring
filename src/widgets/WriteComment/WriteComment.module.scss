@@ -29,16 +29,14 @@
   &__area{
     @extend %textLarge16Mon;
 background-color: inherit;
-    max-width: 420px;
     width: 100%;
     height: 56px;
     padding: 8px;
     border-radius: 12px;
-    border: 1px;
     border: 1px solid $sand-40;
     text-align: left;
     margin-bottom: 12px;
-
+    min-width: 440px;
   }
   &__box{
     display: flex;

@@ -10,7 +10,9 @@ import {A11y,Pagination, Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
 import ButtonPicture from "../../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import {SwiperNavButton} from "../../SwiperNavButton/SwiperNavButton.jsx";
-
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import 'swiper/css';
 const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
   const sliderRef = useRef(null);
@@ -34,7 +36,13 @@ const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
             setOpenImagePopup(!open)
           }}/>
           <div className={style.popupImageGallery__window}>
-            {<Swiper  ref={sliderRef}
+            {<Swiper     pagination={{
+              type: 'fraction',
+            }}
+                         navigation={false}
+                         modules={[Pagination, Navigation]}
+                         className="mySwiper" ref={sliderRef}
+
             >
               {recipeStepsMap && recipeStepsMap.map(obj => (
                 <SwiperSlide>

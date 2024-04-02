@@ -5,8 +5,14 @@
   margin-top: 80px;
   display: flex;
   align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column-reverse;
 
+  &__cover{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+  }
   &__title {
     @extend %title24Vol;
     text-align: left;
@@ -44,7 +50,7 @@
   &__boxPhoto {
     background-color: $sand-colorful-20;
     display: flex;
-    max-width: 60px;
+    min-width: 60px;
     width: 100%;
     height: 60px;
     border-radius: 100px;
@@ -57,12 +63,27 @@
     margin-top: 12px;
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
+    align-self: stretch;
+    max-width: 452px;
+    min-width: 452px;
+    width: 100%;
   }
 
   &__info {
     //styleName: Desktop/Body small;
     @extend %textSmall13-20Mon;
     text-align: center;
+  }
+  &__edit {
+    color: $sand-80;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    @extend %textSmall13-20Mon;
+    border: none;
+    background-color: inherit;
+    &:first-child{
+      margin-right: 40px;
+    }
   }
 }
