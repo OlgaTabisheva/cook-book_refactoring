@@ -50,7 +50,7 @@ console.log(stepRecipeInfo,'stepRecipeInfo')
 
         : <ImageBlur image={stepRecipeInfo.url}/>}
 
-      <TextareaAutosize className={style.recipeStep__step} placeholder={'введите описание щага'} value={stepRecipeInfo?.text}
+      <TextareaAutosize defaultValue={'введите описание шага'}  className={style.recipeStep__step} placeholder={'введите описание шага'} value={stepRecipeInfo?.text}
              onChange={(e) => setStepRecipeInfo({
                id: obj.id,
                step: stepRecipeInfo?.step,

@@ -44,10 +44,10 @@ const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
                          className="mySwiper" ref={sliderRef}
 
             >
-              {recipeStepsMap && recipeStepsMap.map(obj => (
-                <SwiperSlide>
+              {recipeStepsMap && recipeStepsMap.map((obj,index) => (
+                <SwiperSlide key={index}>
 
-                  <img alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
+                  <img  alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
                   // </SwiperSlide>
               ))}
 

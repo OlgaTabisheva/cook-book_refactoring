@@ -2,7 +2,6 @@ import style from './AddRecipe.module.scss'
 import HeaderMini from "../../widgets/HeaderMini/HeaderMini.jsx";
 import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import ProductQuantity from "../../widgets/ProductQuantity/ProductQuantity.jsx";
-import test from './../../assets/test.jpg'
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";

@@ -2,8 +2,7 @@ import style from './AddPhotoRecipe.module.scss'
 import {ReactComponent as ImagePicture} from '../../assets/image 60.svg';
 import {FileUploader} from "react-drag-drop-files";
 import {nhost} from "../../main.jsx";
-import {useState} from "react";
-import ReactCrop from 'react-image-crop'
+
 import 'react-image-crop/src/ReactCrop.scss'
 
 const fileTypes = ["JPG", "PNG", "GIF"];

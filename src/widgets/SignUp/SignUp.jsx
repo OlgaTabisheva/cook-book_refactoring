@@ -1,24 +1,46 @@
 import style from './SignUp.module.scss'
 import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
-import {useCallback, useState} from "react";
+import {useEffect, useState} from "react";
 import {useSignUpEmailPassword} from "@nhost/react";
 import {Navigate} from "react-router-dom";
-import {useForm} from "react-hook-form"
-import photo from './../../assets/userYelow.svg'
 import {nhost} from "../../main.jsx";
 
 function SignUp({password, setPassword}) {
+
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [passwordRepeatInput, setPasswordRepeatInput] = useState('')
-  const emailTest = /\S+@\S+\.\S+/;
-  const { register, handleSubmit,formState: { errors } } = useForm({
-    mode: "onBlur",
-  });
-  const onSubmit = (data, e) => console.log(data, e);
   const {signUpEmailPassword, isLoading, isSuccess, needsEmailVerification, isError, error} =
     useSignUpEmailPassword()
+  const [formValiditySignUp, setFormValiditySignUp] = useState({
+    emailValid: false,
+    passwordValid: false,
+    passwordValidRepeat: false
+  });
+  const { emailValid, passwordValid, passwordValidRepeat} = formValiditySignUp;
+
+  const isSubmitDisabled =  !emailValid || !passwordValid || !passwordValidRepeat;
+  const disableForm = isLoading || needsEmailVerification
+
+  useEffect(function validateInputs() {
+    const emailTest = /\S+@\S+\.\S+/;
+    const isEmailInputFilled = emailInput.length > 4
+    const isEmail = emailTest.test(emailInput)
+    const isEmailInputValid = isEmailInputFilled && isEmail
+    const isPasswordInputFilled = passwordInput.length >= 5
+    const isPasswordInputValid = isPasswordInputFilled
+    const isPasswordRepeat = passwordInput === passwordRepeatInput
+    setFormValiditySignUp(prevValidity => ({
+      emailValid: isEmailInputValid,
+      passwordValid: isPasswordInputValid,
+      passwordValidRepeat: isPasswordRepeat
+    }))
+  }, [ emailInput, passwordInput, passwordRepeatInput])
+
+
+  const onSubmit = (data, e) => console.log(data, e);
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
     nhost.auth.signUp({
@@ -29,22 +51,57 @@ function SignUp({password, setPassword}) {
   if (isSuccess) {
     return <Navigate to="/user" replace={true}/>
   }
+
+
   return (
     <section className={style.signUp}>
       <form className={style.signUp__box} onSubmit={handleOnSubmit}>
-
-        <InputAuth text={"Введите почту"} title={"Email:"} placeholder={"Email"}
-                   eye={false} errorText={'ошибка'} name={'email'} register={register} value={emailInput} onChange={(e) => setEmailInput(e.target.value)} />
-        <InputAuth text={"Введите пароль"} title={"Пароль:"}
-                   eye={true} password={password} setPassword={setPassword} errorText={'ошибка'} name={'password'} value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
-        <InputAuth text={"Введите пароль"} title={"Повторите пароль:"}
-                   eye={true} password={password} setPassword={setPassword} errorText={'ошибка'}  name={'password2'} value={passwordRepeatInput} onChange={(e) => setPasswordRepeatInput(e.target.value)}  />
-
-
+        <InputAuth
+          id="email"
+          name="emailInput"
+          text={"Введите почту"}
+          title={"Email:"}
+          type="email"
+          placeholder="user@mail.com"
+          eye={false}
+          errorText={'ошибка'}
+          value={emailInput.toLowerCase()}
+          required
+          onChange={(e) => setEmailInput(e.target.value)}
+        error={passwordValid}
+          textError={"Пароль слишком короткий"}
+        />
+        <InputAuth
+        id="password"
+          text={"Введите пароль"}
+          title={"Пароль:"}
+          eye={true}
+        type="password"
+        placeholder="***"
+        required
+          password={password}
+          setPassword={setPassword}
+          errorText={'ошибка'}
+        name="passwordInput"
+          value={passwordInput}
+          onChange={(e) => setPasswordInput(e.target.value)} />
+        <InputAuth
+          id="password"
+          text={"Введите пароль"}
+          title={"Повторите пароль:"}
+          eye={true}
+          password={password}
+          setPassword={setPassword}
+          errorText={'ошибка'}
+          name="passwordInputRepeat"
+          placeholder="***"
+          value={passwordRepeatInput}
+          onChange={(e) => setPasswordRepeatInput(e.target.value)}
+          required/>
 
       </form>
       <div className={style.signUp__buttonBox}>
-        <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit} />
+        <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit} disabled={isSubmitDisabled || disableForm}/>
       </div>
     </section>
   )

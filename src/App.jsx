@@ -213,6 +213,8 @@ function App() {
           <Route path="/user" element={
             <ProtectedRoute>
             <PersonalPage
+              formData={formData}
+              setFormData={setFormData}
             />
             </ProtectedRoute>
           }/>

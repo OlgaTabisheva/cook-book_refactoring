@@ -5,12 +5,13 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import UserProfile from "../../widgets/UserProfile/UserProfile.jsx";
 import FavoritesRecipes from "../../widgets/FavoritesRecipes/FavoritesRecipes.jsx";
 import UserRecipes from "../../widgets/UserRecipes/UserRecipes.jsx";
+import {gql, useMutation} from "@apollo/client";
+import {toast} from "react-hot-toast";
 
 
-export const PersonalPage = () => {
+export const PersonalPage = ({formData, setFormData}) => {
 
-  const user = useUserData()
-  console.log(user,'user')
+
   const [changeButton, setChangeButton] = useState('Профиль')
   return (
     <section className={styles.personalPage}>
@@ -25,7 +26,7 @@ export const PersonalPage = () => {
       <div className={styles.personalPage__box}>
         {changeButton === 'Избранное' ? <FavoritesRecipes/> : null}
         {changeButton === 'Мои Рецепты' ? <UserRecipes/> : null}
-        {changeButton === 'Профиль' ? <UserProfile/> : null}
+        {changeButton === 'Профиль' ? <UserProfile formData={formData} setFormData={setFormData}/> : null}
 
       </div>
     </section>
