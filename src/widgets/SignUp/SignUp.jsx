@@ -64,12 +64,12 @@ function SignUp({password, setPassword}) {
           type="email"
           placeholder="user@mail.com"
           eye={false}
-          errorText={'ошибка'}
+          errorText={"Введите правильный email адрес"}
           value={emailInput.toLowerCase()}
           required
           onChange={(e) => setEmailInput(e.target.value)}
-        error={passwordValid}
-          textError={"Пароль слишком короткий"}
+        error={!emailValid}
+          //textError={"Пароль слишком короткий"}
         />
         <InputAuth
         id="password"
@@ -81,10 +81,14 @@ function SignUp({password, setPassword}) {
         required
           password={password}
           setPassword={setPassword}
-          errorText={'ошибка'}
+        errorText={"Пароль слишком короткий"}
         name="passwordInput"
           value={passwordInput}
-          onChange={(e) => setPasswordInput(e.target.value)} />
+          onChange={(e) => setPasswordInput(e.target.value)}
+        error={!passwordValid}
+        //textError={"Пароль слишком короткий22"}
+          />
+
         <InputAuth
           id="password"
           text={"Введите пароль"}
@@ -92,13 +96,14 @@ function SignUp({password, setPassword}) {
           eye={true}
           password={password}
           setPassword={setPassword}
-          errorText={'ошибка'}
+          errorText={"Введенные пароли не совпадают"}
           name="passwordInputRepeat"
           placeholder="***"
           value={passwordRepeatInput}
           onChange={(e) => setPasswordRepeatInput(e.target.value)}
+          //textError={"Пароль слишком короткий333"}
+          error={!passwordValidRepeat}
           required/>
-
       </form>
       <div className={style.signUp__buttonBox}>
         <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit} disabled={isSubmitDisabled || disableForm}/>
