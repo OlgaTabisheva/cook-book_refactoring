@@ -64,7 +64,7 @@ function SignUp({password, setPassword}) {
           type="email"
           placeholder="user@mail.com"
           eye={false}
-          errorText={"Введите правильный email адрес"}
+           errorText={"Введите правильный email адрес"}
           value={emailInput.toLowerCase()}
           required
           onChange={(e) => setEmailInput(e.target.value)}
