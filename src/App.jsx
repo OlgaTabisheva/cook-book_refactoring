@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
 import AddRecipe from "./pages/AddRecipe/AddRecipe.jsx";
 import AddRecipeStep1 from "./pages/AddRecipeStep1/AddRecipeStep1.jsx";
+import SearchPage from "./pages/SearchPage/SearchPage.jsx";
 
 
 const GET_RECIPES = gql`
@@ -75,7 +76,6 @@ function App() {
     duration: '',
     food: '',
   });
-  const [description, setDescription] = React.useState("Введите текст");
 
   const GET_LIKES = gql`
  query {
@@ -145,9 +145,21 @@ function App() {
         }>
           <Route path="/authors" element={
             <ProtectedRoute>
-            <AuthorsPage/>
-              </ProtectedRoute>
+              <AuthorsPage/>
+            </ProtectedRoute>
           }/>
+        </Route>
+        <Route exact path="/search/:searchValue" element={
+          <MainLayout/>
+        }>
+        <Route path="/search/:searchValue"
+               element={<SearchPage
+                 setInstantLikes={setInstantLikes}
+                 isAuthenticated={isAuthenticated}
+                 instantLikes={instantLikes}
+
+               />}
+        />
         </Route>
         <Route exact path="/recipes" element={
           <MainLayout/>
@@ -163,6 +175,7 @@ function App() {
               setInstantLikes={setInstantLikes}
               instantAddRecipe={instantAddRecipe}
 
+
             />
           }/>
         </Route>
@@ -176,12 +189,12 @@ function App() {
         <Route path="/add-recipe" element={
           <ProtectedRoute>
 
-          <AddRecipe
-            allCategories={allCategories}
-            allDuration={allDuration}
-            instantAddRecipe={instantAddRecipe}
-            setInstantAddRecipe={setInstantAddRecipe}
-          />
+            <AddRecipe
+              allCategories={allCategories}
+              allDuration={allDuration}
+              instantAddRecipe={instantAddRecipe}
+              setInstantAddRecipe={setInstantAddRecipe}
+            />
           </ProtectedRoute>
         }/>
         <Route exact path="/add-recipe/:id" element={
@@ -198,13 +211,13 @@ function App() {
 
         <Route path="/add-recipe-step" element={
           <ProtectedRoute>
-          <AddRecipeStep1
-            allCategories={allCategories}
-            setInstantAddRecipe={setInstantAddRecipe}
-            setFormValuesRecipe={setFormValuesRecipe}
-            formValuesRecipe={formValuesRecipe}
-            instantAddRecipe={instantAddRecipe}
-          />
+            <AddRecipeStep1
+              allCategories={allCategories}
+              setInstantAddRecipe={setInstantAddRecipe}
+              setFormValuesRecipe={setFormValuesRecipe}
+              formValuesRecipe={formValuesRecipe}
+              instantAddRecipe={instantAddRecipe}
+            />
           </ProtectedRoute>
         }/>
         <Route exact path="/user" element={
@@ -212,10 +225,10 @@ function App() {
         }>
           <Route path="/user" element={
             <ProtectedRoute>
-            <PersonalPage
-              formData={formData}
-              setFormData={setFormData}
-            />
+              <PersonalPage
+                formData={formData}
+                setFormData={setFormData}
+              />
             </ProtectedRoute>
           }/>
         </Route>

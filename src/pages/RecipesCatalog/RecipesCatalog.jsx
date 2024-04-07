@@ -4,6 +4,7 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import RecipeCard from "../../widgets/RecipeCard/RecipeCard.jsx";
 import {useEffect, useState} from "react";
 import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 
 
 function RecipesCatalog({
@@ -14,7 +15,7 @@ function RecipesCatalog({
                           instantLikes,
                           setInstantLikes,
                           instantAddRecipe,
-                          isAuthenticated, chosenTextCategory
+                          isAuthenticated,
 
                         }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,17 +25,35 @@ function RecipesCatalog({
   const currentPosts = instantAddRecipe?.recipes.slice(indexOfFirstPost, indexOfLastPost);
   const [chosenTextCategoryLocal, setChosenTextCategoryLocal] = useState()
   const currentPostsChosenCategory = chosenCategory?.recipes.slice(indexOfFirstPost, indexOfLastPost);
-
+  const [searchValue, setSearchValue] = useState()
+  const navigate = useNavigate();
   const paginate = pageNumber => setCurrentPage(pageNumber);
   function handleOnClick(obj) {
     setSelectedCategory(obj ? obj?.number : 0)
     setChosenTextCategoryLocal(obj)
 
   }
+  const handleClick = (e) => {
+    navigate({
+      pathname: `/search/${searchValue}`,
+      query: {searchValue: searchValue}
+  });
 
+  }
   return (
     <section className={style.recipesCatalog}>
-      <InputSearch/>
+      <div className={style.recipesCatalog__search}>
+
+      <InputSearch
+        placeholder="search"
+        onChange={(e) => (setSearchValue(e.target.value))}
+        id="search"
+        name="search"
+        type="search"
+        onClick={(e)=>handleClick(e.target.value)}
+      />
+
+      </div>
       <div className={style.recipesCatalog__box}>
         {allCategories?.categories?.map((obj) => (
           <ButtonChips key={obj.number} text={obj ? obj?.category : ''} onClick={()=>handleOnClick(obj)} chosenText={chosenTextCategoryLocal?.category} ></ButtonChips>
