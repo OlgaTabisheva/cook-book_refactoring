@@ -2,15 +2,21 @@
 
 .recipesCatalog {
   margin: 40px auto 112px auto;
-  max-width: 1120px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
+
+  &__search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   &__box {
     margin-top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
     :not(:first-child) {
       margin-left: 12px;
     }
@@ -19,12 +25,20 @@
   &__boxCatalog {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
   &__catalog {
     margin-top: 40px;
     margin-bottom: 60px;
     @extend %catalog;
+  }
+  &__textAdd{
+@extend %subtitle20-24Vol
+  }
+  &__boxAdd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

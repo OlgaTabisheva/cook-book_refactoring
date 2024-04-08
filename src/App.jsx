@@ -157,7 +157,11 @@ function App() {
                  setInstantLikes={setInstantLikes}
                  isAuthenticated={isAuthenticated}
                  instantLikes={instantLikes}
-
+                 allCategories={allCategories}
+                 setSelectedCategory={setSelectedCategory}
+                 selectedCategory={selectedCategory}
+                 chosenCategory={chosenCategory}
+                 instantAddRecipe={instantAddRecipe}
                />}
         />
         </Route>
@@ -228,6 +232,9 @@ function App() {
               <PersonalPage
                 formData={formData}
                 setFormData={setFormData}
+                instantLikes={instantLikes}
+                setInstantLikes={setInstantLikes}
+                likesFromServer={likesFromServer}
               />
             </ProtectedRoute>
           }/>

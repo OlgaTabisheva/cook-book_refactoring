@@ -1,21 +1,18 @@
 @import "../../variables";
 
-.favoritesRecipes {
-  margin-top: 40px;
-  margin-bottom: 120px;
+
+.adminRights{
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: flex-start;
   align-items: center;
-
-  &__box {
+  &__box{
+    margin-top: 40px;
     display: flex;
-    width: 1120px;
+    width: 1300px;
     align-items: flex-start;
     align-content: flex-start;
-    gap: 60px 32px;
+    gap: 32px;
     flex-wrap: wrap;
-    //   @extend %catalog
+    justify-content: flex-start;
   }
 }

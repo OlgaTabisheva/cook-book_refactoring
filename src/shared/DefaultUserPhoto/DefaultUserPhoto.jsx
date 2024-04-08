@@ -20,7 +20,6 @@ function DefaultUserPhoto({formData}) {
 
   const [openDownloadPopup, setOpenDownloadPopup]= useState(false)
 
-console.log(openDownloadPopup,'openDownloadPopup')
   const user = useUserData()
   const defaultAvatar= 'https://s.gravatar.com/avatar/'
   return (

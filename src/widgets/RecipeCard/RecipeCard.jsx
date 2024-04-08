@@ -11,6 +11,7 @@ import {useUserData} from "@nhost/react";
 import {gql, useMutation, useQuery} from "@apollo/client";
 import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
 import {Link} from "react-router-dom";
+import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
 function RecipeCard({
                       name,
@@ -90,9 +91,7 @@ function RecipeCard({
 
     if (instantLikes?.some(t => t.recipesId === id)) {
       //del likes
-      console.log(instantLikes)
       let tmp = instantLikes.filter(o => o.recipesId !== id);
-      console.log(tmp,'tmp')
       setCountLikes(countLikes - 1)
       deleteLikes().then(
         setInstantLikes(tmp)
@@ -117,21 +116,26 @@ function RecipeCard({
   return (
     <section className={style.recipeCard}>
       <Link to={`/recipe/${id}`} key={id} className={style.recipeCard__link}>
-      <div className={style.recipeCard__imgBox}>
-        <RecipeChips text={category?.category}/>
+        <div className={style.recipeCard__imgBox}>
+          <div >
+          <RecipeChips text={category?.category}/>
+{/*
+            <ButtonPicture size={'smallRose'} value={'RedClose'}/>
+*/}
+          </div>
           <img className={style.recipeCard__img}
                src={photo ? photo : img} alt="recipeImg"/></div>
 
-      <div className={style.recipeCard__textBox}>
-        <h3 className={style.recipeCard__name}>{name}</h3>
-        <p className={style.recipeCard__text}>Марина Иванова</p>
-        <BoxClockTime howLong={duration?.duration}/>
-      </div>
+        <div className={style.recipeCard__textBox}>
+          <h3 className={style.recipeCard__name}>{name}</h3>
+          <p className={style.recipeCard__text}>Марина Иванова</p>
+          <BoxClockTime howLong={duration?.duration}/>
+        </div>
       </Link>
-      <div className={style.recipeCard__box} >
+      <div className={style.recipeCard__box}>
         {instantLikes?.some(t => t.recipesId === id) ?
-          <ButtonLikeFull  onClick={()=>handleClickLike(id)} countLikes={countLikes}/> :
-          <ButtonLikeEmpty onClick={()=>handleClickLike(id)} countLikes={countLikes}/>}
+          <ButtonLikeFull onClick={() => handleClickLike(id)} countLikes={countLikes}/> :
+          <ButtonLikeEmpty onClick={() => handleClickLike(id)} countLikes={countLikes}/>}
         <ButtonComments countComments={countComments}/>
       </div>
 

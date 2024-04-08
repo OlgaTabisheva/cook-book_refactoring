@@ -111,6 +111,21 @@
   align-items: center;
   gap: 8px;
 }
+.buttonPicture__smallRose{
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: var(--Secondary-Accent-Accent-15-fill, #FFDCBF);
+  //padding: 16px;
+  width: 40px;
+  height: 40px;
+  z-index: 30;
+  margin-bottom: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
 .buttonPicture__smallBlackSquare{
   border: none;
   cursor: pointer;
@@ -133,6 +148,15 @@
   Height: 24px;
   z-index: 310;
 }
+.buttonPicture__redClose{
+  stroke: #EA3E27;
+  Width: 24px;
+  Height: 24px;
+  z-index: 310;
+}
+
+
+
 .buttonPicture__arrowSmall{
   stroke: $white;
   Width: 24px;

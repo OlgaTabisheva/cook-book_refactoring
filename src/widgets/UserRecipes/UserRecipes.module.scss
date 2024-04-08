@@ -3,8 +3,16 @@
 .userRecipes {
   margin-top: 40px;
   margin-bottom: 120px;
+  display: flex;
+  justify-content: center;
+
 
   &__box {
-    @extend %catalog;
+    display: flex;
+    width: 1120px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 60px 32px;
+    flex-wrap: wrap;
   }
 }

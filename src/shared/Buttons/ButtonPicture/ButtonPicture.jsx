@@ -15,6 +15,8 @@ function ButtonPicture({value, onClick, disabled, size}) {
         size === 'normalWhite' && style.buttonPicture__white ||
         size === 'smallInherit' && style.buttonPicture__small ||
         size === 'smallBlack' && style.buttonPicture__smallBlack ||
+
+        size === 'smallRose' && style.buttonPicture__smallRose ||
         size === 'smallBlackSquare' && style.buttonPicture__smallBlackSquare ||
         size === 'prev' && style.prev ||
         size === 'next' && style.next
@@ -28,6 +30,7 @@ function ButtonPicture({value, onClick, disabled, size}) {
       {value === 'image' && <Image className={style.buttonPicture__image}/>}
       {value === 'brownClose' && <SmallClose className={style.buttonPicture__brownClose}/>}
       {value === 'WhiteClose' && <SmallClose className={style.buttonPicture__whiteClose}/>}
+      {value === 'RedClose' && <SmallClose className={style.buttonPicture__redClose}/>}
       {value === 'ArrowSmallRight' && <ArrowSmallRight className={style.buttonPicture__arrowSmall}/>}
       {value === 'ArrowSmallLeft' && <ArrowSmallLeft className={style.buttonPicture__arrowSmall}/>}
     </button>

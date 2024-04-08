@@ -1,0 +1,40 @@
+@import "../../variables";
+
+.adminCard{
+  display: flex;
+  width: 352px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 40px;
+  flex-shrink: 0;
+  border-radius: 28px;
+  background-color: $sand-10;
+  border: 1px solid var(--Primary-Sand-Sand-30, #F2E4B8);
+
+  &__title{
+    overflow: hidden;
+    color: $primary-dark-100;
+    font-feature-settings: 'clig' off, 'liga' off;
+    text-overflow: ellipsis;
+
+    @extend %title24Vol;
+  }
+  &__box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__text{
+    overflow: hidden;
+    color: $sand-80;
+    font-feature-settings: 'clig' off, 'liga' off;
+    text-overflow: ellipsis;
+
+   @extend %textLarge16Mon;
+  }
+  &__icon{
+    width: 24px;
+    height: 24px;
+  }
+}
