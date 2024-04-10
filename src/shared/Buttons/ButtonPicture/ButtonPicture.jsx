@@ -5,6 +5,8 @@ import {ReactComponent as Close} from '../../../assets/close.svg';
 import {ReactComponent as Image} from '../../../assets/image.svg';
 import {ReactComponent as ArrowSmallLeft} from '../../../assets/arrowSmallLeft.svg';
 import {ReactComponent as ArrowSmallRight} from '../../../assets/arrowSmallRight.svg';
+import {ReactComponent as ArrowMLeft} from '../../../assets/LeftM.svg';
+import {ReactComponent as ArrowMRight} from '../../../assets/RightM.svg';
 import {ReactComponent as SmallClose} from '../../../assets/x.svg';
 function ButtonPicture({value, onClick, disabled, size}) {
   return (
@@ -19,7 +21,9 @@ function ButtonPicture({value, onClick, disabled, size}) {
         size === 'smallRose' && style.buttonPicture__smallRose ||
         size === 'smallBlackSquare' && style.buttonPicture__smallBlackSquare ||
         size === 'prev' && style.prev ||
-        size === 'next' && style.next
+        size === 'next' && style.next ||
+        size === 'arrowNext' && style.arrowNext ||
+        size === 'arrowPrev' && style.arrowPrev
 
     }
 
@@ -33,6 +37,8 @@ function ButtonPicture({value, onClick, disabled, size}) {
       {value === 'RedClose' && <SmallClose className={style.buttonPicture__redClose}/>}
       {value === 'ArrowSmallRight' && <ArrowSmallRight className={style.buttonPicture__arrowSmall}/>}
       {value === 'ArrowSmallLeft' && <ArrowSmallLeft className={style.buttonPicture__arrowSmall}/>}
+      {value === 'ArrowMRight' && <ArrowMRight className={style.buttonPicture__arrowM}/>}
+      {value === 'ArrowMLeft' && <ArrowMLeft className={style.buttonPicture__arrowM}/>}
     </button>
   )
 }

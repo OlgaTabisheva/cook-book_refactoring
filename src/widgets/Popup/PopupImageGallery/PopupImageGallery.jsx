@@ -1,7 +1,6 @@
 import style from './PopupImageGallery.module.scss'
 import img from './../../../assets/test.jpg'
 import 'swiper/css';
-import RecipeCardTest from "../../../test/RecipeCardTest/RecipeCardTest.jsx";
 import React, {useCallback, useRef} from "react";
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -9,7 +8,6 @@ import 'swiper/css/navigation';
 import {A11y,Pagination, Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
 import ButtonPicture from "../../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
-import {SwiperNavButton} from "../../SwiperNavButton/SwiperNavButton.jsx";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';

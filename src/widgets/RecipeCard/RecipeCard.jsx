@@ -26,6 +26,7 @@ function RecipeCard({
                       isBtnEdit = true,
                       isBtnComments = true
                     }) {
+
   const [changeLike, setChangeLike] = useState(false)
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])

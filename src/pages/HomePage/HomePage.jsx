@@ -1,5 +1,5 @@
 import style from './HomePage.module.scss'
-import Carousel from "react-multi-carousel";
+import React from "react";
 import "react-multi-carousel/lib/styles.css";
 import {useEffect, useState} from "react";
 import PictureSection from "../../widgets/PictureSection/PictureSection.jsx";
@@ -19,11 +19,32 @@ export const HomePage = ({
 
   const GET_NEW_RECIPES = gql`
  query MyQuery {
-  recipes(limit: 8, where: {}, order_by: {date: desc}) {
-    recipes_category
+  recipes(limit: 5, where: {}, order_by: {date: desc}) {
+      category {
+      category
+    }
+   duration {
+      duration
+    }
     photo
     name
-    long
+    id
+    food
+    authorId
+    date
+  }
+}`
+  const GET_POPULAR_RECIPES = gql`
+ query MyQuery {
+  recipes(limit: 5, where: {}, order_by: {date: desc}) {
+      category {
+      category
+    }
+   duration {
+      duration
+    }
+    photo
+    name
     id
     food
     authorId
@@ -34,33 +55,34 @@ export const HomePage = ({
 
   useEffect(() => {
     setInstantNewRecipes(newRecipes)
-  }, [])
+  }, [newRecipes])
 
 
   return (
     <section className={style.home}>
       <PictureSection/>
       <div className={style.home__box}>
-        <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Новые:"} instantAddRecipe={instantAddRecipe}
+    <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Новые:"} instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
                       newRecipes={newRecipes}/>
-        <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Самые популярные:"}
+      {/*  <CarouselsBox  carouselTitle={"Самые популярные:"}
                       instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
                       newRecipes={newRecipes}/>
-        <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Обсуждаемые:"}
+        <CarouselsBox  carouselTitle={"Обсуждаемые:"}
                       instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
-                      newRecipes={newRecipes}/>
+                      newRecipes={newRecipes}/>*/}
+
       </div>
     </section>
   );

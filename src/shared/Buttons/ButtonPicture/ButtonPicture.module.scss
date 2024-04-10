@@ -163,6 +163,11 @@
   Height: 24px;
   z-index: 310;
 }
+.buttonPicture__arrowM{
+  stroke: $sand-80;
+  width: 40px;
+  height: 20px;
+}
 .buttonPicture__brownClose{
   stroke: $sand-60;
   Width: 24px;
@@ -180,6 +185,34 @@
   border-radius: 8px;
   background: $primary-dark-120;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.arrowNext{
+  background: inherit;
+  height: 20px;
+  width: 40px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 368px;
+  right: 121px;
+  border: none;
+  z-index: 11;
+  &:hover{
+    opacity: 0.5;
+  }
+}
+.arrowPrev{
+  background: inherit;
+  height: 20px;
+  width: 40px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 368px;
+  right:20px;
+  z-index: 11;
+  border: none;
+  &:hover{
+    opacity: 0.5;
+  }
 }
 .prev:hover,
 .next:hover {

@@ -1,40 +1,36 @@
 import style from './CarouselsBox.module.scss'
+import React, {useCallback, useRef} from "react";
 import Carousel from "react-multi-carousel";
 import {useState} from "react";
 import RecipeCardTest from "../../test/RecipeCardTest/RecipeCardTest.jsx";
+import RecipeCard from "../RecipeCard/RecipeCard.jsx";
+import {EffectCoverflow,Pagination, Navigation} from 'swiper/modules';
+import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
+import 'swiper/scss';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-function CarouselsBox({newRecipes, carouselTitle
+import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
+
+function CarouselsBox({newRecipes: instantNewRecipes, carouselTitle, instantAddRecipe, instantLikes, setInstantLikes, setInstantAddRecipe, isAuthenticated
                       }) {
 
-  const chosenCategory = [
-    //First image url
-    {
 
-      url:
-        "https://i2.wp.com/www.geeksaresexy.net/wp-content/uploads/2020/04/movie1.jpg?resize=600%2C892&ssl=1"
-    },
-    {
-      url:
-        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-kids-movies-2020-call-of-the-wild-1579042974.jpg?crop=0.9760858955588091xw:1xh;center,top&resize=480:*"
-    },
-    //Second image url
-    {
-      url:
-        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-movies-for-kids-2020-sonic-the-hedgehog-1571173983.jpg?crop=0.9871668311944719xw:1xh;center,top&resize=480:*"
-    },
-    //Third image url
-    {
-      url:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQS82ET2bq9oTNwPOL8gqyoLoLfeqJJJWJmKQ&usqp=CAU"
-    },
 
-    //Fourth image url
 
-    {
-      url:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdvuww0JDC7nFRxiFL6yFiAxRJgM-1tvJTxA&usqp=CAU"
-    }
-  ];
+  const [swiperRef, setSwiperRef] = useState(null);
+
+  const sliderRef = useRef(null);
+
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
 
 
   const responsive = {
@@ -62,11 +58,11 @@ function CarouselsBox({newRecipes, carouselTitle
     fontSize: "80px"
   };
 
-
-  const ButtonGroup = ({next, previous, goToSlide, ...rest}) => {
+/*  const ButtonGroup = ({next, previous, goToSlide, ...rest}) => {
+    if (instantNewRecipes?.length > 0){
     const {carouselState: {currentSlide}} = rest;
     const firstNumberCarousel = numberCarouselImage === 0
-    const NumberCarousel = newRecipes?.length - 3
+    const NumberCarousel = instantNewRecipes?.length - 3
     const LastNumberCarousel = numberCarouselImage === NumberCarousel
     setNumberCarouselImage(currentSlide)
     return (
@@ -79,21 +75,65 @@ function CarouselsBox({newRecipes, carouselTitle
         <button className={style.carouselsBox__box} onClick={() =>
           previous()}  style={arrowStyle} disabled={firstNumberCarousel}>
           <div className={style.carouselsBox__buttonLeft} ></div>
-          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{newRecipes?.length - 5}</p>
+          <p className={style.carouselsBox__text}> {numberCarouselImage + 1}/{instantNewRecipes?.length - 5}</p>
         </button>
 
 
       </div>
 
     );
-  };
+  }};*/
+
+
   return (
     <div className={style.carouselsBox}>
       <div className={style.carouselsBox__carousel}>
         <h2 className={style.carouselsBox__title}>{carouselTitle}</h2>
-        <Carousel
+        <div className={style.carouselsBox__swiper}>
+     <Swiper
+       className="mySwiper"
+          onSwiper={setSwiperRef}
+          slidesPerView={3}
+          centeredSlides={false}
+             navigation={false}
+          spaceBetween={30}
+          pagination={{
+            type: 'fraction',
+          }}
+
+          ref={sliderRef}
+          modules={[Pagination, Navigation]}
+
+          style={{
+              "--swiper-pagination-color": "#fff",
+            }}
+
+        >
+
+          {instantNewRecipes && instantNewRecipes?.map((obj,index) => (
+            <SwiperSlide key={index} className={style.carouselsBox__swiperSlide}>
+
+              <RecipeCard
+                isBtnEdit={false}
+                key={obj.id} {...obj}
+                instantLikes={instantLikes}
+                setInstantLikes={setInstantLikes}
+                isAuthenticated={isAuthenticated}/>
+
+          </SwiperSlide>
+
+          ))}
+
+        </Swiper>
+        </div>
+        <div className={style.carouselsBox__buttons}>
+          <ButtonPicture size={'arrowNext'} value={'ArrowMLeft'} onClick={handlePrev}></ButtonPicture>
+          <ButtonPicture size={'arrowPrev'} value={'ArrowMRight'}   onClick={handleNext}/>
+        </div>
+
+ {/*   <Carousel
           renderButtonGroupOutside={false}
-          customButtonGroup={<ButtonGroup/>}
+         // customButtonGroup={<ButtonGroup/>}
           responsive={responsive}
           customRightArrow={null}
           customLeftArrow={null}
@@ -114,15 +154,20 @@ function CarouselsBox({newRecipes, carouselTitle
           rewind={false}
 
         >
-          {chosenCategory?.map((imageUrl, index
+          {instantNewRecipes && instantNewRecipes?.recipes?.map((obj, index
           ) => {
 
-            return (<div className={style.carouselsBox__card} key={index}><RecipeCardTest/>
+            return (<div  className={style.carouselsBox__card}key={index}><RecipeCard
+                                                                                      isBtnEdit={false}
+                                                                                      key={obj.id} {...obj}
+                                                                                      instantLikes={instantLikes}
+                                                                                      setInstantLikes={setInstantLikes}
+                                                                                      isAuthenticated={isAuthenticated}/>
               </div>
             )
 
           })}
-        </Carousel>
+        </Carousel>*/}
       </div>
 
     </div>
