@@ -45,7 +45,7 @@ useEffect(()=>{
     <section className={style.authorsPage}>
       <InputSearch/>
       <div className={style.authorsPage__box}>
-        {instantGetCountsUserLikes.map((obj, index)=>(
+        {instantGetCountsUserLikes?.map((obj, index)=>(
           <AuthorsCard {...obj} key={index}/>
         ))}
 

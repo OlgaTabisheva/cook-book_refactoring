@@ -12,8 +12,7 @@ import 'swiper/css/navigation';
 
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
-function CarouselsBox({newRecipes: instantNewRecipes, carouselTitle, instantAddRecipe, instantLikes, setInstantLikes, setInstantAddRecipe, isAuthenticated
-                      }) {
+function CarouselsBox({ instantNewRecipes, carouselTitle , instantLikes, setInstantLikes, isAuthenticated}) {
 
 
 

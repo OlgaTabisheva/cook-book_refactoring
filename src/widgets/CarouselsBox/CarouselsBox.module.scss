@@ -1,4 +1,5 @@
 @import "../../variables";
+
 :root {
   --swiper-pagination-bottom: auto;
   --swiper-pagination-top: 10px;
@@ -10,14 +11,17 @@ li {
   text-align: left;
   padding-right: 11px;
 }
+
 .swiper-horizontal {
   touch-action: pan-y !important;
 }
-.swiper{
+
+.swiper {
   position: relative !important;
   padding-top: 78px !important;
 }
-.swiper-wrapper{
+
+.swiper-wrapper {
   position: relative !important;
   padding-top: 40px !important;
   width: 100%;
@@ -25,20 +29,22 @@ li {
   z-index: 1;
   display: flex;
   transition-property: transform;
-  transition-timing-function: var(--swiper-wrapper-transition-timing-function,initial);
+  transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
   box-sizing: content-box;
 }
-.swiper-pagination{
+
+.swiper-pagination {
   position: absolute;
-  top: 0 !important;
+  top: -2px !important;
   z-index: 100;
   left: 1015px !important;
 }
+
 .carouselsBox {
   max-width: 1120px;
   width: 100%;
 
-  &__swiper{
+  &__swiper {
     position: relative;
     padding-top: 50px !important;
     z-index: 10;
@@ -48,17 +54,21 @@ li {
     list-style: none;
     display: block;
   }
-  &__swiperSlide{
+
+  &__swiperSlide {
 
   }
+
   &__carousel {
     position: relative;
     z-index: 10;
   }
-  &__buttons{
+
+  &__buttons {
     display: flex;
     justify-content: flex-end;
   }
+
   &__title {
     @extend %title28Vol;
     margin: 60px 0 12px 0;

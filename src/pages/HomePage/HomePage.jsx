@@ -12,11 +12,12 @@ export const HomePage = ({
                            instantLikes,
                            setInstantLikes,
                            isAuthenticated,
-                           setInstantAddRecipe, chosenCategory
+                           setInstantAddRecipe,
                          }) => {
 
   const [instantNewRecipes, setInstantNewRecipes] = useState([])
-
+  const [instantTheMostCommentsRecipes, setInstantTheMostCommentsRecipes] = useState([])
+  const [instantTheMostPopularRecipes, setInstantTheMostPopularRecipes] = useState([])
   const GET_NEW_RECIPES = gql`
  query MyQuery {
   recipes(limit: 5, where: {}, order_by: {date: desc}) {
@@ -35,12 +36,12 @@ export const HomePage = ({
   }
 }`
   const GET_POPULAR_RECIPES = gql`
- query MyQuery {
-  recipes(limit: 5, where: {}, order_by: {date: desc}) {
-      category {
+query MyQuery {
+  recipes(order_by: {likes_aggregate: {max: {}, min: {}, count: desc}}, limit: 5) {
+    category {
       category
     }
-   duration {
+    duration {
       duration
     }
     photo
@@ -51,37 +52,67 @@ export const HomePage = ({
     date
   }
 }`
+
+  const GET_MOST_COMMENT_RECIPES = gql`
+query MyQuery {
+  recipes(where: {}, order_by: {comments_aggregate: {count: desc}}, limit: 5) {
+    category {
+      category
+    }
+    duration {
+      duration
+    }
+    photo
+    name
+    id
+    food
+    authorId
+    date
+  }
+}
+  `
+
   const newRecipes = useQuery(GET_NEW_RECIPES)?.data?.recipes
+  const theMostPopularRecipes = useQuery(GET_POPULAR_RECIPES)?.data?.recipes
+  const theMostCommentsRecipes = useQuery(GET_MOST_COMMENT_RECIPES)?.data?.recipes
 
   useEffect(() => {
     setInstantNewRecipes(newRecipes)
   }, [newRecipes])
+  useEffect(() => {
+    setInstantTheMostCommentsRecipes(theMostCommentsRecipes)
+  }, [theMostCommentsRecipes])
 
+  useEffect(() => {
+    setInstantTheMostPopularRecipes(theMostPopularRecipes)
+  }, [theMostPopularRecipes])
 
   return (
     <section className={style.home}>
       <PictureSection/>
       <div className={style.home__box}>
-    <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Новые:"} instantAddRecipe={instantAddRecipe}
+        <CarouselsBox instantNewRecipes={instantNewRecipes} carouselTitle={"Новые:"} instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
                       newRecipes={newRecipes}/>
-      {/*  <CarouselsBox  carouselTitle={"Самые популярные:"}
+        <CarouselsBox carouselTitle={"Самые популярные:"}
+                      instantNewRecipes={instantTheMostPopularRecipes}
                       instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
                       newRecipes={newRecipes}/>
-        <CarouselsBox  carouselTitle={"Обсуждаемые:"}
+        <CarouselsBox carouselTitle={"Обсуждаемые:"}
+                      instantNewRecipes={instantTheMostCommentsRecipes}
                       instantAddRecipe={instantAddRecipe}
                       instantLikes={instantLikes}
                       setInstantLikes={setInstantLikes}
                       isAuthenticated={isAuthenticated}
                       setInstantAddRecipe={setInstantAddRecipe}
-                      newRecipes={newRecipes}/>*/}
+                      newRecipes={newRecipes}/>
 
       </div>
     </section>
