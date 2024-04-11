@@ -8,7 +8,7 @@ import CommentsBox from "../../widgets/CommentsBox/CommentsBox.jsx";
 import {useEffect, useState} from "react";
 import {gql, useQuery} from "@apollo/client";
 
-function FullRecipe({instantAddRecipe,isAuthenticated }) {
+function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, instantLikesComments }) {
   const {id} = useParams();
   const navigate = useNavigate();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
@@ -33,7 +33,6 @@ query MyQuery {
   const CommentsFromServer = res?.data?.comments
   useEffect(() => {
 
-    console.log(instantComments,'instantComments')
     setInstantComments(CommentsFromServer)
   }, [CommentsFromServer])
 
@@ -66,7 +65,11 @@ query MyQuery {
         </div>
         <CommentsBox       isAuthenticated={isAuthenticated}
                            instantComments={instantComments}
-                           setInstantComments={setInstantComments}/>
+                           setInstantComments={setInstantComments}
+                           instantLikesComments={instantLikesComments}
+                           setInstantLikesComments={setInstantLikesComments}
+        />
+
       </div>
       <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
     </div>

@@ -15,8 +15,8 @@ function WriteComment({handleAddComments, textComment, commentEditText, setTextC
         <User className={style.writeComment__user}/>
       </div>
       <div className={style.writeComment__box}>
-        <TextareaAutosize defaultValue={'Написать комментарий...'} className={style.writeComment__area}
-                          onChange={(e) => setTextComment(e.target.value)}  placeholder={textComment}>
+        <TextareaAutosize defaultValue={textComment} className={style.writeComment__area}
+                          onChange={(e) => setTextComment(e.target.value)}  placeholder={'Написать комментарий...'}>
 
         </TextareaAutosize>
         <ButtonBasic color={'primaryGreen'} text={'Отправить'} onClick={handleAddComments}> </ButtonBasic>

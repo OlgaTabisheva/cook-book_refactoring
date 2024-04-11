@@ -25,8 +25,6 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
     setFullRecipe(instantAddRecipe?.recipes?.find(elem => elem?.id === id))
   },[instantAddRecipe])
 
-
-  console.log(recipeStepsMap, 'recipeStepsMap')
   return (
     <div className={style.recipePhotoBlock}>
 

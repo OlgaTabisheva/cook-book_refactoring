@@ -67,6 +67,7 @@ function App() {
   const categories = useQuery(GET_CATEGORY).data
   const duration = useQuery(GET_DURATION).data
   const [instantLikes, setInstantLikes] = useState([])
+  const [instantLikesComments, setInstantLikesComments] = useState([])
   const [instantAddRecipe, setInstantAddRecipe] = React.useState()
   const [formValuesRecipe, setFormValuesRecipe] = React.useState({
     id: '',
@@ -85,11 +86,28 @@ function App() {
   }
 }
 `
+  const GET_LIKES_COMMENTS = gql`
+query MyQuery {
+  likesComments(where: {userIdCommentary: {_eq: "${user?.id}"}}) {
+    userIdCommentary
+    commentId
+  }
+}
+
+`
   const likesFromServer = useQuery(GET_LIKES).data?.likes
+  const likesCommentsFromServer = useQuery(GET_LIKES_COMMENTS).data?.likesComments
+
 
   useEffect(() => {
     setInstantLikes(likesFromServer)
   }, [likesFromServer])
+
+  useEffect(() => {
+
+
+ setInstantLikesComments(likesCommentsFromServer)
+  }, [likesCommentsFromServer])
 
   const SET_CATEGORY = gql`query {
    recipes(where: {category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
@@ -248,7 +266,8 @@ function App() {
               instantAddRecipe={instantAddRecipe}
               setInstantAddRecipe={setInstantAddRecipe}
               isAuthenticated={isAuthenticated}
-
+              instantLikesComments={instantLikesComments}
+              setInstantLikesComments={setInstantLikesComments}
             />
           }/>
         </Route>
