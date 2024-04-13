@@ -16,8 +16,6 @@ function AddPhotoRecipe({ setStepRecipeInfo, stepRecipeInfo, obj, setMainRecipeI
       await nhost.storage.upload({file: file})
       .then((res) => {
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
-        console.log(publicUrl,'publicUrl')
-        console.log(stepRecipeInfo?.id, 'stepRecipeInfo.id)')
         if (stepRecipeInfo?.id>0) {
           setStepRecipeInfo({
             id: obj.id,

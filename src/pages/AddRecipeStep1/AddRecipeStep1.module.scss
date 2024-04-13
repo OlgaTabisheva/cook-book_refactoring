@@ -21,4 +21,21 @@
     text-align: center;
     margin-bottom: 40px;
   }
+  &__error{
+    @extend %textSmall13-16Mon;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+
+    font-family: $hint-font;
+    visibility: visible;
+    opacity: 1;
+    color: $error;
+  }
+  &__errorHidden{
+    visibility: hidden;
+  }
+
 }

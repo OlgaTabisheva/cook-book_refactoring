@@ -77,7 +77,7 @@ function App() {
     duration: '',
     food: '',
   });
-
+  const [chosenTextCategoryStep1, setChosenTextCategoryStep1] = useState('')
   const GET_LIKES = gql`
  query {
   likes(where: {userId: {_eq: "${user?.id}"}}) {
@@ -216,6 +216,9 @@ query MyQuery {
               allDuration={allDuration}
               instantAddRecipe={instantAddRecipe}
               setInstantAddRecipe={setInstantAddRecipe}
+              formValuesRecipe={formValuesRecipe}
+              chosenTextCategoryStep1={chosenTextCategoryStep1}
+              setChosenTextCategoryStep1={setChosenTextCategoryStep1}
             />
           </ProtectedRoute>
         }/>
@@ -226,6 +229,9 @@ query MyQuery {
               allDuration={allDuration}
               instantAddRecipe={instantAddRecipe}
               setInstantAddRecipe={setInstantAddRecipe}
+              formValuesRecipe={formValuesRecipe}
+              chosenTextCategoryStep1={chosenTextCategoryStep1}
+              setChosenTextCategoryStep1={setChosenTextCategoryStep1}
             />
           </ProtectedRoute>}
         />
@@ -239,6 +245,8 @@ query MyQuery {
               setFormValuesRecipe={setFormValuesRecipe}
               formValuesRecipe={formValuesRecipe}
               instantAddRecipe={instantAddRecipe}
+              chosenTextCategoryStep1={chosenTextCategoryStep1}
+              setChosenTextCategoryStep1={setChosenTextCategoryStep1}
             />
           </ProtectedRoute>
         }/>
@@ -253,6 +261,7 @@ query MyQuery {
                 instantLikes={instantLikes}
                 setInstantLikes={setInstantLikes}
                 likesFromServer={likesFromServer}
+
               />
             </ProtectedRoute>
           }/>
@@ -285,6 +294,8 @@ query MyQuery {
         position="top-center"
         reverseOrder={false}
       />
+
+
     </div>
   );
 }

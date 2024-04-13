@@ -5,13 +5,18 @@ import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import {useSignOut, useUserData} from "@nhost/react";
 import {gql, useMutation} from "@apollo/client";
 import {toast} from "react-hot-toast";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import PopupDownloadImage from "../Popup/PopupDownloadImage/PopupDownloadImage.jsx";
+import {FileUploader} from "react-drag-drop-files";
+import ImageBlobReduce from "image-blob-reduce";
 
-
+const fileTypes = ["JPG", "PNG", "GIF"];
 function UserProfile({formData, setFormData}) {
   const {signOut} = useSignOut()
   const user = useUserData()
 
+  const [openDownloadPopup, setOpenDownloadPopup]= useState(false)
+const [boxFileUploader, setBoxFileUploader] = useState()
   const UPDATE_USER_MUTATION = gql`
   mutation ($id: uuid!, $displayName: String!, $email: citext, $avatarUrl: String! ) {
     updateUser(pk_columns: { id: $id }, _set: { displayName: $displayName , email :$email, avatarUrl : $avatarUrl }) {
@@ -43,10 +48,19 @@ function UserProfile({formData, setFormData}) {
     setFormData(user)
   }, [user])
 
+
+
+
+
+
+
   return (
     <section className={style.userProfile}>
+      <FileUploader maxSize={5}  name="file" types={fileTypes} handleChange={(file)=>onDrop(file)}>
+        <input type="file"  />
 
-      <DefaultUserPhoto formData={formData}/>
+      <DefaultUserPhoto formData={formData} setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} />
+      </FileUploader>
       <form className={style.userProfile__box}>
         <InputAuth title={'Имя'} text={'Тут будет имя'} value={
           user?.displayName}/>
@@ -62,6 +76,12 @@ function UserProfile({formData, setFormData}) {
           <ButtonBasic text={'Выйти'} color={'secondaryRed'} onClick={signOut}/>
         </div>
       </form>
+
+
+
+      { openDownloadPopup && <PopupDownloadImage setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} boxFileUploader={boxFileUploader}/>}
+
+
     </section>
   )
 }

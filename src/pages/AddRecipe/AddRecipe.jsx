@@ -15,7 +15,7 @@ import {gql, useMutation} from "@apollo/client";
 import {toast} from "react-hot-toast";
 
 
-function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddRecipe}) {
+function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddRecipe, formValuesRecipe, chosenTextCategoryStep1, setChosenTextCategoryStep1}) {
   const {id} = useParams();
   const navigate = useNavigate();
   const user = useUserData()
@@ -86,6 +86,12 @@ const [nameRecipe,setNameRecipe]=useState()
   }, [nameRecipe, chosenTextCategory,mainRecipeImage,chosenTextDuration,productQuantityMap,instantStepRecipeWithGallery])
 
 
+
+  useEffect(()=>{
+    setNameRecipe(formValuesRecipe?.name)
+    setChosenTextCategory(chosenTextCategoryStep1)
+  },[formValuesRecipe?.name, chosenTextCategoryStep1])
+
   const updateRecipe = async (e) => {
     e.preventDefault()
 
@@ -145,7 +151,7 @@ const [nameRecipe,setNameRecipe]=useState()
       <form className={style.addRecipe__box} onSubmit={updateRecipe}>
         <div className={style.addRecipe__boxName}>
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
-          <InputAuth title={'Название рецепта'} placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={nameRecipe} onChange={(e)=>setNameRecipe(e.target.value)}/>
+          <InputAuth title={'Название рецепта'} placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={ nameRecipe} onChange={(e)=>setNameRecipe(e.target.value)}/>
         </div>
         <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category}
                       setChosenTextCategory={setChosenTextCategory}/>

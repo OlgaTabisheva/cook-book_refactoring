@@ -1,5 +1,5 @@
 import style from './AddRecipeStep1.module.scss'
-import React from 'react';
+import React, {useEffect} from 'react';
 import HeaderMini from "../../widgets/HeaderMini/HeaderMini.jsx";
 import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
@@ -13,9 +13,9 @@ function AddRecipeStep1({  setInstantAddRecipe,
                           instantAddRecipe,
                           allCategories,
                           setFormValuesRecipe,
-                          formValuesRecipe}) {
+                          formValuesRecipe,chosenTextCategoryStep1,setChosenTextCategoryStep1}) {
 
-  const [chosenTextCategoryStep1, setChosenTextCategoryStep1] = useState('')
+
   const navigate = useNavigate();
   const user = useUserData()
   const handleInputChange = React.useCallback((e) => {
@@ -41,6 +41,9 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
   }
 }`
   const [addNewRecipe, {error: ErrorAddRecipe}] = useMutation(ADD_RECIPE)
+
+
+
 
   React.useEffect(function validateInputs() {
 
@@ -87,8 +90,12 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
       <HeaderMini color={'SandColorful10'}/>
 <div className={style.addRecipeStep1__box}>
   <h3 className={style.addRecipeStep1__title}>Создать рецепт</h3>
-  <InputAuth errorText={'ghbdtn'} title={'Название рецепта'} text={'Введите текст'} id="name" name={'emailInput'} onChange={ handleInputChange}  value={formValuesRecipe?.name}/>
+  <InputAuth  error={!nameValid} errorText={'Название рецепта слишком короткое'} title={'Название рецепта'} text={'Введите текст'} id="name" name={'emailInput'} onChange={ handleInputChange}  value={formValuesRecipe?.name}/>
   <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategoryStep1.category} setChosenTextCategory={setChosenTextCategoryStep1}/>
+  {chosenTextCategoryStep1.category && <span
+    className={!categoryValid ? style.addRecipeStep1__error : style.addRecipeStep1__errorHidden}
+    id="error-category">Нужно выбрать категорию рецепта</span>}
+
   <ButtonBasic color={'primaryGreen'} text={'Далее'} type={'submit'} disabled={isSubmitDisabled}/>
 </div>
     </form>

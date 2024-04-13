@@ -5,8 +5,7 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import UserProfile from "../../widgets/UserProfile/UserProfile.jsx";
 import FavoritesRecipes from "../../widgets/FavoritesRecipes/FavoritesRecipes.jsx";
 import UserRecipes from "../../widgets/UserRecipes/UserRecipes.jsx";
-import {gql, useMutation} from "@apollo/client";
-import {toast} from "react-hot-toast";
+
 import AdminRights from "../../widgets/AdminRights/AdminRights.jsx";
 
 
@@ -31,9 +30,10 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                                                             setInstantLikes={setInstantLikes}
                                                             likesFromServer={likesFromServer}/> : null}
         {changeButton === 'Мои Рецепты' ? <UserRecipes/> : null}
-        {changeButton === 'Профиль' ? <UserProfile formData={formData} setFormData={setFormData}/> : null}
+        {changeButton === 'Профиль' ? <UserProfile formData={formData} setFormData={setFormData} /> : null}
         {changeButton === 'Дополнительные права' ? <AdminRights formData={formData} setFormData={setFormData}/> : null}
       </div>
+
     </section>
   );
 }

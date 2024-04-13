@@ -10,7 +10,7 @@ import {ReactComponent as ArrowMRight} from '../../../assets/RightM.svg';
 import {ReactComponent as SmallClose} from '../../../assets/x.svg';
 function ButtonPicture({value, onClick, disabled, size}) {
   return (
-    <button
+    <button type={'button'}
       className={size === 'normal' && style.buttonPicture ||
       size === 'big' && style.buttonPicture__big ||
       size === 'circle' && style.buttonPicture__circle ||

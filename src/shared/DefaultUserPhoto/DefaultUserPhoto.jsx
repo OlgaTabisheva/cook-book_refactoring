@@ -16,9 +16,9 @@ import PopupDownloadImage from "../../widgets/Popup/PopupDownloadImage/PopupDown
   )
 }*/
 
-function DefaultUserPhoto({formData}) {
+function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup}) {
 
-  const [openDownloadPopup, setOpenDownloadPopup]= useState(false)
+
 
   const user = useUserData()
   const defaultAvatar= 'https://s.gravatar.com/avatar/'
@@ -30,7 +30,6 @@ function DefaultUserPhoto({formData}) {
 
       </div>
     </button>
-      {openDownloadPopup && <PopupDownloadImage/>}
     </>
   )
 }

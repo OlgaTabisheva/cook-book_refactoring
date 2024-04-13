@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
+    "blueimp-canvas-to-blob": "^3.29.0",
+    "image-blob-reduce": "^4.1.0",
     "react": "^18.2.0",
+    "react-cropper": "^2.3.3",
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.10",
     "react-easy-crop": "^5.0.5",
