@@ -21,6 +21,14 @@
     text-align: center;
     margin-bottom: 40px;
   }
+  &__categoriesBox{
+    margin: 60px 0;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+
+  }
   &__error{
     @extend %textSmall13-16Mon;
     display: flex;

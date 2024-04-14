@@ -4,7 +4,7 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import {Link} from "react-router-dom";
 
 
-function HeaderMini({color}) {
+function HeaderMini({color, onClick}) {
 
   return (
     <section className={
@@ -12,7 +12,7 @@ function HeaderMini({color}) {
       color === 'Sand10' && style.headerMiniSand10}>
       <div className={style.headerMiniSand10__box}>
         <Logo/>
-        <Link to={'/'}><ButtonPicture value={'close'} size={'normal'}/></Link>
+       <ButtonPicture onClick={onClick} value={'close'} size={'normal'}> </ButtonPicture>
 
       </div>
 

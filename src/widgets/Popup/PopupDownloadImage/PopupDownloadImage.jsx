@@ -6,7 +6,6 @@ import ButtonBasic from "../../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import ButtonPicture from "../../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import ReactCropperElement from "react-cropper";
 
 function PopupDownloadImage({setOpenDownloadPopup, openDownloadPopup, boxFileUploader, onClick}) {
 

@@ -15,4 +15,12 @@
     flex-wrap: wrap;
     justify-content: flex-start;
   }
+  &__button{
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    &:hover{
+      opacity: 0.5;
+    }
+  }
 }

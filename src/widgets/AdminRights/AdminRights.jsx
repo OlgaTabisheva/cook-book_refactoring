@@ -37,9 +37,9 @@ function AdminRights() {
       <div className={style.adminRights__box}>
 
       {adminR?.map((obj, index)=>(
-
+<button className={style.adminRights__button}>
         <AdminCard key={index} {...obj}/>
-
+</button>
       ))}
       </div>
     </section>

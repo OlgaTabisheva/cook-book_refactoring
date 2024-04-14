@@ -4,16 +4,11 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
 import {useEffect, useRef, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
-function RecipeStep({ obj, setInstantStepRecipeWithGallery, instantStepRecipeWithGallery}) {
+function RecipeStep({ obj, setInstantStepRecipeWithGallery, instantStepRecipeWithGallery, setStepRecipeForError}) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
 
-  useEffect(()=>{
-console.log(stepRecipeInfo,'stepRecipeInfo')
-  console.log(instantStepRecipeWithGallery,'instantStepRecipeWithGallery')
-
-},[instantStepRecipeWithGallery])
 
   useEffect(() => {
     const updatedItems = instantStepRecipeWithGallery
@@ -24,8 +19,11 @@ console.log(stepRecipeInfo,'stepRecipeInfo')
     else
       updatedItems[ind] = stepRecipeInfo
     setInstantStepRecipeWithGallery(updatedItems)
-  }, [stepRecipeInfo])
 
+  }, [stepRecipeInfo])
+ useEffect(()=>{
+   setStepRecipeForError(stepRecipeInfo?.text )
+ },[stepRecipeInfo?.text])
 
 
   function handleDeleteStep(id) {

@@ -91,11 +91,12 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
 <div className={style.addRecipeStep1__box}>
   <h3 className={style.addRecipeStep1__title}>Создать рецепт</h3>
   <InputAuth  error={!nameValid} errorText={'Название рецепта слишком короткое'} title={'Название рецепта'} text={'Введите текст'} id="name" name={'emailInput'} onChange={ handleInputChange}  value={formValuesRecipe?.name}/>
+  <div className={style.addRecipeStep1__categoriesBox}>
   <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategoryStep1.category} setChosenTextCategory={setChosenTextCategoryStep1}/>
   {chosenTextCategoryStep1.category && <span
     className={!categoryValid ? style.addRecipeStep1__error : style.addRecipeStep1__errorHidden}
     id="error-category">Нужно выбрать категорию рецепта</span>}
-
+  </div>
   <ButtonBasic color={'primaryGreen'} text={'Далее'} type={'submit'} disabled={isSubmitDisabled}/>
 </div>
     </form>

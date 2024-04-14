@@ -9,10 +9,12 @@ import {useEffect, useState} from "react";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
 import ImageBlur from "../../widgets/ImageBlur/ImageBlur.jsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, Navigate, useNavigate, useParams} from "react-router-dom";
 import {useUserData} from "@nhost/react";
 import {gql, useMutation} from "@apollo/client";
 import {toast} from "react-hot-toast";
+import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
+import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 
 
 function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddRecipe, formValuesRecipe, chosenTextCategoryStep1, setChosenTextCategoryStep1}) {
@@ -20,6 +22,10 @@ function AddRecipe({allCategories, allDuration, instantAddRecipe, setInstantAddR
   const navigate = useNavigate();
   const user = useUserData()
  // const fullRecipe = instantAddRecipe?.recipes.find(elem => elem.id === id);
+const [textProductForError, setTextProductForError] = useState()
+  const [stepRecipeForError, setStepRecipeForError] = useState()
+  const [popupCloseAddRecipe, setPopupCloseAddRecipe] = useState(false)
+  const [closeAddRecipe, setCloseAddRecipe] = useState(false)
 
   const UPDATE_RECIPE = gql`
 mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!) {
@@ -56,6 +62,20 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
 const [nameRecipe,setNameRecipe]=useState()
   const [fullNewRecipe, setFullNewRecipe]=useState({})
+  const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
+    nameValid: false,
+    categoryValid: false,
+    photoValid: false,
+    durationValid: false,
+    productsValid: false,
+    stepsValid:false
+
+  });
+  const {nameValid, categoryValid, photoValid, durationValid, productsValid, stepsValid} = formValidityAddRecipe;
+  const isSubmitDisabled = !nameValid || !categoryValid || !photoValid || !durationValid || !productsValid || !stepsValid;
+
+
+
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
@@ -72,30 +92,34 @@ const [nameRecipe,setNameRecipe]=useState()
 
   }
 
-  useEffect(() => {
-    setFullNewRecipe({
-      name:nameRecipe,
-      category: chosenTextCategory.category,
-      url: mainRecipeImage,
-      duration: chosenTextDuration.duration,
-      products: productQuantityMap,
-      steps: instantStepRecipeWithGallery
-    })
-   // localStorage.setItem('fullNewRecipe', JSON.stringify(fullNewRecipe))
-    console.log(fullNewRecipe,'fullNewRecipe')
-  }, [nameRecipe, chosenTextCategory,mainRecipeImage,chosenTextDuration,productQuantityMap,instantStepRecipeWithGallery])
+ useEffect(function validateInputs() {
+
+   const isRecipeName = nameRecipe?.length > 3
+   const isRecipeCategory = chosenTextCategory?.category?.length  > 0
+   const isMainRecipePhoto = mainRecipeImage?.length >10
+   const isRecipeDuration = chosenTextDuration?.duration?.length > 0
+   const isRecipeProduct = textProductForError?.length > 2
+   const isRecipeStep = stepRecipeForError?.length > 20
+    setFormValidityAddRecipe(prevValidity => ({
+      nameValid: isRecipeName,
+      categoryValid: isRecipeCategory,
+      photoValid: isMainRecipePhoto,
+      durationValid: isRecipeDuration,
+      productsValid : isRecipeProduct,
+      stepsValid: isRecipeStep,
+
+    }))
+  }, [nameRecipe,chosenTextCategory,mainRecipeImage, chosenTextDuration, textProductForError,stepRecipeForError,])
 
 
 
   useEffect(()=>{
     setNameRecipe(formValuesRecipe?.name)
     setChosenTextCategory(chosenTextCategoryStep1)
-  },[formValuesRecipe?.name, chosenTextCategoryStep1])
+  },[])
 
   const updateRecipe = async (e) => {
     e.preventDefault()
-
-
     try {
       await mutateRecipe({
         variables: {
@@ -145,23 +169,28 @@ const [nameRecipe,setNameRecipe]=useState()
     setStepNumber(newStepNumber)
   }
 
+const exitClick = 'exitClick';
   return (
     <section className={style.addRecipe}>
-      <HeaderMini color={'SandColorful10'}/>
+      <HeaderMini color={'SandColorful10'} onClick={()=>setPopupCloseAddRecipe(!popupCloseAddRecipe)}/>
       <form className={style.addRecipe__box} onSubmit={updateRecipe}>
         <div className={style.addRecipe__boxName}>
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
-          <InputAuth title={'Название рецепта'} placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={ nameRecipe} onChange={(e)=>setNameRecipe(e.target.value)}/>
+          <InputAuth error={!nameValid} errorText={'Название рецепта слишком короткое'} title={'Название рецепта'} placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={ nameRecipe} onChange={(e)=>setNameRecipe(e.target.value)}/>
         </div>
-        <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category}
-                      setChosenTextCategory={setChosenTextCategory}/>
+        <div className={style.addRecipe__categoriesBox}>
+          <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category}
+                        setChosenTextCategory={setChosenTextCategory}/>
+          {chosenTextCategory?.number && <span className={!categoryValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Категория не задана</span>}
+        </div>
+
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
           {!mainRecipeImage ?
             <AddPhotoRecipe mainRecipeImage={mainRecipeImage} setMainRecipeImage={setMainRecipeImage}/>
             :
             <ImageBlur image={mainRecipeImage}/>}</div>
-
+        {mainRecipeImage && <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
 
         <div className={style.addRecipe__cover}>
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
@@ -172,7 +201,10 @@ const [nameRecipe,setNameRecipe]=useState()
                            chosenText={chosenTextDuration.duration}></ButtonChips>
 
             ))}
+
           </div>
+          {chosenTextDuration?.duration && <span className={!durationValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Длительность приготовления не задана</span>}
+
         </div>
         <h3 className={style.addRecipe__subtitle}>Состав:</h3>
         <li className={style.addRecipe__quantity} key="tbody">
@@ -181,23 +213,27 @@ const [nameRecipe,setNameRecipe]=useState()
               <ProductQuantity
                 obj={obj}
                 setProductQuantityMap={setProductQuantityMap}
-                productQuantityMap={productQuantityMap}/>
+                productQuantityMap={productQuantityMap} setTextProductForError={setTextProductForError}/>
             </ul>))}
         </li>
         <ButtonBasic color={'secondaryGreen'} type={'button'} text={'Добавить продукт'} onClick={() => handleAddProduct()}/>
+        {textProductForError && <span className={!productsValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Состав должен состоять из 1 продукта минимум</span>}
+
         <li className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj) => (
               <ul className={style.addRecipe__boxSteps} key={obj.id}>
                 <RecipeStep obj={obj} instantStepRecipeWithGallery={instantStepRecipeWithGallery}
-                            setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}/>
+                            setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery} setStepRecipeForError={setStepRecipeForError}/>
               </ul>
             )
           )}
         </li>
         <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'} onClick={() => handleAddStep()}/>
+        {stepRecipeForError && <span className={!stepsValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Не добавлен текст в первый шаг.</span>}
+
         <div className={style.addRecipe__button}>
-          <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}  type='submit'/>
+          <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'}  type='submit' disabled={isSubmitDisabled}/>
         </div>
         {/*  <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>*/}
 
@@ -206,6 +242,12 @@ const [nameRecipe,setNameRecipe]=useState()
       <div  className={style.addRecipe__imagePepper}/>
       <div  className={style.addRecipe__imageGarlic}/>
       <div  className={style.addRecipe__imageTomato}/>*/}
+
+      {popupCloseAddRecipe === true &&  <div className={style.addRecipe__popup}>
+          <PopupBasic text={'Внесенные изменения не сохранятся'} title={'Выйти?'} popupCloseAddRecipe={popupCloseAddRecipe} setCloseAddRecipe={setCloseAddRecipe} setPopupCloseAddRecipe={setPopupCloseAddRecipe} textButtonGo={'Выйти'} closeAddRecipe={closeAddRecipe} exitClick={()=>setCloseAddRecipe(!closeAddRecipe)}/>
+          <div className={style.addRecipe__overlay}></div>
+        </div>}
+
     </section>
   )
 }

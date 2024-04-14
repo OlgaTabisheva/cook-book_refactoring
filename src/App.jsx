@@ -208,20 +208,6 @@ query MyQuery {
           <Ttest/>
 
         }/>
-        <Route path="/add-recipe" element={
-          <ProtectedRoute>
-
-            <AddRecipe
-              allCategories={allCategories}
-              allDuration={allDuration}
-              instantAddRecipe={instantAddRecipe}
-              setInstantAddRecipe={setInstantAddRecipe}
-              formValuesRecipe={formValuesRecipe}
-              chosenTextCategoryStep1={chosenTextCategoryStep1}
-              setChosenTextCategoryStep1={setChosenTextCategoryStep1}
-            />
-          </ProtectedRoute>
-        }/>
         <Route exact path="/add-recipe/:id" element={
           <ProtectedRoute>
             <AddRecipe
@@ -235,7 +221,6 @@ query MyQuery {
             />
           </ProtectedRoute>}
         />
-
 
         <Route path="/add-recipe-step" element={
           <ProtectedRoute>

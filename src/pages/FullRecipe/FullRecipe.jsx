@@ -73,6 +73,7 @@ query MyQuery {
       </div>
       <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
     </div>
+
   )
 }
 

@@ -23,7 +23,7 @@
     position: relative;
     background-color: $sand-colorful-10;
     padding-bottom: 40px;
-    z-index: 30000;
+    z-index: 3000;
 
   }
 
@@ -70,7 +70,34 @@
     align-content: center;
     justify-content: center;
   }
+  &__span{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    @extend %textSmall13-16Mon;
+    font-family: $hint-font;
+    visibility: visible;
+    opacity: 1;
+    color: #EA3E27;
+    width: 100%;
 
+  }
+  &__span_hidden{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+    @extend %textSmall13-16Mon;
+    font-family: $hint-font;
+    visibility: hidden;
+    opacity: 1;
+    color: #EA3E27;
+    width: 100%;
+
+  }
   &__boxSteps {
     margin-top: -20px;
   }
@@ -117,7 +144,23 @@
     justify-content: space-evenly;
     flex-direction: column;
   }
+  &__popup{
+    position:fixed;
+    display:flex;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.7);
+    z-index:100000;
+  }
 
+  &__overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:10000;
+  }
   &__imagePepper {
     @extend %imageBackgroundPepper;
     background-image: url("./../../assets/Group 7.svg");
@@ -140,7 +183,13 @@
     left: 900px;
   }
 
-
+  &__categoriesBox{
+    margin: 60px 0;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+  }
   &__photoBox{
     display: flex;
     flex-direction: column;

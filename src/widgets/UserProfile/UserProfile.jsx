@@ -8,7 +8,6 @@ import {toast} from "react-hot-toast";
 import {useEffect, useState} from "react";
 import PopupDownloadImage from "../Popup/PopupDownloadImage/PopupDownloadImage.jsx";
 import {FileUploader} from "react-drag-drop-files";
-import ImageBlobReduce from "image-blob-reduce";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
 function UserProfile({formData, setFormData}) {

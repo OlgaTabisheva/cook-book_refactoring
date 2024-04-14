@@ -9,6 +9,7 @@ function ProductQuantity({
                            obj,
                            productQuantityMap,
                            setProductQuantityMap,
+  setTextProductForError
                          }) {
 
   const [isOpen, setIsOpen] = useState(true);
@@ -31,6 +32,7 @@ function ProductQuantity({
     else
       updatedItems[ind] = productInfo
     setProductQuantityMap(updatedItems)
+    setTextProductForError(productInfo?.product)
   }, [productInfo])
 
 
