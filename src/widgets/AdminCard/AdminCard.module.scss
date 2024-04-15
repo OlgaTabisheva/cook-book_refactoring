@@ -11,6 +11,10 @@
   border-radius: 28px;
   background-color: $sand-10;
   border: 1px solid var(--Primary-Sand-Sand-30, #F2E4B8);
+  cursor: pointer;
+  &:hover{
+    opacity: 0.5;
+  }
 
   &__title{
     overflow: hidden;

@@ -15,6 +15,7 @@ function SearchPage(props, {setInstantLikes, isAuthenticated, instantLikes, sear
 
   let location = useLocation();
   let searchTextFromRoute = decodeURI(location.pathname.slice(8))
+
   const [inputSearchText, setInputSearchText] = useState();
   const [searchString, setSearchString] = useState();
   const navigate = useNavigate();

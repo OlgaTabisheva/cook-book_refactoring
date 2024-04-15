@@ -5,6 +5,7 @@ import publish from  './../../assets/IconFilePublish.svg'
 import userIcon from  './../../assets/IconUser.svg'
 import plate from  './../../assets/IconPlate.svg'
 import circle from  './../../assets/IconMessage-circle.svg'
+import {Navigate, useNavigate} from "react-router-dom";
 
 const adminR = [
   {
@@ -29,7 +30,6 @@ const adminR = [
   },
 ]
 
-
 function AdminRights() {
   return (
     <section
@@ -37,9 +37,9 @@ function AdminRights() {
       <div className={style.adminRights__box}>
 
       {adminR?.map((obj, index)=>(
-<button className={style.adminRights__button}>
-        <AdminCard key={index} {...obj}/>
-</button>
+
+  <AdminCard key={index} {...obj} />
+
       ))}
       </div>
     </section>

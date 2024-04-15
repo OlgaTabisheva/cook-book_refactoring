@@ -18,6 +18,7 @@ import FullRecipe from "./pages/FullRecipe/FullRecipe.jsx";
 import AddRecipe from "./pages/AddRecipe/AddRecipe.jsx";
 import AddRecipeStep1 from "./pages/AddRecipeStep1/AddRecipeStep1.jsx";
 import SearchPage from "./pages/SearchPage/SearchPage.jsx";
+import AdminPage from "./pages/AdminPage/AdminPage.jsx";
 
 
 const GET_RECIPES = gql`
@@ -235,6 +236,18 @@ query MyQuery {
             />
           </ProtectedRoute>
         }/>
+        <Route exact path="/admin/:title" element={
+          <MainLayout/>
+        }>
+        <Route path="/admin/:title" element={
+
+          <ProtectedRoute>
+            <AdminPage
+              allCategories={allCategories}
+            />
+          </ProtectedRoute>
+        }/>
+        </Route>
         <Route exact path="/user" element={
           <MainLayout/>
         }>

@@ -10,7 +10,6 @@ import {gql, useQuery} from "@apollo/client";
 
 function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, instantLikesComments }) {
   const {id} = useParams();
-  const navigate = useNavigate();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
   const [recipeStepsMap, setRecipeStepsMap] = useState([])
   const [recipeCompositionMap, setRecipeCompositionMap] = useState([])
@@ -36,9 +35,7 @@ query MyQuery {
     setInstantComments(CommentsFromServer)
   }, [CommentsFromServer])
 
-  function handleNavigate() {
-    navigate(-1);
-  }
+
 
   useEffect(() => {
     if (fullRecipe?.steps.length > 0) {
@@ -53,7 +50,7 @@ query MyQuery {
   return (
     <div className={style.fullRecipe}>
       <div className={style.fullRecipe__cover}>
-        <ButtonBack onClick={handleNavigate}/>
+        <ButtonBack />
         <div className={style.fullRecipe__titleContent}>
           <h3 className={style.fullRecipe__title}> {fullRecipe?.name}</h3>
           <BoxClockTime
