@@ -17,9 +17,13 @@
   z-index: 10;
   top: 60px;
   right: 145px;
+  &:disabled{
+    opacity: 0.1;
+  }
 
   &__icon{
     stroke: $sand-80;
+    opacity: 0.5;
   }
   &__iconRed{
     stroke: $accent-100;
@@ -43,8 +47,11 @@
   }
   &__button{
     color: $primary-dark-100;
+    opacity: 0.5;
     &:nth-child(3n) {
       color: $accent-100;
+      opacity: 1;
+      cursor: pointer;
     }
   }
 }

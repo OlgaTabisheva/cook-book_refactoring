@@ -9,24 +9,15 @@ const fileTypes = ["JPG", "PNG", "GIF"];
 
 
 
-function AddPhotoRecipe({ setStepRecipeInfo, stepRecipeInfo, obj, setMainRecipeImage}) {
+function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload}) {
 
 
   const handleChange = async (file)=> {
-      await nhost.storage.upload({file: file})
-      .then((res) => {
-        const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
-        if (stepRecipeInfo?.id>0) {
-          setStepRecipeInfo({
-            id: obj.id,
-            step: stepRecipeInfo?.step,
-            url: publicUrl,
-            text: stepRecipeInfo?.text
-          })
-        }else  setMainRecipeImage(publicUrl)
-    })
-  };
 
+     setFileUpload(file)
+      setPopupCropImage(!popupCropImage)
+
+  }
   return (
 
 

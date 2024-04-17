@@ -1,10 +1,13 @@
 import style from './RecipeStep.module.scss'
+import styles from './../../pages/AddRecipe/AddRecipe.module.scss'
+
 import ImageBlur from "../ImageBlur/ImageBlur.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
 import {useEffect, useRef, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
-function RecipeStep({ obj, setInstantStepRecipeWithGallery, instantStepRecipeWithGallery, setStepRecipeForError}) {
+import PopupCropImage from "../Popup/PopupCropImage/PopupCropImage.jsx";
+function RecipeStep({ obj, setInstantStepRecipeWithGallery,fileUpload, instantStepRecipeWithGallery, setStepRecipeForError, popupCropImage, setPopupCropImage}) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
@@ -55,6 +58,10 @@ function RecipeStep({ obj, setInstantStepRecipeWithGallery, instantStepRecipeWit
                url: stepRecipeInfo?.url,
                text: e.target.value
              })}/>
+      {popupCropImage === true &&  <div className={styles.addRecipe__popup}>
+        <PopupCropImage fileUpload={fileUpload} obj={stepRecipeInfo?.id} setStepRecipeInfo={setStepRecipeInfo} stepRecipeInfo={stepRecipeInfo} setPopupCropImage={setPopupCropImage} popupCropImage={popupCropImage} />
+        <div className={styles.addRecipe__overlay}></div>
+      </div>}
     </section>
 
   )
