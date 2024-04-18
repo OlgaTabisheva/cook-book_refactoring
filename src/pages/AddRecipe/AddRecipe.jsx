@@ -198,7 +198,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           {!mainRecipeImage ?
             <AddPhotoRecipe mainRecipeImage={mainRecipeImage} popupCropImage={popupCropImage}
                             setMainRecipeImage={setMainRecipeImage} setPopupCropImage={setPopupCropImage}
-                            setFileUpload={setFileUpload}/>
+                            setFileUpload={setFileUpload} />
             :
             <ImageBlur image={mainRecipeImage}/>}</div>
         {mainRecipeImage &&
@@ -238,7 +238,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj) => (
               <ul className={style.addRecipe__boxSteps} key={obj.id}>
-                <RecipeStep fileUpload={fileUpload} setPopupCropImage={setPopupCropImage} popupCropImage={popupCropImage}
+                <RecipeStep setFileUpload={setFileUpload} setMainRecipeImage={setMainRecipeImage}  fileUpload={fileUpload} setPopupCropImage={setPopupCropImage} popupCropImage={popupCropImage}
                             obj={obj} instantStepRecipeWithGallery={instantStepRecipeWithGallery}
                             setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}
                             setStepRecipeForError={setStepRecipeForError}/>
