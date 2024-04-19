@@ -57,6 +57,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   const [chosenTextCategory, setChosenTextCategory] = useState('')
   const [lineNumber, setLineNumber] = useState(1)
   const [stepNumber, setStepNumber] = useState(1)
+  const [numberStepInPopupImageCrop, setNumberStepInPopupImageCrop] = useState()
   const [productQuantityMap, setProductQuantityMap] = useState([{
     number: lineNumber,
     product: 'первый',
@@ -69,6 +70,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     url: '',
     text: 'текст'
   }]);
+  const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [nameRecipe, setNameRecipe] = useState()
   const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
@@ -196,9 +198,8 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
           {!mainRecipeImage ?
-            <AddPhotoRecipe mainRecipeImage={mainRecipeImage} popupCropImage={popupCropImage}
-                            setMainRecipeImage={setMainRecipeImage} setPopupCropImage={setPopupCropImage}
-                            setFileUpload={setFileUpload} />
+            <AddPhotoRecipe    numberStepInPopupImageCrop={numberStepInPopupImageCrop}
+                               setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop} popupCropImage={popupCropImage} setPopupCropImage={setPopupCropImage} setFileUpload={setFileUpload} />
             :
             <ImageBlur image={mainRecipeImage}/>}</div>
         {mainRecipeImage &&
@@ -238,15 +239,19 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj) => (
               <ul className={style.addRecipe__boxSteps} key={obj.id}>
-                <RecipeStep setFileUpload={setFileUpload} setMainRecipeImage={setMainRecipeImage}  fileUpload={fileUpload} setPopupCropImage={setPopupCropImage} popupCropImage={popupCropImage}
+                <RecipeStep   setPopupCropImage={setPopupCropImage}
+                            popupCropImage={popupCropImage}  instantStepRecipeInfo={instantStepRecipeInfo} setInstantStepRecipeInfo={setInstantStepRecipeInfo} setFileUpload={setFileUpload} setMainRecipeImage={setMainRecipeImage}  fileUpload={fileUpload}
                             obj={obj} instantStepRecipeWithGallery={instantStepRecipeWithGallery}
                             setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}
-                            setStepRecipeForError={setStepRecipeForError}/>
+                            setStepRecipeForError={setStepRecipeForError}
+                              numberStepInPopupImageCrop={numberStepInPopupImageCrop}
+                              setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
+                />
               </ul>
             )
           )}
         </li>
-        <ButtonBasic color={'secondaryGreen'} text={'Добавить шаг'} onClick={() => handleAddStep()}/>
+        <ButtonBasic type={'button'} color={'secondaryGreen'} text={'Добавить шаг'} onClick={() => handleAddStep()}/>
         {stepRecipeForError &&
           <span className={!stepsValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Не добавлен текст в первый шаг.</span>}
 
@@ -263,14 +268,15 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
       <div  className={style.addRecipe__imageTomato}/>*/}
 
       {popupCloseAddRecipe === true && <div className={style.addRecipe__popup}>
-        <PopupBasic text={'Внесенные изменения не сохранятся'} title={'Выйти?'}
+        <PopupBasic  text={'Внесенные изменения не сохранятся'} title={'Выйти?'}
                     popupCloseAddRecipe={popupCloseAddRecipe} setCloseAddRecipe={setCloseAddRecipe}
                     setPopupCloseAddRecipe={setPopupCloseAddRecipe} textButtonGo={'Выйти'}
                     closeAddRecipe={closeAddRecipe} exitClick={() => setCloseAddRecipe(!closeAddRecipe)}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}
       {popupCropImage === true && <div className={style.addRecipe__popup}>
-        <PopupCropImage setMainRecipeImage={setMainRecipeImage} setPopupCropImage={setPopupCropImage}
+        <PopupCropImage    numberStepInPopupImageCrop={numberStepInPopupImageCrop}
+                           setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop} setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery} instantStepRecipeWithGallery={instantStepRecipeWithGallery}  instantStepRecipeInfo={instantStepRecipeInfo} setInstantStepRecipeInfo={setInstantStepRecipeInfo} setMainRecipeImage={setMainRecipeImage} setPopupCropImage={setPopupCropImage}
                         popupCropImage={popupCropImage} fileUpload={fileUpload}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}

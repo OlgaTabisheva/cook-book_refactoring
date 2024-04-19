@@ -6,7 +6,6 @@ import {Navigate} from "react-router-dom";
 
 function PopupBasic({title, text,textButtonGo , setPopupCloseAddRecipe, popupCloseAddRecipe,exitClick, closeAddRecipe, setCloseAddRecipe}) {
 
-
   return (
     <div className={style.popupBasic}>
       <div className={style.popupBasic__header}>

@@ -4,35 +4,49 @@ import styles from './../../pages/AddRecipe/AddRecipe.module.scss'
 import ImageBlur from "../ImageBlur/ImageBlur.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
-import {useEffect, useRef, useState} from "react";
+import React, { useEffect, useContext, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
 import PopupCropImage from "../Popup/PopupCropImage/PopupCropImage.jsx";
+
+
 
 function RecipeStep({
                       obj,
                       setInstantStepRecipeWithGallery,
-                      fileUpload,
                       instantStepRecipeWithGallery,
                       setStepRecipeForError,
-                      popupCropImage,
-                      setPopupCropImage, setMainRecipeImage, setFileUpload,
+                       setMainRecipeImage, setFileUpload,
+  instantStepRecipeInfo, setInstantStepRecipeInfo, setPopupCropImage, popupCropImage, setNumberStepInPopupImageCrop, numberStepInPopupImageCrop
                     }) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
 
+useEffect(()=>{
+  setInstantStepRecipeInfo(stepRecipeInfo)
+},[stepRecipeInfo])
+
+/*useEffect(()=>{
+  if (urlStepImage?.id === obj.id)
+  setStepRecipeInfo({
+    id: stepRecipeInfo.id, step: stepRecipeInfo?.step, url: urlStepImage?.url, text: stepRecipeInfo?.text
+  })
+  console.log(urlStepImage?.url, 'urlStepImage')
+},[urlStepImage])*/
+
 
   useEffect(() => {
     const updatedItems = instantStepRecipeWithGallery
     const ind = updatedItems.findIndex(i => i.id === obj.id)
-
     if (ind === -1)
       updatedItems.push(stepRecipeInfo)
     else
       updatedItems[ind] = stepRecipeInfo
     setInstantStepRecipeWithGallery(updatedItems)
 
-  }, [stepRecipeInfo])
+  }, [stepRecipeInfo,instantStepRecipeWithGallery ])
+
+
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
   }, [stepRecipeInfo?.text])
@@ -44,7 +58,9 @@ function RecipeStep({
   }
 
   return (
+
     <section className={style.recipeStep}>
+
       <div className={style.recipeStep__menu}>
         <div className={style.recipeStep__box}>
           <h3 className={style.recipeStep__subtitle}>Шаг:</h3>
@@ -59,9 +75,11 @@ function RecipeStep({
         <ButtonPicture value={'close'} size={'normal'} onClick={() => handleDeleteStep(obj)}/>
       </div>
       {!stepRecipeInfo?.url ?
-        <AddPhotoRecipe stepRecipeInfo={stepRecipeInfo} popupCropImage={popupCropImage}
-                        setMainRecipeImage={setMainRecipeImage} setPopupCropImage={setPopupCropImage}
-                        setFileUpload={setFileUpload}/>
+        <AddPhotoRecipe    numberStepInPopupImageCrop={numberStepInPopupImageCrop}
+                           setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}  stepRecipeInfo={stepRecipeInfo}
+                        setMainRecipeImage={setMainRecipeImage}
+                        setFileUpload={setFileUpload} setPopupCropImage={setPopupCropImage}
+                         popupCropImage={popupCropImage}/>
 
         : <ImageBlur image={stepRecipeInfo.url}/>}
 
@@ -73,13 +91,6 @@ function RecipeStep({
                           url: stepRecipeInfo?.url,
                           text: e.target.value
                         })}/>
-      {popupCropImage === true &&
-        <div className={styles.addRecipe__popup}>
-          <PopupCropImage setMainRecipeImage={setMainRecipeImage} stepRecipeInfo={stepRecipeInfo} fileUpload={fileUpload} obj={obj} setStepRecipeInfo={setStepRecipeInfo}
-                           setPopupCropImage={setPopupCropImage}
-                          popupCropImage={popupCropImage}/>
-          <div className={styles.addRecipe__overlay}></div>
-        </div>}
     </section>
 
   )

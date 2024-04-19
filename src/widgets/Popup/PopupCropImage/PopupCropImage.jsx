@@ -8,22 +8,15 @@ import {getCroppedImg, getRotatedImage} from './../../../utils/canvasUtils'
 import {nhost} from "../../../main.jsx";
 import {dataURLtoFile} from "../../../utils/Utils.js";
 
-const ORIENTATION_TO_ANGLE = {
-  '3': 180,
-  '6': 90,
-  '8': -90,
-}
-
 
 function PopupCropImage({
                           popupCropImage,
                           setPopupCropImage,
                           fileUpload,
-                          setStepRecipeInfoMain,
-                          stepRecipeInfoMain,
                           setMainRecipeImage,
-  stepRecipeInfo, setStepRecipeInfo,
-                          obj,
+                           setStepRecipeInfo,
+                          instantStepRecipeInfo, setInstantStepRecipeInfo, instantStepRecipeWithGallery,
+  setInstantStepRecipeWithGallery, numberStepInPopupImageCrop
                         }) {
   const [imageSrc, setImageSrc] = React.useState(null)
   const [crop, setCrop] = useState({x: 0, y: 0})
@@ -49,31 +42,27 @@ function PopupCropImage({
       };
 
 
-
-
     } catch (e) {
       console.error(e)
     }
   }
-  const uploadCroppedImage = async (croppedImage) => {
-
-
+  const uploadCroppedImage = async () => {
     const UrlToFile = dataURLtoFile(croppedImage, 'image.jpg', "image/jpeg")
-    console.log(croppedImage, 'croppedImage')
-   await nhost.storage.upload({file: UrlToFile})
+    await nhost.storage.upload({file: UrlToFile})
       .then((res) => {
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
-        if (stepRecipeInfo?.id > 0) {
-          setStepRecipeInfo({
-            id: obj?.id,
-            step: stepRecipeInfo?.step,
+
+        if (numberStepInPopupImageCrop>0 && numberStepInPopupImageCrop !== undefined) {
+          setInstantStepRecipeInfo({
+            id: instantStepRecipeInfo?.id,
+            step: instantStepRecipeInfo?.step,
             url: publicUrl,
-            text: stepRecipeInfo?.text
+            text: instantStepRecipeInfo?.text
           })
         } else setMainRecipeImage(publicUrl)
 
       }).then(
-        setPopupCropImage(!popupCropImage)
+        setPopupCropImage(false)
       )
   }
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
@@ -96,9 +85,13 @@ function PopupCropImage({
       console.warn('failed to detect the orientation')
     }
     setImageSrc(imageDataUrl)
-   // setImageSrc(imageCrop)
-  //  console.log(imageDataUrl, 'imageDataUrl')
+    // setImageSrc(imageCrop)
+    //  console.log(imageDataUrl, 'imageDataUrl')
 
+  }
+
+  function handleClose(){
+    setPopupCropImage(!popupCropImage)
   }
 
 
@@ -108,11 +101,29 @@ function PopupCropImage({
     }
   }, [fileUpload])
 
+  useEffect(()=>{
+    console.log(instantStepRecipeInfo, 'instantStepRecipeInfo')
+  },[instantStepRecipeInfo])
+
+  useEffect(() => {
+    const updatedItems = instantStepRecipeWithGallery
+    const ind = updatedItems.findIndex(i => i.id === instantStepRecipeInfo.id)
+    console.log(ind, 'updatedItems')
+    if (ind === -1)
+      updatedItems.push(instantStepRecipeInfo)
+    else
+      updatedItems[ind] = instantStepRecipeInfo
+    setInstantStepRecipeWithGallery(updatedItems)
+
+  }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
+
+
+
   return (
     <div className={style.popupCropImage}>
       <div className={style.popupCropImage__box}>
         <p className={style.popupCropImage__text}>Кадрирование фото</p>
-        <ButtonPicture value={'brownClose'} size={'smallInherit'} onClick={() => setPopupCropImage(!popupCropImage)}/>
+        <ButtonPicture value={'brownClose'} size={'smallInherit'} onClick={() => handleClose}/>
       </div>
       <div className={style.popupCropImage__cropper}>
         {imageSrc && <Cropper
@@ -143,11 +154,11 @@ function PopupCropImage({
       </div>
       <div className={style.popupCropImage__buttons}>
         <ButtonBasic color={'secondaryGreen'} text={'Отменить'} type={'button'}
-                     onClick={() => setPopupCropImage(!popupCropImage)}/>
-        {!croppedImage &&   <ButtonBasic color={'primaryGreen'} text={'Показать обрезаную картинку'} type={'button'}
-                     onClick={() => showCroppedImage(imageSrc)}/>}
-        {croppedImage &&   <ButtonBasic color={'primaryGreen'} text={'Установить'} type={'button'}
-                                         onClick={() => uploadCroppedImage(croppedImage)}/>}
+                     onClick={() => handleClose()}/>
+        {!croppedImage && <ButtonBasic color={'primaryGreen'} text={'Показать обрезаную картинку'} type={'button'}
+                                       onClick={() => showCroppedImage(imageSrc)}/>}
+        {croppedImage && <ButtonBasic color={'primaryGreen'} text={'Установить'} type={'button'}
+                                      onClick={() => uploadCroppedImage()}/>}
       </div>
     </div>
   )

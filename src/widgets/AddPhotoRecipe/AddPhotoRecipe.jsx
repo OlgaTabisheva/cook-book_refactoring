@@ -4,18 +4,23 @@ import {FileUploader} from "react-drag-drop-files";
 import {nhost} from "../../main.jsx";
 
 import 'react-image-crop/src/ReactCrop.scss'
+import {useEffect} from "react";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
 
 
 
-function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload}) {
+function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRecipeInfo, setNumberStepInPopupImageCrop, numberStepInPopupImageCrop}) {
+  useEffect(()=>{
+   console.log( numberStepInPopupImageCrop, 'numberStepInPopupImageCrop')
+  }, [numberStepInPopupImageCrop])
 
 
   const handleChange = async (file)=> {
 
      setFileUpload(file)
-      setPopupCropImage(!popupCropImage)
+    setNumberStepInPopupImageCrop(stepRecipeInfo?.id)
+    setPopupCropImage(!popupCropImage)
 
   }
   return (
