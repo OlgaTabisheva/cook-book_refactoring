@@ -1,13 +1,9 @@
 import style from './RecipeStep.module.scss'
-import styles from './../../pages/AddRecipe/AddRecipe.module.scss'
-
 import ImageBlur from "../ImageBlur/ImageBlur.jsx";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
-import React, { useEffect, useContext, useState} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
-import PopupCropImage from "../Popup/PopupCropImage/PopupCropImage.jsx";
-
 
 
 function RecipeStep({
@@ -15,24 +11,16 @@ function RecipeStep({
                       setInstantStepRecipeWithGallery,
                       instantStepRecipeWithGallery,
                       setStepRecipeForError,
-                       setMainRecipeImage, setFileUpload,
-  instantStepRecipeInfo, setInstantStepRecipeInfo, setPopupCropImage, popupCropImage, setNumberStepInPopupImageCrop, numberStepInPopupImageCrop
+                      setMainRecipeImage,
+                      setFileUpload,
+                      setPopupCropImage,
+                      popupCropImage,
+                      setNumberStepInPopupImageCrop,
+                      numberStepInPopupImageCrop, instantStepRecipeInfo
                     }) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
-
-useEffect(()=>{
-  setInstantStepRecipeInfo(stepRecipeInfo)
-},[stepRecipeInfo])
-
-/*useEffect(()=>{
-  if (urlStepImage?.id === obj.id)
-  setStepRecipeInfo({
-    id: stepRecipeInfo.id, step: stepRecipeInfo?.step, url: urlStepImage?.url, text: stepRecipeInfo?.text
-  })
-  console.log(urlStepImage?.url, 'urlStepImage')
-},[urlStepImage])*/
 
 
   useEffect(() => {
@@ -44,19 +32,32 @@ useEffect(()=>{
       updatedItems[ind] = stepRecipeInfo
     setInstantStepRecipeWithGallery(updatedItems)
 
-  }, [stepRecipeInfo,instantStepRecipeWithGallery ])
-
+  }, [stepRecipeInfo, instantStepRecipeWithGallery])
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
   }, [stepRecipeInfo?.text])
 
+  useEffect(() => {
+    if (instantStepRecipeInfo?.url.length > 0 && instantStepRecipeInfo?.id === stepRecipeInfo?.id) {
+      setStepRecipeInfo({
+        id: stepRecipeInfo?.id,
+        step: stepRecipeInfo?.step,
+        url: instantStepRecipeInfo?.url,
+        text: stepRecipeInfo?.text
+      })
+    }
+  }, [instantStepRecipeWithGallery, stepRecipeInfo, instantStepRecipeInfo])
 
   function handleDeleteStep(id) {
     const updatedItems = instantStepRecipeWithGallery.filter(i => i.id !== id.id)
     setInstantStepRecipeWithGallery(updatedItems)
   }
 
+  useEffect(() => {
+    console.log(instantStepRecipeWithGallery, 'ppStepRecipeWithGallery')
+
+  }, [instantStepRecipeWithGallery])
   return (
 
     <section className={style.recipeStep}>
@@ -75,13 +76,13 @@ useEffect(()=>{
         <ButtonPicture value={'close'} size={'normal'} onClick={() => handleDeleteStep(obj)}/>
       </div>
       {!stepRecipeInfo?.url ?
-        <AddPhotoRecipe    numberStepInPopupImageCrop={numberStepInPopupImageCrop}
-                           setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}  stepRecipeInfo={stepRecipeInfo}
+        <AddPhotoRecipe numberStepInPopupImageCrop={numberStepInPopupImageCrop}
+                        setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop} stepRecipeInfo={stepRecipeInfo}
                         setMainRecipeImage={setMainRecipeImage}
                         setFileUpload={setFileUpload} setPopupCropImage={setPopupCropImage}
-                         popupCropImage={popupCropImage}/>
+                        popupCropImage={popupCropImage}/>
 
-        : <ImageBlur image={stepRecipeInfo.url}/>}
+        : <ImageBlur image={stepRecipeInfo?.url}/>}
 
       <TextareaAutosize defaultValue={'введите описание шага'} className={style.recipeStep__step}
                         placeholder={'введите описание шага'} value={stepRecipeInfo?.text}

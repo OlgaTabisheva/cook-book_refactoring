@@ -25,6 +25,16 @@ function PopupCropImage({
   const [croppedImage, setCroppedImage] = useState(null)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
+  useEffect(() => {
+    if (fileUpload) {
+      onFileChange();
+    }
+  }, [fileUpload])
+
+
+
+
+
   const showCroppedImage = async () => {
     try {
       const croppedImage = await getCroppedImg(
@@ -32,7 +42,6 @@ function PopupCropImage({
         croppedAreaPixels,
         rotation
       )
-
       let blob = await fetch(croppedImage).then((r) => r.blob());
       let reader = new FileReader();
       reader.readAsDataURL(blob);
@@ -52,14 +61,17 @@ function PopupCropImage({
       .then((res) => {
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
 
-        if (numberStepInPopupImageCrop>0 && numberStepInPopupImageCrop !== undefined) {
+        if ((numberStepInPopupImageCrop > 0) || (numberStepInPopupImageCrop !== undefined)) {
+          console.log(numberStepInPopupImageCrop,'numberStepInPopupImageCrop',instantStepRecipeInfo)
+       console.log('попал')
           setInstantStepRecipeInfo({
-            id: instantStepRecipeInfo?.id,
+            id: numberStepInPopupImageCrop,
             step: instantStepRecipeInfo?.step,
             url: publicUrl,
             text: instantStepRecipeInfo?.text
           })
-        } else setMainRecipeImage(publicUrl)
+
+        } else setMainRecipeImage(publicUrl) && console.log('мимо')
 
       }).then(
         setPopupCropImage(false)
@@ -69,9 +81,6 @@ function PopupCropImage({
     setCroppedAreaPixels(croppedAreaPixels)
   }
 
-  const onClose = () => {
-    setCroppedImage(null)
-  }
   const onFileChange = async () => {
 
     let imageDataUrl = await readFile(fileUpload)
@@ -85,38 +94,12 @@ function PopupCropImage({
       console.warn('failed to detect the orientation')
     }
     setImageSrc(imageDataUrl)
-    // setImageSrc(imageCrop)
-    //  console.log(imageDataUrl, 'imageDataUrl')
 
   }
 
   function handleClose(){
     setPopupCropImage(!popupCropImage)
   }
-
-
-  useEffect(() => {
-    if (fileUpload) {
-      onFileChange();
-    }
-  }, [fileUpload])
-
-  useEffect(()=>{
-    console.log(instantStepRecipeInfo, 'instantStepRecipeInfo')
-  },[instantStepRecipeInfo])
-
-  useEffect(() => {
-    const updatedItems = instantStepRecipeWithGallery
-    const ind = updatedItems.findIndex(i => i.id === instantStepRecipeInfo.id)
-    console.log(ind, 'updatedItems')
-    if (ind === -1)
-      updatedItems.push(instantStepRecipeInfo)
-    else
-      updatedItems[ind] = instantStepRecipeInfo
-    setInstantStepRecipeWithGallery(updatedItems)
-
-  }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
-
 
 
   return (

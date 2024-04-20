@@ -16,7 +16,7 @@ function InputAuth({title,required, eye, password, setPassword,  name,id, errorT
     <div className={style.inputAuth } {...props}>
 
       <p className={style.inputAuth__text}>{title ? title : 'введите наименование поля'}</p>
-      <input required={required} className={value !== '' ? style.inputAuth__input : style.inputAuth__input_padding} type={password && "password"} id={id} onBlur={handleBlur}  name={name} placeholder={placeholder} value={value} onChange={onChange}/>
+      <input required={required} className={value !== '' ? style.inputAuth__input : style.inputAuth__input_padding} type={password && "password"} id={id} onBlur={handleBlur}  name={name} placeholder={placeholder} value={value} onChange={onChange} disabled={disabled}/>
    {eye && <button type={'button'} className={style.inputAuth__buttonImg} onClick={() => setPassword(!password)}>
         {<div className={password ?  style.inputAuth__img_active : style.inputAuth__img }/>}
       </button>}

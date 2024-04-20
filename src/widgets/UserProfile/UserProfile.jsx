@@ -51,8 +51,6 @@ const [boxFileUploader, setBoxFileUploader] = useState()
 
 
 
-
-
   return (
     <section className={style.userProfile}>
       <FileUploader maxSize={5}  name="file" types={fileTypes} handleChange={(file)=>onDrop(file)}>
@@ -68,8 +66,8 @@ const [boxFileUploader, setBoxFileUploader] = useState()
       </form>
       <form className={style.userProfile__form}>
         <h3 className={style.userProfile__title}>Смена пароля </h3>
-        <InputAuth title={'Введите новый пароль'} text={'Введите пароль'}/>
-        <InputAuth title={'Подтвердите пароль'} text={'Пароль ещё раз'}/>
+        <InputAuth title={'Введите новый пароль'} text={'Введите пароль'} placeholder={'смена пароля не доступна'} disabled={true}/>
+        <InputAuth title={'Подтвердите пароль'} text={'Пароль ещё раз'} placeholder={'смена пароля не доступна'} disabled={true} />
         <div className={style.userProfile__buttons}>
           <ButtonBasic text={'Сохранить изменения'} disabled color={'primaryGreen'}/>
           <ButtonBasic text={'Выйти'} color={'secondaryRed'} onClick={signOut}/>
