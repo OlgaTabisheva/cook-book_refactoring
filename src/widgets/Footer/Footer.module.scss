@@ -6,9 +6,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 60px auto;
+  margin: auto auto 60px auto;
   align-items: center;
-
+  clear:both;
   &__title {
     @extend %subtitle20-24Vol;
     margin-bottom: 40px;

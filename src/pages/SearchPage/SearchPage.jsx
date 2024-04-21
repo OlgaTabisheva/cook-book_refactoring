@@ -40,6 +40,11 @@ query MyQuery {
 }
 `
 
+
+
+
+
+
   const resultSearchFromServer = useQuery(GET_SEARCH_NAME).data?.recipes
   const [instantSearchRecipes, setInstantSearchRecipes] = useState([]);
 

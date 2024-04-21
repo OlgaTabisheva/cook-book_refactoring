@@ -2,34 +2,28 @@ import style from './DefaultUserPhoto.module.scss'
 import {useUserData} from "@nhost/react";
 import photo from './../../assets/userYelow.svg'
 import 'react-image-crop/src/ReactCrop.scss'
-import {useEffect, useState} from "react";
-import PopupDownloadImage from "../../widgets/Popup/PopupDownloadImage/PopupDownloadImage.jsx";
-//import ReactCrop, { type Crop } from 'react-image-crop'
-//import {useState} from "react";
 
-/*function CropDemo({ src }) {
-  const [crop, setCrop] = useState<Crop>()
-  return (
-    <ReactCrop crop={crop} onChange={c => setCrop(c)}>
-      <img src={src} />
-    </ReactCrop>
-  )
-}*/
+function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup, userUploadFile, userCropUrl, formData}) {
 
-function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup, userUploadFile}) {
 
 
 
   const user = useUserData()
   const defaultAvatar= 'https://s.gravatar.com/avatar/'
+
   return (
     <>
-    <button className={style.defaultUserPhoto} onClick={()=>setOpenDownloadPopup(!openDownloadPopup)}>
+     {user?.avatarUrl?.includes(defaultAvatar)  ? (<button className={style.defaultUserPhoto} onClick={()=>setOpenDownloadPopup(!openDownloadPopup)}>
       <div className={style.defaultUserPhoto__imgBox}>
-        <img className={style.defaultUserPhoto__img} src={ user?.avatarUrl.includes(defaultAvatar)  ? photo : userUploadFile} alt={'user photo'}/>
-
+        <img className={style.defaultUserPhoto__img} src={ photo} alt={'user photo'}/>
       </div>
-    </button>
+    </button>)
+      :
+       ( <button className={style.userPhoto} onClick={()=>setOpenDownloadPopup(!openDownloadPopup)}>
+        <div className={style.userPhoto__imgBox}>
+          <img className={style.userPhoto__img} src={ (userCropUrl === undefined) ? (formData?.avatarUrl ? formData?.avatarUrl  : userCropUrl) : userCropUrl} alt={'user photo'}/>
+        </div>
+      </button>)}
     </>
   )
 }

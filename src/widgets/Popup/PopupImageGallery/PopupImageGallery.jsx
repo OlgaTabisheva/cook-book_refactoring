@@ -46,7 +46,7 @@ const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
                 <SwiperSlide key={index}>
 
                   <img  alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
-                  // </SwiperSlide>
+                   </SwiperSlide>
               ))}
 
 

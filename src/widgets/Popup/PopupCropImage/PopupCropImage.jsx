@@ -16,7 +16,7 @@ function PopupCropImage({
                           setMainRecipeImage,
                           instantStepRecipeInfo,
                           setInstantStepRecipeInfo,
-                          numberStepInPopupImageCrop, userUploadFile
+                          numberStepInPopupImageCrop, userUploadFile, setUserCropUrl
                         }) {
   const [imageSrc, setImageSrc] = React.useState(null)
   const [crop, setCrop] = useState({x: 0, y: 0})
@@ -57,6 +57,9 @@ function PopupCropImage({
     await nhost.storage.upload({file: UrlToFile})
       .then((res) => {
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
+        if (userUploadFile){
+          setUserCropUrl(publicUrl)
+        } else  {
         if ((numberStepInPopupImageCrop > 0) || (numberStepInPopupImageCrop !== undefined)) {
           setInstantStepRecipeInfo({
             id: numberStepInPopupImageCrop,
@@ -64,7 +67,7 @@ function PopupCropImage({
             url: publicUrl,
             text: instantStepRecipeInfo?.text
           })
-        } else setMainRecipeImage(publicUrl)
+        } else setMainRecipeImage(publicUrl)}
 
       }).then(
         setPopupCropImage(false)
@@ -110,15 +113,21 @@ function PopupCropImage({
               borderRadius: "12px",
               display: "flex"
             }, cropAreaStyle: {width: 240, height: 137}
-          } : {
+          }: (( !croppedImage ? {
             containerStyle: {
              width: 504,
             height: 288,
             position: "relative",
             borderRadius: "12px",
             display: "flex"
-          }, cropAreaStyle: {maxWidth: 120,width: 120,maxHeight: 120, height: 120, borderRadius: "120px", }
-          }}
+          }, cropAreaStyle: {maxWidth: 240, minWidth: 240, width: 240,maxHeight: 240,minHeight:240, height: 240,  }
+          } : {
+          containerStyle: {
+            maxWidth: 504, minWidth: 240, width: 240,maxHeight: 240,minHeight:240, height: 240,
+          position: "relative",
+          display: "flex"
+        }, cropAreaStyle: {maxWidth: 300, minWidth: 300, width: 300,maxHeight: 300,minHeight:300, height: 300,}
+        }))}
           onCropChange={setCrop}
           onRotationChange={setRotation}
           onZoomChange={setZoom}

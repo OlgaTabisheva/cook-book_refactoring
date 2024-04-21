@@ -90,6 +90,7 @@ function SignUp({password, setPassword}) {
           />
 
         <InputAuth
+          type="password"
           id="password"
           text={"Введите пароль"}
           title={"Повторите пароль:"}

@@ -12,7 +12,8 @@ import {useUserData} from "@nhost/react";
 function AuthorsPage({}) {
   const user = useUserData()
   const [instantGetCountsUserLikes, setInstantGetCountsUserLikes] = useState([])
-
+  const [inputSearchText, setInputSearchText] = useState();
+  const [searchString, setSearchString] = useState();
   const COUNT_USER_LIKE =
     gql`
  query MyQuery {
@@ -33,22 +34,79 @@ function AuthorsPage({}) {
       }
     }
     displayName
+    avatarUrl
   }
 }`
-  const getCountsUserLikes = useQuery(COUNT_USER_LIKE ).data?.users
 
+  const GET_SEARCH_USERS = gql`
+  query MyQuery {
+    users(where: {displayName: {_iregex: "${searchString}"}}) {
+         id
+    recipes_aggregate {
+      aggregate {
+        count
+      }
+    }
+    like {
+      recipe {
+        likes_aggregate {
+          aggregate {
+            count
+          }
+        }
+      }
+    }
+    displayName
+    avatarUrl
+    }}
+`
+  const getCountsUserLikes = useQuery(COUNT_USER_LIKE ).data?.users
+  const resultSearchUsersFromServer = useQuery(GET_SEARCH_USERS).data?.users
+  const [instantSearchUsers, setInstantSearchUsers] = useState([]);
+  function handleSearchValue(e) {
+    setSearchString(inputSearchText)
+    console.log(inputSearchText, 'inputSearchText')
+    console.log(searchString, 'searchString')
+
+    setInstantSearchUsers(resultSearchUsersFromServer)
+
+  }
+
+  useEffect(()=>{
+     console.log(resultSearchUsersFromServer, 'resultSearchUsersFromServer')
+  },[resultSearchUsersFromServer])
 
 useEffect(()=>{
   setInstantGetCountsUserLikes(getCountsUserLikes)
 },[getCountsUserLikes])
+
+  useEffect(()=>{
+    setInstantSearchUsers(resultSearchUsersFromServer)
+  },[resultSearchUsersFromServer])
+
+
   return (
     <section className={style.authorsPage}>
-      <InputSearch/>
-      <div className={style.authorsPage__box}>
-        {instantGetCountsUserLikes?.map((obj, index)=>(
-          <AuthorsCard {...obj} key={index}/>
-        ))}
+      <InputSearch onChange={(e) => (setInputSearchText(e.target.value))}
+                   id="searchUser"
+                   name="searchUser"
+                   type="search"
+                   placeholder={'Введите имя'}
+                   onClick={(e)=>handleSearchValue(e.target.value)}
+                   searchValue={searchString}
+                   value={inputSearchText}
 
+
+      />
+      <div className={style.authorsPage__box}>
+
+        {(searchString<1 || searchString=== undefined) ?
+        instantGetCountsUserLikes?.map((obj, index)=>(
+          <AuthorsCard {...obj} key={index}/>
+        )) :   instantSearchUsers?.map((obj, index)=>(
+            <AuthorsCard {...obj} key={index}/>
+          ))
+        }
       </div>
     </section>
   )

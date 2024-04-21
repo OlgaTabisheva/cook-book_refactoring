@@ -1,13 +1,17 @@
 import style from './AuthorsCard.module.scss'
-import DefaultUserPhoto from "../../shared/DefaultUserPhoto/DefaultUserPhoto.jsx";
-import {gql, useQuery} from "@apollo/client";
+import {useEffect} from "react";
+import photo from './../../assets/userYelow.svg'
 
 
 function AuthorsCard(obj) {
 
+  const defaultAvatar= 'https://s.gravatar.com/avatar/'
+
+
+
   return (
     <section className={style.authorsCard}>
-      <DefaultUserPhoto/>
+      <img className={style.authorsCard__img} alt={'avatar'} src={obj?.avatarUrl?.includes(defaultAvatar) ? photo :  obj?.avatarUrl} />
       <div className={style.authorsCard__section}>
         <h3 className={style.authorsCard__title}>{obj?.displayName} </h3>
         <div className={style.authorsCard__textBox}>

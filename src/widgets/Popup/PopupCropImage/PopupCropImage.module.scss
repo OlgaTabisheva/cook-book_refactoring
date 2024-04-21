@@ -42,7 +42,9 @@
   &__cropper{
     width: 504px;
     height: 288px;
-    overflow: hidden;
+  //  overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
   &__buttons{
     display: flex;

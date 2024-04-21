@@ -2,6 +2,24 @@
 .input-field input:-webkit-autofill{
   -webkit-text-fill-color: $sand-40 !important;
 }
+input:-webkit-autofill {
+  transition: all 5000s ease-in-out;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid $sand-40;
+  -webkit-text-fill-color: $primary-dark-100;;
+  -webkit-box-shadow: 0 0 0px 1000px $sand-10 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .inputAuth {
   display: flex;
   flex-direction: column;
@@ -9,7 +27,7 @@
   justify-content: center;
   position: relative;
   &:not(:first-child) {
-    margin-top: 4px;
+    margin-top: 16px;
   }
   &:disabled {
     opacity: 0.4;
@@ -99,7 +117,10 @@
     color: $primary-dark-100;
     position: relative;
     margin-bottom: 6px;
+
   }
+
+
 
   &__buttonImg {
     top: 40px;
@@ -138,3 +159,49 @@
 
 
 }
+.inputAuth__text_error{
+  position: relative;
+  margin-bottom: 6px;
+  @extend %textSmall13-16Mon;
+  color: $accent-100;
+  background-color: inherit;
+  text-align: left;
+  &:focus {
+    position: relative;
+    margin-bottom: 6px;
+    @extend %textSmall13-16Mon;
+    color: $accent-100;
+    background-color: inherit;
+    text-align: left;
+  }
+}
+
+
+.inputAuth__input_error{
+    @extend %textLarge16Mon;
+    border-radius: 13px;
+    padding: 16px;
+    border: 1px solid red;
+    color: red;
+    background-color: inherit;
+    text-align: left;
+
+    &:focus {
+      border: 1px solid red;
+      color: red;
+      outline: none;
+    }
+
+    &:active {
+      color: red;
+      border: 1px solid red;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      color: $primary-dark-100;
+      border: 1px solid red;
+      background-color: red;
+    }
+
+  }

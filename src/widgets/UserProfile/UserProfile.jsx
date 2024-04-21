@@ -12,7 +12,7 @@ import PopupCropImage from "../Popup/PopupCropImage/PopupCropImage.jsx";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
 
-function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadPopup, setUserUploadFile, userUploadFile}) {
+function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadPopup, setUserUploadFile, userCropUrl}) {
 
   const {signOut} = useSignOut()
   const user = useUserData()
@@ -26,6 +26,8 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
     }
   }
 `
+
+
   const [mutateUser, {loading: updatingProfile}] = useMutation(UPDATE_USER_MUTATION)
 
   useEffect(() => {
@@ -44,7 +46,7 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
         variables: {
           id: user.id,
           displayName: formData.displayName,
-          avatarUrl: formData.avatarUrl,
+          avatarUrl: userCropUrl,
           email: formData.email
         }
       })
@@ -57,18 +59,24 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
     setFormData(user)
   }, [user])
 
+
+
   const handleChange = async (file)=> {
 console.log(file,'file')
     setUserUploadFile(file)
 
 
   }
+
+  useEffect(()=>{
+    console.log(userCropUrl,'userCropUrl')
+  },[userCropUrl])
   return (
     <section className={style.userProfile}>
       <FileUploader maxSize={5} name="file" types={fileTypes} handleChange={handleChange}>
         <input type="file"/>
 
-        <DefaultUserPhoto formData={formData} setOpenDownloadPopup={setOpenDownloadPopup}
+        <DefaultUserPhoto userCropUrl={userCropUrl} formData={formData} setOpenDownloadPopup={setOpenDownloadPopup}
                           openDownloadPopup={openDownloadPopup}/>
       </FileUploader>
       <form className={style.userProfile__box}>

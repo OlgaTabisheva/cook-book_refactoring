@@ -14,8 +14,8 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
   const [openDownloadPopup, setOpenDownloadPopup] = useState(false)
   const [userUploadFile, setUserUploadFile] = useState()
   const [changeButton, setChangeButton] = useState('Профиль')
+  const [userCropUrl, setUserCropUrl] = useState()
 
-  console.log(userUploadFile !== undefined,'userUploadFile')
   return (
     <section className={styles.personalPage}>
       <div className={styles.personalPage__chips}>
@@ -33,12 +33,12 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                                                             setInstantLikes={setInstantLikes}
                                                             likesFromServer={likesFromServer}/> : null}
         {changeButton === 'Мои Рецепты' ? <UserRecipes/> : null}
-        {changeButton === 'Профиль' ? <UserProfile  userUploadFile={userUploadFile} setUserUploadFile={setUserUploadFile} setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} formData={formData} setFormData={setFormData} /> : null}
+        {changeButton === 'Профиль' ? <UserProfile userCropUrl={userCropUrl} userUploadFile={userUploadFile} setUserUploadFile={setUserUploadFile} setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} formData={formData} setFormData={setFormData} /> : null}
         {changeButton === 'Дополнительные права' ? <AdminRights formData={formData} setFormData={setFormData}/> : null}
       </div>
 
       {openDownloadPopup === true && <div className={style.addRecipe__popup}>
-        <PopupCropImage setPopupCropImage={setOpenDownloadPopup}  fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile ={userUploadFile} />
+        <PopupCropImage setPopupCropImage={setOpenDownloadPopup} setUserCropUrl={setUserCropUrl} fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile ={userUploadFile} />
         <div className={style.addRecipe__overlay}></div>
       </div>}
     </section>
