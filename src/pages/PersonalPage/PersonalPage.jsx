@@ -5,14 +5,17 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import UserProfile from "../../widgets/UserProfile/UserProfile.jsx";
 import FavoritesRecipes from "../../widgets/FavoritesRecipes/FavoritesRecipes.jsx";
 import UserRecipes from "../../widgets/UserRecipes/UserRecipes.jsx";
-
+import style from './../../pages/AddRecipe/AddRecipe.module.scss'
 import AdminRights from "../../widgets/AdminRights/AdminRights.jsx";
+import PopupCropImage from "../../widgets/Popup/PopupCropImage/PopupCropImage.jsx";
 
 
 export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLikes, likesFromServer}) => {
-
-
+  const [openDownloadPopup, setOpenDownloadPopup] = useState(false)
+  const [userUploadFile, setUserUploadFile] = useState()
   const [changeButton, setChangeButton] = useState('Профиль')
+
+  console.log(userUploadFile !== undefined,'userUploadFile')
   return (
     <section className={styles.personalPage}>
       <div className={styles.personalPage__chips}>
@@ -30,10 +33,14 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                                                             setInstantLikes={setInstantLikes}
                                                             likesFromServer={likesFromServer}/> : null}
         {changeButton === 'Мои Рецепты' ? <UserRecipes/> : null}
-        {changeButton === 'Профиль' ? <UserProfile formData={formData} setFormData={setFormData} /> : null}
+        {changeButton === 'Профиль' ? <UserProfile  userUploadFile={userUploadFile} setUserUploadFile={setUserUploadFile} setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} formData={formData} setFormData={setFormData} /> : null}
         {changeButton === 'Дополнительные права' ? <AdminRights formData={formData} setFormData={setFormData}/> : null}
       </div>
 
+      {openDownloadPopup === true && <div className={style.addRecipe__popup}>
+        <PopupCropImage setPopupCropImage={setOpenDownloadPopup}  fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile ={userUploadFile} />
+        <div className={style.addRecipe__overlay}></div>
+      </div>}
     </section>
   );
 }

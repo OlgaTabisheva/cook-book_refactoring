@@ -54,10 +54,6 @@ function RecipeStep({
     setInstantStepRecipeWithGallery(updatedItems)
   }
 
-  useEffect(() => {
-    console.log(instantStepRecipeWithGallery, 'ppStepRecipeWithGallery')
-
-  }, [instantStepRecipeWithGallery])
   return (
 
     <section className={style.recipeStep}>

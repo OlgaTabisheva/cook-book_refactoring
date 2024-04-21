@@ -16,7 +16,7 @@ import PopupDownloadImage from "../../widgets/Popup/PopupDownloadImage/PopupDown
   )
 }*/
 
-function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup}) {
+function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup, userUploadFile}) {
 
 
 
@@ -26,7 +26,7 @@ function DefaultUserPhoto({setOpenDownloadPopup, openDownloadPopup}) {
     <>
     <button className={style.defaultUserPhoto} onClick={()=>setOpenDownloadPopup(!openDownloadPopup)}>
       <div className={style.defaultUserPhoto__imgBox}>
-        <img className={style.defaultUserPhoto__img} src={ user?.avatarUrl.includes(defaultAvatar)  ? photo : user.avatarUrl} alt={'user photo'}/>
+        <img className={style.defaultUserPhoto__img} src={ user?.avatarUrl.includes(defaultAvatar)  ? photo : userUploadFile} alt={'user photo'}/>
 
       </div>
     </button>

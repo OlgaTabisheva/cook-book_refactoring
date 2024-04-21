@@ -14,9 +14,9 @@ function PopupCropImage({
                           setPopupCropImage,
                           fileUpload,
                           setMainRecipeImage,
-                           setStepRecipeInfo,
-                          instantStepRecipeInfo, setInstantStepRecipeInfo, instantStepRecipeWithGallery,
-  setInstantStepRecipeWithGallery, numberStepInPopupImageCrop
+                          instantStepRecipeInfo,
+                          setInstantStepRecipeInfo,
+                          numberStepInPopupImageCrop, userUploadFile
                         }) {
   const [imageSrc, setImageSrc] = React.useState(null)
   const [crop, setCrop] = useState({x: 0, y: 0})
@@ -30,9 +30,6 @@ function PopupCropImage({
       onFileChange();
     }
   }, [fileUpload])
-
-
-
 
 
   const showCroppedImage = async () => {
@@ -60,18 +57,14 @@ function PopupCropImage({
     await nhost.storage.upload({file: UrlToFile})
       .then((res) => {
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
-
         if ((numberStepInPopupImageCrop > 0) || (numberStepInPopupImageCrop !== undefined)) {
-          console.log(numberStepInPopupImageCrop,'numberStepInPopupImageCrop',instantStepRecipeInfo)
-       console.log('попал')
           setInstantStepRecipeInfo({
             id: numberStepInPopupImageCrop,
             step: instantStepRecipeInfo?.step,
             url: publicUrl,
             text: instantStepRecipeInfo?.text
           })
-
-        } else setMainRecipeImage(publicUrl) && console.log('мимо')
+        } else setMainRecipeImage(publicUrl)
 
       }).then(
         setPopupCropImage(false)
@@ -82,14 +75,11 @@ function PopupCropImage({
   }
 
   const onFileChange = async () => {
-
     let imageDataUrl = await readFile(fileUpload)
     try {
       // apply rotation if needed
       const orientation = await getOrientation(fileUpload)
-
       let imageCrop = await getRotatedImage(imageDataUrl, orientation)
-
     } catch (e) {
       console.warn('failed to detect the orientation')
     }
@@ -97,16 +87,12 @@ function PopupCropImage({
 
   }
 
-  function handleClose(){
-    setPopupCropImage(!popupCropImage)
-  }
-
 
   return (
     <div className={style.popupCropImage}>
       <div className={style.popupCropImage__box}>
         <p className={style.popupCropImage__text}>Кадрирование фото</p>
-        <ButtonPicture value={'brownClose'} size={'smallInherit'} onClick={() => handleClose}/>
+        <ButtonPicture value={'brownClose'} size={'smallInherit'} onClick={() => setPopupCropImage(!popupCropImage)}/>
       </div>
       <div className={style.popupCropImage__cropper}>
         {imageSrc && <Cropper
@@ -116,7 +102,7 @@ function PopupCropImage({
           rotation={rotation}
           zoom={zoom}
           aspect={4 / 2.5}
-          style={{
+          style={ (userUploadFile === undefined) ? {
             containerStyle: {
               width: 504,
               height: 288,
@@ -124,6 +110,14 @@ function PopupCropImage({
               borderRadius: "12px",
               display: "flex"
             }, cropAreaStyle: {width: 240, height: 137}
+          } : {
+            containerStyle: {
+             width: 504,
+            height: 288,
+            position: "relative",
+            borderRadius: "12px",
+            display: "flex"
+          }, cropAreaStyle: {maxWidth: 120,width: 120,maxHeight: 120, height: 120, borderRadius: "120px", }
           }}
           onCropChange={setCrop}
           onRotationChange={setRotation}
@@ -137,7 +131,7 @@ function PopupCropImage({
       </div>
       <div className={style.popupCropImage__buttons}>
         <ButtonBasic color={'secondaryGreen'} text={'Отменить'} type={'button'}
-                     onClick={() => handleClose()}/>
+                     onClick={() => setPopupCropImage(!popupCropImage)}/>
         {!croppedImage && <ButtonBasic color={'primaryGreen'} text={'Показать обрезаную картинку'} type={'button'}
                                        onClick={() => showCroppedImage(imageSrc)}/>}
         {croppedImage && <ButtonBasic color={'primaryGreen'} text={'Установить'} type={'button'}

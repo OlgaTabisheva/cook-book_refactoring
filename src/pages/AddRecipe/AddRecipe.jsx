@@ -120,11 +120,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     setChosenTextCategory(chosenTextCategoryStep1)
   }, [])
 
-  useEffect(()=>{
-   console.log(instantStepRecipeWithGallery, 'gggggggggggginstantStepRecipeWithGallery')
-
-  },[instantStepRecipeWithGallery])
-
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
