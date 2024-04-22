@@ -6,6 +6,8 @@ import {gql, useMutation, useQuery} from "@apollo/client";
 import CommentEdit from "../CommentEdit/CommentEdit.jsx";
 import ButtonLikeEmpty from "../../shared/Buttons/ButtonLike/ButtonLikeEmpty.jsx";
 import {useUserData} from "@nhost/react";
+import photo from "../../assets/userYelow.svg";
+import {defaultAvatar} from "../../utils/Utils.js";
 
 
 function Comment({
@@ -22,6 +24,7 @@ function Comment({
   const [clickButton, setClickButton] = useState(true)
   const [countLikesComment, setCountLikesComment] = useState([])
   const userData = useUserData()
+
   const DELETE_COMMENT = gql`
   mutation  {
     delete_comments_by_pk(name: "${name}") {
@@ -154,7 +157,8 @@ mutation MyMutation2 {
         setUpdateTextComment={setUpdateTextComment}/> : null}
       <div className={style.comment__cover}>
         <div className={style.comment__boxPhoto}>
-          <User className={style.comment__user}/>
+          {user?.avatarUrl?.includes(defaultAvatar) ? <User className={style.comment__user}/> :<img className={style.comment__img} src={ user?.avatarUrl} alt={'user photo'}/>
+             }
         </div>
         <div className={style.comment__box}>
           <h2 className={style.comment__title}>{user?.displayName}</h2>

@@ -53,6 +53,9 @@ margin-bottom: 120px;
   &__userBox{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-right: 8px;
   }
   &__buttons{
     display: flex;
@@ -73,6 +76,11 @@ margin-bottom: 120px;
     top: 8px;
     left: 8px;
     padding: 3px 4px;
+  }
+  &__imgUser{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
   }
   &__steps{
     max-width: 544px;

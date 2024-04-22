@@ -275,6 +275,7 @@ query MyQuery {
               isAuthenticated={isAuthenticated}
               instantLikesComments={instantLikesComments}
               setInstantLikesComments={setInstantLikesComments}
+              instantLikes={instantLikes}
             />
           }/>
         </Route>

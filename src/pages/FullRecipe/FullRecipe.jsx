@@ -8,7 +8,7 @@ import CommentsBox from "../../widgets/CommentsBox/CommentsBox.jsx";
 import {useEffect, useState} from "react";
 import {gql, useQuery} from "@apollo/client";
 
-function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, instantLikesComments }) {
+function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, instantLikesComments, instantLikes }) {
   const {id} = useParams();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
   const [recipeStepsMap, setRecipeStepsMap] = useState([])
@@ -23,6 +23,7 @@ query MyQuery {
     user {
       displayName
       id
+      avatarUrl
     }
   }
 }
@@ -57,7 +58,7 @@ query MyQuery {
             howLong={fullRecipe?.duration?.duration ? fullRecipe?.duration?.duration : 'длительность не задана'}/>
         </div>
         <div className={style.fullRecipe__box}>
-          <RecipePhotoBlock instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap}/>
+          <RecipePhotoBlock instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
 
         </div>
         <CommentsBox       isAuthenticated={isAuthenticated}

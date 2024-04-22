@@ -46,7 +46,12 @@
     left: 8px;
     padding: 3px 4px;
   }
+  &__img{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
 
+  }
   &__boxPhoto {
     background-color: $sand-colorful-20;
     display: flex;

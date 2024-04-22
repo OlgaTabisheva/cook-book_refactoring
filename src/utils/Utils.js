@@ -11,3 +11,4 @@ export function dataURLtoFile(dataurl, filename) {
 
 }
 
+export const defaultAvatar= 'https://s.gravatar.com/avatar/'

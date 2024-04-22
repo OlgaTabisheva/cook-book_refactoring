@@ -8,6 +8,8 @@ import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import ButtonImgOpenGallery from "../../shared/Buttons/ButtonImgOpenGallery/ButtonImgOpenGallery.jsx";
 import PopupImageGallery from "../Popup/PopupImageGallery/PopupImageGallery.jsx";
+import {gql, useQuery} from "@apollo/client";
+import {defaultAvatar} from "../../utils/Utils.js";
 
 
 function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
@@ -17,6 +19,60 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
   const [recipeStepsMapSlice,setRecipeStepsMapSlice] = useState(false)
   const [recipeStepsMapSliceForButton,setRecipeStepsMapSliceForButton] = useState(false)
   const [fullRecipe,setFullRecipe] = useState()
+  const [countLikes, setCountLikes] = useState([])
+  const [countComments, setCountComments] = useState([])
+  const [RecipesAddition, setRecipesAddition] = useState()
+
+  const GET_COUNTS_LIKES = gql`
+  query {
+  likes_aggregate(where: {recipesId: {_eq: "${id}"}}) {
+    aggregate {
+      count
+    }
+  }
+}
+`
+  const GET_COUNTS_COMMENTS = gql`
+  query {
+    comments_aggregate(where: {recipe: {id:{_eq: "${id}"}}}){
+      aggregate {
+        count
+      }
+    }
+  }
+`
+  const GET_RECIPE_AUTHOR = gql`
+query MyQuery {
+  recipes_by_pk(id: "5c74e8a8-dbe2-46ad-8215-1d26943ac9f7") {
+    authorId
+    date
+    user {
+      avatarUrl
+      displayName
+    }
+  }
+  }
+`
+  const getCountsLikes = useQuery(GET_COUNTS_LIKES).data
+  const getCountsComments = useQuery(GET_COUNTS_COMMENTS).data
+  const getRecipesAuthor= useQuery(GET_RECIPE_AUTHOR)?.data?.recipes_by_pk
+
+
+  useEffect(()=>{
+    setRecipesAddition(getRecipesAuthor)
+  },[getRecipesAuthor])
+  useEffect(() => {
+    if (getCountsLikes?.likes_aggregate.aggregate.count !== undefined) {
+      setCountLikes(getCountsLikes?.likes_aggregate.aggregate.count)
+    }
+  }, [getCountsLikes])
+
+  useEffect(() => {
+
+    if (getCountsComments?.comments_aggregate.aggregate.count !== undefined) {
+      setCountComments(getCountsComments?.comments_aggregate.aggregate.count)
+    }
+    }, [getCountsComments])
   useEffect(()=>{
     setRecipeStepsMapSlice(recipeStepsMap?.slice(0, 4));
     setRecipeStepsMapSliceForButton(recipeStepsMap?.slice(4, 5))
@@ -24,7 +80,10 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
   useEffect(()=>{
     setFullRecipe(instantAddRecipe?.recipes?.find(elem => elem?.id === id))
   },[instantAddRecipe])
-
+  const formatDate = (date) => {
+    const options = {year: "numeric", month: "numeric", day: "numeric"}
+    return new Date(date).toLocaleString(undefined, options)
+  }
   return (
     <div className={style.recipePhotoBlock}>
 
@@ -46,16 +105,18 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
           </div>
           <div className={style.recipePhotoBlock__box}>
             <div className={style.recipePhotoBlock__buttons}>
-              <ButtonLikeFull countLikes={5}/>
-              <ButtonComments countComments={5}/>
+              <ButtonLikeFull countLikes={countLikes}/>
+              <ButtonComments countComments={countComments}/>
             </div>
             <div className={style.recipePhotoBlock__module}>
               <div className={style.recipePhotoBlock__userBox}>
-                <p className={style.recipePhotoBlock__text}>Марина Иванова</p>
-                <p className={style.recipePhotoBlock__text}>12.02.2024</p>
+                <p className={style.recipePhotoBlock__text}>{RecipesAddition?.user?.displayName}</p>
+                <p className={style.recipePhotoBlock__text}>{formatDate(RecipesAddition?.date)}</p>
               </div>
               <div className={style.recipePhotoBlock__boxPhoto}>
-                <User className={style.recipePhotoBlock__user}/>
+                {RecipesAddition?.user?.avatarUrl?.includes(defaultAvatar) ? <User className={style.recipePhotoBlock__user}/> :<img className={style.recipePhotoBlock__imgUser} src={RecipesAddition?.user?.avatarUrl} alt={'user photo'}/>
+                }
+
               </div>
             </div>
           </div>
