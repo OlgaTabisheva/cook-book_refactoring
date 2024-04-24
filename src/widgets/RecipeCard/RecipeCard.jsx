@@ -12,6 +12,7 @@ import {gql, useMutation, useQuery} from "@apollo/client";
 import BoxClockTime from "../../shared/BoxClockTime/BoxClockTime.jsx";
 import {Link} from "react-router-dom";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
+import PopupBasic from "../Popup/PopupBasic/PopupBasic.jsx";
 
 function RecipeCard({
                       name,
@@ -24,7 +25,8 @@ function RecipeCard({
                       isAuthenticated,
                       isBtnLike = true,
                       isBtnEdit = true,
-                      isBtnComments = true
+                      isBtnComments = true,
+  unauthorizedPopup, setUnauthorizedPopup
                     }) {
 
   const [changeLike, setChangeLike] = useState(false)
@@ -134,10 +136,12 @@ function RecipeCard({
         </div>
       </Link>
       <div className={style.recipeCard__box}>
-        {instantLikes?.some(t => t.recipesId === id) ?
+        {isAuthenticated ?
+        (instantLikes?.some(t => t.recipesId === id) ?
           <ButtonLikeFull onClick={() => handleClickLike(id)} countLikes={countLikes}/> :
-          <ButtonLikeEmpty onClick={() => handleClickLike(id)} countLikes={countLikes}/>}
+          <ButtonLikeEmpty onClick={() => handleClickLike(id)} countLikes={countLikes}/>) : <ButtonLikeEmpty onClick={() => setUnauthorizedPopup(!unauthorizedPopup)} countLikes={countLikes}/>}
         <ButtonComments countComments={countComments}/>
+
       </div>
 
     </section>

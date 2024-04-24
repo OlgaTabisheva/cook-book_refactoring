@@ -167,9 +167,10 @@ mutation MyMutation2 {
           <p className={style.comment__text}>{clickButton === true && updateTextComment ? updateTextComment : text}</p>
           <div className={style.comment__bottomBox}>
             <p className={style.comment__info}>Пожаловаться</p>
-          {instantLikesComments?.some(t => t.commentId === name) ?
+            {isAuthenticated ?
+              (instantLikesComments?.some(t => t.commentId === name) ?
               <ButtonLikeFull onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/> :
-              <ButtonLikeEmpty onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/>}
+              <ButtonLikeEmpty onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/>) : <ButtonLikeEmpty countLikes={countLikesComment}/>}
           </div>
           {isAuthenticated ?
             (userId.id === user.id ? <div className={style.comment__cover}>

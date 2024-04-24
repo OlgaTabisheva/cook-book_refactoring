@@ -198,7 +198,6 @@ query MyQuery {
               setInstantLikes={setInstantLikes}
               instantAddRecipe={instantAddRecipe}
 
-
             />
           }/>
         </Route>

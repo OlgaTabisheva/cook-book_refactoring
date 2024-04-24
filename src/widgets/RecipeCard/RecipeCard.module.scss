@@ -67,5 +67,18 @@
 
 
   }
+  &__countLikes{
+    cursor: pointer;
+    margin-right: 8px;
+    border: none;
+    display: flex;
+    width: 62px;
+    height: 32px;
+    padding: 4px 12px;
+    background-color: $sand-20;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 
 }
