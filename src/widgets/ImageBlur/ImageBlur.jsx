@@ -5,9 +5,10 @@ import {useEffect, useState} from "react";
 
 
 
-function ImageBlur({image}) {
+function ImageBlur({image, handleDelPhoto}) {
 
 
+ // console.log(image,'image')
   const [openSettingPopup, setOpenSettingPopup] = useState(false)
 
 

@@ -4,7 +4,10 @@ import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 
 function PaginationBasic({totalPosts, paginate, currentPage}) {
-  const [postPage] = useState(6)
+
+  console.log(totalPosts,currentPage,'totalPosts')
+
+  const [postPage] = useState(21)
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postPage); i++) {
     pageNumbers.push(i);
@@ -30,7 +33,7 @@ function PaginationBasic({totalPosts, paginate, currentPage}) {
           </li>
         ))}
         { selectedPageNumber !== pageNumbers.length && <ButtonChips text={'Дальше'}
-                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) & selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>}
+                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) && selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>}
 
       </ul>
     </nav>

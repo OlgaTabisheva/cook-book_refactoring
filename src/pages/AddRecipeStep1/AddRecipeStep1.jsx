@@ -40,15 +40,7 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
    authorId
   }
 }`
-  const DEL_IMAGE_FROM_STORAGE =
-    gql`
-   mutation MyMutation2 {
-    deleteFile(id: "${obj.ImageId}") {
-      id
-    }
-  }
-  `
-  const [deleteImageFromStorage] = useMutation(DEL_IMAGE_FROM_GALLERY)
+
 
   const [addNewRecipe, {error: ErrorAddRecipe}] = useMutation(ADD_RECIPE)
 

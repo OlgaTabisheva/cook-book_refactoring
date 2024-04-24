@@ -22,7 +22,7 @@ function PopupUnits({isOpen, setProductInfo, setIsOpen, productInfo, numberId}) 
   }
 
   return (
-    <button className={isOpen === true ? style.popupUnits_hidden : style.popupUnits}>
+    <div className={isOpen === true ? style.popupUnits_hidden : style.popupUnits}>
       {units?.map((obj) => (
         <button className={style.popupUnits__box} onClick={() => handleSetProductUnit(obj.cut)} key={obj.id}>
           <p className={style.popupUnits__text}> {obj.full}</p>
@@ -30,7 +30,7 @@ function PopupUnits({isOpen, setProductInfo, setIsOpen, productInfo, numberId}) 
 
         </button>)
       )}
-    </button>
+    </div>
   )
 }
 

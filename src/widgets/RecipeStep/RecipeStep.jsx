@@ -4,6 +4,8 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import AddPhotoRecipe from "../AddPhotoRecipe/AddPhotoRecipe.jsx";
 import React, {useEffect, useContext, useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
+import {gql, useMutation} from "@apollo/client";
+import {toast} from "react-hot-toast";
 
 
 function RecipeStep({
@@ -20,22 +22,40 @@ function RecipeStep({
                     }) {
 
 
-  const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', text: ''})
+  const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '',  urlId: '', text: ''})
 
+ const DEL_IMAGE_FROM_STORAGE =
+    gql`
+   mutation MyMutation2 {
+    deleteFile(id: "${obj.urlId}") {
+      id
+    }
+  }
+  `
+  const [deleteImageFromStorage] = useMutation(DEL_IMAGE_FROM_STORAGE)
+useEffect(()=>{
+  const updatedItems = instantStepRecipeWithGallery
+  const ind = updatedItems.findIndex(i => i.id === obj.id)
+  setStepRecipeInfo(updatedItems[ind])
+  console.log('1')
+},[])
+  /*
+    useEffect(() => {
+      const updatedItems = instantStepRecipeWithGallery
+      const ind = updatedItems.findIndex(i => i.id === obj.id)
+      if (ind === -1)
+        updatedItems.push(stepRecipeInfo)
+      else
+        updatedItems[ind] = stepRecipeInfo
+      setInstantStepRecipeWithGallery(updatedItems)
+      console.log('2')
 
-  useEffect(() => {
-    const updatedItems = instantStepRecipeWithGallery
-    const ind = updatedItems.findIndex(i => i.id === obj.id)
-    if (ind === -1)
-      updatedItems.push(stepRecipeInfo)
-    else
-      updatedItems[ind] = stepRecipeInfo
-    setInstantStepRecipeWithGallery(updatedItems)
-
-  }, [stepRecipeInfo, instantStepRecipeWithGallery])
+    }, [stepRecipeInfo, instantStepRecipeWithGallery])*/
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
+    console.log(stepRecipeInfo?.text, '3')
+
   }, [stepRecipeInfo?.text])
 
   useEffect(() => {
@@ -44,14 +64,39 @@ function RecipeStep({
         id: stepRecipeInfo?.id,
         step: stepRecipeInfo?.step,
         url: instantStepRecipeInfo?.url,
+        urlId: instantStepRecipeInfo?.urlId,
         text: stepRecipeInfo?.text
       })
     }
-  }, [instantStepRecipeWithGallery, stepRecipeInfo, instantStepRecipeInfo])
+    console.log('4')
+
+  }, [instantStepRecipeInfo ])
 
   function handleDeleteStep(id) {
+    console.log('5')
+
+    console.log(id, 'id')
     const updatedItems = instantStepRecipeWithGallery.filter(i => i.id !== id.id)
-    setInstantStepRecipeWithGallery(updatedItems)
+
+    console.log(updatedItems, 'updatedItems')
+if (id?.urlId === ''){
+  alert('К сожалению пока не удалено')
+}
+    deleteImageFromStorage()
+      .then(
+        setStepRecipeInfo(
+          {
+            id: stepRecipeInfo?.id, step: stepRecipeInfo?.step, url: '',  urlId: '', text: stepRecipeInfo?.text
+          }
+        )
+      ).then(
+      setInstantStepRecipeWithGallery(updatedItems)
+    )
+
+      .then(toast.success('Удалено успешно!')).catch((err) => {
+      toast.error('Произошла ошибка', err)
+    })
+
   }
 
   return (
@@ -66,6 +111,7 @@ function RecipeStep({
             id: obj.id,
             step: e.target.value,
             url: stepRecipeInfo?.url,
+            urlId: instantStepRecipeInfo?.urlId,
             text: stepRecipeInfo?.text
           })}/>
         </div>
@@ -78,14 +124,15 @@ function RecipeStep({
                         setFileUpload={setFileUpload} setPopupCropImage={setPopupCropImage}
                         popupCropImage={popupCropImage}/>
 
-        : <ImageBlur image={stepRecipeInfo?.url}/>}
+        : <ImageBlur  image={stepRecipeInfo?.url}/>}
 
-      <TextareaAutosize defaultValue={'введите описание шага'} className={style.recipeStep__step}
+      <TextareaAutosize  className={style.recipeStep__step}
                         placeholder={'введите описание шага'} value={stepRecipeInfo?.text}
                         onChange={(e) => setStepRecipeInfo({
                           id: obj.id,
                           step: stepRecipeInfo?.step,
                           url: stepRecipeInfo?.url,
+                          urlId: instantStepRecipeInfo?.urlId,
                           text: e.target.value
                         })}/>
     </section>

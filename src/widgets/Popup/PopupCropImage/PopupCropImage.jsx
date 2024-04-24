@@ -56,6 +56,7 @@ function PopupCropImage({
     const UrlToFile = dataURLtoFile(croppedImage, 'image.jpg', "image/jpeg")
     await nhost.storage.upload({file: UrlToFile})
       .then((res) => {
+        const publicUrlId = res?.fileMetadata?.id
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
         if (userUploadFile){
           setUserCropUrl(publicUrl)
@@ -65,6 +66,7 @@ function PopupCropImage({
             id: numberStepInPopupImageCrop,
             step: instantStepRecipeInfo?.step,
             url: publicUrl,
+            urlId: publicUrlId,
             text: instantStepRecipeInfo?.text
           })
         } else setMainRecipeImage(publicUrl)}
