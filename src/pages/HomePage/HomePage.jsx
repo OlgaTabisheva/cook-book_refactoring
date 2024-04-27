@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import PictureSection from "../../widgets/PictureSection/PictureSection.jsx";
 import CarouselsBox from "../../widgets/CarouselsBox/CarouselsBox.jsx";
 import {gql, useQuery} from "@apollo/client";
+import PopupMenu from "../../widgets/Popup/PopupMenu/PopupMenu.jsx";
 
 
 export const HomePage = ({
@@ -18,6 +19,7 @@ export const HomePage = ({
   const [instantNewRecipes, setInstantNewRecipes] = useState([])
   const [instantTheMostCommentsRecipes, setInstantTheMostCommentsRecipes] = useState([])
   const [instantTheMostPopularRecipes, setInstantTheMostPopularRecipes] = useState([])
+
   const GET_NEW_RECIPES = gql`
  query MyQuery {
   recipes(limit: 5, where: {}, order_by: {date: desc}) {
@@ -115,6 +117,7 @@ query MyQuery {
                       newRecipes={newRecipes}/>
 
       </div>
+
     </section>
   );
 }

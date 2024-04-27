@@ -5,7 +5,7 @@ import Logo from "../../shared/Logo/Logo.jsx";
 import LinkItem from "../../shared/LinkItem/LinkItem.jsx";
 import userPhoto from "../../assets/userYelow.svg";
 
-function Header({active}) {
+function Header({active, popupMenu, setPopupMenu}) {
   const isAuthenticated = useAuthenticated()
   const user = useUserData()
   return (
@@ -24,7 +24,7 @@ function Header({active}) {
         <img className={style.header__logo} width="24px" height="24px"
              src={userPhoto} alt="user"/>
       </nav>
-
+<button className={style.header__burger} onClick={()=>setPopupMenu(!popupMenu)}/>
     </section>
   )
 }

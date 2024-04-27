@@ -17,6 +17,7 @@
 
 
 
+
 &__cover{
   max-width: 1120px;
   width: 100%;
@@ -42,4 +43,38 @@
     color: $white;
     margin-bottom: 40px;
   }
+}
+
+@media only screen and (max-width: 1300px) {
+
+  .pictureSection {
+    &__box {
+      padding: 50px 0 60px 0;
+
+    }
+    &__cover{
+      max-width: 900px;
+
+    }
+    &__title {
+      font-family: $stock-font;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 32px;
+      color: $white;
+    }
+    &__text {
+      display: none;
+    }
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .pictureSection {
+    background-position: center;
+    &__cover {
+      max-width: 375px;
+
+    }
+  }
+
 }

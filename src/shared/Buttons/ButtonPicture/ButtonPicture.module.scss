@@ -244,3 +244,24 @@
 .next {
   right: 0;
 }
+
+@media only screen and (max-width: 1300px) {
+  .arrowNext {
+    right: 70px;
+  }
+
+  .arrowPrev {
+    right: 0px;
+  }
+
+}
+@media only screen and (max-width: 1000px) {
+  .arrowNext {
+    right: 40px;
+  }
+
+  .arrowPrev {
+    right: -30px;
+  }
+
+}

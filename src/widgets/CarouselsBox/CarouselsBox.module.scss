@@ -37,7 +37,7 @@ li {
   position: absolute;
   top: -2px !important;
   z-index: 100;
-  left: 1015px !important;
+  left: 1015px;
 }
 
 .carouselsBox {
@@ -154,4 +154,23 @@ li {
       cursor: default;
     }
   }
+}
+@media only screen and (max-width: 1300px) {
+  .carouselsBox {
+    max-width: 900px;
+    width: 100%;
+  }
+  .swiper-pagination {
+    position: absolute;
+    z-index: 100;
+    left: 832px !important  }
+}
+@media only screen and (max-width: 1000px) {
+  .carouselsBox {
+    max-width: 344px;
+  }
+  .swiper-pagination {
+
+    left: 305px !important
+}
 }

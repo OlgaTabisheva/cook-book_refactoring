@@ -8,6 +8,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 
+
+
 function CarouselsBox({instantNewRecipes, carouselTitle, instantLikes, setInstantLikes, isAuthenticated}) {
 
   const sliderRef = useRef(null);
@@ -29,7 +31,16 @@ function CarouselsBox({instantNewRecipes, carouselTitle, instantLikes, setInstan
         <div className={style.carouselsBox__swiper}>
           <Swiper
             className="mySwiper"
-            slidesPerView={3}
+          breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+            600: {
+              slidesPerView: 2,
+            },
+          1010: {
+            slidesPerView: 3,
+  }}}
             centeredSlides={false}
             navigation={false}
             spaceBetween={30}
