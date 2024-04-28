@@ -59,3 +59,30 @@
     z-index:10000;
   }
 }
+
+
+@media only screen and (max-width: 1300px) {
+  .recipesCatalog {
+    &__catalog {
+  grid-template-columns: repeat(2, 352px);
+
+}}}
+@media only screen and (max-width: 1000px) {
+  .recipesCatalog {
+    &__catalog {
+
+  grid-template-columns: repeat(1, 352px);
+
+    }
+    &__box{
+      margin-top: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 375px;
+      align-items: center;
+      align-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+  }}

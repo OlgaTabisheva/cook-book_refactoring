@@ -16,10 +16,17 @@
   &__box{
 
   }
+  &__user{
+
+  }
+  &__logo{}
+  &__links{}
   &__component{}
 }
 @media only screen and (max-width: 1000px) {
   .popupMenu_visible {
+
+    padding: 0 36px;
     visibility: visible;
     position: fixed;
     display: flex;
@@ -30,17 +37,44 @@
     align-items: center;
     background: #FFF6DE;
     z-index: 100000;
-    padding-top: 0;
     margin: 0;
     flex-direction: column;
     &__box{
       display: flex;
-      background-color: #FC4C0E;
-      width: 500px;
-      height: 500px;
+      background-color: inherit;
+      flex-direction: column;
+      align-items: center;
+    }
+    &__user{
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
     }
     &__component{
+      width: 90%;
 
+    }
+    &__logo{
+      display: flex;
+      width: 60px;
+      height: 60px;
+      padding: 18px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+      background: var(--Secondary-Sand-colorful-20, #FFEEC1);
+      margin-bottom: 20px;
+    }
+    &__links{
+      margin-top: 40px;
+      display: flex;
+
+      flex-direction: column;
+      align-items: center;
+      &:not(:first-of-type){
+        margin-top: 20px;
+      }
     }
   }
 

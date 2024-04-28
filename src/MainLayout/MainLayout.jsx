@@ -16,7 +16,7 @@ function MainLayout() {
         <Outlet/>
       </div>
       <Footer/>
-      {popupMenu &&  <PopupMenu/>}
+      {popupMenu &&  <PopupMenu  setPopupMenu={setPopupMenu} popupMenu={popupMenu}/>}
     </div>
   );
 }
