@@ -20,9 +20,10 @@
   &__content {
     display: flex;
     flex-direction: column;
-    max-width: 440px;
+    max-width: 420px;
     width: 100%;
-    margin: 60px auto 0px auto;
+    margin-top: 20px;
+  //  margin: 60px auto 0px auto;
     border-radius:40px;
     padding: 60px;
     background-color: $sand-colorful-10;
@@ -32,7 +33,7 @@
   }
 
   &__contentText {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,10 +52,14 @@
 
   }
   &__images{
+
     display: flex;
-    flex-direction: column;
-    max-width: 560px;
     width: 100%;
+     max-width: 375px;
+    padding-bottom: 182px;
+    flex-direction: column;
+    align-items: center;
+    gap: 114px;
     margin: 0px auto;
     z-index: 30000;
     position: relative;
@@ -64,21 +69,52 @@
     @extend %imageBackgroundPepper;
     background-image: url("./../../assets/Group 7.svg");
     top: -40px;
-    left: -220px;
+    left: -280px;
   }
 
   &__imageGarlic {
     @extend %imageBackgroundGarlic;
     background-image: url("./../../assets/Group 14.svg");
     top: 420px;
-    left: -280px;
+    left: -340px;
   }
 
   &__imageTomato {
     @extend %imageBackgroundTomato;
     background-image: url("./../../assets/Group 18.svg");
     top: 150px;
-    left: 400px;
+    left: 250px;
   }
 
+}
+@media only screen and (max-width: 1000px) {
+  .auth {
+
+
+    &__content {
+      margin: 20px auto 0px auto;
+      display: flex;
+      /* flex-direction: column; */
+      max-width: 244px;
+      width: 100%;
+      min-width: 244px;
+      /* width: 100%; */
+      /* margin: 60px auto 0px auto; */
+      /* border-radius: 40px; */
+      /* padding: 60px; */
+      align-items: center;
+
+    }
+    &__contentText {
+      margin-bottom: 0;
+
+    }
+    &__images{
+
+
+      max-width: 1000px;
+      width: 100%;
+
+    }
+    }
 }

@@ -2,4 +2,15 @@
 
 .signIn {
  @include auth
+
+}
+@media only screen and (max-width: 1000px) {
+ .signIn {
+  position: relative;
+  display: flex;
+  min-width: 344px;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+ }
 }

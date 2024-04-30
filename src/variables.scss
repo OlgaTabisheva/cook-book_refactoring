@@ -184,6 +184,12 @@ $buttonColor: #FFDCBF;
     font-size: 13px;
     line-height: 20px;
   }
+  @media only screen and (max-width: 1000px) {
+    &__box {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 @keyframes shake {

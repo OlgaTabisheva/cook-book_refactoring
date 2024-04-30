@@ -124,7 +124,7 @@ select:-webkit-autofill:focus {
 
   &__buttonImg {
     top: 40px;
-    left: 395px;
+    left: 340px;
     border: none;
     text-align: center;
     background-color: inherit;
@@ -205,3 +205,15 @@ select:-webkit-autofill:focus {
     }
 
   }
+
+@media only screen and (max-width: 1000px) {
+  .inputAuth {
+
+
+    &__buttonImg {
+
+      left: 310px;
+
+    }
+  }
+}
