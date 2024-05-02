@@ -74,7 +74,6 @@ query MyQuery {
 
   //const paginate = pageNumber => setCurrentPage(pageNumber);
 
-console.log(instantSearchRecipes,'instantSearchRecipes')
   return (
     <section className={style.recipesCatalog}>
       <div className={style.recipesCatalog__search}>

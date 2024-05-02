@@ -54,3 +54,23 @@
     text-align: center;
   }
 }
+@media only screen and (max-width: 1000px) {
+  .footer {
+  margin: 0 auto 20px 0;
+    &__link {
+      color: $sand-80;
+      text-decoration: none;
+      text-align: center;
+
+      &:not(:last-child) {
+        border-right: 1px solid $sand-80-opacity;
+        padding: 0 10px;
+      }
+
+      &:last-child {
+        padding: 0 10px;
+      }
+    }
+  }
+
+}

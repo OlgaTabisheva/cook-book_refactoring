@@ -12,7 +12,7 @@ function HeaderMini({color, popupMenu, setPopupMenu}) {
       color === 'Sand10' && style.headerMiniSand10}>
       <div className={style.headerMiniSand10__box}>
         <Logo/>
-       <ButtonPicture onClick={()=>setPopupMenu(!popupMenu)} value={'close'} size={'normal'}> </ButtonPicture>
+       <ButtonPicture onClick={()=>navigate(-1)} value={'close'} size={'normal'}> </ButtonPicture>
 
       </div>
 

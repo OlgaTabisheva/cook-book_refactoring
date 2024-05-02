@@ -40,3 +40,36 @@
   z-index: 11;
  }
 }
+
+@media only screen and (max-width: 1000px) {
+
+ .imageBlur {
+  width: 100%;
+  height: 120px;
+  border-radius: 20px;
+  &__top{
+   display: flex;
+   width: 212px;
+   height: 120px;
+   padding: 8px 8px 72px 164px;
+   justify-content: flex-end;
+   align-items: center;
+   flex-shrink: 0;
+  }
+  &__blur{
+   max-width: 344px;
+   height: 120px;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 40px;
+   z-index: 10;
+   border: none;
+  }
+  &__button {
+   right: 60px;
+
+  }
+ }
+}
+

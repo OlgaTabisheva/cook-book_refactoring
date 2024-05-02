@@ -38,7 +38,7 @@ function ProductQuantity({
 
   return (
     <section className={style.productQuantity}   key = {obj.id}>
-      <div>
+      <div className={style.productQuantity__deckstop}>
         <h3 className={style.productQuantity__subtitle}>Укажите продукт</h3>
         <input className={style.productQuantity__input} placeholder={'введите продукт'} value={productInfo.product}
                onChange={(e) => setProductInfo({
@@ -48,13 +48,14 @@ function ProductQuantity({
                  product: e.target.value
                })}/>
       </div>
-      <div>
+      <div className={style.productQuantity__box}>
+        <div>
         <h3 className={style.productQuantity__subtitle}>Ед. изм.</h3>
         {/*   <button className={style.productQuantity__select} id="fruits" name="fruits">
           <option data-color="black" value="" disabled selected hidden>Please Choose...</option>>
         </button>*/}
         <ButtonUnits text={productInfo.unit} onClick={() => togglePopup()}/>
-      </div>
+        </div>
       <div className={style.productQuantity__boxCount}>
         <h3 className={style.productQuantity__subtitle}>Количество</h3>
         <input className={style.productQuantity__inputCount} placeholder={'введите массу'} value={productInfo.count}
@@ -65,6 +66,17 @@ function ProductQuantity({
                  count: e.target.value
                })}/>
 
+      </div>
+      </div>
+      <div className={style.productQuantity__mobile}>
+        <h3 className={style.productQuantity__subtitle}>Укажите продукт</h3>
+        <input className={style.productQuantity__input} placeholder={'введите продукт'} value={productInfo.product}
+               onChange={(e) => setProductInfo({
+                 number: obj.number,
+                 count: productInfo.count,
+                 unit: productInfo.unit,
+                 product: e.target.value
+               })}/>
       </div>
       <ButtonPicture value={'close'} size={'big'} onClick={() => handleDeleteProduct(obj)}/>
       <PopupUnits setIsOpen={setIsOpen} isOpen={isOpen} productInfo={productInfo} setProductInfo={setProductInfo}

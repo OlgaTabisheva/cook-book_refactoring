@@ -7,13 +7,23 @@
   align-items: flex-end;
   margin-top: 20px;
   position: relative;
-
-
+  &__mobile{
+    visibility: hidden;
+    display: none;
+  }
+  &__deckstop{
+    visibility: visible;
+  }
   &__subtitle {
     @extend %textSmall13-16Mon;
     text-align: left;
   }
-
+  &__box{
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: flex-end;
+  }
   &__boxCount {
     margin-right: 12px;
   }
@@ -85,4 +95,40 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .productQuantity {
+    display: flex;
+    color: #A49B82;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+    position: relative;
+    flex-direction: column-reverse;
+    max-width: 344px;
+    width: 100%;
+      &__box{
+    max-width: 344px;
 
+    }
+    &__mobile{
+      visibility: visible;
+      width: 100%;
+      max-width: 344px;
+    }
+    &__deckstop{
+      visibility: hidden;
+      display: none;
+    }
+    &__input {
+      border-radius: 12px;
+
+
+    }
+    &__inputCount{
+      width: 100%;
+      max-width: 172px;
+    }
+  }
+
+
+}

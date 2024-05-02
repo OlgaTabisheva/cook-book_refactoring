@@ -17,3 +17,23 @@
 
   }
 }
+@media only screen and (max-width: 1300px) {
+  .authorsPage {
+
+    &__box {
+      grid-template-columns: repeat(2, 256px);
+
+    }
+  }
+
+}
+@media only screen and (max-width: 1000px) {
+  .authorsPage {
+
+    &__box {
+      grid-template-columns: repeat(1, 256px);
+
+    }
+  }
+
+  }

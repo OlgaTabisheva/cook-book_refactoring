@@ -27,9 +27,9 @@ function PopupMenu({active, setPopupMenu,popupMenu }) {
         </nav>
         <nav className={style.popupMenu_visible__links}>
 
-          <LinkItem linkTo={'/recipes'} text={'Рецепты'} active={active}/>
-          <LinkItem linkTo={'/authors'} text={'Авторы'} active={active}/>
-          <LinkItem linkTo={'/add-recipe-step'} text={'Добавить новый рецепт'} active={active}/>
+          <LinkItem popupMenu={popupMenu} setPopupMenu={setPopupMenu} linkTo={'/recipes'} text={'Рецепты'} active={active}/>
+          <LinkItem popupMenu={popupMenu} setPopupMenu={setPopupMenu} linkTo={'/authors'} text={'Авторы'} active={active}/>
+          <LinkItem popupMenu={popupMenu} setPopupMenu={setPopupMenu} linkTo={'/add-recipe-step'} text={'Добавить новый рецепт'} active={active}/>
 
         </nav>
       </div>

@@ -21,3 +21,19 @@
     }
   }
 }
+@media only screen and (max-width: 1000px) {
+
+  .categoryList{
+    max-width: 775px;
+
+    &__boxCategory {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      :not(:first-child) {
+        margin-left:5px;
+      }
+}
+}}
+

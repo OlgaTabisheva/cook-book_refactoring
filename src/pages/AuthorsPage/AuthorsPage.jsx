@@ -65,16 +65,10 @@ function AuthorsPage({}) {
   const [instantSearchUsers, setInstantSearchUsers] = useState([]);
   function handleSearchValue(e) {
     setSearchString(inputSearchText)
-    console.log(inputSearchText, 'inputSearchText')
-    console.log(searchString, 'searchString')
-
     setInstantSearchUsers(resultSearchUsersFromServer)
-
   }
 
-  useEffect(()=>{
-     console.log(resultSearchUsersFromServer, 'resultSearchUsersFromServer')
-  },[resultSearchUsersFromServer])
+
 
 useEffect(()=>{
   setInstantGetCountsUserLikes(getCountsUserLikes)

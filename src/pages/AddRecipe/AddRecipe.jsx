@@ -86,7 +86,6 @@ const [stepFromStorage, setStepFromStorage]= useState()
 
 useEffect(()=>{
   const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1];
-  console.log(item, 'item')
   }, [instantStepRecipeWithGallery]
 
 )
@@ -99,7 +98,6 @@ useEffect(()=>{
 
     const list = JSON.parse(data)
     setStepFromStorage(list)
-    console.log('5')
 
   },[])
   useEffect(() => {
@@ -108,7 +106,6 @@ useEffect(()=>{
       const ind = updatedItems.findIndex(i => i.id === instantStepRecipeInfo?.id)
       updatedItems[ind].url = instantStepRecipeInfo?.url
       setInstantStepRecipeWithGallery(updatedItems)
-      console.log('6')
 
     }
     }, [instantStepRecipeInfo, instantStepRecipeWithGallery])

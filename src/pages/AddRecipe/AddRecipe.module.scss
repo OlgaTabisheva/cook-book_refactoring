@@ -69,6 +69,7 @@
     align-items: center;
     align-content: center;
     justify-content: center;
+
   }
   &__span{
     display: flex;
@@ -100,6 +101,7 @@
   }
   &__boxSteps {
     margin-top: -20px;
+
   }
 
   &__subtitle {
@@ -197,3 +199,66 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+
+  .addRecipe {
+    display: flex;
+    flex-direction: column;
+    background: none;
+    padding: 0 16px 0 16px;
+    &__title{
+      color: var(--Primary-Primary-dark-100, #323232);
+      text-align: center;
+      font-feature-settings: 'clig' off, 'liga' off;
+
+      /* Mob/Headers Н1 */
+      font-family: Vollkorn;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 32px; /* 114.286% */
+    }
+    &__box {
+      max-width: 375px;
+      width: 100%;
+    }
+
+    &__cover {
+      max-width: 375px;
+    }
+    &__boxName {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        width: 100%;
+      }
+    }
+    &__boxCategory {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 10px;
+    }
+
+      :not(:first-child) {
+     //   margin-left: 12px;
+      }
+    &__steps{
+      max-width: 344px;
+      width: 100%;
+    }
+    &__boxSteps {
+      max-width: 344px;
+      width: 100%;
+    }
+    &__subtitle {
+      text-align: center;
+    }
+
+  }
+
+}
