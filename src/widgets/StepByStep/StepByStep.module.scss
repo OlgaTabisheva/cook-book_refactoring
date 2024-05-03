@@ -18,3 +18,39 @@
     text-align: left;
   }
 }
+
+
+
+@media only screen and (max-width: 650px) {
+  .stepByStep {
+    &__title {
+      color: var(--Primary-Primary-dark-100, #323232);
+      font-feature-settings: 'clig' off, 'liga' off;
+
+      /* Mob/Headers Н3 */
+      font-family: Vollkorn;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 120% */
+    }
+    &__img {
+      max-width: 344px;
+      height: 184px;
+    width: 100%;
+    }
+    &__box{
+      color: var(--Primary-Primary-dark-100, #323232);
+      font-feature-settings: 'clig' off, 'liga' off;
+
+      /* Mob/Body large */
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 142.857% */
+      max-width: 344px;
+      width: 100%;
+    }
+  }
+}

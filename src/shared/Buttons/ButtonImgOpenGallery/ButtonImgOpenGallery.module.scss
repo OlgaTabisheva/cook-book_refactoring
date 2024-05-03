@@ -28,3 +28,17 @@
 
   }
 }
+@media only screen and (max-width: 650px) {
+  .buttonImgOpenGallery {
+    max-width: 72px;
+    width: 100%;
+    height: 44px;
+
+    &__img {
+
+      width: 73px;
+      height: 44px;
+
+    }
+  }
+}

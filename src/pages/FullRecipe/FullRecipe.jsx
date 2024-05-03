@@ -54,13 +54,18 @@ query MyQuery {
         <ButtonBack />
         <div className={style.fullRecipe__titleContent}>
           <h3 className={style.fullRecipe__title}> {fullRecipe?.name}</h3>
+
           <BoxClockTime
             howLong={fullRecipe?.duration?.duration ? fullRecipe?.duration?.duration : 'длительность не задана'}/>
         </div>
+
+
+
         <div className={style.fullRecipe__box}>
-          <RecipePhotoBlock instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
+          <RecipePhotoBlock recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
 
         </div>
+
         <CommentsBox       isAuthenticated={isAuthenticated}
                            instantComments={instantComments}
                            setInstantComments={setInstantComments}
@@ -69,7 +74,9 @@ query MyQuery {
         />
 
       </div>
+      <div className={style.fullRecipe__composition_desktop} >
       <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
+      </div>
     </div>
 
   )

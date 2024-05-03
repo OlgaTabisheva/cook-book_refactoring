@@ -10,9 +10,10 @@ import ButtonImgOpenGallery from "../../shared/Buttons/ButtonImgOpenGallery/Butt
 import PopupImageGallery from "../Popup/PopupImageGallery/PopupImageGallery.jsx";
 import {gql, useQuery} from "@apollo/client";
 import {defaultAvatar} from "../../utils/Utils.js";
+import RecipeComposition from "../RecipeComposition/RecipeComposition.jsx";
 
 
-function RecipePhotoBlock({instantAddRecipe, recipeStepsMap}) {
+function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap}) {
   const {id} = useParams();
   const navigate = useNavigate();
  const [openImagePopup,setOpenImagePopup] = useState(false)
@@ -122,6 +123,10 @@ query MyQuery {
           </div>
         </div>
       </div>
+      <div className={style.recipePhotoBlock__composition_mobile} >
+        <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
+      </div>
+
       <div className={style.recipePhotoBlock__steps}>
         <h3 className={style.recipePhotoBlock__title}>Пошаговое приготовление</h3>
         {recipeStepsMap && recipeStepsMap?.map((obj) => (

@@ -44,3 +44,16 @@ background-color: inherit;
     align-items: flex-end;
 }
 }
+@media only screen and (max-width: 650px) {
+  .writeComment {
+    &__area{
+
+      max-width: 344px;
+      width: 100%;
+      min-width: 344px;
+    }
+    &__boxPhoto {
+      display: none;
+    }
+  }
+}
