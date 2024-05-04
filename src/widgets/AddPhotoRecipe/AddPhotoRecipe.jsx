@@ -14,8 +14,6 @@ function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRe
 
 
   const handleChange = async (file)=> {
-console.log(stepRecipeInfo?.id, '(stepRecipeInfo?.id')
-    console.log(file, '(stepRecipeInfo?.id')
      setFileUpload(file)
     setNumberStepInPopupImageCrop(stepRecipeInfo?.id)
     setPopupCropImage(!popupCropImage)

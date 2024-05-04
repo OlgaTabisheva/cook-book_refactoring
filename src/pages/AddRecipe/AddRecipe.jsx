@@ -16,7 +16,7 @@ import {toast} from "react-hot-toast";
 import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
 import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import PopupCropImage from "../../widgets/Popup/PopupCropImage/PopupCropImage.jsx";
-
+import { useId } from 'react';
 
 function AddRecipe({
                      allCategories,
@@ -30,6 +30,7 @@ function AddRecipe({
   const {id} = useParams();
   const navigate = useNavigate();
   const user = useUserData()
+
   // const fullRecipe = instantAddRecipe?.recipes.find(elem => elem.id === id);
   const [textProductForError, setTextProductForError] = useState()
   const [stepRecipeForError, setStepRecipeForError] = useState()
@@ -51,7 +52,13 @@ function AddRecipe({
     unit: 'первый',
     count: 'первый'
   }])
-  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{ id: 1, step: 1, url: '', text: '', urlId: ''}]);
+  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{
+    id: 1,
+    step: 1,
+    url: '',
+    text: '',
+    urlId: ''
+  }]);
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [nameRecipe, setNameRecipe] = useState()
@@ -79,7 +86,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     }
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
-const [stepFromStorage, setStepFromStorage]= useState()
+  const [stepFromStorage, setStepFromStorage] = useState()
   const DEL_IMAGE_FROM_STORAGE =
     gql`
    mutation MyMutation2 {
@@ -93,8 +100,7 @@ const [stepFromStorage, setStepFromStorage]= useState()
   const {nameValid, categoryValid, photoValid, durationValid, productsValid, stepsValid} = formValidityAddRecipe;
   const isSubmitDisabled = !nameValid || !categoryValid || !photoValid || !durationValid || !productsValid || !stepsValid;
 
-  useEffect(()=>
-  {
+  useEffect(() => {
     const data = window.localStorage.getItem('instantSteps');
 
     if (data !== null) setInstantStepRecipeWithGallery(JSON.parse(data));
@@ -102,7 +108,9 @@ const [stepFromStorage, setStepFromStorage]= useState()
     const list = JSON.parse(data)
     setStepFromStorage(list)
 
-  },[])
+    console.log(stepFromStorage,'stepFromStorage')
+
+  }, [])
   useEffect(() => {
     if (instantStepRecipeInfo?.url?.length > 0) {
       const updatedItems = instantStepRecipeWithGallery
@@ -111,7 +119,7 @@ const [stepFromStorage, setStepFromStorage]= useState()
       setInstantStepRecipeWithGallery(updatedItems)
 
     }
-    }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
+  }, [instantStepRecipeInfo])
   useEffect(() => {
     if (instantStepRecipeInfo?.urlId?.length > 0) {
       const updatedItems = instantStepRecipeWithGallery
@@ -120,7 +128,7 @@ const [stepFromStorage, setStepFromStorage]= useState()
       setInstantStepRecipeWithGallery(updatedItems)
 
     }
-  }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
+  }, [instantStepRecipeInfo])
 
   useEffect(function validateInputs() {
 
@@ -193,7 +201,7 @@ const [stepFromStorage, setStepFromStorage]= useState()
         setInstantAddRecipe({recipes: recipesArray})
         navigate(`/recipe/${id}`)
       })
-   //   localStorage.removeItem("instantSteps")
+      //   localStorage.removeItem("instantSteps")
       toast.success('Обновленно успешно!');
 
     } catch (error) {
@@ -203,64 +211,92 @@ const [stepFromStorage, setStepFromStorage]= useState()
 
 
   function handleAddStep() {
-
     const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1].id
-    const newStepNumber = stepNumber + item + 1
-    if (item===0){
-      setStepNumber(item+1)
+    const newStepNumber = item + 1
+  /*  if (item === 0) {
+      setStepNumber(item + 1)
     }
-    if (item>0){
-      setStepNumber(item+1)
-    }
+    if (item > 0) {
+      setStepNumber(item + 1)
+    }*/
     setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
       id: newStepNumber,
-      step: 1+newStepNumber,
+      step: newStepNumber,
       url: '',
       text: '',
       urlId: '',
 
     }])
     setStepNumber(newStepNumber)
-  //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+    //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
   }
 
-  function handleCloseRecipe(){
+  function handleCloseRecipe() {
 //localStorage.removeItem("instantSteps")
+    localStorage.removeItem("instantSteps")
     setCloseAddRecipe(!closeAddRecipe)
 
   }
 
- function handleDelImage() {
- if (mainRecipeImage?.id === delImageFromStorage) {
-    deleteImageFromStorage()
-      .then(
-        setMainRecipeImage(
-          {
-            url: '', id: ''
-          }
-        )
-      ).then(setPopupDelImage(!popupDelImage))
-      .then(setOpenSettingPopup(!openSettingPopup))
-      .then(toast.success('Удалено успешно!'))
-      .catch((err) => {
-        toast.error('Произошла ошибка', err)
-      })
+  function handleDelImage() {
+    if (mainRecipeImage?.id === delImageFromStorage) {
+      deleteImageFromStorage()
+        .then(
+          setMainRecipeImage(
+            {
+              url: '', id: ''
+            }
+          )
+        ).then(setPopupDelImage(!popupDelImage))
+        .then(setOpenSettingPopup(!openSettingPopup))
+        .then(toast.success('Удалено успешно!'))
+        .catch((err) => {
+          toast.error('Произошла ошибка', err)
+        })
+    }
+
+    const ind = instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage).id;
+  /*  const updatedItems = instantStepRecipeWithGallery;
+    updatedItems[ind] = ({
+      id: instantStepRecipeWithGallery[ind]?.id,
+      step: instantStepRecipeWithGallery[ind]?.step,
+      url: '',
+      text: instantStepRecipeWithGallery[ind]?.text,
+      urlId: ''
+    })*/
+    const updatedItems = instantStepRecipeWithGallery;
+
+
+    updatedItems[ind-1] = instantStepRecipeWithGallery.find(item => {
+      if (item.id === ind) {
+        item.url = '';
+        item.urlId = '';
+        return true;
+      }
+    });
+
+    console.log(updatedItems, 'updatedItems')
+    console.log( updatedItems[ind], ' updatedItems[ind]')
+    console.log(ind, 'ind')
+    console.log(instantStepRecipeWithGallery[ind]?.step, 'instantStepRecipeWithGallery[ind]?.step')
+    console.log(instantStepRecipeWithGallery, 'instantStepRecipeWithGallery')
+
+    if (ind > 0) {
+      deleteImageFromStorage()
+        .then(setInstantStepRecipeWithGallery(updatedItems))
+        .then(setPopupDelImage(!popupDelImage))
+        .then(setOpenSettingPopup(!openSettingPopup))
+        .then(toast.success('Удалено успешно!'))
+        .catch((err) => {
+          toast.error('Произошла ошибка', err)
+        })
+    }
+
   }
 
-    const RecipeStepImage = instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage);
- let StepRecipe ={ id: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.id, step: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.step , url: '', text: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.text, urlId: ''}
-   console.log(StepRecipe,RecipeStepImage, 'RecipeStepImage StepRecipe')
- /*  if (RecipeStepImage > 0 ) {
-     deleteImageFromStorage()
-       .then(setPopupDelImage(!popupDelImage))
-       .then(setOpenSettingPopup(!openSettingPopup))
-       .then(toast.success('Удалено успешно!'))
-       .catch((err) => {
-         toast.error('Произошла ошибка', err)
-       })
-   }*/
-
-}
+useEffect(()=>{
+  console.log(instantStepRecipeWithGallery, 'instantStepRecipeWithGallery05')
+},[instantStepRecipeWithGallery])
 
 
   return (
@@ -282,13 +318,16 @@ const [stepFromStorage, setStepFromStorage]= useState()
 
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
-          {((mainRecipeImage?.url === undefined) || (mainRecipeImage?.url === '' )) ?
+          {((mainRecipeImage?.url === undefined) || (mainRecipeImage?.url === '')) ?
             <AddPhotoRecipe numberStepInPopupImageCrop={numberStepInPopupImageCrop}
                             setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
                             popupCropImage={popupCropImage} setPopupCropImage={setPopupCropImage}
-                            setFileUpload={setFileUpload}  setMainRecipeImage={setMainRecipeImage}/>
+                            setFileUpload={setFileUpload} setMainRecipeImage={setMainRecipeImage}/>
             :
-            <ImageBlur setDelImageFromStorage={setDelImageFromStorage} mainRecipeImage={mainRecipeImage} setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} image={mainRecipeImage}/>}</div>
+            <ImageBlur setDelImageFromStorage={setDelImageFromStorage} mainRecipeImage={mainRecipeImage}
+                       setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup}
+                       popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} image={mainRecipeImage}/>}
+        </div>
         {mainRecipeImage &&
           <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
 
@@ -324,9 +363,10 @@ const [stepFromStorage, setStepFromStorage]= useState()
 
         <li className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
-          {instantStepRecipeWithGallery?.map((obj,index) => (
-              <ul className={style.addRecipe__boxSteps} key={instantStepRecipeWithGallery.indexOf(obj)}>
-                <RecipeStep popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} setPopupCropImage={setPopupCropImage}
+          {instantStepRecipeWithGallery?.map((obj, index) => (
+              <ul className={style.addRecipe__boxSteps} key={instantStepRecipeWithGallery.id}>
+                <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage}
+                            setPopupCropImage={setPopupCropImage}
                             popupCropImage={popupCropImage} instantStepRecipeInfo={instantStepRecipeInfo}
                             setInstantStepRecipeInfo={setInstantStepRecipeInfo} setFileUpload={setFileUpload}
                             fileUpload={fileUpload}
@@ -334,7 +374,9 @@ const [stepFromStorage, setStepFromStorage]= useState()
                             setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}
                             setStepRecipeForError={setStepRecipeForError}
                             numberStepInPopupImageCrop={numberStepInPopupImageCrop}
-                            setDelImageFromStorage={setDelImageFromStorage} setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop} setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup}
+                            setDelImageFromStorage={setDelImageFromStorage}
+                            setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
+                            setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup}
                 />
               </ul>
             )
@@ -367,7 +409,7 @@ const [stepFromStorage, setStepFromStorage]= useState()
         <PopupBasic text={'Вы действительно хотите удалить это изображение?'} title={'Отменить'}
                     popupCloseAddRecipe={popupDelImage} setCloseAddRecipe={setCloseAddRecipe}
                     setPopupCloseAddRecipe={setPopupDelImage} textButtonGo={'Удалить'}
-                    closeAddRecipe={closeAddRecipe} exitClick={()=>handleDelImage()}/>
+                    closeAddRecipe={closeAddRecipe} exitClick={() => handleDelImage()}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}
       {popupCropImage === true && <div className={style.addRecipe__popup}>

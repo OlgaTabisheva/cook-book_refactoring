@@ -29,8 +29,9 @@ useEffect(()=>{
   const updatedItems = instantStepRecipeWithGallery
   const ind = updatedItems.findIndex(i => i.id === obj.id)
   setStepRecipeInfo(updatedItems[ind])
-},[])
-  /*
+  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+},[instantStepRecipeWithGallery])
+
     useEffect(() => {
       const updatedItems = instantStepRecipeWithGallery
       const ind = updatedItems.findIndex(i => i.id === obj.id)
@@ -41,7 +42,7 @@ useEffect(()=>{
       setInstantStepRecipeWithGallery(updatedItems)
       console.log('2')
 
-    }, [stepRecipeInfo, instantStepRecipeWithGallery])*/
+    }, [stepRecipeInfo, instantStepRecipeWithGallery])
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
@@ -60,10 +61,10 @@ useEffect(()=>{
 
   }, [instantStepRecipeInfo ])
 
-/*
+
   function handleDeleteStep(id) {
     const updatedItems = instantStepRecipeWithGallery.filter(i => i.id !== id.id)
-    if (id?.urlId === ''){
+/*    if (id?.urlId === ''){
   alert('К сожалению пока не удалено')
 }
     deleteImageFromStorage()
@@ -74,15 +75,15 @@ useEffect(()=>{
           }
         )
       ).then(
-      setInstantStepRecipeWithGallery(updatedItems)
+
     )
 
       .then(toast.success('Удалено успешно!')).catch((err) => {
       toast.error('Произошла ошибка', err)
-    })
-
+    })*/
+    setInstantStepRecipeWithGallery(updatedItems)
   }
-*/
+
 
   return (
 
