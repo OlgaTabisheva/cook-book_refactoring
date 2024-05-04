@@ -5,7 +5,7 @@ import {ReactComponent as DeleteIcon} from '../../../assets/trash.svg';
 import {useState} from "react";
 
 
-function PopupImageSettings({onClick}) {
+function PopupImageSettings({onClick, popupDelImage, setPopupDelImage,image, mainRecipeImage,setDelImageFromStorage }) {
 
 
 
@@ -14,12 +14,15 @@ function PopupImageSettings({onClick}) {
     {full: <CropIcon className={style.popupImageSettings__icon}/>, text: 'Кадрировать', id:2},
     {full: <DeleteIcon className={style.popupImageSettings__iconRed}/>, text: 'Удалить', id:3},
 ]
-
+function handleOpenDelPopup(image){
+  setDelImageFromStorage(image)
+  setPopupDelImage(!popupDelImage)
+}
 
   return (
 
 
-    <button type={'button'} className={style.popupImageSettings} onClick={onClick} >
+    <button type={'button'} className={style.popupImageSettings} onClick={()=>handleOpenDelPopup(image?.urlId || mainRecipeImage?.id)} >
       {units?.map((obj) => (
         <div className={style.popupImageSettings__button} key={obj.id}>
           <div> {obj.full}</div>

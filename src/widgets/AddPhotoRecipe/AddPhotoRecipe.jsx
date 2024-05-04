@@ -10,11 +10,12 @@ const fileTypes = ["JPG", "PNG", "GIF"];
 
 
 
-function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRecipeInfo, setNumberStepInPopupImageCrop}) {
+function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRecipeInfo, setNumberStepInPopupImageCrop, setMainRecipeImage}) {
 
 
   const handleChange = async (file)=> {
-
+console.log(stepRecipeInfo?.id, '(stepRecipeInfo?.id')
+    console.log(file, '(stepRecipeInfo?.id')
      setFileUpload(file)
     setNumberStepInPopupImageCrop(stepRecipeInfo?.id)
     setPopupCropImage(!popupCropImage)

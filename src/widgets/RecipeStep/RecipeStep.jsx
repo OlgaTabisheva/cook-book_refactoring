@@ -18,26 +18,17 @@ function RecipeStep({
                       setPopupCropImage,
                       popupCropImage,
                       setNumberStepInPopupImageCrop,
-                      numberStepInPopupImageCrop, instantStepRecipeInfo
+                      numberStepInPopupImageCrop, instantStepRecipeInfo, popupDelImage, setPopupDelImage,setDelImageFromStorage, openSettingPopup, setOpenSettingPopup
                     }) {
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '',  urlId: '', text: ''})
 
- const DEL_IMAGE_FROM_STORAGE =
-    gql`
-   mutation MyMutation2 {
-    deleteFile(id: "${obj.urlId}") {
-      id
-    }
-  }
-  `
-  const [deleteImageFromStorage] = useMutation(DEL_IMAGE_FROM_STORAGE)
+
 useEffect(()=>{
   const updatedItems = instantStepRecipeWithGallery
   const ind = updatedItems.findIndex(i => i.id === obj.id)
   setStepRecipeInfo(updatedItems[ind])
-  console.log('1')
 },[])
   /*
     useEffect(() => {
@@ -54,8 +45,6 @@ useEffect(()=>{
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
-    console.log(stepRecipeInfo?.text, '3')
-
   }, [stepRecipeInfo?.text])
 
   useEffect(() => {
@@ -68,18 +57,13 @@ useEffect(()=>{
         text: stepRecipeInfo?.text
       })
     }
-    console.log('4')
 
   }, [instantStepRecipeInfo ])
 
+/*
   function handleDeleteStep(id) {
-    console.log('5')
-
-    console.log(id, 'id')
     const updatedItems = instantStepRecipeWithGallery.filter(i => i.id !== id.id)
-
-    console.log(updatedItems, 'updatedItems')
-if (id?.urlId === ''){
+    if (id?.urlId === ''){
   alert('К сожалению пока не удалено')
 }
     deleteImageFromStorage()
@@ -98,6 +82,7 @@ if (id?.urlId === ''){
     })
 
   }
+*/
 
   return (
 
@@ -124,7 +109,7 @@ if (id?.urlId === ''){
                         setFileUpload={setFileUpload} setPopupCropImage={setPopupCropImage}
                         popupCropImage={popupCropImage}/>
 
-        : <ImageBlur  image={stepRecipeInfo?.url}/>}
+        : <ImageBlur setDelImageFromStorage={setDelImageFromStorage} stepRecipeInfo={stepRecipeInfo} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup} image={stepRecipeInfo}/>}
 
       <TextareaAutosize  className={style.recipeStep__step}
                         placeholder={'введите описание шага'} value={stepRecipeInfo?.text}

@@ -15,6 +15,8 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
   const [userUploadFile, setUserUploadFile] = useState()
   const [changeButton, setChangeButton] = useState('Профиль')
   const [userCropUrl, setUserCropUrl] = useState()
+  const user = useUserData()
+  const defaultRole=user?.defaultRole?.includes('AdminRecipes')
 
   return (
     <section className={styles.personalPage}>
@@ -25,8 +27,8 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                      active={changeButton === 'Мои Рецепты' ? 'active' : ''}/>
         <ButtonChips text={'Профиль'} onClick={() => setChangeButton('Профиль')}
                      active={changeButton === 'Профиль' ? 'active' : ''}/>
-        <ButtonChips text={'Дополнительные права'} onClick={() => setChangeButton('Дополнительные права')}
-                     active={changeButton === 'Дополнительные права' ? 'active' : ''}/>
+        {defaultRole && <ButtonChips text={'Дополнительные права'} onClick={() => setChangeButton('Дополнительные права')}
+                     active={changeButton === 'Дополнительные права' ? 'active' : ''}/>}
       </div>
       <div className={styles.personalPage__box}>
         {changeButton === 'Избранное' ? <FavoritesRecipes   instantLikes={instantLikes}

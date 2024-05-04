@@ -36,21 +36,22 @@ function AddRecipe({
   const [popupCloseAddRecipe, setPopupCloseAddRecipe] = useState(false)
   const [closeAddRecipe, setCloseAddRecipe] = useState(false)
   const [popupCropImage, setPopupCropImage] = useState(false)
+  const [popupDelImage, setPopupDelImage] = useState(false)
   const [fileUpload, setFileUpload] = useState()
   const [chosenTextDuration, setChosenTextDuration] = useState('')
   const [chosenTextCategory, setChosenTextCategory] = useState('')
   const [lineNumber, setLineNumber] = useState(1)
   const [stepNumber, setStepNumber] = useState(1)
   const [numberStepInPopupImageCrop, setNumberStepInPopupImageCrop] = useState()
+  const [delImageFromStorage, setDelImageFromStorage] = useState()
+  const [openSettingPopup, setOpenSettingPopup] = useState(false)
   const [productQuantityMap, setProductQuantityMap] = useState([{
     number: lineNumber,
     product: 'первый',
     unit: 'первый',
     count: 'первый'
   }])
-  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{
-
-  }]);
+  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{ id: 1, step: 1, url: '', text: '', urlId: ''}]);
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [nameRecipe, setNameRecipe] = useState()
@@ -79,16 +80,18 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
 const [stepFromStorage, setStepFromStorage]= useState()
-
+  const DEL_IMAGE_FROM_STORAGE =
+    gql`
+   mutation MyMutation2 {
+    deleteFile(id: "${delImageFromStorage}") {
+      id
+    }
+  }
+  `
+  const [deleteImageFromStorage] = useMutation(DEL_IMAGE_FROM_STORAGE)
 
   const {nameValid, categoryValid, photoValid, durationValid, productsValid, stepsValid} = formValidityAddRecipe;
   const isSubmitDisabled = !nameValid || !categoryValid || !photoValid || !durationValid || !productsValid || !stepsValid;
-
-useEffect(()=>{
-  const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1];
-  }, [instantStepRecipeWithGallery]
-
-)
 
   useEffect(()=>
   {
@@ -109,13 +112,21 @@ useEffect(()=>{
 
     }
     }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
+  useEffect(() => {
+    if (instantStepRecipeInfo?.urlId?.length > 0) {
+      const updatedItems = instantStepRecipeWithGallery
+      const ind = updatedItems.findIndex(i => i.id === instantStepRecipeInfo?.id)
+      updatedItems[ind].urlId = instantStepRecipeInfo?.urlId
+      setInstantStepRecipeWithGallery(updatedItems)
 
+    }
+  }, [instantStepRecipeInfo, instantStepRecipeWithGallery])
 
   useEffect(function validateInputs() {
 
     const isRecipeName = nameRecipe?.length > 3
     const isRecipeCategory = chosenTextCategory?.category?.length > 0
-    const isMainRecipePhoto = mainRecipeImage?.length > 10
+    const isMainRecipePhoto = mainRecipeImage?.url.length > 10
     const isRecipeDuration = chosenTextDuration?.duration?.length > 0
     const isRecipeProduct = textProductForError?.length > 2
     const isRecipeStep = stepRecipeForError?.length > 20
@@ -135,14 +146,10 @@ useEffect(()=>{
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
     setChosenTextCategory(chosenTextCategoryStep1)
-    console.log('8')
-
   }, [])
 
   function handleDuration(obj) {
     setChosenTextDuration(obj)
-    console.log('9')
-
   }
 
   function handleAddProduct() {
@@ -186,32 +193,23 @@ useEffect(()=>{
         setInstantAddRecipe({recipes: recipesArray})
         navigate(`/recipe/${id}`)
       })
-      localStorage.removeItem("instantSteps")
+   //   localStorage.removeItem("instantSteps")
       toast.success('Обновленно успешно!');
 
     } catch (error) {
       toast.error('Произошла ошибка')
     }
-    console.log('11')
-
   }
 
 
   function handleAddStep() {
 
-    //let newStepNumber9 = instantStepRecipeWithGallery.find(qq => qq.id === 0).l
     const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1].id
     const newStepNumber = stepNumber + item + 1
-    console.log(stepFromStorage,'stepFromStorage')
-console.log(item,'stepFromStorageitemitem')
-    console.log('12')
-    console.log(item, 'item')
     if (item===0){
-      console.log(item, 'item>0')
       setStepNumber(item+1)
     }
     if (item>0){
-      console.log(item, 'item>0')
       setStepNumber(item+1)
     }
     setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
@@ -223,15 +221,47 @@ console.log(item,'stepFromStorageitemitem')
 
     }])
     setStepNumber(newStepNumber)
-    console.log('10', lineNumber)
-    localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+  //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
   }
 
   function handleCloseRecipe(){
-localStorage.removeItem("instantSteps")
+//localStorage.removeItem("instantSteps")
     setCloseAddRecipe(!closeAddRecipe)
 
   }
+
+ function handleDelImage() {
+ if (mainRecipeImage?.id === delImageFromStorage) {
+    deleteImageFromStorage()
+      .then(
+        setMainRecipeImage(
+          {
+            url: '', id: ''
+          }
+        )
+      ).then(setPopupDelImage(!popupDelImage))
+      .then(setOpenSettingPopup(!openSettingPopup))
+      .then(toast.success('Удалено успешно!'))
+      .catch((err) => {
+        toast.error('Произошла ошибка', err)
+      })
+  }
+
+    const RecipeStepImage = instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage);
+ let StepRecipe ={ id: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.id, step: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.step , url: '', text: instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage)?.text, urlId: ''}
+   console.log(StepRecipe,RecipeStepImage, 'RecipeStepImage StepRecipe')
+ /*  if (RecipeStepImage > 0 ) {
+     deleteImageFromStorage()
+       .then(setPopupDelImage(!popupDelImage))
+       .then(setOpenSettingPopup(!openSettingPopup))
+       .then(toast.success('Удалено успешно!'))
+       .catch((err) => {
+         toast.error('Произошла ошибка', err)
+       })
+   }*/
+
+}
+
 
   return (
     <section className={style.addRecipe}>
@@ -252,13 +282,13 @@ localStorage.removeItem("instantSteps")
 
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
-          {!mainRecipeImage ?
+          {((mainRecipeImage?.url === undefined) || (mainRecipeImage?.url === '' )) ?
             <AddPhotoRecipe numberStepInPopupImageCrop={numberStepInPopupImageCrop}
                             setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
                             popupCropImage={popupCropImage} setPopupCropImage={setPopupCropImage}
-                            setFileUpload={setFileUpload}/>
+                            setFileUpload={setFileUpload}  setMainRecipeImage={setMainRecipeImage}/>
             :
-            <ImageBlur image={mainRecipeImage}/>}</div>
+            <ImageBlur setDelImageFromStorage={setDelImageFromStorage} mainRecipeImage={mainRecipeImage} setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} image={mainRecipeImage}/>}</div>
         {mainRecipeImage &&
           <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
 
@@ -296,15 +326,15 @@ localStorage.removeItem("instantSteps")
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj,index) => (
               <ul className={style.addRecipe__boxSteps} key={instantStepRecipeWithGallery.indexOf(obj)}>
-                <RecipeStep  setPopupCropImage={setPopupCropImage}
+                <RecipeStep popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage} setPopupCropImage={setPopupCropImage}
                             popupCropImage={popupCropImage} instantStepRecipeInfo={instantStepRecipeInfo}
                             setInstantStepRecipeInfo={setInstantStepRecipeInfo} setFileUpload={setFileUpload}
-                            setMainRecipeImage={setMainRecipeImage} fileUpload={fileUpload}
+                            fileUpload={fileUpload}
                             obj={obj} instantStepRecipeWithGallery={instantStepRecipeWithGallery}
                             setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}
                             setStepRecipeForError={setStepRecipeForError}
                             numberStepInPopupImageCrop={numberStepInPopupImageCrop}
-                            setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
+                            setDelImageFromStorage={setDelImageFromStorage} setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop} setOpenSettingPopup={setOpenSettingPopup} openSettingPopup={openSettingPopup}
                 />
               </ul>
             )
@@ -331,6 +361,13 @@ localStorage.removeItem("instantSteps")
                     popupCloseAddRecipe={popupCloseAddRecipe} setCloseAddRecipe={setCloseAddRecipe}
                     setPopupCloseAddRecipe={setPopupCloseAddRecipe} textButtonGo={'Выйти'}
                     closeAddRecipe={closeAddRecipe} exitClick={() => handleCloseRecipe()}/>
+        <div className={style.addRecipe__overlay}></div>
+      </div>}
+      {popupDelImage === true && <div className={style.addRecipe__popup}>
+        <PopupBasic text={'Вы действительно хотите удалить это изображение?'} title={'Отменить'}
+                    popupCloseAddRecipe={popupDelImage} setCloseAddRecipe={setCloseAddRecipe}
+                    setPopupCloseAddRecipe={setPopupDelImage} textButtonGo={'Удалить'}
+                    closeAddRecipe={closeAddRecipe} exitClick={()=>handleDelImage()}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}
       {popupCropImage === true && <div className={style.addRecipe__popup}>

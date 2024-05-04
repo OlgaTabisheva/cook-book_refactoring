@@ -5,22 +5,22 @@ import {useEffect, useState} from "react";
 
 
 
-function ImageBlur({image, handleDelPhoto}) {
+function ImageBlur({image, handleDelPhoto, popupDelImage, setPopupDelImage,setDelImageFromStorage, openSettingPopup, setOpenSettingPopup, mainRecipeImage}) {
 
 
  // console.log(image,'image')
-  const [openSettingPopup, setOpenSettingPopup] = useState(false)
+
 
 
 
   return (
     <div className={style.imageBlur}>
-<img className={style.imageBlur__top} src={image}/>
-      <img className={style.imageBlur__blur} src={image}/>
+<img className={style.imageBlur__top} src={image?.url}/>
+      <img className={style.imageBlur__blur} src={image?.url}/>
       <div className={style.imageBlur__button}>
         <ButtonPicture size={'normalWhite'} value={'image'} onClick={()=>setOpenSettingPopup(!openSettingPopup)}/>
       </div>
-      {openSettingPopup && <PopupImageSettings/>}
+      {openSettingPopup && <PopupImageSettings image={image} setDelImageFromStorage={setDelImageFromStorage} mainRecipeImage={mainRecipeImage} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage}/>}
 
     </div>
   )
