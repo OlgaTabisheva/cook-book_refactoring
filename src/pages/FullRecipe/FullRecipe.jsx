@@ -47,7 +47,6 @@ query MyQuery {
     }
   }, [fullRecipe])
 
-
   return (
     <div className={style.fullRecipe}>
       <div className={style.fullRecipe__cover}>

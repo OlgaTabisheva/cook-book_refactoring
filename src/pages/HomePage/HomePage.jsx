@@ -22,7 +22,7 @@ export const HomePage = ({
 
   const GET_NEW_RECIPES = gql`
  query MyQuery {
-  recipes(limit: 5, where: {}, order_by: {date: desc}) {
+  recipes(limit: 5, where: {publish: {_eq: true}}, order_by: {date: desc}) {
       category {
       category
     }
@@ -39,7 +39,7 @@ export const HomePage = ({
 }`
   const GET_POPULAR_RECIPES = gql`
 query MyQuery {
-  recipes(order_by: {likes_aggregate: {max: {}, min: {}, count: desc}}, limit: 5) {
+  recipes(order_by: {likes_aggregate: {max: {}, min: {}, count: desc}}, limit: 5, where: {publish: {_eq: true}}) {
     category {
       category
     }
@@ -57,7 +57,7 @@ query MyQuery {
 
   const GET_MOST_COMMENT_RECIPES = gql`
 query MyQuery {
-  recipes(where: {}, order_by: {comments_aggregate: {count: desc}}, limit: 5) {
+  recipes(where: {publish: {_eq: true}}, order_by: {comments_aggregate: {count: desc}}, limit: 5 ) {
     category {
       category
     }

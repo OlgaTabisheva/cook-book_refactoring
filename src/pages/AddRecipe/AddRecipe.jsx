@@ -73,8 +73,8 @@ function AddRecipe({
   });
 
   const UPDATE_RECIPE = gql`
-mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!) {
-  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, steps: $steps, description: $description, food: $food, long: $long, name: $name, photo: $photo})
+mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!, $publish: Boolean = false) {
+  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, steps: $steps, description: $description, food: $food, long: $long, name: $name, photo: $photo,publish:$publish})
  {
       recipes_category
       description
@@ -83,6 +83,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
       name
       photo
       steps
+      publish
     }
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
@@ -181,7 +182,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           food: JSON.stringify(productQuantityMap),
           long: JSON.stringify(chosenTextDuration?.number),
           name: nameRecipe,
-          photo: mainRecipeImage,
+          photo: mainRecipeImage?.url,
           steps: JSON.stringify(instantStepRecipeWithGallery),
           description: '123'
         }
@@ -275,11 +276,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
       }
     });
 
-    console.log(updatedItems, 'updatedItems')
-    console.log( updatedItems[ind], ' updatedItems[ind]')
-    console.log(ind, 'ind')
-    console.log(instantStepRecipeWithGallery[ind]?.step, 'instantStepRecipeWithGallery[ind]?.step')
-    console.log(instantStepRecipeWithGallery, 'instantStepRecipeWithGallery')
+
 
     if (ind > 0) {
       deleteImageFromStorage()

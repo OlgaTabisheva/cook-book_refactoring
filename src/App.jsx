@@ -22,22 +22,25 @@ import AdminPage from "./pages/AdminPage/AdminPage.jsx";
 
 
 const GET_RECIPES = gql`
- query {recipes(offset: 0, limit: 60 ) {
+ {
+  recipes(offset: 0, limit: 60, where: {publish: {_eq: true}}) {
     category {
       category
     }
-   duration {
+    duration {
       duration
     }
-      id
-      date
-      name
-      food
-      description
-      photo
-      steps
-      
-      }}`
+    id
+    date
+    name
+    food
+    description
+    photo
+    steps
+    
+  }
+}
+`
 const GET_CATEGORY = gql`
  query {categories {   
  number

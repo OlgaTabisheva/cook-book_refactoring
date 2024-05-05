@@ -23,7 +23,7 @@ function RecipeStep({
 
 
   const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '',  urlId: '', text: ''})
-
+ const [delStepImageFromStorage, setDelStepImageFromStorage] = useState()
 
 useEffect(()=>{
   const updatedItems = instantStepRecipeWithGallery
@@ -40,7 +40,6 @@ useEffect(()=>{
       else
         updatedItems[ind] = stepRecipeInfo
       setInstantStepRecipeWithGallery(updatedItems)
-      console.log('2')
 
     }, [stepRecipeInfo, instantStepRecipeWithGallery])
 
@@ -61,28 +60,29 @@ useEffect(()=>{
 
   }, [instantStepRecipeInfo ])
 
-
-  function handleDeleteStep(id) {
+  const DEL_IMAGE_FROM_STORAGE =
+    gql`
+   mutation MyMutation2 {
+    deleteFile(id: "${delStepImageFromStorage}") {
+      id
+    }
+  }
+  `
+  const [deleteImageFromStorage] = useMutation(DEL_IMAGE_FROM_STORAGE)
+  async function handleDeleteStep(id) {
+    setDelStepImageFromStorage(id?.urlId)
     const updatedItems = instantStepRecipeWithGallery.filter(i => i.id !== id.id)
-/*    if (id?.urlId === ''){
-  alert('К сожалению пока не удалено')
-}
+   if (delStepImageFromStorage.length > 0){
+
     deleteImageFromStorage()
       .then(
-        setStepRecipeInfo(
-          {
-            id: stepRecipeInfo?.id, step: stepRecipeInfo?.step, url: '',  urlId: '', text: stepRecipeInfo?.text
-          }
-        )
-      ).then(
-
-    )
-
-      .then(toast.success('Удалено успешно!')).catch((err) => {
-      toast.error('Произошла ошибка', err)
-    })*/
-    setInstantStepRecipeWithGallery(updatedItems)
-  }
+         setInstantStepRecipeWithGallery(updatedItems)
+      )
+      .then(toast.success('Удалено успешно!'))
+      .catch((err) => {
+        toast.error('Произошла ошибка', err)
+      })
+   } }
 
 
   return (
@@ -101,7 +101,8 @@ useEffect(()=>{
             text: stepRecipeInfo?.text
           })}/>
         </div>
-        <ButtonPicture value={'close'} size={'normal'} onClick={() => handleDeleteStep(obj)}/>
+        { instantStepRecipeWithGallery.length > 1 &&  <ButtonPicture value={'close'} size={'normal'} onClick={() => handleDeleteStep(obj)}/>}
+
       </div>
       {!stepRecipeInfo?.url ?
         <AddPhotoRecipe numberStepInPopupImageCrop={numberStepInPopupImageCrop}

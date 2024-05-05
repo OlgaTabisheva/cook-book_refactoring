@@ -31,13 +31,14 @@ function AddRecipeStep1({  setInstantAddRecipe,
 
 
   const ADD_RECIPE = gql`
-mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uuid!) {
-  insert_recipes_one(object: {name: $name, recipes_category:$recipes_category, authorId:$authorId})
+mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uuid!, $publish: Boolean = false) {
+  insert_recipes_one(object: {name: $name, recipes_category:$recipes_category,publish:$publish, authorId:$authorId})
    {
    id
    name
    recipes_category
    authorId
+   publish
   }
 }`
 
