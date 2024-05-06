@@ -118,6 +118,9 @@ function RecipeCard({
 
   return (
     <section className={style.recipeCard}>
+      {(isBtnEdit && <form className={style.recipeCard__form} action={`/add-recipe/${id}`}>
+        <button className={style.recipeCard__more}></button>
+      </form>)}
       <Link to={`/recipe/${id}`} key={id} className={style.recipeCard__link}>
         <div className={style.recipeCard__imgBox}>
           <div >

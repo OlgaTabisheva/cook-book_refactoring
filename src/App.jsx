@@ -41,6 +41,26 @@ const GET_RECIPES = gql`
   }
 }
 `
+const GET_RECIPES_UNPUBLISH = gql`
+ {
+  recipes(offset: 0, limit: 60) {
+    category {
+      category
+    }
+    duration {
+      duration
+    }
+    id
+    date
+    name
+    food
+    description
+    photo
+    steps
+    
+  }
+}
+`
 const GET_CATEGORY = gql`
  query {categories {   
  number
@@ -68,11 +88,13 @@ function App() {
   const user = useUserData()
   const isAuthenticated = useAuthenticated()
   const {data} = useQuery(GET_RECIPES)
+  const dataUnpublish= useQuery(GET_RECIPES_UNPUBLISH).data
   const categories = useQuery(GET_CATEGORY).data
   const duration = useQuery(GET_DURATION).data
   const [instantLikes, setInstantLikes] = useState([])
   const [instantLikesComments, setInstantLikesComments] = useState([])
   const [instantAddRecipe, setInstantAddRecipe] = React.useState()
+  const [instantAddRecipeUnpublish, setInstantAddRecipeUnpublish] = React.useState()
   const [formValuesRecipe, setFormValuesRecipe] = React.useState({
     id: '',
     name: '',
@@ -137,6 +159,10 @@ query MyQuery {
     setInstantAddRecipe(data)
   }, [data])
 
+  React.useEffect(()=>{
+    setInstantAddRecipeUnpublish(dataUnpublish)
+  }, [dataUnpublish])
+
   React.useEffect(() => {
     setAllCategories(categories)
   }, [categories, allCategories, chosenCategory])
@@ -144,6 +170,9 @@ query MyQuery {
   React.useEffect(() => {
     setAllDuration(duration)
   }, [duration, allDuration])
+
+
+
 
   return (
     <div className='app'>
@@ -221,6 +250,8 @@ query MyQuery {
               formValuesRecipe={formValuesRecipe}
               chosenTextCategoryStep1={chosenTextCategoryStep1}
               setChosenTextCategoryStep1={setChosenTextCategoryStep1}
+              instantAddRecipeUnpublish={instantAddRecipeUnpublish}
+
             />
           </ProtectedRoute>}
         />

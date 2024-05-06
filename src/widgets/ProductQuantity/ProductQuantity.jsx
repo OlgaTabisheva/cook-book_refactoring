@@ -13,10 +13,11 @@ function ProductQuantity({
                          }) {
 
   const [isOpen, setIsOpen] = useState(true);
-  const [productInfo, setProductInfo] = useState({number: obj.number, product: '', count: '', unit: ''})
+  const [productInfo, setProductInfo] = useState({number: obj?.number, product: obj?.product, count: obj?.count, unit: obj?.unit})
 
   function handleDeleteProduct(id) {
     const updatedItems = productQuantityMap.filter(i => i.number !== id.number)
+    console.log(updatedItems,'updatedItems')
     setProductQuantityMap(updatedItems)
   }
 

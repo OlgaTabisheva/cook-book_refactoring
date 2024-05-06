@@ -25,13 +25,14 @@ function AddRecipe({
                      setInstantAddRecipe,
                      formValuesRecipe,
                      chosenTextCategoryStep1,
-                     setChosenTextCategoryStep1
+                     setChosenTextCategoryStep1,
+                     instantAddRecipeUnpublish
                    }) {
   const {id} = useParams();
   const navigate = useNavigate();
   const user = useUserData()
 
-  // const fullRecipe = instantAddRecipe?.recipes.find(elem => elem.id === id);
+  const fullRecipe = instantAddRecipeUnpublish?.recipes.find(elem => elem.id ===id);
   const [textProductForError, setTextProductForError] = useState()
   const [stepRecipeForError, setStepRecipeForError] = useState()
   const [popupCloseAddRecipe, setPopupCloseAddRecipe] = useState(false)
@@ -46,12 +47,7 @@ function AddRecipe({
   const [numberStepInPopupImageCrop, setNumberStepInPopupImageCrop] = useState()
   const [delImageFromStorage, setDelImageFromStorage] = useState()
   const [openSettingPopup, setOpenSettingPopup] = useState(false)
-  const [productQuantityMap, setProductQuantityMap] = useState([{
-    number: lineNumber,
-    product: 'первый',
-    unit: 'первый',
-    count: 'первый'
-  }])
+  const [productQuantityMap, setProductQuantityMap] = useState([])
   const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{
     id: 1,
     step: 1,
@@ -71,6 +67,7 @@ function AddRecipe({
     stepsValid: false
 
   });
+
 
   const UPDATE_RECIPE = gql`
 mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!, $publish: Boolean = false) {
@@ -108,8 +105,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
 
     const list = JSON.parse(data)
     setStepFromStorage(list)
-
-    console.log(stepFromStorage,'stepFromStorage')
 
   }, [])
   useEffect(() => {
@@ -152,15 +147,43 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
+
+
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
     setChosenTextCategory(chosenTextCategoryStep1)
   }, [])
+  useEffect(() => {
+    if (fullRecipe?.name ){
+    setNameRecipe(fullRecipe?.name)
+  }
+    if (fullRecipe?.category?.category){
+      setChosenTextCategory(fullRecipe?.category)
+    }
+    if (fullRecipe?.duration?.duration){
+     setChosenTextDuration(fullRecipe?.duration)
 
+    }
+  if (fullRecipe?.food){
+    const lest = JSON.parse(fullRecipe?.food)
+
+      setProductQuantityMap(lest)
+    }
+
+   if (fullRecipe?.steps){
+     setInstantStepRecipeWithGallery( JSON.parse(fullRecipe?.steps))
+   }
+
+  }, [fullRecipe])
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
 
+
+
+
+
+//console.log(formValuesRecipe, fullRecipe, '77')
   function handleAddProduct() {
     const newLineNumber = lineNumber + 1
     setProductQuantityMap(() => [...productQuantityMap, {
@@ -182,7 +205,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           food: JSON.stringify(productQuantityMap),
           long: JSON.stringify(chosenTextDuration?.number),
           name: nameRecipe,
-          photo: mainRecipeImage?.url,
+          photo: JSON.stringify(mainRecipeImage),
           steps: JSON.stringify(instantStepRecipeWithGallery),
           description: '123'
         }
@@ -214,12 +237,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   function handleAddStep() {
     const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1].id
     const newStepNumber = item + 1
-  /*  if (item === 0) {
-      setStepNumber(item + 1)
-    }
-    if (item > 0) {
-      setStepNumber(item + 1)
-    }*/
     setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
       id: newStepNumber,
       step: newStepNumber,
@@ -291,9 +308,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
 
   }
 
-useEffect(()=>{
-  console.log(instantStepRecipeWithGallery, 'instantStepRecipeWithGallery05')
-},[instantStepRecipeWithGallery])
 
 
   return (
@@ -303,7 +317,7 @@ useEffect(()=>{
         <div className={style.addRecipe__boxName}>
           <h2 className={style.addRecipe__title}>Редактирование рецепта</h2>
           <InputAuth error={!nameValid} errorText={'Название рецепта слишком короткое'} title={'Название рецепта'}
-                     placeholder={'Булочки синабонн с корицей и сахарной пудрой'} value={nameRecipe}
+                     placeholder={'Введите название рецепта'} value={nameRecipe}
                      onChange={(e) => setNameRecipe(e.target.value)}/>
         </div>
         <div className={style.addRecipe__categoriesBox}>
@@ -348,6 +362,7 @@ useEffect(()=>{
           {productQuantityMap?.map((obj, num) => (
             <ul key={num}>
               <ProductQuantity
+                key={obj?.number}
                 obj={obj}
                 setProductQuantityMap={setProductQuantityMap}
                 productQuantityMap={productQuantityMap} setTextProductForError={setTextProductForError}/>
@@ -361,7 +376,7 @@ useEffect(()=>{
         <li className={style.addRecipe__steps}>
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj, index) => (
-              <ul className={style.addRecipe__boxSteps} key={instantStepRecipeWithGallery.id}>
+              <ul className={style.addRecipe__boxSteps} key={index}>
                 <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage}
                             setPopupCropImage={setPopupCropImage}
                             popupCropImage={popupCropImage} instantStepRecipeInfo={instantStepRecipeInfo}
