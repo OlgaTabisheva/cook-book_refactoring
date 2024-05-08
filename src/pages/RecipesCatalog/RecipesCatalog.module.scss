@@ -1,5 +1,6 @@
 @import "../../variables";
 
+
 .recipesCatalog {
   margin: 40px auto 112px auto;
   display: flex;
@@ -71,18 +72,21 @@
   .recipesCatalog {
     &__catalog {
 
-  grid-template-columns: repeat(1, 352px);
+      grid-template-columns: repeat(1, 352px);
 
     }
-    &__box{
+
+    &__box {
       margin-top: 40px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      overflow: auto;
       max-width: 375px;
       align-items: center;
-      align-content: flex-start;
-      flex-wrap: wrap;
     }
-
-  }}
+    &__box::-webkit-scrollbar {
+      width : 0 !important /* Webkit */
+    }
+  }
+  }

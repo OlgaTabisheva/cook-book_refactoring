@@ -29,9 +29,10 @@ function RecipeCard({
   unauthorizedPopup, setUnauthorizedPopup
                     }) {
 
-  const [changeLike, setChangeLike] = useState(false)
+  const [mainPhoto, setMainPhoto] = useState()
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
+
   const user = useUserData()
 
   const GET_COUNTS_LIKES = gql`
@@ -89,7 +90,12 @@ function RecipeCard({
 
   }, [getCountsComments])
 
-
+useEffect(()=>{
+  if (photo?.length > 50){
+    const temp = JSON.parse((photo))?.url
+    setMainPhoto(temp)
+  }
+},[photo])
   function handleClickLike(id) {
 
     if (instantLikes?.some(t => t.recipesId === id)) {
@@ -130,7 +136,7 @@ function RecipeCard({
 */}
           </div>
           <img className={style.recipeCard__img}
-               src={photo ? photo : img} alt="recipeImg"/></div>
+               src={mainPhoto ? mainPhoto : img} alt="recipeImg"/></div>
 
         <div className={style.recipeCard__textBox}>
           <h3 className={style.recipeCard__name}>{name}</h3>

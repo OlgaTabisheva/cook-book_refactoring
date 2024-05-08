@@ -1,9 +1,6 @@
 import style from './Footer.module.scss'
-import {Link} from "react-router-dom";
 import {useAuthenticated} from "@nhost/react";
-import Logo from "../../shared/Logo/Logo.jsx";
-import LinkItem from "../../shared/LinkItem/LinkItem.jsx";
-import user from "../../assets/userYelow.svg";
+
 
 function Footer() {
   const isAuthenticated = useAuthenticated()

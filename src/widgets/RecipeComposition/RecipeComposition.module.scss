@@ -5,17 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  &__counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-  }
 
-  &__counterText {
-    margin: 0 8px;
-
-  }
 
   &__title {
     @extend %title28Vol;
@@ -23,7 +13,9 @@
     margin: 0;
     padding: 0;
   }
+  &__counter{
 
+  }
   &__box {
     display: flex;
     flex-direction: column;

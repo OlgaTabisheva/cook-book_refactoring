@@ -68,6 +68,7 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
           name: formValuesRecipe.name,
           id: formValuesRecipe.id,
           authorId: user.id,
+          publish: false
         }
       }).then((rez) => {
 
@@ -77,6 +78,7 @@ mutation AddRecipe( $recipes_category: smallint!, $name: String!, $authorId: uui
               recipes_category: rez.data.insert_recipes_one.recipes_category,
               name: rez.data.insert_recipes_one.name,
               authorId: rez.data.insert_recipes_one.authorId,
+              publish: false
             }]
           setInstantAddRecipe({recipes: recipesArray})
         navigate(`/add-recipe/${rez?.data.insert_recipes_one.id}`)

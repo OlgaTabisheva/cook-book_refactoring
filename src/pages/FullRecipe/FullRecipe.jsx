@@ -14,6 +14,7 @@ function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, 
   const [recipeStepsMap, setRecipeStepsMap] = useState([])
   const [recipeCompositionMap, setRecipeCompositionMap] = useState([])
   const [instantComments, setInstantComments] = useState([])
+  const [fullPhoto, setFullPhoto] = useState()
   const GET_COMMENTS = gql`
 query MyQuery {
   comments(where: {recipe: {id: {_eq: "${id}"}}}) {
@@ -37,13 +38,14 @@ query MyQuery {
   }, [CommentsFromServer])
 
 
-
   useEffect(() => {
-    if (fullRecipe?.steps.length > 0) {
+    if (fullRecipe?.steps?.length > 0) {
       setRecipeStepsMap(JSON.parse(fullRecipe?.steps))
     }
-    if (fullRecipe?.food.length > 0) {
+    if (fullRecipe?.food?.length > 0) {
       setRecipeCompositionMap(JSON.parse(fullRecipe?.food))
+
+   //   setRecipeCompositionMap(fullRecipe?.photo)
     }
   }, [fullRecipe])
 
@@ -61,7 +63,7 @@ query MyQuery {
 
 
         <div className={style.fullRecipe__box}>
-          <RecipePhotoBlock recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
+          <RecipePhotoBlock fullPhoto={fullPhoto} recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
 
         </div>
 

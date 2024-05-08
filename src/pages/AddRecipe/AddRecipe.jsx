@@ -5,7 +5,7 @@ import ProductQuantity from "../../widgets/ProductQuantity/ProductQuantity.jsx";
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import RecipeStep from "../../widgets/RecipeStep/RecipeStep.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import CategoryList from "../../widgets/CategoryList/CategoryList.jsx";
 import AddPhotoRecipe from "../../widgets/AddPhotoRecipe/AddPhotoRecipe.jsx";
 import ImageBlur from "../../widgets/ImageBlur/ImageBlur.jsx";
@@ -17,6 +17,8 @@ import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
 import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import PopupCropImage from "../../widgets/Popup/PopupCropImage/PopupCropImage.jsx";
 import { useId } from 'react';
+import TextareaAutosize from "react-textarea-autosize";
+import PortionsCounter from "../../widgets/PortionsCounter/PortionsCounter.jsx";
 
 function AddRecipe({
                      allCategories,
@@ -48,13 +50,7 @@ function AddRecipe({
   const [delImageFromStorage, setDelImageFromStorage] = useState()
   const [openSettingPopup, setOpenSettingPopup] = useState(false)
   const [productQuantityMap, setProductQuantityMap] = useState([])
-  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([{
-    id: 1,
-    step: 1,
-    url: '',
-    text: '',
-    urlId: ''
-  }]);
+  const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([]);
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [nameRecipe, setNameRecipe] = useState()
@@ -98,7 +94,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   const {nameValid, categoryValid, photoValid, durationValid, productsValid, stepsValid} = formValidityAddRecipe;
   const isSubmitDisabled = !nameValid || !categoryValid || !photoValid || !durationValid || !productsValid || !stepsValid;
 
-  useEffect(() => {
+ /* useEffect(() => {
     const data = window.localStorage.getItem('instantSteps');
 
     if (data !== null) setInstantStepRecipeWithGallery(JSON.parse(data));
@@ -106,7 +102,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     const list = JSON.parse(data)
     setStepFromStorage(list)
 
-  }, [])
+  }, [])*/
   useEffect(() => {
     if (instantStepRecipeInfo?.url?.length > 0) {
       const updatedItems = instantStepRecipeWithGallery
@@ -147,7 +143,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
-
+console.log(fullRecipe, 'fullRecipe')
 
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
@@ -157,21 +153,27 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     if (fullRecipe?.name ){
     setNameRecipe(fullRecipe?.name)
   }
-    if (fullRecipe?.category?.category){
+    if (fullRecipe?.photo){
+     // setMainRecipeImage(fullRecipe)
+    }
+
+      if (fullRecipe?.category?.category){
       setChosenTextCategory(fullRecipe?.category)
     }
     if (fullRecipe?.duration?.duration){
      setChosenTextDuration(fullRecipe?.duration)
 
     }
-  if (fullRecipe?.food){
-    const lest = JSON.parse(fullRecipe?.food)
 
+/*  if (fullRecipe?.food){
+    const lest = JSON.parse(fullRecipe?.food)
       setProductQuantityMap(lest)
-    }
+    }*/
 
    if (fullRecipe?.steps){
-     setInstantStepRecipeWithGallery( JSON.parse(fullRecipe?.steps))
+     const steps = JSON.parse(fullRecipe?.steps)
+     console.log(steps, 'steps')
+    setInstantStepRecipeWithGallery(steps )
    }
 
   }, [fullRecipe])
@@ -194,7 +196,20 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     }])
     setLineNumber(newLineNumber)
   }
+  function handleAddStep() {
+    //const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length-1 ].id
+    const newStepNumber = stepNumber + 1
+    setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
+      id: newStepNumber,
+      step: newStepNumber,
+      url: '',
+      text: '',
+      urlId: '',
 
+    }])
+    setStepNumber(newStepNumber)
+    //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+  }
   const updateRecipe = async (e) => {
     e.preventDefault()
     try {
@@ -223,10 +238,10 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           }]
 
         setInstantAddRecipe({recipes: recipesArray})
-        navigate(`/recipe/${id}`)
+        navigate(`/`)
       })
       //   localStorage.removeItem("instantSteps")
-      toast.success('Обновленно успешно!');
+      toast.success('Отправлено на модерацию!');
 
     } catch (error) {
       toast.error('Произошла ошибка')
@@ -234,20 +249,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }
 
 
-  function handleAddStep() {
-    const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length - 1].id
-    const newStepNumber = item + 1
-    setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
-      id: newStepNumber,
-      step: newStepNumber,
-      url: '',
-      text: '',
-      urlId: '',
 
-    }])
-    setStepNumber(newStepNumber)
-    //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
-  }
 
   function handleCloseRecipe() {
 //localStorage.removeItem("instantSteps")
@@ -326,7 +328,10 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           {chosenTextCategory?.number && <span
             className={!categoryValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Категория не задана</span>}
         </div>
-
+<div className={style.addRecipe__portions}>
+  <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
+  <PortionsCounter/>
+</div>
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
           {((mainRecipeImage?.url === undefined) || (mainRecipeImage?.url === '')) ?
@@ -341,7 +346,11 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
         </div>
         {mainRecipeImage &&
           <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
+          <div className={style.addRecipe__descriptionBox}>
+        <TextareaAutosize  className={style.addRecipe__description}
+                             placeholder={'Данное поле не обязательно к заполнению. Введите краткое описание блюда или то что может заинтересовать кулинара приготовить блюдо (например: описание вкуса, полезность, простота, историческая справка и тп.)'} />
 
+          </div>
         <div className={style.addRecipe__cover}>
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
           <div className={style.addRecipe__boxCategory}>

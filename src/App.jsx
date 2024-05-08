@@ -136,7 +136,7 @@ query MyQuery {
   }, [likesCommentsFromServer])
 
   const SET_CATEGORY = gql`query {
-   recipes(where: {category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
+   recipes(where: {publish: {_eq: true}, category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
     category {
       category
     }

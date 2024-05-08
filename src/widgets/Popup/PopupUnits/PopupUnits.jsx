@@ -24,7 +24,7 @@ function PopupUnits({isOpen, setProductInfo, setIsOpen, productInfo, numberId}) 
   return (
     <div className={isOpen === true ? style.popupUnits_hidden : style.popupUnits}>
       {units?.map((obj) => (
-        <button className={style.popupUnits__box} onClick={() => handleSetProductUnit(obj.cut)} key={obj.id}>
+        <button type={'button'} className={style.popupUnits__box} onClick={() => handleSetProductUnit(obj.cut)} key={obj.id}>
           <p className={style.popupUnits__text}> {obj.full}</p>
           {'obj' === productInfo.unit && <Check className={style.popupUnits__check}/>}
 

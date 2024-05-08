@@ -1,0 +1,14 @@
+
+.portionsCounter {
+  &__counter {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__counterText {
+    margin: 0 8px;
+
+  }
+}

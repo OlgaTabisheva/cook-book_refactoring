@@ -1,7 +1,7 @@
 import style from './StepByStep.module.scss'
 import img from './../../assets/test.jpg'
 function StepByStep({obj}) {
-
+console.log(obj,'obj')
   return (
     <div className={style.stepByStep}>
       <h3 className={style.stepByStep__title}>Шаг {obj?.step}</h3>

@@ -10,7 +10,7 @@ const fileTypes = ["JPG", "PNG", "GIF"];
 
 
 
-function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRecipeInfo, setNumberStepInPopupImageCrop, setMainRecipeImage}) {
+function AddPhotoRecipe({setPopupCropImage,popupCropImage, setFileUpload, stepRecipeInfo, setNumberStepInPopupImageCrop}) {
 
 
   const handleChange = async (file)=> {

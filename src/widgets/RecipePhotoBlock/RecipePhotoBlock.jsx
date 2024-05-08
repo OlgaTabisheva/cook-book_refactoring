@@ -13,7 +13,7 @@ import {defaultAvatar} from "../../utils/Utils.js";
 import RecipeComposition from "../RecipeComposition/RecipeComposition.jsx";
 
 
-function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap}) {
+function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap, fullPhoto}) {
   const {id} = useParams();
   const navigate = useNavigate();
  const [openImagePopup,setOpenImagePopup] = useState(false)
@@ -23,6 +23,7 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMa
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
   const [RecipesAddition, setRecipesAddition] = useState()
+  const [usePhoto, setUsePhoto] = useState()
 
   const GET_COUNTS_LIKES = gql`
   query {
@@ -58,6 +59,9 @@ query MyQuery {
   const getCountsComments = useQuery(GET_COUNTS_COMMENTS).data
   const getRecipesAuthor= useQuery(GET_RECIPE_AUTHOR)?.data?.recipes_by_pk
 
+  useEffect(()=>{
+    console.log(RecipesAddition, 'RecipesAddition')
+  },[fullRecipe])
 
   useEffect(()=>{
     setRecipesAddition(getRecipesAuthor)
@@ -85,6 +89,16 @@ query MyQuery {
     const options = {year: "numeric", month: "numeric", day: "numeric"}
     return new Date(date).toLocaleString(undefined, options)
   }
+
+  useEffect(
+    ()=>{
+      if (fullRecipe?.photo.length > 0 ){
+
+        setUsePhoto(JSON.parse(fullRecipe?.photo)?.url)
+      }
+    }, [fullRecipe]
+  )
+
   return (
     <div className={style.recipePhotoBlock}>
 
@@ -93,7 +107,7 @@ query MyQuery {
 
       <div className={style.recipePhotoBlock__recipe}>
         <div className={style.recipePhotoBlock__boxMaxi}>
-          <img className={style.recipePhotoBlock__img} src={fullRecipe?.photo} alt={'photo'}/>
+          <img className={style.recipePhotoBlock__img} src={usePhoto ? usePhoto : fullRecipe?.photo} alt={'photo'}/>
           <div className={style.recipePhotoBlock__boxMini}>
             {recipeStepsMapSlice && recipeStepsMapSlice?.map((obj) => (
               <img className={style.recipePhotoBlock__imgMini} key={obj?.id} src={obj?.url ? obj?.url : test} alt={'photo'}/>
@@ -115,7 +129,7 @@ query MyQuery {
                 <p className={style.recipePhotoBlock__text}>{formatDate(RecipesAddition?.date)}</p>
               </div>
               <div className={style.recipePhotoBlock__boxPhoto}>
-                {RecipesAddition?.user?.avatarUrl?.includes(defaultAvatar) ? <User className={style.recipePhotoBlock__user}/> :<img className={style.recipePhotoBlock__imgUser} src={RecipesAddition?.user?.avatarUrl} alt={'user photo'}/>
+                {!RecipesAddition?.user?.avatarUrl?.includes(defaultAvatar) ? <img className={style.recipePhotoBlock__imgUser} src={RecipesAddition?.user?.avatarUrl} alt={'user photo'}/> : <User className={style.recipePhotoBlock__user}/>
                 }
 
               </div>
