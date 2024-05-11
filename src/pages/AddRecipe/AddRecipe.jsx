@@ -53,6 +53,8 @@ function AddRecipe({
   const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([]);
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
+  const [description, setDescription] = useState('123')
+const [countPortions, setCountPortions] = useState()
   const [nameRecipe, setNameRecipe] = useState()
   const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
     nameValid: false,
@@ -66,8 +68,8 @@ function AddRecipe({
 
 
   const UPDATE_RECIPE = gql`
-mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!, $long: smallint!, $name: String!, $photo: String!, $publish: Boolean = false) {
-  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, steps: $steps, description: $description, food: $food, long: $long, name: $name, photo: $photo,publish:$publish})
+mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $description: String!, $food: String!, $steps: String!,$portions:smallint!, $long: smallint!, $name: String!, $photo: String!, $publish: Boolean = false) {
+  update_recipes_by_pk(pk_columns: {id: $id}, _set: {recipes_category: $recipes_category, steps: $steps, description: $description,portions: $portions, food: $food, long: $long, name: $name, photo: $photo,publish:$publish})
  {
       recipes_category
       description
@@ -77,6 +79,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
       photo
       steps
       publish
+      portions
     }
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
@@ -143,7 +146,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
-console.log(fullRecipe, 'fullRecipe')
+
 
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
@@ -222,7 +225,8 @@ console.log(fullRecipe, 'fullRecipe')
           name: nameRecipe,
           photo: JSON.stringify(mainRecipeImage),
           steps: JSON.stringify(instantStepRecipeWithGallery),
-          description: '123'
+          description: description,
+          portions: countPortions
         }
 
       }).then((rez) => {
@@ -235,6 +239,7 @@ console.log(fullRecipe, 'fullRecipe')
             food: rez.data.update_recipes_by_pk.food,
             long: rez.data.update_recipes_by_pk.long,
             description: rez.data.update_recipes_by_pk.description,
+            portions: rez.data.update_recipes_by_pk.portions,
           }]
 
         setInstantAddRecipe({recipes: recipesArray})
@@ -330,7 +335,7 @@ console.log(fullRecipe, 'fullRecipe')
         </div>
 <div className={style.addRecipe__portions}>
   <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
-  <PortionsCounter/>
+  <PortionsCounter setCountPortions={setCountPortions}/>
 </div>
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
@@ -348,7 +353,10 @@ console.log(fullRecipe, 'fullRecipe')
           <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
           <div className={style.addRecipe__descriptionBox}>
         <TextareaAutosize  className={style.addRecipe__description}
-                             placeholder={'Данное поле не обязательно к заполнению. Введите краткое описание блюда или то что может заинтересовать кулинара приготовить блюдо (например: описание вкуса, полезность, простота, историческая справка и тп.)'} />
+                             placeholder={'Данное поле не обязательно к заполнению. Введите краткое описание блюда или то что может заинтересовать кулинара приготовить блюдо (например: описание вкуса, полезность, простота, историческая справка и тп.)'}
+                           value={description}
+                           onChange={(e) => setDescription(e.target.value)}
+        />
 
           </div>
         <div className={style.addRecipe__cover}>

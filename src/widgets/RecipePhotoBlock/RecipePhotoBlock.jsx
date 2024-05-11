@@ -45,7 +45,7 @@ function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMa
 `
   const GET_RECIPE_AUTHOR = gql`
 query MyQuery {
-  recipes_by_pk(id: "5c74e8a8-dbe2-46ad-8215-1d26943ac9f7") {
+  recipes_by_pk(id: "${id}") {
     authorId
     date
     user {
@@ -59,9 +59,6 @@ query MyQuery {
   const getCountsComments = useQuery(GET_COUNTS_COMMENTS).data
   const getRecipesAuthor= useQuery(GET_RECIPE_AUTHOR)?.data?.recipes_by_pk
 
-  useEffect(()=>{
-    console.log(RecipesAddition, 'RecipesAddition')
-  },[fullRecipe])
 
   useEffect(()=>{
     setRecipesAddition(getRecipesAuthor)
@@ -98,6 +95,7 @@ query MyQuery {
       }
     }, [fullRecipe]
   )
+
 
   return (
     <div className={style.recipePhotoBlock}>
@@ -140,7 +138,9 @@ query MyQuery {
       <div className={style.recipePhotoBlock__composition_mobile} >
         <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
       </div>
-
+<div className={style.recipePhotoBlock__description}>
+  {fullRecipe?.description}
+</div>
       <div className={style.recipePhotoBlock__steps}>
         <h3 className={style.recipePhotoBlock__title}>Пошаговое приготовление</h3>
         {recipeStepsMap && recipeStepsMap?.map((obj) => (
