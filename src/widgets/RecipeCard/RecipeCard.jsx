@@ -14,26 +14,27 @@ import {Link} from "react-router-dom";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import PopupBasic from "../Popup/PopupBasic/PopupBasic.jsx";
 
-function RecipeCard({
-                      name,
+function RecipeCard( {name,
                       category,
                       photo,
                       id,
                       instantLikes,
                       setInstantLikes,
                       duration,
+                           user,
                       isAuthenticated,
                       isBtnLike = true,
                       isBtnEdit = true,
                       isBtnComments = true,
+
   unauthorizedPopup, setUnauthorizedPopup
                     }) {
 
   const [mainPhoto, setMainPhoto] = useState()
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
+  const myUser = useUserData()
 
-  const user = useUserData()
 
   const GET_COUNTS_LIKES = gql`
   query {
@@ -57,7 +58,7 @@ function RecipeCard({
   const ADD_LIKE =
     gql`
   mutation {
-    insert_likes_one(object: {userId: "${user?.id}", recipesId:"${id}"}) {
+    insert_likes_one(object: {userId: "${myUser?.id}", recipesId:"${id}"}) {
       recipesId
     }
   }`
@@ -65,16 +66,20 @@ function RecipeCard({
 
   const DELETE_LIKE = gql`
   mutation{
-  delete_likes_by_pk(recipesId:"${id}", userId: "${user?.id}") {
+  delete_likes_by_pk(recipesId:"${id}", userId: "${myUser?.id}") {
     recipesId
     userId
   }
 }
   `
+
+
   const [addLikes] = useMutation(ADD_LIKE)
   const [deleteLikes] = useMutation(DELETE_LIKE)
   const getCountsLikes = useQuery(GET_COUNTS_LIKES).data
   const getCountsComments = useQuery(GET_COUNTS_COMMENTS).data
+
+
   useEffect(() => {
     if (getCountsLikes?.likes_aggregate.aggregate.count !== undefined) {
       setCountLikes(getCountsLikes?.likes_aggregate.aggregate.count)
@@ -92,7 +97,7 @@ function RecipeCard({
 
 useEffect(()=>{
   if (photo?.length > 50){
-    const temp = JSON.parse((photo))?.url
+    const temp = JSON.parse(photo)?.url
     setMainPhoto(temp)
   }
 },[photo])
@@ -114,7 +119,7 @@ useEffect(()=>{
           recipesId: id,
         }
       }).then(
-        setInstantLikes(() => [...instantLikes, {__typename: 'likes', recipesId: id, userId: user.id}]))
+        setInstantLikes(() => [...instantLikes, {__typename: 'likes', recipesId: id, userId: myUser.id}]))
         .catch((err) => {
           console.log(err, 'AddErr')
         })
@@ -140,7 +145,7 @@ useEffect(()=>{
 
         <div className={style.recipeCard__textBox}>
           <h3 className={style.recipeCard__name}>{name}</h3>
-          <p className={style.recipeCard__text}>Марина Иванова</p>
+          <p className={style.recipeCard__text}>{user?.displayName}</p>
           <BoxClockTime howLong={duration?.duration}/>
         </div>
       </Link>

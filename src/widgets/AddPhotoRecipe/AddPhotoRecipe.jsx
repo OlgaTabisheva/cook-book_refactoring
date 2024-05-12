@@ -6,7 +6,7 @@ import {nhost} from "../../main.jsx";
 import 'react-image-crop/src/ReactCrop.scss'
 import {useEffect} from "react";
 
-const fileTypes = ["JPG", "PNG", "GIF"];
+const fileTypes = ["JPG","JPEG", "PNG", "GIF"];
 
 
 

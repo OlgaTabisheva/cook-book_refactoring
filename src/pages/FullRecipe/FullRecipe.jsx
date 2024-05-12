@@ -63,7 +63,7 @@ query MyQuery {
 
 
         <div className={style.fullRecipe__box}>
-          <RecipePhotoBlock fullPhoto={fullPhoto} recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
+          <RecipePhotoBlock fullRecipeFromFullRecipe={fullRecipe} fullPhoto={fullPhoto} recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
 
         </div>
 
@@ -76,7 +76,7 @@ query MyQuery {
 
       </div>
       <div className={style.fullRecipe__composition_desktop} >
-      <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
+      <RecipeComposition fullRecipeFromFullRecipe={fullRecipe} recipeCompositionMap={recipeCompositionMap}/>
       </div>
     </div>
 

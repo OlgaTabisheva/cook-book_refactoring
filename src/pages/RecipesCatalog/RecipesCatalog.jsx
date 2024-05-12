@@ -30,6 +30,7 @@ function RecipesCatalog({
   const [unauthorizedPopup, setUnauthorizedPopup] = useState(false);
 
 
+
   const navigate = useNavigate();
   const paginate = pageNumber => setCurrentPage(pageNumber);
   function handleOnClick(obj) {
@@ -78,6 +79,7 @@ function RecipesCatalog({
                           isAuthenticated={isAuthenticated}
                           unauthorizedPopup={unauthorizedPopup}
                           setUnauthorizedPopup={setUnauthorizedPopup}
+                          instantAddRecipe={instantAddRecipe}
 
               />
             ))
@@ -90,6 +92,7 @@ function RecipesCatalog({
                           setInstantLikes={setInstantLikes}
                           isAuthenticated={isAuthenticated}
                           setUnauthorizedPopup={setUnauthorizedPopup}
+                          instantAddRecipe={instantAddRecipe}
 
               />
             ))}

@@ -13,7 +13,7 @@ import {defaultAvatar} from "../../utils/Utils.js";
 import RecipeComposition from "../RecipeComposition/RecipeComposition.jsx";
 
 
-function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap, fullPhoto}) {
+function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap, fullRecipeFromFullRecipe}) {
   const {id} = useParams();
   const navigate = useNavigate();
  const [openImagePopup,setOpenImagePopup] = useState(false)
@@ -136,7 +136,7 @@ query MyQuery {
         </div>
       </div>
       <div className={style.recipePhotoBlock__composition_mobile} >
-        <RecipeComposition recipeCompositionMap={recipeCompositionMap}/>
+        <RecipeComposition fullRecipeFromFullRecipe={fullRecipeFromFullRecipe} recipeCompositionMap={recipeCompositionMap}/>
       </div>
 <div className={style.recipePhotoBlock__description}>
   {fullRecipe?.description}

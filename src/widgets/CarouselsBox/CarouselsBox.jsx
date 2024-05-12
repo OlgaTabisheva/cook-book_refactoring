@@ -24,6 +24,8 @@ function CarouselsBox({instantNewRecipes, carouselTitle, instantLikes, setInstan
     sliderRef.current.swiper.slideNext();
   }, []);
 
+
+  console.log(instantNewRecipes,'instantNewRecipes')
   return (
     <div className={style.carouselsBox}>
       <div className={style.carouselsBox__carousel}>

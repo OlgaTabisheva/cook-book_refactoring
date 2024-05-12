@@ -29,6 +29,11 @@ export const HomePage = ({
    duration {
       duration
     }
+   
+        user {
+          displayName
+        }
+    
     photo
     name
     id
@@ -46,6 +51,10 @@ query MyQuery {
     duration {
       duration
     }
+ 
+        user {
+          displayName
+        }
     photo
     name
     id
@@ -64,6 +73,9 @@ query MyQuery {
     duration {
       duration
     }
+        user {
+          displayName
+        }
     photo
     name
     id

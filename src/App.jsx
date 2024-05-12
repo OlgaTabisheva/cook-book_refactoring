@@ -30,6 +30,10 @@ const GET_RECIPES = gql`
     duration {
       duration
     }
+        user {
+          displayName
+        
+      }
     id
     date
     name
@@ -37,6 +41,7 @@ const GET_RECIPES = gql`
     description
     photo
     steps
+    portions
     
   }
 }
@@ -50,6 +55,10 @@ const GET_RECIPES_UNPUBLISH = gql`
     duration {
       duration
     }
+        user {
+          displayName
+        }
+      
     id
     date
     name
@@ -57,6 +66,7 @@ const GET_RECIPES_UNPUBLISH = gql`
     description
     photo
     steps
+    portions
     
   }
 }
@@ -143,6 +153,10 @@ query MyQuery {
    duration {
       duration
     }
+        user {
+          displayName
+        }
+      
       id
       date
       name
@@ -150,6 +164,7 @@ query MyQuery {
       description
       photo
       steps
+      portions
   }
 }
 

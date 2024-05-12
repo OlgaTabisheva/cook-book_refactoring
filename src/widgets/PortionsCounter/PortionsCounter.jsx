@@ -3,7 +3,7 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import {useEffect, useState} from "react";
 
 
-function PortionsCounter({setCountPortions}) {
+function PortionsCounter({setCountPortions, fullRecipeFromFullRecipe}) {
 
 const [counter, setCounter] =  useState(1)
 
@@ -16,10 +16,10 @@ const [counter, setCounter] =  useState(1)
   return (
 
       <div className={style.portionsCounter__counter}>
-        <ButtonPicture value={'minus'} disabled={counter===1} size={'normal'}  onClick={()=>setCounter(counter-1)}/>
-        <p className={style.portionsCounter__counterText}>{counter}</p>
+        <ButtonPicture value={'minus'} disabled={counter===1 || fullRecipeFromFullRecipe?.portions>0 } size={'normal'}  onClick={()=>setCounter(counter-1)}/>
+        <p className={style.portionsCounter__counterText}> {fullRecipeFromFullRecipe?.portions>0 ? fullRecipeFromFullRecipe?.portions : counter}</p>
 
-        <ButtonPicture value={'plus'} size={'normal'} onClick={()=>setCounter(counter+1)}/>
+        <ButtonPicture value={'plus'} disabled={fullRecipeFromFullRecipe?.portions>0 } size={'normal'} onClick={()=>setCounter(counter+1)}/>
     </div>
   )
 }

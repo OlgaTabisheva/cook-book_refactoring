@@ -53,7 +53,7 @@ function AddRecipe({
   const [instantStepRecipeWithGallery, setInstantStepRecipeWithGallery] = useState([]);
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
-  const [description, setDescription] = useState('123')
+  const [description, setDescription] = useState('Здесь должно быть описание')
 const [countPortions, setCountPortions] = useState()
   const [nameRecipe, setNameRecipe] = useState()
   const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
@@ -146,7 +146,10 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
-
+useEffect(()=>{
+  console.log(chosenTextCategoryStep1, 'chosenTextCategoryStep1')
+  console.log(chosenTextCategory, 'ChosenTextCategory')
+},[chosenTextCategory, chosenTextCategoryStep1, fullRecipe])
 
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
@@ -156,13 +159,10 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     if (fullRecipe?.name ){
     setNameRecipe(fullRecipe?.name)
   }
-    if (fullRecipe?.photo){
-     // setMainRecipeImage(fullRecipe)
-    }
 
-      if (fullRecipe?.category?.category){
+ /*   if (fullRecipe?.category?.category){
       setChosenTextCategory(fullRecipe?.category)
-    }
+    }*/
     if (fullRecipe?.duration?.duration){
      setChosenTextDuration(fullRecipe?.duration)
 
