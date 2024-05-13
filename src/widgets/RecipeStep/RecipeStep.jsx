@@ -32,16 +32,20 @@ useEffect(()=>{
   localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
 },[instantStepRecipeWithGallery])
 
-    useEffect(() => {
+   useEffect(() => {
       const updatedItems = instantStepRecipeWithGallery
+
       const ind = updatedItems.findIndex(i => i.id === obj.id)
+     console.log(ind,'ind')
       if (ind === -1)
         updatedItems.push(stepRecipeInfo)
       else
-        updatedItems[ind] = stepRecipeInfo
+        if(stepRecipeInfo) {
+          updatedItems[ind] = stepRecipeInfo
+        }
       setInstantStepRecipeWithGallery(updatedItems)
-
-    }, [stepRecipeInfo, instantStepRecipeWithGallery])
+     console.log(updatedItems,'updatedItems')
+    }, [instantStepRecipeWithGallery])
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)

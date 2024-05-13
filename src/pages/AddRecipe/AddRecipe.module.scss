@@ -273,10 +273,11 @@ height: 100% !important;
     &__boxCategory {
       margin-top: 20px;
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      /* flex-wrap: wrap; */
       justify-content: center;
-      padding: 0 10px;
+      overflow: auto;
+      width: 375px;
+  
     }
 
       :not(:first-child) {

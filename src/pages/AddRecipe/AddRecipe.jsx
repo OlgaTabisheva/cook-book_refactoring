@@ -16,7 +16,7 @@ import {toast} from "react-hot-toast";
 import PaginationBasic from "../../widgets/PaginationBasic/PaginationBasic.jsx";
 import PopupBasic from "../../widgets/Popup/PopupBasic/PopupBasic.jsx";
 import PopupCropImage from "../../widgets/Popup/PopupCropImage/PopupCropImage.jsx";
-import { useId } from 'react';
+import {useId} from 'react';
 import TextareaAutosize from "react-textarea-autosize";
 import PortionsCounter from "../../widgets/PortionsCounter/PortionsCounter.jsx";
 
@@ -34,7 +34,7 @@ function AddRecipe({
   const navigate = useNavigate();
   const user = useUserData()
 
-  const fullRecipe = instantAddRecipeUnpublish?.recipes.find(elem => elem.id ===id);
+  const fullRecipe = instantAddRecipeUnpublish?.recipes.find(elem => elem.id === id);
   const [textProductForError, setTextProductForError] = useState()
   const [stepRecipeForError, setStepRecipeForError] = useState()
   const [popupCloseAddRecipe, setPopupCloseAddRecipe] = useState(false)
@@ -54,7 +54,7 @@ function AddRecipe({
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [description, setDescription] = useState('Здесь должно быть описание')
-const [countPortions, setCountPortions] = useState()
+  const [countPortions, setCountPortions] = useState()
   const [nameRecipe, setNameRecipe] = useState()
   const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
     nameValid: false,
@@ -97,15 +97,15 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   const {nameValid, categoryValid, photoValid, durationValid, productsValid, stepsValid} = formValidityAddRecipe;
   const isSubmitDisabled = !nameValid || !categoryValid || !photoValid || !durationValid || !productsValid || !stepsValid;
 
- /* useEffect(() => {
-    const data = window.localStorage.getItem('instantSteps');
+  /* useEffect(() => {
+     const data = window.localStorage.getItem('instantSteps');
 
-    if (data !== null) setInstantStepRecipeWithGallery(JSON.parse(data));
+     if (data !== null) setInstantStepRecipeWithGallery(JSON.parse(data));
 
-    const list = JSON.parse(data)
-    setStepFromStorage(list)
+     const list = JSON.parse(data)
+     setStepFromStorage(list)
 
-  }, [])*/
+   }, [])*/
   useEffect(() => {
     if (instantStepRecipeInfo?.url?.length > 0) {
       const updatedItems = instantStepRecipeWithGallery
@@ -146,46 +146,40 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
-useEffect(()=>{
-  console.log(chosenTextCategoryStep1, 'chosenTextCategoryStep1')
-  console.log(chosenTextCategory, 'ChosenTextCategory')
-},[chosenTextCategory, chosenTextCategoryStep1, fullRecipe])
 
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
     setChosenTextCategory(chosenTextCategoryStep1)
   }, [])
   useEffect(() => {
-    if (fullRecipe?.name ){
-    setNameRecipe(fullRecipe?.name)
-  }
-
- /*   if (fullRecipe?.category?.category){
-      setChosenTextCategory(fullRecipe?.category)
-    }*/
-    if (fullRecipe?.duration?.duration){
-     setChosenTextDuration(fullRecipe?.duration)
-
+    if (fullRecipe?.name) {
+      setNameRecipe(fullRecipe?.name)
     }
 
-/*  if (fullRecipe?.food){
-    const lest = JSON.parse(fullRecipe?.food)
-      setProductQuantityMap(lest)
-    }*/
+    if (fullRecipe?.category?.category) {
+      setChosenTextCategory(fullRecipe?.category)
+    }
+    if (fullRecipe?.duration?.duration) {
+      setChosenTextDuration(fullRecipe?.duration)
+    }
 
-   if (fullRecipe?.steps){
-     const steps = JSON.parse(fullRecipe?.steps)
-     console.log(steps, 'steps')
-    setInstantStepRecipeWithGallery(steps )
-   }
+    if (fullRecipe?.food) {
+      const lest = JSON.parse(fullRecipe?.food)
+      setProductQuantityMap(lest)
+    }
+
+    if (fullRecipe?.steps) {
+      console.log(fullRecipe?.steps,'fullRecipe?.steps')
+      const steps = JSON.parse(fullRecipe?.steps)
+      console.log(steps, 'steps')
+      setInstantStepRecipeWithGallery(steps)
+    }
 
   }, [fullRecipe])
+
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
-
-
-
 
 
 //console.log(formValuesRecipe, fullRecipe, '77')
@@ -199,6 +193,7 @@ useEffect(()=>{
     }])
     setLineNumber(newLineNumber)
   }
+
   function handleAddStep() {
     //const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length-1 ].id
     const newStepNumber = stepNumber + 1
@@ -213,6 +208,7 @@ useEffect(()=>{
     setStepNumber(newStepNumber)
     //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
   }
+
   const updateRecipe = async (e) => {
     e.preventDefault()
     try {
@@ -254,8 +250,6 @@ useEffect(()=>{
   }
 
 
-
-
   function handleCloseRecipe() {
 //localStorage.removeItem("instantSteps")
     localStorage.removeItem("instantSteps")
@@ -281,25 +275,24 @@ useEffect(()=>{
     }
 
     const ind = instantStepRecipeWithGallery.find(image => image.urlId === delImageFromStorage).id;
-  /*  const updatedItems = instantStepRecipeWithGallery;
-    updatedItems[ind] = ({
-      id: instantStepRecipeWithGallery[ind]?.id,
-      step: instantStepRecipeWithGallery[ind]?.step,
-      url: '',
-      text: instantStepRecipeWithGallery[ind]?.text,
-      urlId: ''
-    })*/
+    /*  const updatedItems = instantStepRecipeWithGallery;
+      updatedItems[ind] = ({
+        id: instantStepRecipeWithGallery[ind]?.id,
+        step: instantStepRecipeWithGallery[ind]?.step,
+        url: '',
+        text: instantStepRecipeWithGallery[ind]?.text,
+        urlId: ''
+      })*/
     const updatedItems = instantStepRecipeWithGallery;
 
 
-    updatedItems[ind-1] = instantStepRecipeWithGallery.find(item => {
+    updatedItems[ind - 1] = instantStepRecipeWithGallery.find(item => {
       if (item.id === ind) {
         item.url = '';
         item.urlId = '';
         return true;
       }
     });
-
 
 
     if (ind > 0) {
@@ -314,7 +307,6 @@ useEffect(()=>{
     }
 
   }
-
 
 
   return (
@@ -333,10 +325,10 @@ useEffect(()=>{
           {chosenTextCategory?.number && <span
             className={!categoryValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Категория не задана</span>}
         </div>
-<div className={style.addRecipe__portions}>
-  <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
-  <PortionsCounter setCountPortions={setCountPortions}/>
-</div>
+        <div className={style.addRecipe__portions}>
+          <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
+          <PortionsCounter setCountPortions={setCountPortions}/>
+        </div>
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
           {((mainRecipeImage?.url === undefined) || (mainRecipeImage?.url === '')) ?
@@ -351,14 +343,14 @@ useEffect(()=>{
         </div>
         {mainRecipeImage &&
           <span className={!photoValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Загрузите фото готового блюда</span>}
-          <div className={style.addRecipe__descriptionBox}>
-        <TextareaAutosize  className={style.addRecipe__description}
-                             placeholder={'Данное поле не обязательно к заполнению. Введите краткое описание блюда или то что может заинтересовать кулинара приготовить блюдо (например: описание вкуса, полезность, простота, историческая справка и тп.)'}
-                           value={description}
-                           onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className={style.addRecipe__descriptionBox}>
+          <TextareaAutosize className={style.addRecipe__description}
+                            placeholder={'Данное поле не обязательно к заполнению. Введите краткое описание блюда или то что может заинтересовать кулинара приготовить блюдо (например: описание вкуса, полезность, простота, историческая справка и тп.)'}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+          />
 
-          </div>
+        </div>
         <div className={style.addRecipe__cover}>
           <h3 className={style.addRecipe__subtitle}>Длительность приготовления:</h3>
           <div className={style.addRecipe__boxCategory}>
@@ -394,7 +386,8 @@ useEffect(()=>{
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj, index) => (
               <ul className={style.addRecipe__boxSteps} key={index}>
-                <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage} setPopupDelImage={setPopupDelImage}
+                <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage}
+                            setPopupDelImage={setPopupDelImage}
                             setPopupCropImage={setPopupCropImage}
                             popupCropImage={popupCropImage} instantStepRecipeInfo={instantStepRecipeInfo}
                             setInstantStepRecipeInfo={setInstantStepRecipeInfo} setFileUpload={setFileUpload}
@@ -444,7 +437,6 @@ useEffect(()=>{
       {popupCropImage === true && <div className={style.addRecipe__popup}>
         <PopupCropImage numberStepInPopupImageCrop={numberStepInPopupImageCrop}
                         setNumberStepInPopupImageCrop={setNumberStepInPopupImageCrop}
-                        setInstantStepRecipeWithGallery={setInstantStepRecipeWithGallery}
                         instantStepRecipeWithGallery={instantStepRecipeWithGallery}
                         instantStepRecipeInfo={instantStepRecipeInfo}
                         setInstantStepRecipeInfo={setInstantStepRecipeInfo} setMainRecipeImage={setMainRecipeImage}

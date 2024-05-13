@@ -79,7 +79,13 @@ function ProductQuantity({
                  product: e.target.value
                })}/>
       </div>
+      <div className={style.productQuantity__mobileBox}>
+      <div className={style.productQuantity__mobileBoxText}>Индигридиент:</div>
       <ButtonPicture value={'close'} size={'big'} onClick={() => handleDeleteProduct(obj)}/>
+      </div>
+      <div className={style.productQuantity__deckstop}>
+        <ButtonPicture value={'close'} size={'big'} onClick={() => handleDeleteProduct(obj)}/>
+      </div>
       <PopupUnits setIsOpen={setIsOpen} isOpen={isOpen} productInfo={productInfo} setProductInfo={setProductInfo}
                   numberId={obj.number}/>
     </section>

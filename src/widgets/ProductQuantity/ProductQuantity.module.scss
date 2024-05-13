@@ -7,9 +7,21 @@
   align-items: flex-end;
   margin-top: 20px;
   position: relative;
-  &__mobile{
+  &__mobile,  &__mobileBox{
     visibility: hidden;
     display: none;
+  }
+  &__mobileBoxText{
+    color: var(--Primary-Primary-dark-100, #323232);
+    font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/H4 */
+    font-family: Vollkorn;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 120% */
+
   }
   &__deckstop{
     visibility: visible;
@@ -17,6 +29,7 @@
   &__subtitle {
     @extend %textSmall13-16Mon;
     text-align: left;
+    margin-bottom: 6px;
   }
   &__box{
     display: flex;
@@ -110,10 +123,22 @@
     max-width: 344px;
 
     }
+    &__mobileBox{
+      visibility: visible;
+      width: 100%;
+      max-width: 375px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
     &__mobile{
       visibility: visible;
       width: 100%;
       max-width: 344px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 12px;
     }
     &__deckstop{
       visibility: hidden;
