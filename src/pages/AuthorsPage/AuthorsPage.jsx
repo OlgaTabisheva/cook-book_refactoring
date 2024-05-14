@@ -19,11 +19,7 @@ function AuthorsPage({}) {
  query MyQuery {
   users {
     id
-    recipes_aggregate {
-      aggregate {
-        count
-      }
-    }
+ 
     like {
       recipe {
         likes_aggregate {
@@ -42,11 +38,7 @@ function AuthorsPage({}) {
   query MyQuery {
     users(where: {displayName: {_iregex: "${searchString}"}}) {
          id
-    recipes_aggregate {
-      aggregate {
-        count
-      }
-    }
+   
     like {
       recipe {
         likes_aggregate {
@@ -67,7 +59,6 @@ function AuthorsPage({}) {
     setSearchString(inputSearchText)
     setInstantSearchUsers(resultSearchUsersFromServer)
   }
-
 
 
 useEffect(()=>{

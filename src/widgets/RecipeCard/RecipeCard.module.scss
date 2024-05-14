@@ -21,6 +21,9 @@
     max-height: 200px;
     height: 100%;
     border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &__form{
     display: flex;
@@ -39,6 +42,29 @@
       opacity: 0.5;
     }
   }
+  &__divMod{
+    color: var(--Primary-Primary-dark-100, #323232);
+    text-align: right;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    display: inline-flex;
+    padding: 4px 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 100px;
+    background: var(--Primary-White, #FFF);
+    align-content: space-between;
+    flex-direction: row-reverse;
+    position: absolute;
+    z-index: 10;
+    top: 160px;
+    left: 10px;
+  }
   &__more{
     width: 24px;
     height: 24px;
@@ -51,12 +77,44 @@
     background-position: center;
 
   }
+  &__del{
+    width: 24px;
+    height: 24px;
+    // margin: 0 0 16px 5px;
+    border: hidden;
+    cursor: pointer;
+    background-color: inherit;
+    background-image: url(/src/assets/closeRed.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
   &__img {
     max-width: 100%;
     height: auto;
-    margin: auto;
+   // margin: auto;
     object-fit: cover;
     border-radius: 28px;
+    &:hover {
+      transform: scale(1.1); /* Увеличиваем масштаб */
+      border-radius: 28px;
+
+    }
+
+    &:after {
+      display: block;
+      position: absolute;
+    }
+  }
+  &__imgBlur{
+    filter: blur(5px);
+    overflow: hidden;
+    border-style: solid;
+    max-width: 100%;
+    height: auto;
+   // margin: auto;
+    object-fit: cover;
+    border-radius: 28px;
+    display: flex;
     &:hover {
       transform: scale(1.1); /* Увеличиваем масштаб */
       border-radius: 28px;
@@ -66,8 +124,8 @@
       display: block;
       position: absolute;
     }
-  }
 
+  }
   &__textBox {
     margin-top: 12px;
   }

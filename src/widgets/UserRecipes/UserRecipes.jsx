@@ -21,6 +21,9 @@ query MyQuery {
     id
     food
     description
+       user {
+          displayName
+        }
     date
         category {
       category
@@ -28,6 +31,9 @@ query MyQuery {
    duration {
       duration
     }
+    steps
+    portions
+    publish
   }
 }`
 

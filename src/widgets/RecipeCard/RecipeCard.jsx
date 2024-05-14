@@ -22,10 +22,12 @@ function RecipeCard( {name,
                       setInstantLikes,
                       duration,
                            user,
+  publish,
                       isAuthenticated,
                       isBtnLike = true,
                       isBtnEdit = true,
                       isBtnComments = true,
+
 
   unauthorizedPopup, setUnauthorizedPopup
                     }) {
@@ -100,7 +102,7 @@ useEffect(()=>{
     const temp = JSON.parse(photo)?.url
     setMainPhoto(temp)
   }
-},[photo])
+},[])
   function handleClickLike(id) {
 
     if (instantLikes?.some(t => t.recipesId === id)) {
@@ -129,19 +131,25 @@ useEffect(()=>{
 
   return (
     <section className={style.recipeCard}>
-      {(isBtnEdit && <form className={style.recipeCard__form} action={`/add-recipe/${id}`}>
+      {(publish===true && <form className={style.recipeCard__form} action={`/add-recipe/${id}`}>
         <button className={style.recipeCard__more}></button>
       </form>)}
+      {(publish===false && <div className={style.recipeCard__form}>
+        <button className={style.recipeCard__del}></button>
+      </div>)}
+      {(publish===false && <div className={style.recipeCard__divMod} >
+        На модерации
+      </div>)}
       <Link to={`/recipe/${id}`} key={id} className={style.recipeCard__link}>
         <div className={style.recipeCard__imgBox}>
           <div >
           <RecipeChips text={category?.category}/>
-{/*
-            <ButtonPicture size={'smallRose'} value={'RedClose'}/>
-*/}
           </div>
-          <img className={style.recipeCard__img}
-               src={mainPhoto ? mainPhoto : img} alt="recipeImg"/></div>
+        <img className={publish===false  ? style.recipeCard__imgBlur : style.recipeCard__img  }
+               src={mainPhoto ? mainPhoto : img} alt="recipeImg"/>
+
+
+        </div>
 
         <div className={style.recipeCard__textBox}>
           <h3 className={style.recipeCard__name}>{name}</h3>

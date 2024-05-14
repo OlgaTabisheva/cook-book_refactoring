@@ -42,7 +42,7 @@ const GET_RECIPES = gql`
     photo
     steps
     portions
-    
+    publish
   }
 }
 `
@@ -67,7 +67,7 @@ const GET_RECIPES_UNPUBLISH = gql`
     photo
     steps
     portions
-    
+    publish
   }
 }
 `
