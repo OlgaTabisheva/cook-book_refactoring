@@ -26,9 +26,11 @@ const GET_RECIPES = gql`
   recipes(offset: 0, limit: 60, where: {publish: {_eq: true}}) {
     category {
       category
+      number
     }
     duration {
       duration
+       number
     }
         user {
           displayName
@@ -49,11 +51,14 @@ const GET_RECIPES = gql`
 const GET_RECIPES_UNPUBLISH = gql`
  {
   recipes(offset: 0, limit: 60) {
+  recipes_category
     category {
       category
+       number
     }
     duration {
       duration
+       number
     }
         user {
           displayName

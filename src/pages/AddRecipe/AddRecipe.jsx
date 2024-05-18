@@ -152,12 +152,26 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     setChosenTextCategory(chosenTextCategoryStep1)
   }, [])
   useEffect(() => {
+console.log(fullRecipe,'fullRecipe')
+
     if (fullRecipe?.name) {
       setNameRecipe(fullRecipe?.name)
     }
-
+    if (fullRecipe?.portions) {
+      setCountPortions(fullRecipe?.portions)
+    }
+    if (fullRecipe?.duration) {
+      setChosenTextDuration(fullRecipe?.duration)
+    }
+    if (fullRecipe?.recipes_category){
+      setChosenTextCategory(fullRecipe?.recipes_category)
+    }
+    if (fullRecipe?.description) {
+      setDescription(fullRecipe?.description)
+    }
     if (fullRecipe?.category?.category) {
-      setChosenTextCategory(fullRecipe?.category)
+     // console.log(fullRecipe?.category?.category,'fullRecipe?.category')
+      setChosenTextCategory(fullRecipe?.category,)
     }
     if (fullRecipe?.duration?.duration) {
       setChosenTextDuration(fullRecipe?.duration)
@@ -169,14 +183,20 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     }
 
     if (fullRecipe?.steps) {
-      console.log(fullRecipe?.steps,'fullRecipe?.steps')
       const steps = JSON.parse(fullRecipe?.steps)
-      console.log(steps, 'steps')
       setInstantStepRecipeWithGallery(steps)
+    }
+    if (fullRecipe?.photo) {
+      const photo = JSON.parse(fullRecipe?.photo)
+      setMainRecipeImage(photo)
     }
 
   }, [fullRecipe])
 
+
+  useEffect(()=>{
+
+  },[])
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
@@ -195,8 +215,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }
 
   function handleAddStep() {
-    //const item = instantStepRecipeWithGallery[instantStepRecipeWithGallery.length-1 ].id
-    const newStepNumber = stepNumber + 1
+    const newStepNumber = instantStepRecipeWithGallery.slice(-1)[0]?.id + 1
     setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
       id: newStepNumber,
       step: newStepNumber,
@@ -211,6 +230,8 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
 
   const updateRecipe = async (e) => {
     e.preventDefault()
+    console.log(chosenTextCategory,'chosenTextCategory?.number')
+    console.log(chosenTextDuration?.number,'chosenTextDuration?.number')
     try {
       await mutateRecipe({
         variables: {
@@ -307,7 +328,10 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     }
 
   }
-
+useEffect(()=>{
+  console.log(chosenTextCategory.category,'chosenTextCategory.category')
+  console.log(chosenTextDuration.duration,'chosenTextDuration.duration')
+},[chosenTextDuration.duration,chosenTextCategory.category])
 
   return (
     <section className={style.addRecipe}>
@@ -322,12 +346,12 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
         <div className={style.addRecipe__categoriesBox}>
           <CategoryList allCategories={allCategories} chosenTextCategory={chosenTextCategory.category}
                         setChosenTextCategory={setChosenTextCategory}/>
-          {chosenTextCategory?.number && <span
+          {chosenTextCategory && <span
             className={!categoryValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Категория не задана</span>}
         </div>
         <div className={style.addRecipe__portions}>
           <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
-          <PortionsCounter setCountPortions={setCountPortions}/>
+          <PortionsCounter setCountPortions={setCountPortions} countPortions={countPortions} fullRecipe={fullRecipe?.portions}/>
         </div>
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
@@ -386,7 +410,7 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
           <h3 className={style.addRecipe__subtitleLeft}>Пошаговое приготовление:</h3>
           {instantStepRecipeWithGallery?.map((obj, index) => (
               <ul className={style.addRecipe__boxSteps} key={index}>
-                <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage}
+                <RecipeStep key={instantStepRecipeWithGallery.id} popupDelImage={popupDelImage} fullRecipe={fullRecipe}
                             setPopupDelImage={setPopupDelImage}
                             setPopupCropImage={setPopupCropImage}
                             popupCropImage={popupCropImage} instantStepRecipeInfo={instantStepRecipeInfo}

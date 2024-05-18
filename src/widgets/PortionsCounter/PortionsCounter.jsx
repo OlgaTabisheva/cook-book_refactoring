@@ -3,15 +3,20 @@ import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx"
 import {useEffect, useState} from "react";
 
 
-function PortionsCounter({setCountPortions, fullRecipeFromFullRecipe}) {
-
-const [counter, setCounter] =  useState(1)
+function PortionsCounter({setCountPortions, fullRecipeFromFullRecipe, countPortions, fullRecipe}) {
+const [counter, setCounter] =  useState( 1)
 
   useEffect(()=>{
     if (counter> 1) {
       setCountPortions(counter)
+
     }
+
+
   },[counter])
+  useEffect(()=>{
+    setCounter(fullRecipe)
+  },[fullRecipe])
 
   return (
 

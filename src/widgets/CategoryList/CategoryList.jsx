@@ -1,16 +1,16 @@
 import style from './CategoryList.module.scss'
 import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 import {handleError} from "@apollo/client/link/http/parseAndCheckHttpResponse.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
 function CategoryList({allCategories , chosenTextCategory, setChosenTextCategory }) {
 
 
-
   function handleCategory(obj) {
   setChosenTextCategory(obj)
+
   }
   return (
     <section className={style.categoryList}>
