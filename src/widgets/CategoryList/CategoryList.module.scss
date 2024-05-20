@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.categoryList{
+.categoryList {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -9,9 +9,11 @@
   background-color: $sand-colorful-10;
   max-width: 736px;
   width: 100%;
+
   &__subtitle {
     @extend %title28Vol
   }
+
   &__boxCategory {
     margin-top: 20px;
     display: flex;
@@ -21,9 +23,10 @@
     }
   }
 }
+
 @media only screen and (max-width: 1000px) {
 
-  .categoryList{
+  .categoryList {
     max-width: 775px;
 
     &__boxCategory {
@@ -31,9 +34,11 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+
       :not(:first-child) {
-        margin-left:5px;
+        margin-left: 5px;
       }
+    }
+  }
 }
-}}
 

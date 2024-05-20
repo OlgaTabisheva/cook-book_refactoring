@@ -16,10 +16,10 @@ import RecipeComposition from "../RecipeComposition/RecipeComposition.jsx";
 function RecipePhotoBlock({instantAddRecipe, recipeStepsMap, recipeCompositionMap, fullRecipeFromFullRecipe}) {
   const {id} = useParams();
   const navigate = useNavigate();
- const [openImagePopup,setOpenImagePopup] = useState(false)
-  const [recipeStepsMapSlice,setRecipeStepsMapSlice] = useState(false)
-  const [recipeStepsMapSliceForButton,setRecipeStepsMapSliceForButton] = useState(false)
-  const [fullRecipe,setFullRecipe] = useState()
+  const [openImagePopup, setOpenImagePopup] = useState(false)
+  const [recipeStepsMapSlice, setRecipeStepsMapSlice] = useState(false)
+  const [recipeStepsMapSliceForButton, setRecipeStepsMapSliceForButton] = useState(false)
+  const [fullRecipe, setFullRecipe] = useState()
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
   const [RecipesAddition, setRecipesAddition] = useState()
@@ -57,12 +57,12 @@ query MyQuery {
 `
   const getCountsLikes = useQuery(GET_COUNTS_LIKES).data
   const getCountsComments = useQuery(GET_COUNTS_COMMENTS).data
-  const getRecipesAuthor= useQuery(GET_RECIPE_AUTHOR)?.data?.recipes_by_pk
+  const getRecipesAuthor = useQuery(GET_RECIPE_AUTHOR)?.data?.recipes_by_pk
 
 
-  useEffect(()=>{
+  useEffect(() => {
     setRecipesAddition(getRecipesAuthor)
-  },[getRecipesAuthor])
+  }, [getRecipesAuthor])
   useEffect(() => {
     if (getCountsLikes?.likes_aggregate.aggregate.count !== undefined) {
       setCountLikes(getCountsLikes?.likes_aggregate.aggregate.count)
@@ -74,22 +74,22 @@ query MyQuery {
     if (getCountsComments?.comments_aggregate.aggregate.count !== undefined) {
       setCountComments(getCountsComments?.comments_aggregate.aggregate.count)
     }
-    }, [getCountsComments])
-  useEffect(()=>{
+  }, [getCountsComments])
+  useEffect(() => {
     setRecipeStepsMapSlice(recipeStepsMap?.slice(0, 4));
     setRecipeStepsMapSliceForButton(recipeStepsMap?.slice(4, 5))
-  },[recipeStepsMap])
-  useEffect(()=>{
+  }, [recipeStepsMap])
+  useEffect(() => {
     setFullRecipe(instantAddRecipe?.recipes?.find(elem => elem?.id === id))
-  },[instantAddRecipe])
+  }, [instantAddRecipe])
   const formatDate = (date) => {
     const options = {year: "numeric", month: "numeric", day: "numeric"}
     return new Date(date).toLocaleString(undefined, options)
   }
 
   useEffect(
-    ()=>{
-      if (fullRecipe?.photo.length > 0 ){
+    () => {
+      if (fullRecipe?.photo.length > 0) {
 
         setUsePhoto(JSON.parse(fullRecipe?.photo)?.url)
       }
@@ -100,7 +100,7 @@ query MyQuery {
   return (
     <div className={style.recipePhotoBlock}>
 
-   <PopupImageGallery open={openImagePopup} setOpenImagePopup={setOpenImagePopup} recipeStepsMap={recipeStepsMap}/>
+      <PopupImageGallery open={openImagePopup} setOpenImagePopup={setOpenImagePopup} recipeStepsMap={recipeStepsMap}/>
 
 
       <div className={style.recipePhotoBlock__recipe}>
@@ -108,11 +108,13 @@ query MyQuery {
           <img className={style.recipePhotoBlock__img} src={usePhoto ? usePhoto : fullRecipe?.photo} alt={'photo'}/>
           <div className={style.recipePhotoBlock__boxMini}>
             {recipeStepsMapSlice && recipeStepsMapSlice?.map((obj) => (
-              <img className={style.recipePhotoBlock__imgMini} key={obj?.id} src={obj?.url ? obj?.url : test} alt={'photo'}/>
+              <img className={style.recipePhotoBlock__imgMini} key={obj?.id} src={obj?.url ? obj?.url : test}
+                   alt={'photo'}/>
             ))}
 
             {recipeStepsMapSliceForButton && recipeStepsMapSliceForButton?.map((obj) => (
-            <ButtonImgOpenGallery key={obj?.id}  Imagebutton={obj?.url ? obj?.url : test} onClick={()=>setOpenImagePopup(!openImagePopup)}/>
+              <ButtonImgOpenGallery key={obj?.id} Imagebutton={obj?.url ? obj?.url : test}
+                                    onClick={() => setOpenImagePopup(!openImagePopup)}/>
             ))}
 
           </div>
@@ -127,7 +129,9 @@ query MyQuery {
                 <p className={style.recipePhotoBlock__text}>{formatDate(RecipesAddition?.date)}</p>
               </div>
               <div className={style.recipePhotoBlock__boxPhoto}>
-                {!RecipesAddition?.user?.avatarUrl?.includes(defaultAvatar) ? <img className={style.recipePhotoBlock__imgUser} src={RecipesAddition?.user?.avatarUrl} alt={'user photo'}/> : <User className={style.recipePhotoBlock__user}/>
+                {!RecipesAddition?.user?.avatarUrl?.includes(defaultAvatar) ?
+                  <img className={style.recipePhotoBlock__imgUser} src={RecipesAddition?.user?.avatarUrl}
+                       alt={'user photo'}/> : <User className={style.recipePhotoBlock__user}/>
                 }
 
               </div>
@@ -135,16 +139,17 @@ query MyQuery {
           </div>
         </div>
       </div>
-      <div className={style.recipePhotoBlock__composition_mobile} >
-        <RecipeComposition fullRecipeFromFullRecipe={fullRecipeFromFullRecipe} recipeCompositionMap={recipeCompositionMap}/>
+      <div className={style.recipePhotoBlock__composition_mobile}>
+        <RecipeComposition fullRecipeFromFullRecipe={fullRecipeFromFullRecipe}
+                           recipeCompositionMap={recipeCompositionMap}/>
       </div>
-<div className={style.recipePhotoBlock__description}>
-  {fullRecipe?.description}
-</div>
+      <div className={style.recipePhotoBlock__description}>
+        {fullRecipe?.description}
+      </div>
       <div className={style.recipePhotoBlock__steps}>
         <h3 className={style.recipePhotoBlock__title}>Пошаговое приготовление</h3>
         {recipeStepsMap && recipeStepsMap?.map((obj) => (
-          <StepByStep obj={obj} key={obj?.id} />
+          <StepByStep obj={obj} key={obj?.id}/>
         ))}
 
 

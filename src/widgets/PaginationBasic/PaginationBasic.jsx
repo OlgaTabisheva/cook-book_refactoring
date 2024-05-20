@@ -5,7 +5,7 @@ import ButtonChips from "../../shared/Buttons/ButtonChips/ButtonChips.jsx";
 
 function PaginationBasic({totalPosts, paginate, currentPage}) {
 
-  console.log(totalPosts,currentPage,'totalPosts')
+  console.log(totalPosts, currentPage, 'totalPosts')
 
   const [postPage] = useState(21)
   const pageNumbers = [];
@@ -28,12 +28,14 @@ function PaginationBasic({totalPosts, paginate, currentPage}) {
 
         {pageNumbers.map(number => (
           <li key={number} className={style.pagination__item}>
-            <button className={selectedPageNumber === number ? style.pagination__button_active :style.pagination__button } onClick={() => paginate(number)}>{number}</button>
+            <button
+              className={selectedPageNumber === number ? style.pagination__button_active : style.pagination__button}
+              onClick={() => paginate(number)}>{number}</button>
 
           </li>
         ))}
-        { selectedPageNumber !== pageNumbers.length && <ButtonChips text={'Дальше'}
-                     onClick={(selectedPageNumber <= (pageNumbers.length - 1) && selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>}
+        {selectedPageNumber !== pageNumbers.length && <ButtonChips text={'Дальше'}
+                                                                   onClick={(selectedPageNumber <= (pageNumbers.length - 1) && selectedPageNumber >= 1) ? () => paginate(selectedPageNumber + 1) : null}></ButtonChips>}
 
       </ul>
     </nav>

@@ -7,7 +7,13 @@ import {useState} from "react";
 import {gql, useMutation} from "@apollo/client";
 
 
-function CommentsBox({instantComments, setInstantComments, isAuthenticated, instantLikesComments, setInstantLikesComments}) {
+function CommentsBox({
+                       instantComments,
+                       setInstantComments,
+                       isAuthenticated,
+                       instantLikesComments,
+                       setInstantLikesComments
+                     }) {
   const user = useUserData()
   const {id} = useParams();
   const userDisplayName = useUserDisplayName()
@@ -54,7 +60,7 @@ mutation {
 
   return (
     <section className={style.commentsBox}>
-<h2 className={style.commentsBox__title}>Комментарии </h2>
+      <h2 className={style.commentsBox__title}>Комментарии </h2>
       {instantComments?.map((obj, index) => (
 
         <Comment key={index} {...obj}

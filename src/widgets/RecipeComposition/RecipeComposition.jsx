@@ -11,12 +11,12 @@ function RecipeComposition({recipeCompositionMap, fullRecipeFromFullRecipe}) {
       className={style.recipeComposition}>
       <h3 className={style.recipeComposition__title}>Состав</h3>
       <div className={style.recipeComposition__counter}>
-     <PortionsCounter fullRecipeFromFullRecipe={fullRecipeFromFullRecipe}/>
+        <PortionsCounter fullRecipeFromFullRecipe={fullRecipeFromFullRecipe}/>
       </div>
       <div className={style.recipeComposition__box}>
         {recipeCompositionMap?.map((obj) => (
-        <Foodstuff key={obj?.product} obj={obj}/>
-          ))}
+          <Foodstuff key={obj?.product} obj={obj}/>
+        ))}
       </div>
 
     </div>

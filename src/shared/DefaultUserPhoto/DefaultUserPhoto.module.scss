@@ -25,7 +25,8 @@
     height: 120px;
     padding: 0 48px;
     border-radius: 120px;
-    &:hover{
+
+    &:hover {
       background-color: var(--bc-pic-60, rgba(0, 0, 0, 0.60));
       background-image: url(../../assets/image8.svg);
       background-repeat: no-repeat;
@@ -35,14 +36,16 @@
     }
 
   }
-    &__img{
+
+  &__img {
     width: 24px;
-      height: 24px;
-      padding: 50px;
-      border-radius: 50px;
-      &:hover {
+    height: 24px;
+    padding: 50px;
+    border-radius: 50px;
+
+    &:hover {
       opacity: 0.4;
-      }
+    }
   }
 }
 
@@ -51,6 +54,7 @@
   height: 120px;
   border-radius: 120px;
   border: none;
+
   &__imgBox {
 
     border: none;
@@ -66,7 +70,7 @@
     border-radius: 120px;
     cursor: pointer;
 
-    &:hover{
+    &:hover {
       background-color: var(--bc-pic-60, rgba(0, 0, 0, 0.60));
       background-image: url(../../assets/image8.svg);
       background-repeat: no-repeat;
@@ -76,12 +80,14 @@
     }
 
   }
-  &__img{
+
+  &__img {
     width: 120px;
     height: 120px;
     padding: 50px;
     border-radius: 120px;
     border: none;
+
     &:hover {
       opacity: 0.4;
     }

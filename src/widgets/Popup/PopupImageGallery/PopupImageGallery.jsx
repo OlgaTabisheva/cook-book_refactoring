@@ -5,13 +5,14 @@ import React, {useCallback, useRef} from "react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import {A11y,Pagination, Navigation} from 'swiper/modules';
+import {A11y, Pagination, Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
 import ButtonPicture from "../../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css';
+
 const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
   const sliderRef = useRef(null);
 
@@ -34,26 +35,26 @@ const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
             setOpenImagePopup(!open)
           }}/>
           <div className={style.popupImageGallery__window}>
-            {<Swiper     pagination={{
+            {<Swiper pagination={{
               type: 'fraction',
             }}
-                         navigation={false}
-                         modules={[Pagination, Navigation]}
-                         className="mySwiper" ref={sliderRef}
+                     navigation={false}
+                     modules={[Pagination, Navigation]}
+                     className="mySwiper" ref={sliderRef}
 
             >
-              {recipeStepsMap && recipeStepsMap.map((obj,index) => (
+              {recipeStepsMap && recipeStepsMap.map((obj, index) => (
                 <SwiperSlide key={index}>
 
-                  <img  alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
-                   </SwiperSlide>
+                  <img alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
+                </SwiperSlide>
               ))}
 
 
             </Swiper>}
             <div className={style.popupImageGallery__buttons}>
               <ButtonPicture size={'prev'} value={'ArrowSmallLeft'} onClick={handlePrev}>77777</ButtonPicture>
-              <ButtonPicture size={'next'} value={'ArrowSmallRight'}   onClick={handleNext}/>
+              <ButtonPicture size={'next'} value={'ArrowSmallRight'} onClick={handleNext}/>
             </div>
           </div>
 

@@ -7,22 +7,24 @@ function PictureSection() {
 
   const navigate = useNavigate();
 
-  function handleNavigate(){
+  function handleNavigate() {
     navigate(`/add-recipe-step`)
 
   }
+
   return (
     <section className={style.pictureSection}>
-<div className={style.pictureSection__cover}>
-      <div className={style.pictureSection__box}>
-        <h2 className={style.pictureSection__title}> Делимся вкусными рецептами средиземноморской <br/> и сербской кухни
-        </h2>
-        <p className={style.pictureSection__text}>Помогаем собрать рецепты в одном месте. Все блюда опробованы и
-          составляют кулинарную книгу наших авторов</p>
-        <ButtonBasic text={'Добавить рецепт'} color={'primaryGreen'} onClick={handleNavigate}/>
+      <div className={style.pictureSection__cover}>
+        <div className={style.pictureSection__box}>
+          <h2 className={style.pictureSection__title}> Делимся вкусными рецептами средиземноморской <br/> и сербской
+            кухни
+          </h2>
+          <p className={style.pictureSection__text}>Помогаем собрать рецепты в одном месте. Все блюда опробованы и
+            составляют кулинарную книгу наших авторов</p>
+          <ButtonBasic text={'Добавить рецепт'} color={'primaryGreen'} onClick={handleNavigate}/>
 
+        </div>
       </div>
-</div>
     </section>
   )
 }

@@ -11,23 +11,27 @@
   align-items: stretch;
   background-color: inherit;
   cursor: pointer;
-  :hover{
+
+  :hover {
     opacity: 0.5;
   }
+
   &__text {
     @extend %textLarge16Mon;
 
   }
-  &__arrow{
+
+  &__arrow {
     width: 24px;
     height: 24px;
     stroke: $sand-40;
-   padding-top: 7px;
+    padding-top: 7px;
     padding-left: 2px;
 
   }
 
 }
+
 @media only screen and (max-width: 1000px) {
   .buttonUnits {
     border-width: 1px;

@@ -29,38 +29,54 @@ function RecipeStep({
                     }) {
 
 
-  const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj.id, step: '', url: '', urlId: '', text: ''})
+  const [stepRecipeInfo, setStepRecipeInfo] = useState({id: obj?.id, step: '', url: '', urlId: '', text: ''})
   const [delStepImageFromStorage, setDelStepImageFromStorage] = useState()
+//
+
+
+  /*  useEffect(() => {
+      console.log(instantStepRecipeWithGallery?.length>2 ,'instantStepRecipeWithGallery?.length>0 ')
+      if (instantStepRecipeWithGallery?.length>1 ) {
+        if (!fullRecipe?.steps) {
+          const updatedItems = instantStepRecipeWithGallery
+          const ind = updatedItems.findIndex(i => i?.id === obj?.id)
+          updatedItems[ind] = ({
+            id: obj?.id,
+            step: stepRecipeInfo?.step,
+            url: instantStepRecipeWithGallery[ind]?.url,
+            urlId: instantStepRecipeWithGallery[ind]?.urlId,
+            text: stepRecipeInfo?.text
+          })
+          setInstantStepRecipeWithGallery[ind](updatedItems)
+        }
+
+        //localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+      }
+    }, [stepRecipeInfo])*/
+
 
   useEffect(() => {
     const updatedItems = instantStepRecipeWithGallery
     const ind = updatedItems.findIndex(i => i.id === obj.id)
-    setStepRecipeInfo(updatedItems[ind])
-    //localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
-  }, [instantStepRecipeWithGallery])
-
-  useEffect(() => {
-    if (!fullRecipe?.steps) {
-      const updatedItems = instantStepRecipeWithGallery
-
-      const ind = updatedItems.findIndex(i => i.id === obj.id)
-    //  console.log(ind, 'ind')
-      if (ind === -1)
+    if (stepRecipeInfo?.text || stepRecipeInfo?.steps) {
+      //  console.log(ind, 'ind')
+      if (ind === -1) {
         updatedItems.push(stepRecipeInfo)
-      else if (stepRecipeInfo) {
+      }
+      if (stepRecipeInfo) {
         updatedItems[ind] = stepRecipeInfo
       }
       setInstantStepRecipeWithGallery(updatedItems)
-    //  console.log(updatedItems, 'updatedItems')
     }
-  }, [instantStepRecipeWithGallery])
+
+  }, [stepRecipeInfo])
 
   useEffect(() => {
     setStepRecipeForError(stepRecipeInfo?.text)
   }, [stepRecipeInfo?.text])
 
   useEffect(() => {
-    if (instantStepRecipeInfo?.url.length > 0 && instantStepRecipeInfo?.id === stepRecipeInfo?.id) {
+    if (instantStepRecipeInfo?.url?.length > 0 && instantStepRecipeInfo?.id === stepRecipeInfo?.id) {
       setStepRecipeInfo({
         id: stepRecipeInfo?.id,
         step: stepRecipeInfo?.step,
@@ -70,8 +86,17 @@ function RecipeStep({
       })
     }
 
+
   }, [instantStepRecipeInfo])
 
+  useEffect(() => {
+
+    const updatedItems = instantStepRecipeWithGallery
+    const ind = updatedItems.findIndex(i => i?.id === obj?.id)
+    setStepRecipeInfo(updatedItems[ind])
+    //localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
+
+  }, [instantStepRecipeWithGallery])
   const DEL_IMAGE_FROM_STORAGE =
     gql`
    mutation MyMutation2 {
@@ -107,13 +132,14 @@ function RecipeStep({
         <div className={style.recipeStep__box}>
           <h3 className={style.recipeStep__subtitle}>Шаг:</h3>
           <input className={style.recipeStep__input} placeholder={'введите название или номер шага'}
-                 value={stepRecipeInfo?.id} onChange={(e) => setStepRecipeInfo({
-            id: obj.id,
-            step: e.target.value,
-            url: stepRecipeInfo?.url,
-            urlId: instantStepRecipeInfo?.urlId,
-            text: stepRecipeInfo?.text
-          })}/>
+                 value={stepRecipeInfo?.step ? stepRecipeInfo?.step : stepRecipeInfo?.id}
+                 onChange={(e) => setStepRecipeInfo({
+                   id: obj.id,
+                   step: e.target.value,
+                   url: stepRecipeInfo?.url,
+                   urlId: instantStepRecipeInfo?.urlId,
+                   text: stepRecipeInfo?.text
+                 })}/>
         </div>
         {instantStepRecipeWithGallery.length > 1 &&
           <ButtonPicture value={'close'} size={'normal'} onClick={() => handleDeleteStep(obj)}/>}

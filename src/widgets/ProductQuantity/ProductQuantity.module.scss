@@ -7,11 +7,13 @@
   align-items: flex-end;
   margin-top: 20px;
   position: relative;
-  &__mobile,  &__mobileBox{
+
+  &__mobile, &__mobileBox {
     visibility: hidden;
     display: none;
   }
-  &__mobileBoxText{
+
+  &__mobileBoxText {
     color: var(--Primary-Primary-dark-100, #323232);
     font-feature-settings: 'clig' off, 'liga' off;
 
@@ -23,20 +25,24 @@
     line-height: 24px; /* 120% */
 
   }
-  &__deckstop{
+
+  &__deckstop {
     visibility: visible;
   }
+
   &__subtitle {
     @extend %textSmall13-16Mon;
     text-align: left;
     margin-bottom: 6px;
   }
-  &__box{
+
+  &__box {
     display: flex;
     align-content: center;
     flex-direction: row;
     align-items: flex-end;
   }
+
   &__boxCount {
     margin-right: 12px;
   }
@@ -119,11 +125,13 @@
     flex-direction: column-reverse;
     max-width: 344px;
     width: 100%;
-      &__box{
-    max-width: 344px;
+
+    &__box {
+      max-width: 344px;
 
     }
-    &__mobileBox{
+
+    &__mobileBox {
       visibility: visible;
       width: 100%;
       max-width: 375px;
@@ -132,7 +140,8 @@
       justify-content: space-between;
       align-items: center;
     }
-    &__mobile{
+
+    &__mobile {
       visibility: visible;
       width: 100%;
       max-width: 344px;
@@ -140,16 +149,19 @@
       flex-direction: column;
       margin-bottom: 12px;
     }
-    &__deckstop{
+
+    &__deckstop {
       visibility: hidden;
       display: none;
     }
+
     &__input {
       border-radius: 12px;
 
 
     }
-    &__inputCount{
+
+    &__inputCount {
       width: 100%;
       max-width: 172px;
     }

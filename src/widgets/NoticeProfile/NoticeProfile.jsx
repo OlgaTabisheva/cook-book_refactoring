@@ -2,7 +2,7 @@ import style from './NoticeProfile.module.scss'
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 
 
-function NoticeProfile({src, title, text, textButton, colorButton,onClick}) {
+function NoticeProfile({src, title, text, textButton, colorButton, onClick}) {
   return (
     <section
       className={style.noticeProfile}>

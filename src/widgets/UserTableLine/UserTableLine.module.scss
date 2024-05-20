@@ -1,5 +1,5 @@
 
-.userTableLine{
+.userTableLine {
   display: flex;
   width: 1120px;
   padding: 20px;
@@ -9,14 +9,15 @@
   background: var(--Primary-Sand-Sand-10, #FCF1D5);
   justify-content: space-between;
 
-  &__boxName{
+  &__boxName {
     display: flex;
     width: 450px;
     align-items: center;
     gap: 12px;
     flex-shrink: 0;
   }
-  &__img{
+
+  &__img {
     display: flex;
     width: 40px;
     height: 40px;
@@ -25,7 +26,8 @@
     align-items: center;
     flex-shrink: 0;
   }
-  &__name{
+
+  &__name {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -42,7 +44,8 @@
     font-weight: 400;
     line-height: 24px; /* 150% */
   }
-  &__mail{
+
+  &__mail {
     display: -webkit-box;
     width: 450px;
     -webkit-box-orient: vertical;
@@ -60,15 +63,18 @@
     font-weight: 400;
     line-height: 24px; /* 150% */
   }
-  &__boxImg{
+
+  &__boxImg {
     display: flex;
     align-items: center;
     gap: 20px;
   }
-  &__trash{
+
+  &__trash {
     stroke: #FC4C0E;
   }
-  &__check{
+
+  &__check {
     stroke: #53902D;
   }
 }

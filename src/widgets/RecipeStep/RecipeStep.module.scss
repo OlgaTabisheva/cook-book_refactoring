@@ -1,17 +1,18 @@
-
 @import "../../variables";
 
-.recipeStep{
+.recipeStep {
   display: flex;
   flex-direction: column;
   align-items: center;
-margin-top: 40px;
-  &__box{
+  margin-top: 40px;
+
+  &__box {
     display: flex;
     align-items: center;
     flex-direction: row;
   }
-  &__input{
+
+  &__input {
     border-radius: 12px;
     padding: 16px;
     border: 1px solid #A49B82;
@@ -21,27 +22,29 @@ margin-top: 40px;
     min-width: 300px;
     width: 100%;
   }
-  &__subtitle{
+
+  &__subtitle {
 
     color: $primary-dark-100;
-    @extend  %title24Vol;
+    @extend %title24Vol;
   }
- &__step{
-   margin-top: 12px;
-   gap: 6px;
-   @extend  %textLarge16Mon;
-   color: $primary-dark-100;
-   border: 1px solid #A49B82;
-   max-width:664px;
-   width: 100%;
-   padding: 16px;
-   border-radius: 12px;
-   background-color: inherit;
-height: 100%;
 
- }
+  &__step {
+    margin-top: 12px;
+    gap: 6px;
+    @extend %textLarge16Mon;
+    color: $primary-dark-100;
+    border: 1px solid #A49B82;
+    max-width: 664px;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: inherit;
+    height: 100%;
 
-  &__menu{
+  }
+
+  &__menu {
     margin: 0 auto 18px auto;
     display: flex;
     justify-content: space-between;
@@ -50,24 +53,29 @@ height: 100%;
 
   }
 }
+
 textarea {
   padding: 10px;
   min-height: 80px;
   border: 1px solid red;
   box-sizing: border-box;
 }
+
 @media only screen and (max-width: 1000px) {
-  .recipeStep{
+  .recipeStep {
     max-width: 344px;
     width: 100%;
-    &__box{
+
+    &__box {
 
     }
-    &__input{
+
+    &__input {
       min-width: 0;
       width: 100%;
     }
-    &__step{
+
+    &__step {
       display: flex;
       padding: 16px;
       flex-direction: column;

@@ -10,6 +10,7 @@
   height: 100%;
   margin-top: 40px;
   padding: 8px 12px;
+
   &__button {
     @extend %textLarge16Mon;
     color: $sand-60;
@@ -20,6 +21,7 @@
     border-radius: 100px;
     background-color: inherit;
     cursor: pointer;
+
     &:disabled {
       background-color: $sand-20;
       color: $primary-dark-100;
@@ -40,9 +42,11 @@
     /* align-self: stretch; */
     border-radius: 100px;
     border: 1px solid var(--Primary-Sand-Sand-40, #A49B82);
+
     &__button {
       width: 200px;
-      &:first-child{
+
+      &:first-child {
         width: 100px;
       }
     }

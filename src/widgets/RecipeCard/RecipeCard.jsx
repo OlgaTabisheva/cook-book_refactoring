@@ -14,29 +14,29 @@ import {Link} from "react-router-dom";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
 import PopupBasic from "../Popup/PopupBasic/PopupBasic.jsx";
 
-function RecipeCard( {name,
+function RecipeCard({
+                      name,
                       category,
                       photo,
                       id,
                       instantLikes,
                       setInstantLikes,
                       duration,
-                           user,
-  publish,
+                      user,
+                      publish,
                       isAuthenticated,
                       isBtnLike = true,
                       isBtnEdit = true,
                       isBtnComments = true,
 
 
-  unauthorizedPopup, setUnauthorizedPopup
+                      unauthorizedPopup, setUnauthorizedPopup
                     }) {
 
   const [mainPhoto, setMainPhoto] = useState()
   const [countLikes, setCountLikes] = useState([])
   const [countComments, setCountComments] = useState([])
   const myUser = useUserData()
-
 
   const GET_COUNTS_LIKES = gql`
   query {
@@ -97,12 +97,13 @@ function RecipeCard( {name,
 
   }, [getCountsComments])
 
-useEffect(()=>{
-  if (photo?.length > 50){
-    const temp = JSON.parse(photo)?.url
-    setMainPhoto(temp)
-  }
-},[])
+  useEffect(() => {
+    if (photo?.length > 50) {
+      const temp = JSON.parse(photo)?.url
+      setMainPhoto(temp)
+    }
+  }, [])
+
   function handleClickLike(id) {
 
     if (instantLikes?.some(t => t.recipesId === id)) {
@@ -131,21 +132,22 @@ useEffect(()=>{
 
   return (
     <section className={style.recipeCard}>
-      {(publish===true && <form className={style.recipeCard__form} action={`/add-recipe/${id}`}>
-        <button className={style.recipeCard__more}></button>
-      </form>)}
-      {(publish===false && <div className={style.recipeCard__form}>
+      {((publish === true || myUser?.defaultRole === 'AdminRecipes') &&
+        <form className={style.recipeCard__form} action={`/add-recipe/${id}`}>
+          <button className={style.recipeCard__more}></button>
+        </form>)}
+      {((publish === false && myUser?.defaultRole !== 'AdminRecipes') && <div className={style.recipeCard__form}>
         <button className={style.recipeCard__del}></button>
       </div>)}
-      {(publish===false && <div className={style.recipeCard__divMod} >
+      {((myUser?.defaultRole !== 'AdminRecipes' && publish === false) && <div className={style.recipeCard__divMod}>
         На модерации
       </div>)}
       <Link to={`/recipe/${id}`} key={id} className={style.recipeCard__link}>
         <div className={style.recipeCard__imgBox}>
-          <div >
-          <RecipeChips text={category?.category}/>
+          <div>
+            <RecipeChips text={category?.category}/>
           </div>
-        <img className={publish===false  ? style.recipeCard__imgBlur : style.recipeCard__img  }
+          <img className={publish === false ? style.recipeCard__imgBlur : style.recipeCard__img}
                src={mainPhoto ? mainPhoto : img} alt="recipeImg"/>
 
 
@@ -159,9 +161,10 @@ useEffect(()=>{
       </Link>
       <div className={style.recipeCard__box}>
         {isAuthenticated ?
-        (instantLikes?.some(t => t.recipesId === id) ?
-          <ButtonLikeFull onClick={() => handleClickLike(id)} countLikes={countLikes}/> :
-          <ButtonLikeEmpty onClick={() => handleClickLike(id)} countLikes={countLikes}/>) : <ButtonLikeEmpty onClick={() => setUnauthorizedPopup(!unauthorizedPopup)} countLikes={countLikes}/>}
+          (instantLikes?.some(t => t.recipesId === id) ?
+            <ButtonLikeFull onClick={() => handleClickLike(id)} countLikes={countLikes}/> :
+            <ButtonLikeEmpty onClick={() => handleClickLike(id)} countLikes={countLikes}/>) :
+          <ButtonLikeEmpty onClick={() => setUnauthorizedPopup(!unauthorizedPopup)} countLikes={countLikes}/>}
         <ButtonComments countComments={countComments}/>
 
       </div>

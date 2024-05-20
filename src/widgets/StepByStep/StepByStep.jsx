@@ -1,5 +1,6 @@
 import style from './StepByStep.module.scss'
 import img from './../../assets/test.jpg'
+
 function StepByStep({obj}) {
 
   return (

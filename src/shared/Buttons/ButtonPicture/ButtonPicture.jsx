@@ -8,26 +8,27 @@ import {ReactComponent as ArrowSmallRight} from '../../../assets/arrowSmallRight
 import {ReactComponent as ArrowMLeft} from '../../../assets/LeftM.svg';
 import {ReactComponent as ArrowMRight} from '../../../assets/RightM.svg';
 import {ReactComponent as SmallClose} from '../../../assets/x.svg';
+
 function ButtonPicture({value, onClick, disabled, size}) {
   return (
     <button type={'button'}
-      className={size === 'normal' && style.buttonPicture ||
-      size === 'big' && style.buttonPicture__big ||
-      size === 'circle' && style.buttonPicture__circle ||
-        size === 'normalWhite' && style.buttonPicture__white ||
-        size === 'smallInherit' && style.buttonPicture__small ||
-        size === 'smallBlack' && style.buttonPicture__smallBlack ||
+            className={size === 'normal' && style.buttonPicture ||
+              size === 'big' && style.buttonPicture__big ||
+              size === 'circle' && style.buttonPicture__circle ||
+              size === 'normalWhite' && style.buttonPicture__white ||
+              size === 'smallInherit' && style.buttonPicture__small ||
+              size === 'smallBlack' && style.buttonPicture__smallBlack ||
 
-        size === 'smallRose' && style.buttonPicture__smallRose ||
-        size === 'smallBlackSquare' && style.buttonPicture__smallBlackSquare ||
-        size === 'prev' && style.prev ||
-        size === 'next' && style.next ||
-        size === 'arrowNext' && style.arrowNext ||
-        size === 'arrowPrev' && style.arrowPrev
+              size === 'smallRose' && style.buttonPicture__smallRose ||
+              size === 'smallBlackSquare' && style.buttonPicture__smallBlackSquare ||
+              size === 'prev' && style.prev ||
+              size === 'next' && style.next ||
+              size === 'arrowNext' && style.arrowNext ||
+              size === 'arrowPrev' && style.arrowPrev
 
-    }
+            }
 
-      onClick={onClick ? onClick : null} disabled={disabled}>
+            onClick={onClick ? onClick : null} disabled={disabled}>
       {value === 'plus' && <Plus className={style.buttonPicture__plus}/>}
       {value === 'minus' && <Minus className={style.buttonPicture__minus}/>}
       {value === 'close' && <Close className={style.buttonPicture__close}/>}

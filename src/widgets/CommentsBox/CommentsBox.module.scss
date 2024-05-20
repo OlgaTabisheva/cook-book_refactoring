@@ -1,20 +1,23 @@
 @import "../../variables";
 
-.commentsBox{
+.commentsBox {
   max-width: 544px;
   width: 100%;
   margin-bottom: 120px;
- &__title{
-@extend %title28Vol;
-  text-align: left;
- }
+
+  &__title {
+    @extend %title28Vol;
+    text-align: left;
+  }
 }
+
 @media only screen and (max-width: 650px) {
   .commentsBox {
     max-width: 344px;
     width: 100%;
     margin-bottom: 60px;
-    &__title{
+
+    &__title {
       color: var(--Primary-Primary-dark-100, #323232);
       font-feature-settings: 'clig' off, 'liga' off;
 

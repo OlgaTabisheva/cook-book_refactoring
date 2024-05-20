@@ -52,22 +52,23 @@ function AuthorsPage({}) {
     avatarUrl
     }}
 `
-  const getCountsUserLikes = useQuery(COUNT_USER_LIKE ).data?.users
+  const getCountsUserLikes = useQuery(COUNT_USER_LIKE).data?.users
   const resultSearchUsersFromServer = useQuery(GET_SEARCH_USERS).data?.users
   const [instantSearchUsers, setInstantSearchUsers] = useState([]);
+
   function handleSearchValue(e) {
     setSearchString(inputSearchText)
     setInstantSearchUsers(resultSearchUsersFromServer)
   }
 
 
-useEffect(()=>{
-  setInstantGetCountsUserLikes(getCountsUserLikes)
-},[getCountsUserLikes])
+  useEffect(() => {
+    setInstantGetCountsUserLikes(getCountsUserLikes)
+  }, [getCountsUserLikes])
 
-  useEffect(()=>{
+  useEffect(() => {
     setInstantSearchUsers(resultSearchUsersFromServer)
-  },[resultSearchUsersFromServer])
+  }, [resultSearchUsersFromServer])
 
 
   return (
@@ -77,7 +78,7 @@ useEffect(()=>{
                    name="searchUser"
                    type="search"
                    placeholder={'Введите имя'}
-                   onClick={(e)=>handleSearchValue(e.target.value)}
+                   onClick={(e) => handleSearchValue(e.target.value)}
                    searchValue={searchString}
                    value={inputSearchText}
 
@@ -85,10 +86,10 @@ useEffect(()=>{
       />
       <div className={style.authorsPage__box}>
 
-        {(searchString<1 || searchString=== undefined) ?
-        instantGetCountsUserLikes?.map((obj, index)=>(
-          <AuthorsCard {...obj} key={index}/>
-        )) :   instantSearchUsers?.map((obj, index)=>(
+        {(searchString < 1 || searchString === undefined) ?
+          instantGetCountsUserLikes?.map((obj, index) => (
+            <AuthorsCard {...obj} key={index}/>
+          )) : instantSearchUsers?.map((obj, index) => (
             <AuthorsCard {...obj} key={index}/>
           ))
         }

@@ -98,9 +98,10 @@
   gap: 8px;
   z-index: 30;
   margin-bottom: 12px;
-&:hover{
-  opacity: 0.6;
-}
+
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .buttonPicture__smallBlack {
@@ -255,6 +256,7 @@
   }
 
 }
+
 @media only screen and (max-width: 1000px) {
   .arrowNext {
     right: 40px;

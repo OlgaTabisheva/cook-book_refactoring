@@ -59,18 +59,19 @@ function PopupCropImage({
         const publicUrlId = res?.fileMetadata?.id
         console.log(publicUrlId, 'publicUrlId')
         const publicUrl = nhost.storage.getPublicUrl({fileId: `${res.fileMetadata.id}`})
-        if (userUploadFile){
+        if (userUploadFile) {
           setUserCropUrl(publicUrl)
-        } else  {
-        if ((numberStepInPopupImageCrop > 0) || (numberStepInPopupImageCrop !== undefined)) {
-          setInstantStepRecipeInfo({
-            id: numberStepInPopupImageCrop,
-            step: instantStepRecipeInfo?.step,
-            url: publicUrl,
-            urlId: publicUrlId,
-            text: instantStepRecipeInfo?.text
-          })
-        } else setMainRecipeImage({url: publicUrl, id: publicUrlId})}
+        } else {
+          if ((numberStepInPopupImageCrop > 0) || (numberStepInPopupImageCrop !== undefined)) {
+            setInstantStepRecipeInfo({
+              id: numberStepInPopupImageCrop,
+              step: instantStepRecipeInfo?.step,
+              url: publicUrl,
+              urlId: publicUrlId,
+              text: instantStepRecipeInfo?.text
+            })
+          } else setMainRecipeImage({url: publicUrl, id: publicUrlId})
+        }
 
       }).then(
         setPopupCropImage(false)
@@ -108,7 +109,7 @@ function PopupCropImage({
           rotation={rotation}
           zoom={zoom}
           aspect={4 / 2.5}
-          style={ (userUploadFile === undefined) ? {
+          style={(userUploadFile === undefined) ? {
             containerStyle: {
               width: 504,
               height: 288,
@@ -116,21 +117,21 @@ function PopupCropImage({
               borderRadius: "12px",
               display: "flex"
             }, cropAreaStyle: {width: 240, height: 137}
-          }: (( !croppedImage ? {
+          } : ((!croppedImage ? {
             containerStyle: {
-             width: 504,
-            height: 288,
-            position: "relative",
-            borderRadius: "12px",
-            display: "flex"
-          }, cropAreaStyle: {maxWidth: 240, minWidth: 240, width: 240,maxHeight: 240,minHeight:240, height: 240,  }
+              width: 504,
+              height: 288,
+              position: "relative",
+              borderRadius: "12px",
+              display: "flex"
+            }, cropAreaStyle: {maxWidth: 240, minWidth: 240, width: 240, maxHeight: 240, minHeight: 240, height: 240,}
           } : {
-          containerStyle: {
-            maxWidth: 504, minWidth: 240, width: 240,maxHeight: 240,minHeight:240, height: 240,
-          position: "relative",
-          display: "flex"
-        }, cropAreaStyle: {maxWidth: 300, minWidth: 300, width: 300,maxHeight: 300,minHeight:300, height: 300,}
-        }))}
+            containerStyle: {
+              maxWidth: 504, minWidth: 240, width: 240, maxHeight: 240, minHeight: 240, height: 240,
+              position: "relative",
+              display: "flex"
+            }, cropAreaStyle: {maxWidth: 300, minWidth: 300, width: 300, maxHeight: 300, minHeight: 300, height: 300,}
+          }))}
           onCropChange={setCrop}
           onRotationChange={setRotation}
           onZoomChange={setZoom}

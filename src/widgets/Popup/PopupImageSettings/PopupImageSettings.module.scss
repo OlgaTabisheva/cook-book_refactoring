@@ -1,5 +1,6 @@
 @import "../../../variables";
-.popupImageSettings{
+
+.popupImageSettings {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -17,21 +18,25 @@
   z-index: 10;
   top: 60px;
   right: 145px;
-  &:disabled{
+
+  &:disabled {
     opacity: 0.1;
   }
 
-  &__icon{
+  &__icon {
     stroke: $sand-80;
     opacity: 0.5;
   }
-  &__iconRed{
+
+  &__iconRed {
     stroke: $accent-100;
   }
-  &_hidden{
+
+  &_hidden {
     visibility: hidden;
   }
-  &__button{
+
+  &__button {
     border-radius: 8px;
     background-color: var(--Secondary-Sand-colorful-10, #FFF6DE);
     display: flex;
@@ -40,14 +45,17 @@
     align-items: center;
     gap: 8px;
     color: $primary-dark-100;
-    &:hover{
+
+    &:hover {
       border-radius: 8px;
       background: var(--Primary-Sand-Sand-20, #F9ECC5);
     }
   }
-  &__button{
+
+  &__button {
     color: $primary-dark-100;
     opacity: 0.5;
+
     &:nth-child(3n) {
       color: $accent-100;
       opacity: 1;

@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: row;
   max-width: 1120px;
-  &__cover{
+
+  &__cover {
 
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@
     position: relative;
     width: 100%;
   }
+
   &__titleContent {
     display: flex;
     justify-content: flex-start;
@@ -36,7 +38,7 @@
     width: 100%;
   }
 
-  &__composition_desktop{
+  &__composition_desktop {
     background-color: $sand-colorful-20;
     border-radius: 28px;
     padding: 40px 0 60px 0;
@@ -53,23 +55,26 @@
 
   .fullRecipe {
 
-    &__composition_desktop{
+    &__composition_desktop {
       display: none;
     }
   }
 }
+
 @media only screen and (max-width: 650px) {
 
   .fullRecipe {
     padding: 0 15px 0 15px;
     max-width: 375px;
     width: 100%;
+
     &__titleContent {
       display: flex;
       justify-content: flex-start;
       align-items: baseline;
       flex-direction: column;
     }
+
     &__title {
       color: var(--Primary-Primary-dark-100, #323232);
       font-feature-settings: 'clig' off, 'liga' off;

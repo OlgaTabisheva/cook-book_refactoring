@@ -8,7 +8,7 @@ import CommentsBox from "../../widgets/CommentsBox/CommentsBox.jsx";
 import {useEffect, useState} from "react";
 import {gql, useQuery} from "@apollo/client";
 
-function FullRecipe({instantAddRecipe,isAuthenticated, setInstantLikesComments, instantLikesComments, instantLikes }) {
+function FullRecipe({instantAddRecipe, isAuthenticated, setInstantLikesComments, instantLikesComments, instantLikes}) {
   const {id} = useParams();
   const fullRecipe = instantAddRecipe?.recipes?.find(elem => elem.id === id);
   const [recipeStepsMap, setRecipeStepsMap] = useState([])
@@ -45,14 +45,14 @@ query MyQuery {
     if (fullRecipe?.food?.length > 0) {
       setRecipeCompositionMap(JSON.parse(fullRecipe?.food))
 
-   //   setRecipeCompositionMap(fullRecipe?.photo)
+      //   setRecipeCompositionMap(fullRecipe?.photo)
     }
   }, [fullRecipe])
 
   return (
     <div className={style.fullRecipe}>
       <div className={style.fullRecipe__cover}>
-        <ButtonBack />
+        <ButtonBack/>
         <div className={style.fullRecipe__titleContent}>
           <h3 className={style.fullRecipe__title}> {fullRecipe?.name}</h3>
 
@@ -61,22 +61,23 @@ query MyQuery {
         </div>
 
 
-
         <div className={style.fullRecipe__box}>
-          <RecipePhotoBlock fullRecipeFromFullRecipe={fullRecipe} fullPhoto={fullPhoto} recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe} recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
+          <RecipePhotoBlock fullRecipeFromFullRecipe={fullRecipe} fullPhoto={fullPhoto}
+                            recipeCompositionMap={recipeCompositionMap} instantAddRecipe={instantAddRecipe}
+                            recipeStepsMap={recipeStepsMap} instantLikes={instantLikes}/>
 
         </div>
 
-        <CommentsBox       isAuthenticated={isAuthenticated}
-                           instantComments={instantComments}
-                           setInstantComments={setInstantComments}
-                           instantLikesComments={instantLikesComments}
-                           setInstantLikesComments={setInstantLikesComments}
+        <CommentsBox isAuthenticated={isAuthenticated}
+                     instantComments={instantComments}
+                     setInstantComments={setInstantComments}
+                     instantLikesComments={instantLikesComments}
+                     setInstantLikesComments={setInstantLikesComments}
         />
 
       </div>
-      <div className={style.fullRecipe__composition_desktop} >
-      <RecipeComposition fullRecipeFromFullRecipe={fullRecipe} recipeCompositionMap={recipeCompositionMap}/>
+      <div className={style.fullRecipe__composition_desktop}>
+        <RecipeComposition fullRecipeFromFullRecipe={fullRecipe} recipeCompositionMap={recipeCompositionMap}/>
       </div>
     </div>
 

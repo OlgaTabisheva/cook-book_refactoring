@@ -16,7 +16,7 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
   const [changeButton, setChangeButton] = useState('Профиль')
   const [userCropUrl, setUserCropUrl] = useState()
   const user = useUserData()
-  const defaultRole=user?.defaultRole?.includes('AdminRecipes')
+  const defaultRole = user?.defaultRole?.includes('AdminRecipes')
 
   return (
     <section className={styles.personalPage}>
@@ -27,20 +27,25 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                      active={changeButton === 'Мои Рецепты' ? 'active' : ''}/>
         <ButtonChips text={'Профиль'} onClick={() => setChangeButton('Профиль')}
                      active={changeButton === 'Профиль' ? 'active' : ''}/>
-        {defaultRole && <ButtonChips text={'Дополнительные права'} onClick={() => setChangeButton('Дополнительные права')}
-                     active={changeButton === 'Дополнительные права' ? 'active' : ''}/>}
+        {defaultRole &&
+          <ButtonChips text={'Дополнительные права'} onClick={() => setChangeButton('Дополнительные права')}
+                       active={changeButton === 'Дополнительные права' ? 'active' : ''}/>}
       </div>
       <div className={styles.personalPage__box}>
-        {changeButton === 'Избранное' ? <FavoritesRecipes   instantLikes={instantLikes}
-                                                            setInstantLikes={setInstantLikes}
-                                                            likesFromServer={likesFromServer}/> : null}
+        {changeButton === 'Избранное' ? <FavoritesRecipes instantLikes={instantLikes}
+                                                          setInstantLikes={setInstantLikes}
+                                                          likesFromServer={likesFromServer}/> : null}
         {changeButton === 'Мои Рецепты' ? <UserRecipes/> : null}
-        {changeButton === 'Профиль' ? <UserProfile userCropUrl={userCropUrl} userUploadFile={userUploadFile} setUserUploadFile={setUserUploadFile} setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup} formData={formData} setFormData={setFormData} /> : null}
+        {changeButton === 'Профиль' ?
+          <UserProfile userCropUrl={userCropUrl} userUploadFile={userUploadFile} setUserUploadFile={setUserUploadFile}
+                       setOpenDownloadPopup={setOpenDownloadPopup} openDownloadPopup={openDownloadPopup}
+                       formData={formData} setFormData={setFormData}/> : null}
         {changeButton === 'Дополнительные права' ? <AdminRights formData={formData} setFormData={setFormData}/> : null}
       </div>
 
       {openDownloadPopup === true && <div className={style.addRecipe__popup}>
-        <PopupCropImage setPopupCropImage={setOpenDownloadPopup} setUserCropUrl={setUserCropUrl} fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile ={userUploadFile} />
+        <PopupCropImage setPopupCropImage={setOpenDownloadPopup} setUserCropUrl={setUserCropUrl}
+                        fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile={userUploadFile}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}
     </section>

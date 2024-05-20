@@ -7,7 +7,7 @@ import {Navigate} from "react-router-dom";
 
 function SignIn({password, setPassword}) {
 
-  const {signInEmailPassword, isSuccess, isError,isLoading, error} =
+  const {signInEmailPassword, isSuccess, isError, isLoading, error} =
     useSignInEmailPassword()
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
@@ -17,9 +17,9 @@ function SignIn({password, setPassword}) {
     passwordValid: false,
 
   });
-  const { emailValid, passwordValid} = formValiditySignIn;
+  const {emailValid, passwordValid} = formValiditySignIn;
 
-  const isSubmitDisabled =  !emailValid || !passwordValid ;
+  const isSubmitDisabled = !emailValid || !passwordValid;
   const disableForm = isLoading
   useEffect(function validateInputs() {
     const emailTest = /\S+@\S+\.\S+/;
@@ -32,7 +32,7 @@ function SignIn({password, setPassword}) {
       emailValid: isEmailInputValid,
       passwordValid: isPasswordInputValid
     }))
-  }, [ emailInput, passwordInput, ])
+  }, [emailInput, passwordInput,])
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
@@ -78,7 +78,8 @@ function SignIn({password, setPassword}) {
         />
       </form>
       <div className={style.signIn__buttonBox}>
-        <ButtonBasic text={'Войти'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit}  disabled={isSubmitDisabled || disableForm}/>
+        <ButtonBasic text={'Войти'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit}
+                     disabled={isSubmitDisabled || disableForm}/>
         <a className={style.signIn__link}> Забыли пароль?</a>
       </div>
     </section>

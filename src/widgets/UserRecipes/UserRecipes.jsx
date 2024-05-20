@@ -39,20 +39,18 @@ query MyQuery {
 
   const GetRecipesByAuthorFromServer = useQuery(GET_RECIPES_BY_AUTHOR)?.data
 
-
-  console.log(GetRecipesByAuthorFromServer, 'GetRecipesByAuthorFromServer')
   return (
     <section className={style.userRecipes}>
 
       {GetRecipesByAuthorFromServer?.recipes?.length !== 0 ?
-          <div className={style.userRecipes__box}>
-            {GetRecipesByAuthorFromServer?.recipes.map((obj) => (
-              <RecipeCard
-                key={obj.id} {...obj} isBtnLike={false} isBtnComments={false}/>
-            ))
-            } </div> :<NoticeProfile text={'Поделитесь вашим рецептом с нашими пользователями'} src={not}
-                                     title={'Вы еще не добавляли рецепты'} colorButton={'primaryGreen'} textButton={'Добавить рецепт'}/>}
-
+        <div className={style.userRecipes__box}>
+          {GetRecipesByAuthorFromServer?.recipes.map((obj) => (
+            <RecipeCard
+              key={obj.id} {...obj} isBtnLike={false} isBtnComments={false}/>
+          ))
+          } </div> : <NoticeProfile text={'Поделитесь вашим рецептом с нашими пользователями'} src={not}
+                                    title={'Вы еще не добавляли рецепты'} colorButton={'primaryGreen'}
+                                    textButton={'Добавить рецепт'}/>}
 
 
     </section>

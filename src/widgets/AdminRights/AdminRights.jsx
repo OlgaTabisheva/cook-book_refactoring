@@ -1,10 +1,10 @@
 import style from './AdminRights.module.scss'
 import AdminCard from "../AdminCard/AdminCard.jsx";
-import edit from  './../../assets/IconEdit.svg'
-import publish from  './../../assets/IconFilePublish.svg'
-import userIcon from  './../../assets/IconUser.svg'
-import plate from  './../../assets/IconPlate.svg'
-import circle from  './../../assets/IconMessage-circle.svg'
+import edit from './../../assets/IconEdit.svg'
+import publish from './../../assets/IconFilePublish.svg'
+import userIcon from './../../assets/IconUser.svg'
+import plate from './../../assets/IconPlate.svg'
+import circle from './../../assets/IconMessage-circle.svg'
 import {Navigate, useNavigate} from "react-router-dom";
 
 const adminR = [
@@ -36,11 +36,11 @@ function AdminRights() {
       className={style.adminRights}>
       <div className={style.adminRights__box}>
 
-      {adminR?.map((obj, index)=>(
+        {adminR?.map((obj, index) => (
 
-  <AdminCard key={index} {...obj} />
+          <AdminCard key={index} {...obj} />
 
-      ))}
+        ))}
       </div>
     </section>
   )

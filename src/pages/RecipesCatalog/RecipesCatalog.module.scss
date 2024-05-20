@@ -8,16 +8,18 @@
   align-items: stretch;
 
 
-  &__search{
+  &__search {
     width: 100%;
     display: flex;
     justify-content: center;
   }
+
   &__box {
     margin-top: 40px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
     :not(:first-child) {
       margin-left: 12px;
     }
@@ -34,30 +36,34 @@
     margin-bottom: 60px;
     @extend %catalog;
   }
-  &__textAdd{
-@extend %subtitle20-24Vol
+
+  &__textAdd {
+    @extend %subtitle20-24Vol
   }
-  &__boxAdd{
+
+  &__boxAdd {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  &__popup{
-    position:fixed;
-    display:flex;
-    width:100%;
-    height:100%;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.7);
-    z-index:100000;
+
+  &__popup {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .7);
+    z-index: 100000;
     margin: -145px 0 145px 0;
   }
-  &__overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    z-index:10000;
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
   }
 }
 
@@ -65,9 +71,12 @@
 @media only screen and (max-width: 1300px) {
   .recipesCatalog {
     &__catalog {
-  grid-template-columns: repeat(2, 352px);
+      grid-template-columns: repeat(2, 352px);
 
-}}}
+    }
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .recipesCatalog {
     &__catalog {
@@ -85,8 +94,9 @@
       max-width: 375px;
       align-items: center;
     }
+
     &__box::-webkit-scrollbar {
-      width : 0 !important /* Webkit */
+      width: 0 !important /* Webkit */
     }
   }
-  }
+}

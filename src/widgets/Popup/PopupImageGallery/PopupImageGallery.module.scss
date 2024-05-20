@@ -4,32 +4,35 @@
 .swiper {
   padding: 2rem;
 }
-.popupImageGallery__deactivate{
+
+.popupImageGallery__deactivate {
   display: none;
 
 }
+
 .popupImageGallery {
-  width:100%;
-  height:100%;
-  z-index:1;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   display: flex;
 
-  &__wrapper{
-   margin: 0;
+  &__wrapper {
+    margin: 0;
     padding: 0;
     top: 0;
     left: 0;
-   position:fixed;
+    position: fixed;
     display: flex;
     flex-direction: column;
-    width:100%;
-    height:100%;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.7);
-   z-index:100;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .7);
+    z-index: 100;
   }
-  &__flexWrapper{
+
+  &__flexWrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -37,7 +40,8 @@
     justify-content: center;
     position: relative;
   }
-  &__box{
+
+  &__box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,11 +49,13 @@
     flex-direction: row;
 
   }
-  &__imgBox{
+
+  &__imgBox {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   &__img {
     max-width: 1120px;
     max-height: 632px;
@@ -58,7 +64,8 @@
     object-fit: cover;
     border-radius: 40px;
   }
-  &__button{
+
+  &__button {
     //border: none;
     cursor: pointer;
     padding: 8px;
@@ -72,13 +79,15 @@
     align-items: center;
     justify-content: center;
   }
-  &__buttons{
+
+  &__buttons {
     display: flex;
     justify-content: center;
     align-items: center;
 
   }
-  &__window{
+
+  &__window {
     align-items: center;
     width: 1120px;
     height: 632px;
@@ -93,21 +102,23 @@
     padding: 0 100px;
   }
 
-  &__left{
+  &__left {
     z-index: 10;
 
   }
-  &__right{
+
+  &__right {
 
     z-index: 10;
 
   }
-&__text{
-  @extend %textSmall13-20Mon;
-  text-align: left;
 
-  color: white;
-}
+  &__text {
+    @extend %textSmall13-20Mon;
+    text-align: left;
+
+    color: white;
+  }
 }
 
 article {
@@ -119,13 +130,16 @@ article {
   opacity: 0;
   transition: all 0.3s linear;
 }
+
 article.activeSlide {
   opacity: 1;
   transform: translateX(0);
 }
+
 article.lastSlide {
   transform: translateX(-100%);
 }
+
 article.nextSlide {
   transform: translateX(100%);
 }

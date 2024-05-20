@@ -155,6 +155,7 @@ li {
     }
   }
 }
+
 @media only screen and (max-width: 1300px) {
   .carouselsBox {
     max-width: 900px;
@@ -163,8 +164,10 @@ li {
   .swiper-pagination {
     position: absolute;
     z-index: 100;
-    left: 832px !important  }
+    left: 832px !important
+  }
 }
+
 @media only screen and (max-width: 1000px) {
   .carouselsBox {
     max-width: 344px;
@@ -172,5 +175,5 @@ li {
   .swiper-pagination {
 
     left: 305px !important
-}
+  }
 }

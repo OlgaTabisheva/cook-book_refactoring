@@ -32,6 +32,8 @@ function AdminCard({allCategories}) {
       description
       photo
       steps
+        publish
+      portions
   }
 }
 `
@@ -79,7 +81,6 @@ query MyQuery {
 
   useEffect(() => {
     setInstantUsers(usersProp)
-    console.log(usersProp,'usersProp')
   }, [usersProp])
 
   let location = useLocation();
@@ -109,7 +110,9 @@ query MyQuery {
           <div className={style.adminPage__mod}>
 
             {instantNotPublishRecipe?.recipes?.map((obj) => (
-              <RecipeCard {...obj}/>))}
+              <RecipeCard key={obj.id} {...obj}
+                          isBtnLike={false} isBtnComments={false}
+              />))}
           </div>
 
         </div>
@@ -135,8 +138,8 @@ query MyQuery {
               <p className={style.adminPage__tableTextLast}>Действие</p>
             </div>
 
-              {instantUsers?.users?.map((obj) => (
-                <UserTableLine {...obj}/>))}
+            {instantUsers?.users?.map((obj) => (
+              <UserTableLine {...obj}/>))}
 
           </div>
 

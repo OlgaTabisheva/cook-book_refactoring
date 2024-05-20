@@ -103,7 +103,7 @@ function App() {
   const user = useUserData()
   const isAuthenticated = useAuthenticated()
   const {data} = useQuery(GET_RECIPES)
-  const dataUnpublish= useQuery(GET_RECIPES_UNPUBLISH).data
+  const dataUnpublish = useQuery(GET_RECIPES_UNPUBLISH).data
   const categories = useQuery(GET_CATEGORY).data
   const duration = useQuery(GET_DURATION).data
   const [instantLikes, setInstantLikes] = useState([])
@@ -147,7 +147,7 @@ query MyQuery {
   useEffect(() => {
 
 
- setInstantLikesComments(likesCommentsFromServer)
+    setInstantLikesComments(likesCommentsFromServer)
   }, [likesCommentsFromServer])
 
   const SET_CATEGORY = gql`query {
@@ -179,7 +179,7 @@ query MyQuery {
     setInstantAddRecipe(data)
   }, [data])
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setInstantAddRecipeUnpublish(dataUnpublish)
   }, [dataUnpublish])
 
@@ -190,8 +190,6 @@ query MyQuery {
   React.useEffect(() => {
     setAllDuration(duration)
   }, [duration, allDuration])
-
-
 
 
   return (
@@ -223,18 +221,18 @@ query MyQuery {
         <Route exact path="/search/:searchValue" element={
           <MainLayout/>
         }>
-        <Route path="/search/:searchValue"
-               element={<SearchPage
-                 setInstantLikes={setInstantLikes}
-                 isAuthenticated={isAuthenticated}
-                 instantLikes={instantLikes}
-                 allCategories={allCategories}
-                 setSelectedCategory={setSelectedCategory}
-                 selectedCategory={selectedCategory}
-                 chosenCategory={chosenCategory}
-                 instantAddRecipe={instantAddRecipe}
-               />}
-        />
+          <Route path="/search/:searchValue"
+                 element={<SearchPage
+                   setInstantLikes={setInstantLikes}
+                   isAuthenticated={isAuthenticated}
+                   instantLikes={instantLikes}
+                   allCategories={allCategories}
+                   setSelectedCategory={setSelectedCategory}
+                   selectedCategory={selectedCategory}
+                   chosenCategory={chosenCategory}
+                   instantAddRecipe={instantAddRecipe}
+                 />}
+          />
         </Route>
         <Route exact path="/recipes" element={
           <MainLayout/>
@@ -292,14 +290,14 @@ query MyQuery {
         <Route exact path="/admin/:title" element={
           <MainLayout/>
         }>
-        <Route path="/admin/:title" element={
+          <Route path="/admin/:title" element={
 
-          <ProtectedRoute>
-            <AdminPage
-              allCategories={allCategories}
-            />
-          </ProtectedRoute>
-        }/>
+            <ProtectedRoute>
+              <AdminPage
+                allCategories={allCategories}
+              />
+            </ProtectedRoute>
+          }/>
         </Route>
         <Route exact path="/user" element={
           <MainLayout/>

@@ -35,7 +35,7 @@ export async function getCroppedImg(
   imageSrc,
   pixelCrop,
   rotation = 0,
-  flip = { horizontal: false, vertical: false }
+  flip = {horizontal: false, vertical: false}
 ) {
   const image = await createImage(imageSrc)
   const canvas = document.createElement('canvas')
@@ -48,7 +48,7 @@ export async function getCroppedImg(
   const rotRad = getRadianAngle(rotation)
 
   // calculate bounding box of the rotated image
-  const { width: bBoxWidth, height: bBoxHeight } = rotateSize(
+  const {width: bBoxWidth, height: bBoxHeight} = rotateSize(
     image.width,
     image.height,
     rotation

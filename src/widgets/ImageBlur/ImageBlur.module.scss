@@ -1,75 +1,80 @@
 @import "../../variables";
 
 
-
 .imageBlur {
- display: flex;
- flex-direction: column;
- align-items: center;
- border-radius: 28px;
- position: relative;
- overflow: hidden;
- max-height: 240px;
- max-width: 696px;
- width: 100%;
- height: 100%;
- &__top{
-  width: 696px;
-  height: 258px;
-  border-radius: 36px;
-  filter: blur(40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 28px;
+  position: relative;
   overflow: hidden;
-  border-style: solid;
- }
-&__blur{
- max-width: 424px;
- width: 100%;
- height: 240px;
- position: absolute;
- top: 0;
- left: 136px;
- z-index: 10;
- border: none;
-}
- &__button {
+  max-height: 240px;
+  max-width: 696px;
+  width: 100%;
+  height: 100%;
+
+  &__top {
+    width: 696px;
+    height: 258px;
+    border-radius: 36px;
+    filter: blur(40px);
+    overflow: hidden;
+    border-style: solid;
+  }
+
+  &__blur {
+    max-width: 424px;
+    width: 100%;
+    height: 240px;
+    position: absolute;
+    top: 0;
+    left: 136px;
+    z-index: 10;
+    border: none;
+  }
+
+  &__button {
 
 
-  position: absolute;
-  top: 12px;
-  right: 148px;
-  z-index: 11;
- }
+    position: absolute;
+    top: 12px;
+    right: 148px;
+    z-index: 11;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
 
- .imageBlur {
-  width: 100%;
-  height: 120px;
-  border-radius: 20px;
-  &__top{
-   display: flex;
-   width: 340px;
-   height: 120px;
-   /* padding: 8px 8px 72px 164px; */
-   justify-content: center;
-   flex-shrink: 0;
-   align-items: center;
-  }
-  &__blur{
-   max-width: 212px;
-   height: 120px;
-   width: 100%;
-   position: absolute;
-   top: 0;
-   left: 70px;
-   z-index: 10;
-   border: none;
-  }
-  &__button {
-   right: 60px;
+  .imageBlur {
+    width: 100%;
+    height: 120px;
+    border-radius: 20px;
 
+    &__top {
+      display: flex;
+      width: 340px;
+      height: 120px;
+      /* padding: 8px 8px 72px 164px; */
+      justify-content: center;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    &__blur {
+      max-width: 212px;
+      height: 120px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 70px;
+      z-index: 10;
+      border: none;
+    }
+
+    &__button {
+      right: 60px;
+
+    }
   }
- }
 }
 

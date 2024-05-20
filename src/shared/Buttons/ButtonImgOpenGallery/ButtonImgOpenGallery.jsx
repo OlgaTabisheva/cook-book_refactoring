@@ -1,7 +1,7 @@
 import style from './ButtonImgOpenGallery.module.scss'
 import test from "../../../assets/test.jpg";
 
-function ButtonImgOpenGallery({onClick,disabled,Imagebutton}) {
+function ButtonImgOpenGallery({onClick, disabled, Imagebutton}) {
   return (
     <button
       className={style.buttonImgOpenGallery}

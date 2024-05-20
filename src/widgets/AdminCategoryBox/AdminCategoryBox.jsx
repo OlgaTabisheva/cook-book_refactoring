@@ -6,7 +6,7 @@ function AdminCategoryBox(obj) {
     <section
       className={style.adminCategoryBox}>
       <h1></h1>
-llllllllllll
+      llllllllllll
 
     </section>
   )

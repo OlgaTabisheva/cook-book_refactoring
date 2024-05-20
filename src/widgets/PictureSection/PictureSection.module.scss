@@ -16,13 +16,12 @@
   z-index: -10px;
 
 
+  &__cover {
+    max-width: 1120px;
+    width: 100%;
+    display: flex;
+  }
 
-
-&__cover{
-  max-width: 1120px;
-  width: 100%;
-  display: flex;
-}
   &__box {
     padding: 100px 0 120px 0;
     display: flex;
@@ -52,10 +51,12 @@
       padding: 50px 0 60px 0;
 
     }
-    &__cover{
+
+    &__cover {
       max-width: 900px;
 
     }
+
     &__title {
       font-family: $stock-font;
       font-size: 28px;
@@ -63,14 +64,17 @@
       line-height: 32px;
       color: $white;
     }
+
     &__text {
       display: none;
     }
   }
 }
+
 @media only screen and (max-width: 1000px) {
   .pictureSection {
     background-position: center;
+
     &__cover {
       max-width: 375px;
 

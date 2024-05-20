@@ -1,10 +1,13 @@
 @import "../../variables";
-.input-field input:-webkit-autofill{
+
+.input-field input:-webkit-autofill {
   -webkit-text-fill-color: $sand-40 !important;
 }
+
 input:-webkit-autofill {
   transition: all 5000s ease-in-out;
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -26,16 +29,19 @@ select:-webkit-autofill:focus {
   align-content: center;
   justify-content: center;
   position: relative;
+
   &:not(:first-child) {
     margin-top: 16px;
   }
+
   &:disabled {
     opacity: 0.4;
     color: $primary-dark-100;
     border: 1px solid $sand-40;
     background-color: $sand-40;
   }
-  &__input_padding{
+
+  &__input_padding {
     @extend %textLarge16Mon;
     border-radius: 13px;
     padding: 16px;
@@ -64,6 +70,7 @@ select:-webkit-autofill:focus {
     }
 
   }
+
   &__input {
     @extend %textLarge16Mon;
     border-radius: 12px;
@@ -93,7 +100,7 @@ select:-webkit-autofill:focus {
 
   }
 
-  &__inputError{
+  &__inputError {
     @extend %textSmall13-16Mon;
     display: flex;
     flex-direction: column;
@@ -106,7 +113,8 @@ select:-webkit-autofill:focus {
     opacity: 1;
     color: $error;
   }
-  &__inputError_hidden{
+
+  &__inputError_hidden {
     visibility: hidden;
   }
 
@@ -119,7 +127,6 @@ select:-webkit-autofill:focus {
     margin-bottom: 6px;
 
   }
-
 
 
   &__buttonImg {
@@ -159,13 +166,15 @@ select:-webkit-autofill:focus {
 
 
 }
-.inputAuth__text_error{
+
+.inputAuth__text_error {
   position: relative;
   margin-bottom: 6px;
   @extend %textSmall13-16Mon;
   color: $accent-100;
   background-color: inherit;
   text-align: left;
+
   &:focus {
     position: relative;
     margin-bottom: 6px;
@@ -177,34 +186,34 @@ select:-webkit-autofill:focus {
 }
 
 
-.inputAuth__input_error{
-    @extend %textLarge16Mon;
-    border-radius: 13px;
-    padding: 16px;
+.inputAuth__input_error {
+  @extend %textLarge16Mon;
+  border-radius: 13px;
+  padding: 16px;
+  border: 1px solid red;
+  color: red;
+  background-color: inherit;
+  text-align: left;
+
+  &:focus {
     border: 1px solid red;
     color: red;
-    background-color: inherit;
-    text-align: left;
-
-    &:focus {
-      border: 1px solid red;
-      color: red;
-      outline: none;
-    }
-
-    &:active {
-      color: red;
-      border: 1px solid red;
-    }
-
-    &:disabled {
-      opacity: 0.4;
-      color: $primary-dark-100;
-      border: 1px solid red;
-      background-color: red;
-    }
-
+    outline: none;
   }
+
+  &:active {
+    color: red;
+    border: 1px solid red;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    color: $primary-dark-100;
+    border: 1px solid red;
+    background-color: red;
+  }
+
+}
 
 @media only screen and (max-width: 1000px) {
   .inputAuth {

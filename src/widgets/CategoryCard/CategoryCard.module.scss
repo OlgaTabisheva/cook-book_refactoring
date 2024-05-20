@@ -1,5 +1,5 @@
 
-.categoryCard{
+.categoryCard {
   display: flex;
   width: 214px;
   padding: 20px;
@@ -10,11 +10,13 @@
   border-radius: 28px;
   border: 1px solid var(--Primary-Sand-Sand-30, #F2E4B8);
   background: var(--Primary-Sand-Sand-10, #FCF1D5);
-  &__box{
+
+  &__box {
     display: flex;
     flex-direction: column;
   }
-  &__title{
+
+  &__title {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -32,7 +34,8 @@
     font-weight: 500;
     line-height: 28px; /* 116.667% */
   }
-  &__text{
+
+  &__text {
     display: flex;
     height: 24px;
     flex-direction: column;

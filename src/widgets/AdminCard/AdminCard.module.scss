@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.adminCard{
+.adminCard {
   display: flex;
   width: 352px;
   padding: 20px;
@@ -12,11 +12,12 @@
   background-color: $sand-10;
   border: 1px solid var(--Primary-Sand-Sand-30, #F2E4B8);
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     opacity: 0.5;
   }
 
-  &__title{
+  &__title {
     overflow: hidden;
     color: $primary-dark-100;
     font-feature-settings: 'clig' off, 'liga' off;
@@ -24,20 +25,23 @@
 
     @extend %title24Vol;
   }
-  &__box{
+
+  &__box {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  &__text{
+
+  &__text {
     overflow: hidden;
     color: $sand-80;
     font-feature-settings: 'clig' off, 'liga' off;
     text-overflow: ellipsis;
 
-   @extend %textLarge16Mon;
+    @extend %textLarge16Mon;
   }
-  &__icon{
+
+  &__icon {
     width: 24px;
     height: 24px;
   }

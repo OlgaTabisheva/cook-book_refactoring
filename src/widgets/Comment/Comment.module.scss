@@ -7,12 +7,13 @@
   align-items: flex-start;
   flex-direction: column-reverse;
 
-  &__cover{
+  &__cover {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
   }
+
   &__title {
     @extend %title24Vol;
     text-align: left;
@@ -46,12 +47,14 @@
     left: 8px;
     padding: 3px 4px;
   }
-  &__img{
+
+  &__img {
     width: 60px;
     height: 60px;
     border-radius: 60px;
 
   }
+
   &__boxPhoto {
     background-color: $sand-colorful-20;
     display: flex;
@@ -64,7 +67,8 @@
     align-content: center;
     justify-content: center;
   }
-  &__bottomBox{
+
+  &__bottomBox {
     margin-top: 12px;
     display: flex;
     justify-content: space-between;
@@ -80,6 +84,7 @@
     @extend %textSmall13-20Mon;
     text-align: center;
   }
+
   &__edit {
     color: $sand-80;
     text-align: center;
@@ -87,20 +92,23 @@
     @extend %textSmall13-20Mon;
     border: none;
     background-color: inherit;
-    &:first-child{
+
+    &:first-child {
       margin-right: 40px;
     }
   }
 }
+
 @media only screen and (max-width: 650px) {
   .comment {
-    &__bottomBox{
+    &__bottomBox {
 
       max-width: 200px;
       min-width: 200px;
       width: 100%;
     }
-    &__img{
+
+    &__img {
       width: 40px;
       height: 40px;
       border-radius: 40px;

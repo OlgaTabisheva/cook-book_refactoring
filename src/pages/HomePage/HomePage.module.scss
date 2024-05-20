@@ -10,17 +10,19 @@
 
   }
 }
+
 @media only screen and (max-width: 1300px) {
   .home {
 
     &__box {
       margin: 0 auto 0 auto;
-    max-width: 900px;
+      max-width: 900px;
       width: 100%;
 
     }
   }
 }
+
 @media only screen and (max-width: 1000px) {
   .home {
 

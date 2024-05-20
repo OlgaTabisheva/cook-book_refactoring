@@ -77,7 +77,7 @@ mutation MyMutation2 {
 
   const [addLikesComments] = useMutation(ADD_LIKE_COMMENTS)
   const [deleteLikesComments] = useMutation(DELETE_LIKE_COMMENTS)
- const getCountsLikesComments = useQuery(GET_COUNTS_LIKES_COMMENTS).data
+  const getCountsLikesComments = useQuery(GET_COUNTS_LIKES_COMMENTS).data
 
   const [updateComment] = useMutation(UPDATE_COMMENT)
 
@@ -102,8 +102,8 @@ mutation MyMutation2 {
     updateComment()
       .then(setClickButton(!clickButton))
       .catch((err) => {
-      console.log(err)
-    })
+        console.log(err)
+      })
   }
 
   useEffect(() => {
@@ -114,14 +114,12 @@ mutation MyMutation2 {
   }, [getCountsLikesComments])
 
 
-
-
   function handleClickLikeComment(name) {
-    console.log(name,'name')
+    console.log(name, 'name')
     if (instantLikesComments?.some(t => t.commentId === name)) {
 
       let tmp = instantLikesComments.filter(o => o.commentId !== name);
-     console.log(tmp,'tmp')
+      console.log(tmp, 'tmp')
       setCountLikesComment(countLikesComment - 1)
       deleteLikesComments().then(
         setInstantLikesComments(tmp)
@@ -135,13 +133,18 @@ mutation MyMutation2 {
           commentId: name,
         }
       }).then(
-        setInstantLikesComments(() => [...instantLikesComments, {__typename: 'likes', commentId: name, userIdCommentary: userData.id}]))
+        setInstantLikesComments(() => [...instantLikesComments, {
+          __typename: 'likes',
+          commentId: name,
+          userIdCommentary: userData.id
+        }]))
         .catch((err) => {
           console.log(err, 'AddErr')
         })
     }
 
   }
+
   const formatDate = (date) => {
     const options = {year: "numeric", month: "long", day: "numeric", hour: '2-digit', minute: '2-digit'}
     return new Date(date).toLocaleDateString(undefined, options)
@@ -157,8 +160,9 @@ mutation MyMutation2 {
         setUpdateTextComment={setUpdateTextComment}/> : null}
       <div className={style.comment__cover}>
         <div className={style.comment__boxPhoto}>
-          {user?.avatarUrl?.includes(defaultAvatar) ? <User className={style.comment__user}/> :<img className={style.comment__img} src={ user?.avatarUrl} alt={'user photo'}/>
-             }
+          {user?.avatarUrl?.includes(defaultAvatar) ? <User className={style.comment__user}/> :
+            <img className={style.comment__img} src={user?.avatarUrl} alt={'user photo'}/>
+          }
         </div>
         <div className={style.comment__box}>
           <h2 className={style.comment__title}>{user?.displayName}</h2>
@@ -169,13 +173,14 @@ mutation MyMutation2 {
             <p className={style.comment__info}>Пожаловаться</p>
             {isAuthenticated ?
               (instantLikesComments?.some(t => t.commentId === name) ?
-              <ButtonLikeFull onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/> :
-              <ButtonLikeEmpty onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/>) : <ButtonLikeEmpty countLikes={countLikesComment}/>}
+                <ButtonLikeFull onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/> :
+                <ButtonLikeEmpty onClick={() => handleClickLikeComment(name)} countLikes={countLikesComment}/>) :
+              <ButtonLikeEmpty countLikes={countLikesComment}/>}
           </div>
           {isAuthenticated ?
             (userId.id === user.id ? <div className={style.comment__cover}>
               {clickButton === true ? <button onClick={handleUpdateComment} className={style.comment__edit}>
-               Редактировать
+                Редактировать
               </button> : <button onClick={handleSaveUpdateComment} className={style.comment__edit}>
                 Сохранить
               </button>}

@@ -4,10 +4,12 @@ import {ReactComponent as Trash} from '../../assets/trash.svg';
 import {ReactComponent as Check} from '../../assets/check-circle.svg';
 import {ReactComponent as Stop} from '../../assets/stop-circle.svg';
 
-function UserTableLine({avatarUrl,
+function UserTableLine({
+                         avatarUrl,
                          email,
                          displayName,
-                         disabled}) {
+                         disabled
+                       }) {
 
 
   return (

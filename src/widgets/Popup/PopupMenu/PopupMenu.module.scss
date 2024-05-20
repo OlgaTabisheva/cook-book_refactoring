@@ -3,6 +3,7 @@
 .popupMenu {
   visibility: hidden;
 }
+
 .popupMenu_visible {
   visibility: hidden;
 
@@ -11,18 +12,27 @@
     width: 100%;
     height: 100%;
     z-index: 10000;
-   // background-color: #FFF6DE;
+    // background-color: #FFF6DE;
   }
-  &__box{
+
+  &__box {
 
   }
-  &__user{
+
+  &__user {
 
   }
-  &__logo{}
-  &__links{}
-  &__component{}
+
+  &__logo {
+  }
+
+  &__links {
+  }
+
+  &__component {
+  }
 }
+
 @media only screen and (max-width: 1000px) {
   .popupMenu_visible {
 
@@ -39,23 +49,27 @@
     z-index: 100000;
     margin: 0;
     flex-direction: column;
-    &__box{
+
+    &__box {
       display: flex;
       background-color: inherit;
       flex-direction: column;
       align-items: center;
     }
-    &__user{
+
+    &__user {
       margin-top: 60px;
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
     }
-    &__component{
+
+    &__component {
       width: 90%;
 
     }
-    &__logo{
+
+    &__logo {
       display: flex;
       width: 60px;
       height: 60px;
@@ -66,13 +80,15 @@
       background: var(--Secondary-Sand-colorful-20, #FFEEC1);
       margin-bottom: 20px;
     }
-    &__links{
+
+    &__links {
       margin-top: 40px;
       display: flex;
 
       flex-direction: column;
       align-items: center;
-      &:not(:first-of-type){
+
+      &:not(:first-of-type) {
         margin-top: 20px;
       }
     }

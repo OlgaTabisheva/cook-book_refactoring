@@ -9,15 +9,18 @@
   top: 0;
   z-index: 10000;
 }
+
 .headerMiniSandColorful10 {
   background-color: $sand-colorful-10;
   border-bottom: 1px solid $sand-30;
   @extend %headerMini;
 }
+
 .headerMiniSand10 {
   background-color: $sand-10;
   border-bottom: 1px solid $sand-30;
   @extend %headerMini;
+
   &__box {
     margin: 20px auto 8px auto;
     max-width: 1120px;
@@ -27,6 +30,7 @@
     justify-content: space-between;
   }
 }
+
 @media only screen and (max-width: 1000px) {
   .headerMiniSand10 {
     &__box {

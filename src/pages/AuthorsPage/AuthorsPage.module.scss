@@ -18,10 +18,12 @@
 
   }
 }
+
 @media only screen and (max-width: 1300px) {
   .authorsPage {
     margin: 40px auto 112px auto;
     max-width: 736px;
+
     &__box {
       grid-template-columns: repeat(2, 256px);
 
@@ -29,6 +31,7 @@
   }
 
 }
+
 @media only screen and (max-width: 1000px) {
   .authorsPage {
 
@@ -38,4 +41,4 @@
     }
   }
 
-  }
+}

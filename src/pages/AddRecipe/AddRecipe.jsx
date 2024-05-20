@@ -33,7 +33,6 @@ function AddRecipe({
   const {id} = useParams();
   const navigate = useNavigate();
   const user = useUserData()
-
   const fullRecipe = instantAddRecipeUnpublish?.recipes.find(elem => elem.id === id);
   const [textProductForError, setTextProductForError] = useState()
   const [stepRecipeForError, setStepRecipeForError] = useState()
@@ -54,7 +53,7 @@ function AddRecipe({
   const [instantStepRecipeInfo, setInstantStepRecipeInfo] = useState()
   const [mainRecipeImage, setMainRecipeImage] = useState(null)
   const [description, setDescription] = useState('Здесь должно быть описание')
-  const [countPortions, setCountPortions] = useState()
+  const [countPortions, setCountPortions] = useState(1)
   const [nameRecipe, setNameRecipe] = useState()
   const [formValidityAddRecipe, setFormValidityAddRecipe] = useState({
     nameValid: false,
@@ -83,7 +82,6 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
     }
 }`
   const [mutateRecipe] = useMutation(UPDATE_RECIPE)
-  const [stepFromStorage, setStepFromStorage] = useState()
   const DEL_IMAGE_FROM_STORAGE =
     gql`
    mutation MyMutation2 {
@@ -146,13 +144,13 @@ mutation UpdateRecipe( $id: uuid = "${id}", $recipes_category: smallint!, $descr
   }, [nameRecipe, chosenTextCategory, mainRecipeImage, chosenTextDuration, textProductForError, stepRecipeForError])
 
 
-
   useEffect(() => {
     setNameRecipe(formValuesRecipe?.name)
     setChosenTextCategory(chosenTextCategoryStep1)
   }, [])
+
+
   useEffect(() => {
-console.log(fullRecipe,'fullRecipe')
 
     if (fullRecipe?.name) {
       setNameRecipe(fullRecipe?.name)
@@ -163,14 +161,14 @@ console.log(fullRecipe,'fullRecipe')
     if (fullRecipe?.duration) {
       setChosenTextDuration(fullRecipe?.duration)
     }
-    if (fullRecipe?.recipes_category){
+    if (fullRecipe?.recipes_category) {
       setChosenTextCategory(fullRecipe?.recipes_category)
     }
     if (fullRecipe?.description) {
       setDescription(fullRecipe?.description)
     }
     if (fullRecipe?.category?.category) {
-     // console.log(fullRecipe?.category?.category,'fullRecipe?.category')
+      // console.log(fullRecipe?.category?.category,'fullRecipe?.category')
       setChosenTextCategory(fullRecipe?.category,)
     }
     if (fullRecipe?.duration?.duration) {
@@ -194,9 +192,10 @@ console.log(fullRecipe,'fullRecipe')
   }, [fullRecipe])
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[])
+  }, [])
+
   function handleDuration(obj) {
     setChosenTextDuration(obj)
   }
@@ -204,7 +203,8 @@ console.log(fullRecipe,'fullRecipe')
 
 //console.log(formValuesRecipe, fullRecipe, '77')
   function handleAddProduct() {
-    const newLineNumber = lineNumber + 1
+    const newLineNumber = (productQuantityMap.slice(-1)[0]?.number ? productQuantityMap.slice(-1)[0]?.number : 0) + 1
+    // console.log(productQuantityMap.slice(-1)[0]?.number,'productQuantityMap.slice(-1)[0]?.id')
     setProductQuantityMap(() => [...productQuantityMap, {
       number: newLineNumber,
       product: `Введите продукт`,
@@ -215,7 +215,10 @@ console.log(fullRecipe,'fullRecipe')
   }
 
   function handleAddStep() {
-    const newStepNumber = instantStepRecipeWithGallery.slice(-1)[0]?.id + 1
+
+    const newStepNumber = (instantStepRecipeWithGallery.slice(-1)[0]?.id ? instantStepRecipeWithGallery.slice(-1)[0]?.id : 0) + 1
+    //console.log(instantStepRecipeWithGallery, 'instantStepRecipeWithGallery.slice(-1)[0]?.id ')
+
     setInstantStepRecipeWithGallery(() => [...instantStepRecipeWithGallery, {
       id: newStepNumber,
       step: newStepNumber,
@@ -228,10 +231,9 @@ console.log(fullRecipe,'fullRecipe')
     //  localStorage.setItem("instantSteps", JSON.stringify(instantStepRecipeWithGallery))
   }
 
+
   const updateRecipe = async (e) => {
     e.preventDefault()
-    console.log(chosenTextCategory,'chosenTextCategory?.number')
-    console.log(chosenTextDuration?.number,'chosenTextDuration?.number')
     try {
       await mutateRecipe({
         variables: {
@@ -243,7 +245,8 @@ console.log(fullRecipe,'fullRecipe')
           photo: JSON.stringify(mainRecipeImage),
           steps: JSON.stringify(instantStepRecipeWithGallery),
           description: description,
-          portions: countPortions
+          portions: countPortions,
+          publish: (user?.defaultRole === 'AdminRecipes')
         }
 
       }).then((rez) => {
@@ -257,6 +260,7 @@ console.log(fullRecipe,'fullRecipe')
             long: rez.data.update_recipes_by_pk.long,
             description: rez.data.update_recipes_by_pk.description,
             portions: rez.data.update_recipes_by_pk.portions,
+            publish: rez.data.update_recipes_by_pk.publish
           }]
 
         setInstantAddRecipe({recipes: recipesArray})
@@ -328,10 +332,7 @@ console.log(fullRecipe,'fullRecipe')
     }
 
   }
-useEffect(()=>{
-  console.log(chosenTextCategory.category,'chosenTextCategory.category')
-  console.log(chosenTextDuration.duration,'chosenTextDuration.duration')
-},[chosenTextDuration.duration,chosenTextCategory.category])
+
 
   return (
     <section className={style.addRecipe}>
@@ -351,7 +352,8 @@ useEffect(()=>{
         </div>
         <div className={style.addRecipe__portions}>
           <h3 className={style.addRecipe__subtitle}>Количество порций:</h3>
-          <PortionsCounter setCountPortions={setCountPortions} countPortions={countPortions} fullRecipe={fullRecipe?.portions}/>
+          <PortionsCounter setCountPortions={setCountPortions} countPortions={countPortions}
+                           fullRecipe={fullRecipe?.portions}/>
         </div>
         <div className={style.addRecipe__photoBox}>
           <h3 className={style.addRecipe__subtitle}>Фото готового блюда:</h3>
@@ -433,7 +435,9 @@ useEffect(()=>{
           <span className={!stepsValid ? style.addRecipe__span : style.addRecipe__span_hidden}>Не добавлен текст в первый шаг.</span>}
 
         <div className={style.addRecipe__button}>
-          <ButtonBasic color={'primaryGreen'} text={'Отправить на модерацию'} type='submit'
+          <ButtonBasic color={'primaryGreen'}
+                       text={user?.defaultRole === 'AdminRecipes' ? 'Опубликовать рецепт' : 'Отправить на модерацию'}
+                       type='submit'
                        disabled={isSubmitDisabled}/>
         </div>
         {/*  <PopupBasic title={"Удалить рецепт?"} text={'Вы действительно хотите удалить рецепт «Булочки синнабон с корицей»?'}/>*/}

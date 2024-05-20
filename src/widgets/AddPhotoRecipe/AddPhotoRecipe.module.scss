@@ -1,5 +1,6 @@
 @import "../../variables";
-.addPhotoRecipe{
+
+.addPhotoRecipe {
   margin-top: 20px;
   padding: 62px 172px;
   background-color: $sand-20;
@@ -12,10 +13,12 @@
   flex-direction: column;
   border-radius: 28px;
   cursor: pointer;
-  &__image{
+
+  &__image {
     stroke: $sand-60;
   }
-  &__text{
+
+  &__text {
     color: $sand-60;
     @extend %textLarge16Mon;
     text-align: center;

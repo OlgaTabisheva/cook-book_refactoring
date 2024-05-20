@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+
     :not(:first-child) {
       margin-left: 12px;
     }
@@ -20,11 +21,13 @@
   }
 
 }
+
 @media only screen and (max-width: 650px) {
   .personalPage {
 
-max-width: 340px;
+    max-width: 340px;
     width: 100%;
+
     &__chips {
       display: flex;
       flex-direction: row;

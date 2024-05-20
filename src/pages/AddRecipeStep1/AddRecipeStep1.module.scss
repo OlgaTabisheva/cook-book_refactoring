@@ -1,7 +1,7 @@
 @import "../../variables";
 
 
-.addRecipeStep1{
+.addRecipeStep1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,12 +16,14 @@
     justify-content: center;
 
   }
-  &__title{
+
+  &__title {
     @extend %title32Vol;
     text-align: center;
     margin-bottom: 40px;
   }
-  &__categoriesBox{
+
+  &__categoriesBox {
     margin: 60px 0;
     width: 100%;
     text-align: start;
@@ -29,7 +31,8 @@
     flex-direction: column;
 
   }
-  &__error{
+
+  &__error {
     @extend %textSmall13-16Mon;
     display: flex;
     flex-direction: column;
@@ -42,13 +45,15 @@
     opacity: 1;
     color: $error;
   }
-  &__errorHidden{
+
+  &__errorHidden {
     visibility: hidden;
   }
 
 }
+
 @media only screen and (max-width: 1000px) {
   .addRecipeStep1 {
-  padding: 0 10px;
+    padding: 0 10px;
   }
 }

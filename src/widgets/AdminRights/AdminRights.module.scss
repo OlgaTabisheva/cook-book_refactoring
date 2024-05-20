@@ -1,11 +1,12 @@
 @import "../../variables";
 
 
-.adminRights{
+.adminRights {
   display: flex;
   flex-direction: column;
   align-items: center;
-  &__box{
+
+  &__box {
     margin-top: 40px;
     display: flex;
     width: 1120px;
@@ -15,11 +16,13 @@
     flex-wrap: wrap;
     align-content: center;
   }
-  &__button{
+
+  &__button {
     border: none;
     cursor: pointer;
     background-color: inherit;
-    &:hover{
+
+    &:hover {
       opacity: 0.5;
     }
   }

@@ -1,7 +1,7 @@
 import style from './ButtonLike.module.scss'
 
 
-function ButtonLikeEmpty({onClick, countLikes }) {
+function ButtonLikeEmpty({onClick, countLikes}) {
   return (
     <button className={style.buttonLikeEmpty} onClick={onClick}>
       <div

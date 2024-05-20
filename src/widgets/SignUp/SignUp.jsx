@@ -18,9 +18,9 @@ function SignUp({password, setPassword}) {
     passwordValid: false,
     passwordValidRepeat: false
   });
-  const { emailValid, passwordValid, passwordValidRepeat} = formValiditySignUp;
+  const {emailValid, passwordValid, passwordValidRepeat} = formValiditySignUp;
 
-  const isSubmitDisabled =  !emailValid || !passwordValid || !passwordValidRepeat;
+  const isSubmitDisabled = !emailValid || !passwordValid || !passwordValidRepeat;
   const disableForm = isLoading || needsEmailVerification
 
   useEffect(function validateInputs() {
@@ -36,7 +36,7 @@ function SignUp({password, setPassword}) {
       passwordValid: isPasswordInputValid,
       passwordValidRepeat: isPasswordRepeat
     }))
-  }, [ emailInput, passwordInput, passwordRepeatInput])
+  }, [emailInput, passwordInput, passwordRepeatInput])
 
 
   const onSubmit = (data, e) => console.log(data, e);
@@ -64,30 +64,30 @@ function SignUp({password, setPassword}) {
           type="email"
           placeholder="user@mail.com"
           eye={false}
-           errorText={"Введите правильный email адрес"}
+          errorText={"Введите правильный email адрес"}
           value={emailInput.toLowerCase()}
           required
           onChange={(e) => setEmailInput(e.target.value)}
-        error={!emailValid}
+          error={!emailValid}
           //textError={"Пароль слишком короткий"}
         />
         <InputAuth
-        id="password"
+          id="password"
           text={"Введите пароль"}
           title={"Пароль:"}
           eye={true}
-        type="password"
-        placeholder="***"
-        required
+          type="password"
+          placeholder="***"
+          required
           password={password}
           setPassword={setPassword}
-        errorText={"Пароль слишком короткий"}
-        name="passwordInput"
+          errorText={"Пароль слишком короткий"}
+          name="passwordInput"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
-        error={!passwordValid}
-        //textError={"Пароль слишком короткий22"}
-          />
+          error={!passwordValid}
+          //textError={"Пароль слишком короткий22"}
+        />
 
         <InputAuth
           type="password"
@@ -107,7 +107,8 @@ function SignUp({password, setPassword}) {
           required/>
       </form>
       <div className={style.signUp__buttonBox}>
-        <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit} disabled={isSubmitDisabled || disableForm}/>
+        <ButtonBasic text={'Зарегистрироваться'} color={'primaryGreen'} type={'submit'} onClick={handleOnSubmit}
+                     disabled={isSubmitDisabled || disableForm}/>
       </div>
     </section>
   )

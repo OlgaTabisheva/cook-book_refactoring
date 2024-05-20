@@ -14,22 +14,22 @@ function Auth() {
     <div className={style.auth}>
       <HeaderMini color={'Sand10'}/>
       <div className={style.auth__images}>
-      <div className={style.auth__content}>
+        <div className={style.auth__content}>
 
-        <div className={style.auth__contentText}>
-          <h2 className={style.auth__title}>{!disabledButton ? "Войдите на сайт" : "Зарегистрируйтесь на сайте"}</h2>
-          <p className={style.auth__description}>ставьте лайки, комментируйте и пишите рецепты </p>
-          <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton}/>
+          <div className={style.auth__contentText}>
+            <h2 className={style.auth__title}>{!disabledButton ? "Войдите на сайт" : "Зарегистрируйтесь на сайте"}</h2>
+            <p className={style.auth__description}>ставьте лайки, комментируйте и пишите рецепты </p>
+            <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton}/>
+          </div>
+
+          {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> :
+            <SignUp password={password} setPassword={setPassword}/>}
+
         </div>
 
-        {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> :
-          <SignUp password={password} setPassword={setPassword}/>}
-
-      </div>
-
-        <div  className={style.auth__imagePepper}/>
-        <div  className={style.auth__imageGarlic}/>
-        <div  className={style.auth__imageTomato}/>
+        <div className={style.auth__imagePepper}/>
+        <div className={style.auth__imageGarlic}/>
+        <div className={style.auth__imageTomato}/>
       </div>
     </div>
   )

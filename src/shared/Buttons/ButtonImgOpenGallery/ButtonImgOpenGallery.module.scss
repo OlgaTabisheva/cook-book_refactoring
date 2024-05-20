@@ -1,6 +1,6 @@
 @import "../../../variables";
 
-.buttonImgOpenGallery{
+.buttonImgOpenGallery {
   width: 130px;
   height: 72px;
   border-radius: 8px;
@@ -11,23 +11,27 @@
   border: none;
   position: relative;
   cursor: pointer;
-  &__img{
+
+  &__img {
     filter: blur(8px);
     border-style: solid;
     width: 130px;
     height: 72px;
     border-radius: 8px;
   }
-  &__text{
+
+  &__text {
     position: absolute;
     color: $white;
     @extend %title24Vol;
   }
-  :hover{
+
+  :hover {
     opacity: 0.5;
 
   }
 }
+
 @media only screen and (max-width: 650px) {
   .buttonImgOpenGallery {
     max-width: 72px;

@@ -6,13 +6,13 @@ function AdminCard(obj) {
 
 
   const navigate = useNavigate();
+
   function handleClickButton() {
     navigate({
       pathname: `/admin/${obj?.title}`,
       query: {searchValue: obj?.title}
-  })
+    })
   }
-
 
 
   return (

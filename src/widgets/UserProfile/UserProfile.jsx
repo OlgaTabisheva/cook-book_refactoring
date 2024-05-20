@@ -60,17 +60,10 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
   }, [user])
 
 
-
-  const handleChange = async (file)=> {
-console.log(file,'file')
+  const handleChange = async (file) => {
     setUserUploadFile(file)
-
-
   }
 
-  useEffect(()=>{
-    console.log(userCropUrl,'userCropUrl')
-  },[userCropUrl])
   return (
     <section className={style.userProfile}>
       <FileUploader maxSize={5} name="file" types={fileTypes} handleChange={handleChange}>
@@ -81,8 +74,8 @@ console.log(file,'file')
       </FileUploader>
       <form className={style.userProfile__box}>
         <InputAuth title={'Имя'} text={'Тут будет имя'} value={
-          formData?.displayName} onChange={handleInputChange} placeholder={user.displayName}  id="displayName"/>
-        <InputAuth title={'Почта'} text={'pochtapochta@gmail.com'} placeholder={user.email}  value={
+          formData?.displayName} onChange={handleInputChange} placeholder={user.displayName} id="displayName"/>
+        <InputAuth title={'Почта'} text={'pochtapochta@gmail.com'} placeholder={user.email} value={
           formData?.email} onChange={handleInputChange} id="email"/>
       </form>
       <form className={style.userProfile__form}>
@@ -96,7 +89,6 @@ console.log(file,'file')
           <ButtonBasic text={'Выйти'} color={'secondaryRed'} onClick={signOut} type={'button'}/>
         </div>
       </form>
-
 
 
     </section>
