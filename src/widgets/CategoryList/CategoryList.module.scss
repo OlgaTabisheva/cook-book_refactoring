@@ -1,5 +1,7 @@
 @import "../../variables";
-
+::-webkit-scrollbar {
+  display: none;
+}
 .categoryList {
   margin: 0 auto;
   display: flex;
@@ -32,9 +34,11 @@
     &__boxCategory {
       margin-top: 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-
+      max-width: 375px;
+      width: 100%;
+      overflow: overlay;
+      white-space: nowrap;
       :not(:first-child) {
         margin-left: 5px;
       }

@@ -12,7 +12,7 @@ import PopupCropImage from "../Popup/PopupCropImage/PopupCropImage.jsx";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
 
-function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadPopup, setUserUploadFile, userCropUrl}) {
+function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadPopup, setUserUploadFile, userCropUrl, userUploadFile}) {
 
   const {signOut} = useSignOut()
   const user = useUserData()
@@ -27,6 +27,8 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
   }
 `
 
+
+console.log(userUploadFile,'UserUploadFile')
 
   const [mutateUser, {loading: updatingProfile}] = useMutation(UPDATE_USER_MUTATION)
 
@@ -63,7 +65,6 @@ function UserProfile({formData, setFormData, setOpenDownloadPopup, openDownloadP
   const handleChange = async (file) => {
     setUserUploadFile(file)
   }
-
   return (
     <section className={style.userProfile}>
       <FileUploader maxSize={5} name="file" types={fileTypes} handleChange={handleChange}>

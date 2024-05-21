@@ -3,8 +3,9 @@ import InputAuth from "../../shared/InputAuth/InputAuth.jsx";
 import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import {useEffect, useState} from "react";
 import {useSignUpEmailPassword} from "@nhost/react";
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {nhost} from "../../main.jsx";
+import {toast} from "react-hot-toast";
 
 function SignUp({password, setPassword}) {
 
@@ -22,7 +23,7 @@ function SignUp({password, setPassword}) {
 
   const isSubmitDisabled = !emailValid || !passwordValid || !passwordValidRepeat;
   const disableForm = isLoading || needsEmailVerification
-
+  const navigate = useNavigate();
   useEffect(function validateInputs() {
     const emailTest = /\S+@\S+\.\S+/;
     const isEmailInputFilled = emailInput.length > 4
@@ -46,12 +47,14 @@ function SignUp({password, setPassword}) {
     nhost.auth.signUp({
       email: emailInput,
       password: passwordInput
-    })
-  }
-  if (isSuccess) {
-    return <Navigate to="/user" replace={true}/>
+    }).then(
+      navigate(`/user`)    )
   }
 
+  useEffect(() => {
+    if (error) {
+      toast.error('Произошла ошибка', error)    }
+  }, [ error])
 
   return (
     <section className={style.signUp}>

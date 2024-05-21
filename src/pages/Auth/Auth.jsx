@@ -7,7 +7,7 @@ import {useState} from "react";
 import carrot from '../../assets/Group 7.svg'
 
 function Auth() {
-  const [disabledButton, setDisabledButton] = useState(true)
+  const [disabledButton, setDisabledButton] = useState(false)
   const [password, setPassword] = useState(true)
   return (
 
@@ -22,8 +22,9 @@ function Auth() {
             <ButtonRadioAuth disabledButton={disabledButton} setDisabledButton={setDisabledButton}/>
           </div>
 
-          {!disabledButton ? <SignIn password={password} setPassword={setPassword}/> :
-            <SignUp password={password} setPassword={setPassword}/>}
+          {disabledButton ?
+            <SignUp password={password} setPassword={setPassword}/> :
+            <SignIn password={password} setPassword={setPassword}/>}
 
         </div>
 

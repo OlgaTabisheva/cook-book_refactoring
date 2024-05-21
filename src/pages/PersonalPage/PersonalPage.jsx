@@ -8,6 +8,7 @@ import UserRecipes from "../../widgets/UserRecipes/UserRecipes.jsx";
 import style from './../../pages/AddRecipe/AddRecipe.module.scss'
 import AdminRights from "../../widgets/AdminRights/AdminRights.jsx";
 import PopupCropImage from "../../widgets/Popup/PopupCropImage/PopupCropImage.jsx";
+import PopupSizePicture from "../../widgets/Popup/PopupSizePicture/PopupSizePicture.jsx";
 
 
 export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLikes, likesFromServer}) => {
@@ -17,7 +18,15 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
   const [userCropUrl, setUserCropUrl] = useState()
   const user = useUserData()
   const defaultRole = user?.defaultRole?.includes('AdminRecipes')
+  const [openSizeImagePopup, setOpenSizeImagePopup] = useState(false)
 
+
+  useEffect(()=>{
+    console.log(userUploadFile?.size, '88')
+if( userUploadFile?.size > 5242880){
+  setOpenSizeImagePopup(!openSizeImagePopup)
+}
+  },[userUploadFile])
   return (
     <section className={styles.personalPage}>
       <div className={styles.personalPage__chips}>
@@ -48,6 +57,10 @@ export const PersonalPage = ({formData, setFormData, instantLikes, setInstantLik
                         fileUpload={userUploadFile} popupCropImage={openDownloadPopup} userUploadFile={userUploadFile}/>
         <div className={style.addRecipe__overlay}></div>
       </div>}
+      {openSizeImagePopup &&
+        <PopupSizePicture openSizeImagePopup={openSizeImagePopup} setOpenSizeImagePopup={setOpenSizeImagePopup}/>
+
+   }
     </section>
   );
 }

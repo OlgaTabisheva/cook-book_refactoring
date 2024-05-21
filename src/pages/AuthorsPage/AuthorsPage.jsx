@@ -10,7 +10,6 @@ import {useUserData} from "@nhost/react";
 
 
 function AuthorsPage({}) {
-  const user = useUserData()
   const [instantGetCountsUserLikes, setInstantGetCountsUserLikes] = useState([])
   const [inputSearchText, setInputSearchText] = useState();
   const [searchString, setSearchString] = useState();

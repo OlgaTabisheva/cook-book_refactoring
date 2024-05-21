@@ -8,6 +8,7 @@ import userPhoto from "../../assets/userYelow.svg";
 function Header({active, popupMenu, setPopupMenu}) {
   const isAuthenticated = useAuthenticated()
   const user = useUserData()
+
   return (
     <section className={style.header}>
       <Logo/>
@@ -23,7 +24,7 @@ function Header({active, popupMenu, setPopupMenu}) {
           <LinkItem linkTo={'/user'} text={user.displayName}/>}
         {/*<LinkItem linkTo={'/'} text={'Личный кабинет'}/>}*/}
         <img className={style.header__logo} width="24px" height="24px"
-             src={userPhoto} alt="user"/>
+             src={user?.avatarUrl ? user?.avatarUrl : userPhoto} alt="user"/>
       </nav>
       <button className={style.header__burger} onClick={() => setPopupMenu(!popupMenu)}/>
     </section>

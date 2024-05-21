@@ -36,7 +36,7 @@ function CarouselsBox({instantNewRecipes, carouselTitle, instantLikes, setInstan
                 slidesPerView: 1,
               },
               600: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               1010: {
                 slidesPerView: 3,

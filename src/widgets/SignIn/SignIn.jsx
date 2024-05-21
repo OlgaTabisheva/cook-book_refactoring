@@ -4,6 +4,7 @@ import ButtonBasic from "../../shared/Buttons/ButtonBasic/ButtonBasic.jsx";
 import {useSignInEmailPassword, useSignUpEmailPassword} from '@nhost/react'
 import {useEffect, useState} from "react";
 import {Navigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 function SignIn({password, setPassword}) {
 
@@ -39,6 +40,12 @@ function SignIn({password, setPassword}) {
     signInEmailPassword(emailInput, passwordInput)
 
   }
+
+  useEffect(() => {
+
+    if (error) {
+      toast.error('Произошла ошибка', error)    }
+  }, [ error])
   if (isSuccess) {
     return <Navigate to="/user" replace={true}/>
   }

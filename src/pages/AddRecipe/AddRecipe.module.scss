@@ -295,7 +295,7 @@
       justify-content: center;
       overflow: auto;
       width: 375px;
-
+      white-space: nowrap;
     }
 
     :not(:first-child) {
