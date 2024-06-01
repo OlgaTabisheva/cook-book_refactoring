@@ -10,8 +10,13 @@ function AuthorsCard(obj) {
 
   return (
     <section className={style.authorsCard}>
-      <img className={style.authorsCard__img} alt={'avatar'}
-           src={obj?.avatarUrl?.includes(defaultAvatar) ? photo : obj?.avatarUrl}/>
+      {obj?.avatarUrl?.includes(defaultAvatar) ? <div className={style.authorsCard__box}>
+          <img className={style.authorsCard__img} alt={'avatar'}
+               src={photo}/>
+        </div>
+        :
+        <img className={style.authorsCard__avatar} alt={'avatar'}
+             src={obj?.avatarUrl}/>}
       <div className={style.authorsCard__section}>
         <h3 className={style.authorsCard__title}>{obj?.displayName} </h3>
         <div className={style.authorsCard__textBox}>

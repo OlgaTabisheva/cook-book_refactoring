@@ -9,6 +9,9 @@ import carrot from '../../assets/Group 7.svg'
 function Auth() {
   const [disabledButton, setDisabledButton] = useState(false)
   const [password, setPassword] = useState(true)
+
+
+
   return (
 
     <div className={style.auth}>

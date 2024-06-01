@@ -150,6 +150,10 @@ query MyQuery {
     setInstantLikesComments(likesCommentsFromServer)
   }, [likesCommentsFromServer])
 
+  useEffect(()=>{
+    localStorage.clear()
+  },[])
+
   const SET_CATEGORY = gql`query {
    recipes(where: {publish: {_eq: true}, category: {recipes: {recipes_category: {_eq: "${selectedCategory}"}}}}) {
     category {
