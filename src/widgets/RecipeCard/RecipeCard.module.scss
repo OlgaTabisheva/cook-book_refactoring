@@ -10,6 +10,10 @@
   display: inline-block;
   overflow: hidden;
 
+  &:hover {
+   box-shadow: $shadowCard;
+    border-radius: 28px;
+  }
   &__link {
     text-decoration: none;
   }

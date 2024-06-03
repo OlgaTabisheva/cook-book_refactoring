@@ -146,7 +146,6 @@ query MyQuery {
 
   useEffect(() => {
 
-
     setInstantLikesComments(likesCommentsFromServer)
   }, [likesCommentsFromServer])
 
