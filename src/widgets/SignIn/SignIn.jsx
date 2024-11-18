@@ -66,6 +66,7 @@ function SignIn({password, setPassword}) {
           required
           onChange={(e) => setEmailInput(e.target.value)}
           error={!emailValid}
+          
         />
         <InputAuth
           id="password"

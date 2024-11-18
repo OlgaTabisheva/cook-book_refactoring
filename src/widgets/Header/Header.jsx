@@ -21,6 +21,7 @@ function Header({ popupMenu, setPopupMenu}) {
         <LinkItem linkTo={'/add-recipe-step'} text={'Добавить новый рецепт'}  />
 
       </nav>
+
       <nav className={style.header__box}>
         {!isAuthenticated ? <LinkItem linkTo={'/auth'} text={'Вход/Регистрация'}  onClick={()=>setActiveLink(0)} /> :
           <LinkItem linkTo={'/user'} text={user.displayName}  onClick={()=>setActiveLink(0)} />}

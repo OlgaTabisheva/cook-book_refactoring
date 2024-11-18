@@ -2,17 +2,25 @@
 
 .recipeCard {
   max-width: 352px;
+  min-width: 352px;
   width: 100%;
   max-height: 340px;
+  min-height: 340px;
   height: 100%;
   flex-direction: column;
   position: relative;
   display: inline-block;
   overflow: hidden;
-
+  padding: 0 0 5px 5px;
   &:hover {
    box-shadow: $shadowCard;
     border-radius: 28px;
+  }
+  &__coverLoading{
+    width: 352px;
+    height: 200px;
+    display: flex;
+    background-color: #F2E4B8;
   }
   &__link {
     text-decoration: none;
@@ -183,4 +191,36 @@
     justify-content: space-evenly;
   }
 
+}
+@media only screen and (max-width: 1300px) {
+  .recipeCard {
+    max-width: 280px;
+    min-width: 280px;
+    width: 100%;
+    max-height: 352px;
+    min-height: 352px;
+    height: 100%;
+    &__coverLoading{
+     width: 280px;
+      height: 175px;
+   
+    }
+  }
+   
+}
+
+@media only screen and (max-width: 650px) {
+  .recipeCard {
+    max-width: 340px;
+    min-width: 340px;
+    width: 100%;
+    max-height: 344px;
+    min-height: 344px;
+    height: 100%;
+    &__coverLoading{
+       width: 340px;
+       height: 210px;
+    
+     }
+  }
 }
