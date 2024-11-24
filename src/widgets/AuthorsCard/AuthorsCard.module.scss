@@ -7,11 +7,11 @@
   justify-content: center;
   max-width: 256px;
   width: 100%;
-  &__box{
+  &__box {
     width: 120px;
     height: 120px;
     border-radius: 120px;
-    background-color: #FFEEC1;
+    background-color: #ffeec1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@
     width: 24px;
     height: 24px;
   }
-  &__avatar{
+  &__avatar {
     width: 120px;
     height: 120px;
     border-radius: 120px;
@@ -29,7 +29,6 @@
     max-width: 216px;
     width: 100%;
   }
-
   &__title {
     @extend %subtitle20-24Vol;
     margin-top: 12px;
@@ -39,20 +38,16 @@
     overflow: hidden;
     color: $primary-dark-100;
   }
-
   &__textBox {
     margin-top: 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
-    :not(:first-child) {
+    &:not(:first-child) {
       margin-left: 20px;
     }
-
   }
-
   &__text {
     font-family: $hint-font;
     font-size: 13px;
@@ -60,7 +55,5 @@
     line-height: 20px;
     text-align: left;
     color: $sand-80;
-
-
   }
 }

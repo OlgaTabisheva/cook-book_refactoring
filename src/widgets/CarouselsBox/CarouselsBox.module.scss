@@ -40,6 +40,15 @@ li {
   left: 1015px;
 }
 
+
+.swiper-pagination-fraction{
+  left: 393px;
+  top: 20px;
+}
+.mySwiper{
+  padding-top: 40px;
+    
+}
 .carouselsBox {
   max-width: 1120px;
   width: 100%;
@@ -56,7 +65,7 @@ li {
   }
 
 
-
+ 
 
   &__carousel {
     position: relative;
@@ -66,6 +75,7 @@ li {
   &__buttons {
     display: flex;
     justify-content: flex-end;
+   margin-top: -20px;
   }
 
   &__title {
@@ -82,8 +92,7 @@ li {
     width: 100%;
   }
 
-  &__box {
-  }
+
 
   &__text {
     @extend %subtitle20-24Vol;

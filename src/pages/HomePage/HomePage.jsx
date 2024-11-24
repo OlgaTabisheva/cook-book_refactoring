@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import PictureSection from "../../widgets/PictureSection/PictureSection.jsx";
 import CarouselsBox from "../../widgets/CarouselsBox/CarouselsBox.jsx";
 import {gql, useQuery} from "@apollo/client";
-import PopupMenu from "../../widgets/Popup/PopupMenu/PopupMenu.jsx";
+import "./../../../swiper.css";
 
 
 export const HomePage = ({

@@ -1,5 +1,5 @@
 import style from './CarouselsBox.module.scss'
-import React, {useCallback, useRef} from "react";
+import {useCallback, useRef} from "react";
 import RecipeCard from "../RecipeCard/RecipeCard.jsx";
 import {Pagination, Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide} from "swiper/react";

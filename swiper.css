@@ -1,0 +1,22 @@
+.swiper{
+    padding-top: 30px;
+}
+.swiper-horizontal{
+    padding: 30px;
+}
+.swiper-wrapper{
+    padding-top: 35px;
+} 
+.swiper-pagination-fraction{
+    margin-top: -10px;
+    margin-left: 396px;
+
+}
+
+@media only screen and (max-width: 1000px) {
+    .swiper-pagination-fraction{
+        margin-top: -10px;
+        margin-left: 3px;
+    
+    }
+  }
