@@ -195,10 +195,10 @@
 @media only screen and (max-width: 1300px) {
   .recipeCard {
     max-width: 280px;
-    min-width: 280px;
+    min-width: 250px;
     width: 100%;
     max-height: 352px;
-    min-height: 352px;
+    min-height: 252px;
     height: 100%;
     &__coverLoading{
      width: 280px;
@@ -207,19 +207,20 @@
     }
   }
    
-}
+}    
+
 
 @media only screen and (max-width: 650px) {
   .recipeCard {
-    max-width: 340px;
-    min-width: 340px;
+    max-width: 370px;
+    min-width: 370px;
     width: 100%;
     max-height: 344px;
     min-height: 344px;
     height: 100%;
     &__coverLoading{
-       width: 340px;
-       height: 210px;
+       max-width: 370px;
+       max-height: 210px;
     
      }
   }

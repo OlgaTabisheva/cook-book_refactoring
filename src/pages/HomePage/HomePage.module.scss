@@ -7,6 +7,7 @@
     margin: 60px auto 120px auto;
     flex-direction: column;
     align-items: center;
+    
 
   }
 }
@@ -27,7 +28,17 @@
   .home {
 
     &__box {
-      max-width: 344px;
+      max-width: 900px;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+width: 100%;
+    &__box {
+      max-width: 370px;
 
     }
   }

@@ -42,8 +42,9 @@
 
 @media only screen and (max-width: 1000px) {
   .header {
+    max-width: 600px;
+    width: 100%;
     display: flex;
-    width: 375px;
     padding: 8px 16px;
     justify-content: space-between;
     align-items: center;
@@ -83,3 +84,7 @@
 
   }
 }
+@media only screen and (max-width: 777px) {
+  .header {
+    max-width: 375px;
+  }}

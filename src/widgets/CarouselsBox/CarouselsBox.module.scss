@@ -29,25 +29,26 @@ li {
   z-index: 100;
   display: flex;
   transition-property: transform;
-  transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+  transition-timing-function: var(
+    --swiper-wrapper-transition-timing-function,
+    initial
+  );
   box-sizing: content-box;
 }
 
 .swiper-pagination {
   position: absolute;
-  top: 6px ;
+  top: 6px;
   z-index: 100;
   left: 1015px;
 }
 
-
-.swiper-pagination-fraction{
+.swiper-pagination-fraction {
   left: 393px;
   top: 20px;
 }
-.mySwiper{
+.mySwiper {
   padding-top: 40px;
-    
 }
 .carouselsBox {
   max-width: 1120px;
@@ -64,9 +65,6 @@ li {
     padding-top: 40px;
   }
 
-
- 
-
   &__carousel {
     position: relative;
     z-index: 10;
@@ -75,14 +73,13 @@ li {
   &__buttons {
     display: flex;
     justify-content: flex-end;
-   margin-top: -20px;
+    margin-top: -20px;
   }
 
   &__title {
     @extend %title28Vol;
     margin: 60px 0 -30px 0;
     width: 400px;
-
   }
 
   &__card {
@@ -91,8 +88,6 @@ li {
     max-width: 372px;
     width: 100%;
   }
-
-
 
   &__text {
     @extend %subtitle20-24Vol;
@@ -173,16 +168,48 @@ li {
   .swiper-pagination {
     position: absolute;
     z-index: 100;
-    left: 832px !important
+    left: 832px !important;
+  }
+  .swiper {
+    // max-width: 800px;
+    // width: 100%;
+  }
+  .carouselsBox {
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
   .carouselsBox {
-    max-width: 344px;
+    max-width: 777px;
+
+    &__carousel {
+      margin: 0 30px;
+    }
+  }
+}
+@media only screen and (max-width: 777px) {
+  .carouselsBox {
+    max-width: 370px;
+    &__swiper {
+      max-width: 400px;
+      width: 100%;
+    }
+    &__carousel {
+      margin: 0 20px;
+    }
   }
   .swiper-pagination {
-
-    left: 305px !important
+    left: 305px !important;
+  }
+  .swiper {
+    max-width: 400px;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .carouselsBox {
+    &__carousel {
+      margin: 0;
+    }
   }
 }
