@@ -97,8 +97,8 @@ query MyQuery {
       {searchTextFromRoute === 'Категории' &&
         <div className={style.adminPage__boxCategories}>
           <div className={style.adminPage__categories}>
-            {allCategories?.categories?.map((obj) => (
-              <CategoryCard {...obj}/>))}
+            {allCategories?.categories?.map((obj,i) => (
+              <CategoryCard key={i} {...obj}/>))}
           </div>
 
           <ButtonBasic color={'primaryGreen'} text={'Добавить'}/>
@@ -122,8 +122,8 @@ query MyQuery {
           <InputSearch placeholder={'Ведите название'}/>
           <div className={style.adminPage__mod}>
 
-            {instantPublishRecipe?.recipes?.map((obj) => (
-              <RecipeCard {...obj}/>))}
+            {instantPublishRecipe?.recipes?.map((obj,i) => (
+              <RecipeCard key={i} {...obj}/>))}
           </div>
 
         </div>
