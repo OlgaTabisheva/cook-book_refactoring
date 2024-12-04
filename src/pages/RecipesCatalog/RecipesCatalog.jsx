@@ -106,7 +106,7 @@ function RecipesCatalog({
                            paginate={paginate}
                            setCurrentPage/>}
       </div>
-      {unauthorizedPopup === true && <div className={style.recipesCatalog__popup}>
+{/*       {unauthorizedPopup === true && <div className={style.recipesCatalog__popup}>
         <PopupBasic text={'К сожалению функция "поставить лайк" доступна только авторизованным пользователям'}
                     title={'Если у вас еще нет аккаунта, пожалуйста, зарегистрируйтесь'}
                     textButtonGo={'Зарегистрироваться'} popupCloseAddRecipe={unauthorizedPopup}
@@ -114,7 +114,7 @@ function RecipesCatalog({
                     exitClick={() => navigate(`/auth`)}/>
         <div className={style.recipesCatalog__overlay}></div>
 
-      </div>}
+      </div>} */}
     </div>
   )
 }

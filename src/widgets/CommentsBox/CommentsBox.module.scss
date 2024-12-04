@@ -9,6 +9,25 @@
     @extend %title28Vol;
     text-align: left;
   }
+  &__smallTitle {
+    margin: 50px auto 30px auto;
+    @extend %subtitle20-24Vol;
+    text-align: center;
+  }
+
+  &__emptyBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(249, 236, 197, .7);
+  
+    margin: 50px 0;
+    padding: 0 0 30px 0;
+    border-radius: 28px;
+  }
+  &__none {
+    margin-top: 30px;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -19,7 +38,7 @@
 
     &__title {
       color: var(--Primary-Primary-dark-100, #323232);
-      font-feature-settings: 'clig' off, 'liga' off;
+      font-feature-settings: "clig" off, "liga" off;
 
       /* Mob/Headers Н3 */
       font-family: Vollkorn;

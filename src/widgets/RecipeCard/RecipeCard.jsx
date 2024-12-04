@@ -31,6 +31,8 @@ function RecipeCard({
   const [mainPhoto, setMainPhoto] = useState();
   const [countLikes, setCountLikes] = useState([]);
   const [countComments, setCountComments] = useState([]);
+  const [likesForNonUsers,setLikesForNonUsers ] = useState([false,-1])
+
   const myUser = useUserData();
 
   const GET_COUNTS_LIKES = gql`
@@ -53,7 +55,7 @@ function RecipeCard({
 `;
 
   const ADD_LIKE = gql`
-  mutation {
+  mutation {countLikes
     insert_likes_one(object: {userId: "${myUser?.id}", recipesId:"${id}"}) {
       recipesId
     }
@@ -142,25 +144,25 @@ function RecipeCard({
           <div>
             <RecipeChips text={category?.category} />
           </div>
-          {mainPhoto  ? <img
-            className={
-              publish === false
-                ? style.recipeCard__imgBlur
-                : style.recipeCard__img
-            }
-            src={mainPhoto  ? mainPhoto : img  }
-            alt="recipeImg"
-          /> :
-          <div className={style.recipeCard__coverLoading}>
-          <img className={
-            style.recipeCard__loading
-              
-          }
-          src={img}
-          alt="recipeImg" />
-          </div>
-          }
-
+          {mainPhoto ? (
+            <img
+              className={
+                publish === false
+                  ? style.recipeCard__imgBlur
+                  : style.recipeCard__img
+              }
+              src={mainPhoto ? mainPhoto : img}
+              alt="recipeImg"
+            />
+          ) : (
+            <div className={style.recipeCard__coverLoading}>
+              <img
+                className={style.recipeCard__loading}
+                src={img}
+                alt="recipeImg"
+              />
+            </div>
+          )}
         </div>
 
         <div className={style.recipeCard__textBox}>
@@ -182,11 +184,14 @@ function RecipeCard({
               countLikes={countLikes}
             />
           )
-        ) : (
+        ) : ( (likesForNonUsers[0] === false ) ? 
           <ButtonLikeEmpty
-            onClick={() => setUnauthorizedPopup(!unauthorizedPopup)}
-            countLikes={countLikes}
-          />
+            onClick={() => setLikesForNonUsers([true,countLikes+1])  }
+            countLikes={(likesForNonUsers[1]>0) ? likesForNonUsers[1] : countLikes}
+          /> : <ButtonLikeFull
+          onClick={() => setLikesForNonUsers([false,countLikes-1]) }
+          countLikes={(likesForNonUsers[1]>0) ? likesForNonUsers[1] : countLikes}
+        /> 
         )}
         <ButtonComments countComments={countComments} />
       </div>
