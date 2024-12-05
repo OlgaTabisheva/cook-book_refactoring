@@ -5,7 +5,6 @@
   margin-top: 40px;
   margin-bottom: 120px;
 
-
   &__img {
     width: 544px;
     height: 300px;
@@ -17,7 +16,6 @@
     width: 130px;
     height: 72px;
     border-radius: 8px;
-
   }
 
   &__boxMaxi {
@@ -45,7 +43,6 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-
   }
 
   &__module {
@@ -72,7 +69,6 @@
     @extend %textSmall13-20Mon;
     text-align: center;
     color: $sand-80;
-
   }
 
   &__user {
@@ -93,14 +89,12 @@
   &__steps {
     max-width: 544px;
     width: 100%;
-
   }
 
   &__title {
     @extend %title28Vol;
     text-align: left;
     margin-top: 120px;
-
   }
 
   &__boxPhoto {
@@ -122,8 +116,8 @@
   &__description {
     max-width: 544px;
     width: 100%;
-    color: var(--Primary-Sand-Sand-80, #655D45);
-    font-feature-settings: 'clig' off, 'liga' off;
+    color: var(--Primary-Sand-Sand-80, #655d45);
+    font-feature-settings: "clig" off, "liga" off;
     /* Desktop/H4 */
     font-family: Vollkorn;
     font-size: 20px;
@@ -132,13 +126,54 @@
     line-height: 24px; /* 120% */
     margin-top: 24px;
   }
+  &__like {
+    margin-right: 8px;
+    border: none;
+    display: flex;
+    width: 62px;
+    height: 32px;
+    padding: 4px 12px;
+    background-color: $sand-20;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  &__heart {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../assets/heartEmpty.svg);
+    border: hidden;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__count {
+    cursor: default;
+    @extend %textLarge16Mon;
+    margin-left: 4px;
+    color: $sand-colorful-80;
+    font-weight: 600;
+  }
+
+  &__comments {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../assets/message-circle.svg);
+    border: hidden;
+    cursor: default;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+
 }
 
 @media only screen and (max-width: 1300px) {
   .recipePhotoBlock {
-
     &__composition_mobile {
-      background-color: #FFEEC1;
+      background-color: #ffeec1;
       border-radius: 28px;
       padding: 20px 20px 40px 20px;
       max-width: 304px;
@@ -175,18 +210,16 @@
     &__boxMini {
       max-width: 344px;
       width: 100%;
-
     }
 
     &__box {
       max-width: 344px;
       width: 100%;
-
     }
 
     &__title {
       color: var(--Primary-Primary-dark-100, #323232);
-      font-feature-settings: 'clig' off, 'liga' off;
+      font-feature-settings: "clig" off, "liga" off;
 
       /* Mob/Headers Н2 */
       font-family: Vollkorn;
@@ -196,5 +229,4 @@
       line-height: 28px; /* 116.667% */
     }
   }
-
 }
