@@ -43,10 +43,7 @@ li {
   left: 1015px;
 }
 
-.swiper-pagination-fraction {
-  left: 393px;
-  top: 20px;
-}
+
 .mySwiper {
   padding-top: 40px;
 }
@@ -170,12 +167,8 @@ li {
     z-index: 100;
     left: 832px !important;
   }
-  .swiper {
-    // max-width: 800px;
-    // width: 100%;
-  }
-  .carouselsBox {
-  }
+
+
 }
 
 @media only screen and (max-width: 900px) {
@@ -185,6 +178,7 @@ li {
     &__carousel {
       margin: 0 30px;
     }
+
   }
 }
 @media only screen and (max-width: 777px) {
