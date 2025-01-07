@@ -2,17 +2,11 @@ import style from './PopupImageGallery.module.scss'
 import img from './../../../assets/test.jpg'
 import 'swiper/css';
 import React, {useCallback, useRef} from "react";
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import {A11y, Pagination, Navigation} from 'swiper/modules';
 import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
 import ButtonPicture from "../../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
-import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import 'swiper/css';
-
 const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
   const sliderRef = useRef(null);
 
@@ -40,11 +34,12 @@ const PopupImageGallery = ({recipeStepsMap, open, setOpenImagePopup}) => {
             }}
                      navigation={false}
                      modules={[Pagination, Navigation]}
-                     className="mySwiper" ref={sliderRef}
+                     className={style.swiper 
+                  } ref={sliderRef}
 
             >
               {recipeStepsMap && recipeStepsMap.map((obj, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} className={style.swiper__SwiperSlide }>
 
                   <img alt={'img'} className={style.popupImageGallery__img} src={obj.url}/>
                 </SwiperSlide>

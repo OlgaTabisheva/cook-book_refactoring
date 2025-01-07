@@ -7,7 +7,7 @@ import "swiper/scss";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ButtonPicture from "../../shared/Buttons/ButtonPicture/ButtonPicture.jsx";
-
+import "./../../../swiper.css";
 function CarouselsBox({
   instantNewRecipes,
   carouselTitle,
