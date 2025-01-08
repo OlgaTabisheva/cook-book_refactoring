@@ -1,6 +1,8 @@
 @import "../../../variables";
 
-.swiper{
+.swiper{  
+  padding-top: 30px;
+
   &__SwiperSlide{
     margin: 0;
   }
@@ -20,7 +22,7 @@
 
   &__wrapper {
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
     top: 0;
     left: 0;
     position: fixed;
@@ -151,10 +153,7 @@ article.nextSlide {
 margin-right: -30px; 
 }
 
-.swiper{
-  padding-top: 30px;
 
-}
 .swiper-horizontal{
   padding: 30px;
 }
